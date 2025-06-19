@@ -1,0 +1,1 @@
+savedcmd_/home/bartek/labdrivers/lab1/dev_module.ko := ld -r -m elf_x86_64 -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T scripts/module.lds -o /home/bartek/labdrivers/lab1/dev_module.ko /home/bartek/labdrivers/lab1/dev_module.o /home/bartek/labdrivers/lab1/dev_module.mod.o
