@@ -1,1 +1,1 @@
-savedcmd_/home/bartek/labdrivers/lab1/dev_module.mod := printf '%s\n'   dev_module.o | awk '!x[$$0]++ { print("/home/bartek/labdrivers/lab1/"$$0) }' > /home/bartek/labdrivers/lab1/dev_module.mod
+savedcmd_/home/pc/Sterowniki-dla-systemu-Linux/lab1/dev_module.mod := printf '%s\n'   dev_module.o | awk '!x[$$0]++ { print("/home/pc/Sterowniki-dla-systemu-Linux/lab1/"$$0) }' > /home/pc/Sterowniki-dla-systemu-Linux/lab1/dev_module.mod
