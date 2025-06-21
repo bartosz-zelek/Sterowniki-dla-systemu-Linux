@@ -1,1 +1,1 @@
-savedcmd_/home/bartek/labdrivers/lab1/Module.symvers :=  scripts/mod/modpost -M -m -a      -o /home/bartek/labdrivers/lab1/Module.symvers -T /home/bartek/labdrivers/lab1/modules.order -i Module.symvers -e 
+savedcmd_/home/pc/Sterowniki-dla-systemu-Linux/lab1/Module.symvers :=  scripts/mod/modpost -M -m -a      -o /home/pc/Sterowniki-dla-systemu-Linux/lab1/Module.symvers -T /home/pc/Sterowniki-dla-systemu-Linux/lab1/modules.order -i Module.symvers -e 
