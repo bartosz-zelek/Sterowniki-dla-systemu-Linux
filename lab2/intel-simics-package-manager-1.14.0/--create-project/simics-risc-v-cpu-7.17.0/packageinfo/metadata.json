@@ -1,1 +1,0 @@
-{"name":"Platform: RISC-V CPU","package-name":"RISC-V-CPU","package-number":2050,"version":"7.17.0","kind":"addon","host":"linux64","build-id":"7079","build-id-namespace":"simics","confidentiality":"Public","description":"Generic RISC-V CPU","uncompressed-size":5960200}

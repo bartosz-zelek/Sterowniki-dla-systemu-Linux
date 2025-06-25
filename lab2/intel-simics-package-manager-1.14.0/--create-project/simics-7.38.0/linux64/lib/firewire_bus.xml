@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="firewire_bus" desc="model of FireWire bus" documentation="A FireWire bus. The bus takes responsibility for all the bus arbitration and assigning ids. It does not keep track of the topology of the bus, so the IDs will be quite arbitrary. Neither does it keep track of the transfer rate limitations, which means that you can transmit as much data per time unit as you want." bitorder="le">
-</device>

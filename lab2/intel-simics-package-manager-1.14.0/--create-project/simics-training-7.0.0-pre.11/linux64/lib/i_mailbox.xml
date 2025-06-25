@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="i_mailbox" bitorder="le">
-  <bank name="c_regs">
-  </bank>
-  <bank name="exchange_regs">
-  </bank>
-  <bank name="f_regs">
-  </bank>
-</device>

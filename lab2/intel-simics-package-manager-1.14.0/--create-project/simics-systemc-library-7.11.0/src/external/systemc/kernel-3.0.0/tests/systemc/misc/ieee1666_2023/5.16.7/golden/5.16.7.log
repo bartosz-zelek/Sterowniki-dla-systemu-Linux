@@ -1,9 +1,0 @@
-SystemC Simulation
-object foo
-object foo.foobar
-object foo.foobar.sig1
-object foo.foobar.sig2
-foo.foobar
-foo.foobar is an sc_module
-parent of foo.foobar is foo sc_module
-program completed

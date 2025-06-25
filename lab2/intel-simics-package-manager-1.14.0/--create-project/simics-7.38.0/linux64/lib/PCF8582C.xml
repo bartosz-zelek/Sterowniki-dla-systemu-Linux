@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="PCF8582C" desc="model of PCF8582C 256x8-bit EEPROM" documentation="The &lt;class&gt;PCF8582C&lt;/class&gt; class implements the functionality of a Philips 256 x 8 bit CMOS EEPROM with an I2C interface." bitorder="le">
-</device>

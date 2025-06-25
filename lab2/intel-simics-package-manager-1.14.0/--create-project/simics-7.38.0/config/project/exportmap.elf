@@ -1,4 +1,0 @@
-{
-  global: _simics_module_init;  _module_capabilities_;
-  local: *;
-};

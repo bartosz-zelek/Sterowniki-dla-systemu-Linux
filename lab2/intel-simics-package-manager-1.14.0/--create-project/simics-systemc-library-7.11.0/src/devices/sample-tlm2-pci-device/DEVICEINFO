@@ -1,2 +1,0 @@
-desc: Sample TLM2 PCI device connecting TLM2 PCI device to Simics through pci_device_interface
-name: Sample TLM2 PCI slave

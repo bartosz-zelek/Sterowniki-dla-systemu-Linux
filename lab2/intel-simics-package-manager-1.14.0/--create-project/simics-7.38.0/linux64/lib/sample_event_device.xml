@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="sample_event_device" desc="sample device for testing events" documentation="This is a sample device using events." bitorder="le">
-  <bank name="regs" byte_order="little-endian">
-    <register name="r1" offset="0" size="4">
-    </register>
-  </bank>
-</device>

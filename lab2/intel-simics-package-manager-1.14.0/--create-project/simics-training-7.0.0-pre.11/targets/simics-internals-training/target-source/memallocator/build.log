@@ -1,3 +1,0 @@
-rm -f *.elf *.o *.a
-gcc -c memallocator.c -o memallocator.o -g -O0 -Wall -Werror   
-gcc -o memallocator  -g -O0 -Wall -Werror    memallocator.o  

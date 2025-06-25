@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="signal_to_interrupt" desc="signal to simple_interrupt converter" documentation="When the signal is raised on an instance of this class the device connected to irq_dev will be interrupted on level irq_level. Similarly, when the signal is lowered the interrupt is cleared." bitorder="le">
-</device>

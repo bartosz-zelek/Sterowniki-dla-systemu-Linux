@@ -1,6 +1,0 @@
-%YAML 1.2
----
-params:
-  import: "%simics%/targets/common/disk-ide-sata-nvme.yml"
-script: "%script%/disk-ide-sata.yml.include"
-...

@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="i2c_to_i3c_adapter" desc="model of I2C to I3C adapter" documentation="The &lt;class&gt;i2c_to_i3c_adapter&lt;/class&gt; allows to attach an I2C device to I3C bus." bitorder="le">
-</device>

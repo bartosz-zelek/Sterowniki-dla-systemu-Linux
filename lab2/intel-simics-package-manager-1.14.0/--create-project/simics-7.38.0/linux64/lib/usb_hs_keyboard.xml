@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="usb_hs_keyboard" desc="model of USB keyboard device" documentation="A High-Speed USB keyboard device." bitorder="le">
-</device>

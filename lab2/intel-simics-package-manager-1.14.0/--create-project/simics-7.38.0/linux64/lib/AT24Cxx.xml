@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="AT24Cxx" desc="model of serial EEPROM" documentation="The &lt;class&gt;AT24Cxx&lt;/class&gt; class implements Atmel&apos;s AT24C01A/02/04/08/16/32/64/128/256/512/M01 serial EEPROM." bitorder="le">
-</device>

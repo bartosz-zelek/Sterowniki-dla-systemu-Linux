@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="bitmask-translator" desc="bitmask translator" documentation="This translator object will apply a bitmask (specified by the user) to all accesses. The target memory-space is responsible for actually having something mapped at the resulting address." bitorder="le">
-</device>

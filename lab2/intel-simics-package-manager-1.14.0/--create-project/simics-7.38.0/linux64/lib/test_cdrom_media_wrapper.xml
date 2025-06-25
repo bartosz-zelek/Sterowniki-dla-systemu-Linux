@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="test_cdrom_media_wrapper" desc="tests CD-ROM support for ISO image" documentation="Test device for ISO9660 image CD-ROM support" bitorder="le">
-</device>

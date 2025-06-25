@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="usb_disk" desc="model of USB SCSI disk" documentation="A standard USB SCSI disk." bitorder="le">
-</device>

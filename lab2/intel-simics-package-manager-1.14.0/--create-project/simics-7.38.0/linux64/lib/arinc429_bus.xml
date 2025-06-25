@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="arinc429_bus" desc="model of Arinc-429 protocol bus" documentation="Object that delivers Arinc-429 traffic from one transmitter to one or many receivers." limitations="Best case implementation based on public information." bitorder="le">
-</device>

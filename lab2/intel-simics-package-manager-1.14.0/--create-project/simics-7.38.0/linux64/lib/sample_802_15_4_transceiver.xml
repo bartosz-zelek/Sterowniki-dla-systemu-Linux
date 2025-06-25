@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="sample_802_15_4_transceiver" desc="a sample IEEE 802.15.4 transceiver" bitorder="le">
-  <bank name="regs" byte_order="little-endian">
-    <register name="tx_cmd" offset="4" size="4">
-    </register>
-    <register name="tx_fifo" offset="0" size="1">
-    </register>
-  </bank>
-</device>

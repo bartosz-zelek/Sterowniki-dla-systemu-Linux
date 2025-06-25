@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="cdrom_image" desc="model of CD-ROM media backed by image" documentation="This class allows an image containing the contents of a CD-ROM in ISO9660 format to be accessible from the simulated target machine. This is a convenient way to import files into the simulated system." limitations="Multi track images are not supported. Read raw block is not supported." bitorder="le">
-</device>

@@ -1,7 +1,0 @@
-## Invoke the base Quick-Start Platform setup
-##   Note that this path is the same as that listed in the .target.yml file
-run-script "%simics%/targets/qsp-x86/yocto-linux.target.yml" namespace = platform
-
-## Same for the training-card setup script 
-run-script "%simics%/targets/simics-user-training/training-card.yml" namespace = training_card
-

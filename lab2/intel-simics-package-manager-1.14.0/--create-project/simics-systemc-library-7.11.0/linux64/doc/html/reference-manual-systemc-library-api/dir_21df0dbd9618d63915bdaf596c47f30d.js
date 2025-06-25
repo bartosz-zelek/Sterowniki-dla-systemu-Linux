@@ -1,4 +1,0 @@
-var dir_21df0dbd9618d63915bdaf596c47f30d =
-[
-    [ "simics", "dir_60c74021127c4b5b63794e78d061389e.html", "dir_60c74021127c4b5b63794e78d061389e" ]
-];

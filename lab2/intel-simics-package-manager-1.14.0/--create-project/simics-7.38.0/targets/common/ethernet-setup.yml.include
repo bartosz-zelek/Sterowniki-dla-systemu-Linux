@@ -1,8 +1,0 @@
-# Create an Ethernet switch if not supplied in ethernet_switch:name parameter
-if (params.get create_network) {
-        load-module eth-links
-        local $ethernet_switch = (create-ethernet-switch
-                                  name = (params.get ethernet_switch:name))
-        $ethernet_switch->goal_latency = (params.get ethernet_switch:goal_latency)
-        $ethernet_switch->global_id = (params.get ethernet_switch:global_id)
-}

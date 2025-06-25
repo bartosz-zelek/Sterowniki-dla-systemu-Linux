@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="simple_i2c_device" desc="simple I2C device" documentation="Simple I2C slave device implementing both i2c_bus and i2c_slave_v2 interfaces. It can be used for testing." bitorder="le">
-</device>

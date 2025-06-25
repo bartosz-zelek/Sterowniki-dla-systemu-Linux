@@ -1,5 +1,0 @@
-[dut info] Start SystemC  @ 0 s of simple_async in init.cc:28
-[dut info] I'm busy! @ 0 s of simple_async in simple_async_top.h:114
-[dut info] Asked to stop at time 10 ns @ 10 ns of simple_async in simple_async_top.h:92
-[dut info] Simulation stopped by user. @ 10 ns of /OSCI/SystemC in sc_simcontext.cpp:979
-[dut info] The dog barks before the end of simulation @ 10 ns of simple_async in simple_async_top.h:101

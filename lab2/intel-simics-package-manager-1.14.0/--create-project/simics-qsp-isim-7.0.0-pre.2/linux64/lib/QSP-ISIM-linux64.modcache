@@ -1,5 +1,0 @@
-version 7016
-file 9400 1739177628 docea-physical-model.so
-cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739177628;MOD:docea-physical-model;ABI:7016;API:6;PY_VERSION:0;PY_MINOR_VERSION:0;HOSTTYPE:linux64;CLS:docea_physical_model;MODULE_LOAD;THREADSAFE;
-file 9400 1739177653 power-manager.so
-cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739177653;MOD:power-manager;ABI:7016;API:6;PY_VERSION:0;PY_MINOR_VERSION:0;HOSTTYPE:linux64;CLS:power_manager;MODULE_LOAD;THREADSAFE;

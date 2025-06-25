@@ -1,8 +1,0 @@
-A program that can use both mmap and char interfaces to talk to the
-Simics PCIe demo device, and can be used to compare the code for each
-and the performance needed for the two cases. 
-
-Tested with the Simics 6/Clear Linux kernel 5.0.8 version of the setup.
-
-
-

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="virtio-mmio-entropy" bitorder="le">
-  <bank name="features">
-  </bank>
-  <bank name="mmio">
-  </bank>
-</device>

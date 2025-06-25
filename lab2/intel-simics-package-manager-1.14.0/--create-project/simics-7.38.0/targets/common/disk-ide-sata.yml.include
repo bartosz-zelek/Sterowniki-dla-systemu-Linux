@@ -1,1 +1,0 @@
-run-script "%script%/disk-ide-sata-nvme.yml.include"

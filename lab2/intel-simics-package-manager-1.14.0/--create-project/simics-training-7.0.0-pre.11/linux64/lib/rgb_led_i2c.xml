@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="rgb_led_i2c" bitorder="le">
-  <bank name="i2cregs">
-  </bank>
-</device>

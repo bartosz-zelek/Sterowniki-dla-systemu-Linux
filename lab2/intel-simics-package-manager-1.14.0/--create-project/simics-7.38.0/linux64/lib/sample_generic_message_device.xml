@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="sample_generic_message_device" desc="sample generic message device" documentation="The is the &lt;class&gt;sample_generic_message_device&lt;/class&gt; class which is an example of how generic message devices can be written inSimics." bitorder="le">
-</device>

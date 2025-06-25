@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<device name="dm9161" bitorder="le">
-  <bank name="mii_regs">
-  </bank>
-</device>

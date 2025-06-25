@@ -1,9 +1,0 @@
-Put the buildroot generated images into this catalog
-
-You should end up with this:
-
-targets/risc-v-simple/images/linux/
-├── fw_dynamic.elf
-├── Image
-├── README
-└── rootfs.ext2
