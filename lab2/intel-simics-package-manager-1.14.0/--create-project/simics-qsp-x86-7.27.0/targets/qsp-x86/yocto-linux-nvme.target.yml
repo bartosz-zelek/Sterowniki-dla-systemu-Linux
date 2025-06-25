@@ -1,0 +1,12 @@
+%YAML 1.2
+---
+args:
+  machine:
+    hardware:
+      storage:
+        disk0:
+          interface: nvme
+        disk1:
+          interface: nvme
+target: qsp-x86/yocto-linux
+...

@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device name="ieee_802_15_4_probe" desc="model of IEEE 802.15.4 probe" documentation="The &lt;class&gt;ieee_802_15_4_probe&lt;/class&gt; provides a way to listen to traffic at a particular device that is connected to the link. The probe will receive both incoming and outgoing traffic for the device." limitations="&lt;ul&gt;&lt;li&gt;At most one snooper function can be active. Attaching a new snooper function would detach the old one, if there is any.&lt;/li&gt;&lt;li&gt;Snooper function and user data are not checkpointed.&lt;/li&gt;&lt;/ul&gt;" bitorder="le">
+</device>

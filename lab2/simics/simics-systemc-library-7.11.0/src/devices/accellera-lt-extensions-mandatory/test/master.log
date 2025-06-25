@@ -1,0 +1,72 @@
+[dut info] 0 s - log_start
+      Creating write transaction - Addr: 0x0000000000000000 Data: 0x00000000 @ 0 s of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:111
+[dut info] 0 s - nb_transport_fw
+      Extension present, Data: generic ID @ 0 s of lt_target_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_target_extension_mandatory.cpp:81
+[dut info] 0 s - nb_transport_fw
+      Write request - Addr: 0x0000000000000000 @ 0 s of lt_target_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_target_extension_mandatory.cpp:133
+[dut info] 10 ns - log_end
+      Received TLM_OK_RESPONSE @ 10 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:140
+[dut info] 10 ns - get_dmi_ptr
+      Extension present, Data: generic ID @ 10 ns of lt_target_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_target_extension_mandatory.cpp:211
+[dut info] 10 ns - log_start
+      Creating write transaction - Addr: 0x0000000000000004 Data: 0x00000001 @ 10 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:111
+[dut info] 20 ns - log_end
+      Received TLM_OK_RESPONSE @ 20 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:140
+[dut info] 20 ns - log_start
+      Creating write transaction - Addr: 0x0000000000000008 Data: 0x00000002 @ 20 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:111
+[dut info] 30 ns - log_end
+      Received TLM_OK_RESPONSE @ 30 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:140
+[dut info] 30 ns - log_start
+      Creating write transaction - Addr: 0x000000000000000C Data: 0x00000003 @ 30 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:111
+[dut info] 35 ns - invalidate_direct_mem_ptr
+      Received invalidate request - valid request @ 35 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:351
+[dut info] 40 ns - log_end
+      Received TLM_OK_RESPONSE @ 40 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:140
+[dut info] 40 ns - log_start
+      Creating write transaction - Addr: 0x0000000000000010 Data: 0x00000004 @ 40 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:111
+[dut info] 40 ns - nb_transport_fw
+      Extension present, Data: generic ID @ 40 ns of lt_target_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_target_extension_mandatory.cpp:81
+[dut info] 40 ns - nb_transport_fw
+      Write request - Addr: 0x0000000000000010 @ 40 ns of lt_target_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_target_extension_mandatory.cpp:133
+[dut info] 50 ns - log_end
+      Received TLM_OK_RESPONSE @ 50 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:140
+[dut info] 50 ns - get_dmi_ptr
+      Extension present, Data: generic ID @ 50 ns of lt_target_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_target_extension_mandatory.cpp:211
+[dut info] 50 ns - log_start
+      Creating read transaction - Addr: 0x0000000000000000 @ 50 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:111
+[dut info] 75 ns - invalidate_direct_mem_ptr
+      Received invalidate request - valid request @ 75 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:351
+[dut info] 150 ns - log_end
+      Received TLM_OK_RESPONSE, Data: 0x00000000 @ 150 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:140
+[dut info] 150 ns - log_start
+      Creating read transaction - Addr: 0x0000000000000004 @ 150 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:111
+[dut info] 150 ns - nb_transport_fw
+      Extension present, Data: generic ID @ 150 ns of lt_target_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_target_extension_mandatory.cpp:81
+[dut info] 150 ns - nb_transport_fw
+      Read request - Addr: 0x0000000000000004 @ 150 ns of lt_target_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_target_extension_mandatory.cpp:133
+[dut info] 250 ns - log_end
+      Received TLM_OK_RESPONSE, Data: 0x00000001 @ 250 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:140
+[dut info] 250 ns - get_dmi_ptr
+      Extension present, Data: generic ID @ 250 ns of lt_target_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_target_extension_mandatory.cpp:211
+[dut info] 250 ns - log_start
+      Creating read transaction - Addr: 0x0000000000000008 @ 250 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:111
+[dut info] 275 ns - invalidate_direct_mem_ptr
+      Received invalidate request - valid request @ 275 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:351
+[dut info] 350 ns - log_end
+      Received TLM_OK_RESPONSE, Data: 0x00000002 @ 350 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:140
+[dut info] 350 ns - log_start
+      Creating read transaction - Addr: 0x000000000000000C @ 350 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:111
+[dut info] 350 ns - nb_transport_fw
+      Extension present, Data: generic ID @ 350 ns of lt_target_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_target_extension_mandatory.cpp:81
+[dut info] 350 ns - nb_transport_fw
+      Read request - Addr: 0x000000000000000C @ 350 ns of lt_target_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_target_extension_mandatory.cpp:133
+[dut info] 450 ns - log_end
+      Received TLM_OK_RESPONSE, Data: 0x00000003 @ 450 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:140
+[dut info] 450 ns - get_dmi_ptr
+      Extension present, Data: generic ID @ 450 ns of lt_target_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_target_extension_mandatory.cpp:211
+[dut info] 450 ns - log_start
+      Creating read transaction - Addr: 0x0000000000000010 @ 450 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:111
+[dut info] 475 ns - invalidate_direct_mem_ptr
+      Received invalidate request - valid request @ 475 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:351
+[dut info] 550 ns - log_end
+      Received TLM_OK_RESPONSE, Data: 0x00000004 @ 550 ns of lt_initiator_extension_mandatory.cpp in /disk2/aarno/simics/src/external/systemc/kernel/examples/tlm/lt_extension_mandatory/src/lt_initiator_extension_mandatory.cpp:140

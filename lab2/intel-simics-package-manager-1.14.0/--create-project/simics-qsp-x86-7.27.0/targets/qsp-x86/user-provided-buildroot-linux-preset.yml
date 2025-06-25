@@ -1,0 +1,10 @@
+%YAML 1.2
+---
+description: User provided Buildroot Linux on QSP
+args:
+  linux:
+    kernel: /path/to/buildrootQemu/bzImage
+    virtio_rootfs: /path/to/buildrootQemu/rootfs.ext2
+    kernel_cmdline: console=tty0 console=ttyS0,115200n8 earlyprintk root=/dev/vda ro
+target: "%script%/user-provided-linux.target.yml"
+...

@@ -1,0 +1,212 @@
+<h1 id="haps">5 <a href="#haps">Haps</a></h1>
+<article class="not-numbered">
+<h2 id="Core_Interrupt_Status"><a href="#Core_Interrupt_Status">Core_Interrupt_Status</a></h2>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="callback-type">
+<a href="#callback-type">Callback Type</a>
+</h2>
+<pre>void (*) (lang_void *callback_data,
+          conf_object_t *trigger_obj,
+          int64  status);
+</pre>
+<h2 id="index">
+<a href="#index">Index</a>
+</h2>
+<code>status</code>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+Triggered when a processor changes its interrupt status. Status==1 means that interrupts can now be accepted, and status==0 means that interrupts will not be accepted.</section>
+<h2 id="Core_Mode_Switch"><a href="#Core_Mode_Switch">Core_Mode_Switch</a></h2>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="callback-type-2">
+<a href="#callback-type-2">Callback Type</a>
+</h2>
+<pre>void (*) (lang_void *callback_data,
+          conf_object_t *trigger_obj,
+          int64  mode);
+</pre>
+<h2 id="index-2">
+<a href="#index-2">Index</a>
+</h2>
+<code>mode</code>
+<h2 id="description-2">
+<a href="#description-2">Description</a>
+</h2>
+Triggered when a processor mode switch occurs. Mode encoding: 0==RM16, 1==RM32, 2==V86, 3==PM16, 4==PM32, 5==PM64, 6==CM16, 7==CM32. The last three modes can only be entered on long mode capable processors. The current mode can at any time be read as the cpu_mode register in the int_register interface.</section>
+<h2 id="Core_Pseudo_Exception"><a href="#Core_Pseudo_Exception">Core_Pseudo_Exception</a></h2>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="callback-type-3">
+<a href="#callback-type-3">Callback Type</a>
+</h2>
+<pre>void (*) (lang_void *callback_data,
+          conf_object_t *trigger_obj,
+          int64  exception_number);
+</pre>
+<h2 id="index-3">
+<a href="#index-3">Index</a>
+</h2>
+<code>exception_number</code>
+<h2 id="description-3">
+<a href="#description-3">Description</a>
+</h2>
+Triggered on a simulation pseudo exception.</section>
+<h2 id="X86_Descriptor_Change"><a href="#X86_Descriptor_Change">X86_Descriptor_Change</a></h2>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="callback-type-4">
+<a href="#callback-type-4">Callback Type</a>
+</h2>
+<pre>void (*) (lang_void *callback_data,
+          conf_object_t *trigger_obj,
+          int64  segment_number);
+</pre>
+<h2 id="index-4">
+<a href="#index-4">Index</a>
+</h2>
+<code>segment_number</code>
+<h2 id="description-4">
+<a href="#description-4">Description</a>
+</h2>
+ Triggered when a segment descriptor has been changed. The parameter is the segment register number. The numbering is: ES=0, CS=1, SS=2, DS=3, FS=4, and GS=5.</section>
+<h2 id="X86_Enter_SMM"><a href="#X86_Enter_SMM">X86_Enter_SMM</a></h2>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="callback-type-5">
+<a href="#callback-type-5">Callback Type</a>
+</h2>
+<pre>void (*) (lang_void *callback_data,
+          conf_object_t *trigger_obj,
+          int  phase);
+</pre>
+<h2 id="description-5">
+<a href="#description-5">Description</a>
+</h2>
+Triggered when the processor enters SMM mode. If phase is 0, the processor has just started to setup SMM mode and no registers are saved or modified yet. If phase is 1, all registers are setup and the processor is now ready to execute in SMM mode.</section>
+<h2 id="X86_Leave_SMM"><a href="#X86_Leave_SMM">X86_Leave_SMM</a></h2>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="callback-type-6">
+<a href="#callback-type-6">Callback Type</a>
+</h2>
+<pre>void (*) (lang_void *callback_data,
+          conf_object_t *trigger_obj,
+          int  phase);
+</pre>
+<h2 id="description-6">
+<a href="#description-6">Description</a>
+</h2>
+Triggered when the processor leaves SMM mode. If phase is 0, the processor has just started to execute the rsm instruction and nothing has been restored yet. If phase is 1, rsm is finished and the processor is ready to resume the normal execution.</section>
+<h2 id="X86_Misplaced_Rex"><a href="#X86_Misplaced_Rex">X86_Misplaced_Rex</a></h2>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="callback-type-7">
+<a href="#callback-type-7">Callback Type</a>
+</h2>
+<pre>void (*) (lang_void *callback_data,
+          conf_object_t *trigger_obj);
+</pre>
+<h2 id="description-7">
+<a href="#description-7">Description</a>
+</h2>
+Triggered when an instruction is run containing a REX prefix where the REX prefix is not placed just before the opcode. This is typically an error since the REX prefix will be ignored by the processor.</section>
+<h2 id="X86_Processor_Reset"><a href="#X86_Processor_Reset">X86_Processor_Reset</a></h2>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="callback-type-8">
+<a href="#callback-type-8">Callback Type</a>
+</h2>
+<pre>void (*) (lang_void *callback_data,
+          conf_object_t *trigger_obj,
+          int  hard_reset);
+</pre>
+<h2 id="description-8">
+<a href="#description-8">Description</a>
+</h2>
+Triggered when the x86 processor handles the RESET or INIT signal. The hard_reset flag is set for the RESET signal. The hap is triggered after the registers have been reset.</section>
+<h2 id="X86_Sysenter"><a href="#X86_Sysenter">X86_Sysenter</a></h2>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="callback-type-9">
+<a href="#callback-type-9">Callback Type</a>
+</h2>
+<pre>void (*) (lang_void *callback_data,
+          conf_object_t *trigger_obj,
+          int  kind);
+</pre>
+<h2 id="description-9">
+<a href="#description-9">Description</a>
+</h2>
+Triggered when a SYSENTER or SYSCALL instruction is about to transition the CPU into CPL 0. The hap is called after exceptions have been checked for, but before any side effects. The parameter is 0 for SYSENTER and 1 for SYSCALL.</section>
+<h2 id="X86_Sysexit"><a href="#X86_Sysexit">X86_Sysexit</a></h2>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="callback-type-10">
+<a href="#callback-type-10">Callback Type</a>
+</h2>
+<pre>void (*) (lang_void *callback_data,
+          conf_object_t *trigger_obj,
+          int  kind);
+</pre>
+<h2 id="description-10">
+<a href="#description-10">Description</a>
+</h2>
+Triggered when a SYSEXIT or SYSRET instruction is about to transition the CPU into CPL 3. The hap is called after exceptions have been checked for, but before any side effects. The parameter is 0 for SYSEXIT and 1 for SYSRET.</section>
+<h2 id="X86_Triple_Fault"><a href="#X86_Triple_Fault">X86_Triple_Fault</a></h2>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="callback-type-11">
+<a href="#callback-type-11">Callback Type</a>
+</h2>
+<pre>void (*) (lang_void *callback_data,
+          conf_object_t *trigger_obj);
+</pre>
+<h2 id="description-11">
+<a href="#description-11">Description</a>
+</h2>
+Triggered when the x86 processor encounters a triple fault. The hap is triggered after the registers havebeen reset.</section>
+<h2 id="X86_Vmcs_Read"><a href="#X86_Vmcs_Read">X86_Vmcs_Read</a></h2>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="callback-type-12">
+<a href="#callback-type-12">Callback Type</a>
+</h2>
+<pre>void (*) (lang_void *callback_data,
+          conf_object_t *trigger_obj,
+          int64  field_index);
+</pre>
+<h2 id="index-5">
+<a href="#index-5">Index</a>
+</h2>
+<code>field_index</code>
+<h2 id="description-12">
+<a href="#description-12">Description</a>
+</h2>
+Triggered when Intel® Virtual Machine Control Structure Shadowing (Intel® VMCS Shadowing) is read by VMREAD instruction. The hap is called before the read is performed; thus no registers have been modified.</section>
+<h2 id="X86_Vmcs_Write"><a href="#X86_Vmcs_Write">X86_Vmcs_Write</a></h2>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="callback-type-13">
+<a href="#callback-type-13">Callback Type</a>
+</h2>
+<pre>void (*) (lang_void *callback_data,
+          conf_object_t *trigger_obj,
+          int64  field_index,
+          int64  value);
+</pre>
+<h2 id="index-6">
+<a href="#index-6">Index</a>
+</h2>
+<code>field_index</code>
+<h2 id="description-13">
+<a href="#description-13">Description</a>
+</h2>
+Triggered when Intel® Virtual Machine Control Structure Shadowing (Intel® VMCS Shadowing) is written by VMWRITE instruction. The hap is called before the write is performed. When the callback is called, the VMCS field has not yet been updated with the new value.</section>
+<h2 id="X86_Vmx_Mode_Change"><a href="#X86_Vmx_Mode_Change">X86_Vmx_Mode_Change</a></h2>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="callback-type-14">
+<a href="#callback-type-14">Callback Type</a>
+</h2>
+<pre>void (*) (lang_void *callback_data,
+          conf_object_t *trigger_obj,
+          int64  mode);
+</pre>
+<h2 id="index-7">
+<a href="#index-7">Index</a>
+</h2>
+<code>mode</code>
+<h2 id="description-14">
+<a href="#description-14">Description</a>
+</h2>
+Triggered on changes in VMX mode. The encoding is 0 for non-VMX operation, 1 for VMX root operation, and 2 for VMX non-root operation.</section>
+</article>

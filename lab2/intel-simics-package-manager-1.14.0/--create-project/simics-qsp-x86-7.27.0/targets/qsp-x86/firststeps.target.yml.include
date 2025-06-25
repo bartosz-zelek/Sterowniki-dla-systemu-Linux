@@ -1,0 +1,25 @@
+if (params.get machine:software:linux:os_image) == NIL {
+        local $default_image_url = "https://download.grml.org/grml64-full_2024.02.iso"
+        local $image = (params.get machine:software:linux:grml:image)
+        local $grml_in_proj = (lookup-file -query $image)
+        local $grml_in_tree = (lookup-file -query "%simics%/targets/qsp-x86/images/" + $image)
+        local $grml = $grml_in_proj or $grml_in_tree
+        if not $grml {
+                local $msg = ("ERROR: 'os_image' not set, and the default image"
+                              + " could not be found.\n"
+                              + "Please download \"" + $image + "\" from:\n\n    "
+                              + $default_image_url
+                              + "\n\nand place it in the project folder.")
+                interrupt-script $msg -error
+        }
+        params.setdefault machine:software:linux:os_image $grml
+}
+
+run-script script = "%script%/firststeps-hardware.yml" namespace = machine:hardware
+run-script script = "%script%/firststeps-network.yml" namespace = machine:network
+run-script script = "%script%/firststeps-software.yml" namespace = machine:software
+
+local $system = (params.get machine:system:name)
+$system->system_info = (params.get machine:system:info)
+
+run-script "%simics%/targets/common/rw-state.yml" namespace = persistent_state

@@ -1,4 +1,8 @@
+# Track large files using Git LFS
 lab2/**/*.so filter=lfs diff=lfs merge=lfs -text
 lab2/**/*.ispm filter=lfs diff=lfs merge=lfs -text
 lab2/**/*.tar.gz filter=lfs diff=lfs merge=lfs -text
+lab2/intel-simics-package-manager-1.14.0/--create-project/simics-gdb-7.7.0/linux64/bin/gdb filter=lfs diff=lfs merge=lfs -text
+lab2/intel-simics-package-manager-1.14.0/ispm filter=lfs diff=lfs merge=lfs -text
+lab2/intel-simics-package-manager-1.14.0/ispm-gui filter=lfs diff=lfs merge=lfs -text
 lab2/simics/simics-gdb-7.7.0/linux64/bin/gdb filter=lfs diff=lfs merge=lfs -text

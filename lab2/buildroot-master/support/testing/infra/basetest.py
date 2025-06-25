@@ -24,8 +24,8 @@ MINIMAL_CONFIG = \
 
 class BRConfigTest(unittest.TestCase):
     """Test up to the configure stage."""
-    config: str
-    br2_external: list[str] = list()
+    config = None
+    br2_external = list()
     downloaddir = None
     outputdir = None
     logtofile = True

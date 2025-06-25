@@ -1,0 +1,131 @@
+%YAML 1.2
+---
+description: QSP-x86 board running bare metal application.
+params:
+  machine:
+    system_info:
+      type: str
+      description: A short string describing what this system is.
+      default: Simple QSP-x86 board for running bare metal target binary.
+    hardware:
+      import: "%script%/hardware.yml"
+      defaults:
+        name: board
+        rtc:
+          time: auto
+        consoles:
+          con0:
+            create: false
+          gfx_con:
+            create: ^machine:framebuffer:create
+            show: true
+        storage:
+          disk0:
+            create: false
+          disk1:
+            create: false
+          cdrom:
+            create: false
+        simulation:
+          use_vmp: ^machine:simulation:use_vmp
+    framebuffer:
+      advanced: 2
+      create:
+        type: bool
+        default: false
+        description: >-
+          Create a framebuffer that outputs to graphics console when writing to
+          it's buffer.
+      address:
+        type: u64
+        default: 0xd0000000
+        description: Address where the framebuffer is mapped in memory.
+      width:
+        type: u16
+        default: 500
+        description: Console width.
+      height:
+        type: u16
+        default: 400
+        description: Console height.
+    execution:
+      advanced: 2
+      mode:
+        type: int
+        values: [16, 32, 64]
+        required: false
+        description: >-
+          x86 execution mode, 16, 32 or 64. If not given the target will attempt
+          to select execution mode based on the given binary. If neither mode or
+          binary is given then 64-bit mode will be used.
+      stack_pointer:
+        type: u64
+        default: 0xc0000000
+        description: >-
+          Initial stack pointer value. This is ignored for 16-bit mode.
+      pc:
+        type: u64
+        required: false
+        description: >-
+          Initial program counter value. If not given and software:binary is
+          set, then the entry point of the binary will be used. If neither this
+          nor software:binary is not given the initial program counter will be
+          the default value from the model.
+      page_table_base:
+        type: u64
+        default: 0xf0000000
+        description: >-
+          Page directoty base for paging. Page table entries will be written in
+          memory at addresses following the base address. Paging is only enabled
+          in 64-bit mode, for other modes this is ignored. Must be 64kb aligned.
+
+    software:
+      binary:
+        type: file
+        required: false
+        description: >-
+          Bare metal application. Needs to be in a known binary format supported
+          by the load-binary commad, such as ELF or PE.
+          To load as a raw file, used software:raw parameter.
+      raw:
+        type: bool
+        default: false
+        description: >-
+          Load raw contents of software:binary into memory using load-file
+          command.
+      relocation:
+        type: i64
+        default: 0
+        description: >-
+          Relocation for the loaded binary, given as a relative offset.
+
+    simulation:
+      advanced: 2
+      use_vmp:
+        type: bool
+        default: true
+        description: >-
+          Enables host virtualization (VMP) for better simulation performance.
+          This option affects simulated time. See the performance chapter in the
+          Simics User's Guide for more information about VMP.
+
+
+  debugging:
+    advanced: 2
+    enable:
+      type: bool
+      default: false
+      description: >-
+        Will enable debugger by running the enable-debugger command.
+
+    add_symbols:
+      type: bool
+      required: false
+      description: >-
+        Will perform add-symbol-file on the given machine:software:binary.
+
+        If set this specifies if symbols should be added or not. If not set
+        symbols are added when debugging:enable is TRUE.
+
+script: "%script%/bare-metal.target.yml.include"
+...

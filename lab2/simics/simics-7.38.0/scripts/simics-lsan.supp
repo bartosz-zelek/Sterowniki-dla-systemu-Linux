@@ -1,0 +1,8 @@
+leak:libcrypto
+leak:libfontconfig
+leak:libpango
+leak:libwx_
+leak:_PyEval_
+leak:PyObject_
+leak:Py_DecodeLocale
+leak:_PyUnicodeWriter_Finish

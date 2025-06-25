@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="UserMacros">
+    <SYSTEMC_VERSION>3.0.0</SYSTEMC_VERSION>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <BuildLogFile>$(IntDir)$(MSBuildProjectName).log</BuildLogFile>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(BUILD_DIR)\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(BUILD_DIR)\$(Platform)\$(Configuration)\Obj\</IntDir>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules />
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MinimalRebuild>true</MinimalRebuild>
+      <AdditionalOptions>/vmg %(AdditionalOptions)</AdditionalOptions>
+      <WarningLevel>Level3</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <BasicRuntimeChecks Condition="'$(Configuration)'=='Debug'">EnableFastChecks</BasicRuntimeChecks>
+      <BasicRuntimeChecks Condition="'$(Configuration)'=='DebugDLL'">EnableFastChecks</BasicRuntimeChecks>
+      <PreprocessorDefinitions>SC_INCLUDE_FX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4244;4267;4996;4838;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <UndefinePreprocessorDefinitions>interface;%(UndefinePreprocessorDefinitions)</UndefinePreprocessorDefinitions>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="SYSTEMC_VERSION">
+      <Value>$(SYSTEMC_VERSION)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

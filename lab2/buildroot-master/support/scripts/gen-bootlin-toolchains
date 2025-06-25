@@ -52,12 +52,12 @@ arches = {
         'prefix': 'arm',
     },
     'armv7-eabihf': {
-        'conditions': ['BR2_arm', '(BR2_ARM_CPU_ARMV7A && BR2_ARM_EABIHF) || BR2_ARM_CPU_ARMV8A'],
+        'conditions': ['BR2_arm', 'BR2_ARM_CPU_ARMV7A', 'BR2_ARM_EABIHF'],
         'test_options': ['BR2_arm', 'BR2_cortex_a8', 'BR2_ARM_EABIHF'],
         'prefix': 'arm',
     },
     'armebv7-eabihf': {
-        'conditions': ['BR2_armeb', '(BR2_ARM_CPU_ARMV7A && BR2_ARM_EABIHF) || BR2_ARM_CPU_ARMV8A'],
+        'conditions': ['BR2_armeb', 'BR2_ARM_CPU_ARMV7A', 'BR2_ARM_EABIHF'],
         'test_options': ['BR2_armeb', 'BR2_cortex_a8', 'BR2_ARM_EABIHF'],
         'prefix': 'armeb',
     },
@@ -117,6 +117,10 @@ arches = {
     'mips64r6el-n32': {
         'conditions': ['BR2_mips64el', 'BR2_mips_64r6', 'BR2_MIPS_NABI32', '!BR2_MIPS_SOFT_FLOAT'],
         'prefix': 'mips64el',
+    },
+    'nios2': {
+        'conditions': ['BR2_nios2'],
+        'prefix': 'nios2',
     },
     'openrisc': {
         'conditions': ['BR2_or1k'],
@@ -478,12 +482,6 @@ def get_toolchains():
             elif parts[2].startswith("bleeding-edge-"):
                 variant = "bleeding-edge"
                 version = parts[2][len("bleeding-edge-"):]
-
-            # GCC 14.x on Microblaze is very broken, see
-            # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=118280
-            if arch in ["microblazeel", "microblazebe"] and variant == "bleeding-edge":
-                continue
-
             tmp[(arch, libc, variant)] = version
 
         if len(tmp) == 0:

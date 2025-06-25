@@ -74,26 +74,6 @@ config BR2_HOST_GCC_AT_LEAST_11
 	default y if BR2_HOST_GCC_VERSION = "11"
 	select BR2_HOST_GCC_AT_LEAST_10
 
-config BR2_HOST_GCC_AT_LEAST_12
-	bool
-	default y if BR2_HOST_GCC_VERSION = "12"
-	select BR2_HOST_GCC_AT_LEAST_11
-
-config BR2_HOST_GCC_AT_LEAST_13
-	bool
-	default y if BR2_HOST_GCC_VERSION = "13"
-	select BR2_HOST_GCC_AT_LEAST_12
-
-config BR2_HOST_GCC_AT_LEAST_14
-	bool
-	default y if BR2_HOST_GCC_VERSION = "14"
-	select BR2_HOST_GCC_AT_LEAST_13
-
-config BR2_HOST_GCC_AT_LEAST_15
-	bool
-	default y if BR2_HOST_GCC_VERSION = "15"
-	select BR2_HOST_GCC_AT_LEAST_14
-
 # When adding new entries above, be sure to update
 # the HOSTCC_MAX_VERSION variable in the Makefile.
 
@@ -134,15 +114,15 @@ menu "Commands"
 
 config BR2_CURL
 	string "Curl command"
-	default "curl -q --ftp-pasv --retry 3 --connect-timeout 10"
+	default "curl -q --ftp-pasv --retry 3"
 
 config BR2_WGET
 	string "Wget command"
-	default "wget -nd -t 3 --connect-timeout=10"
+	default "wget -nd -t 3"
 
 config BR2_SVN
 	string "Subversion (svn) command"
-	default "svn --non-interactive --config-option servers:global:http-timeout=10"
+	default "svn --non-interactive"
 
 config BR2_BZR
 	string "Bazaar (bzr) command"
@@ -162,11 +142,11 @@ config BR2_LOCALFILES
 
 config BR2_SCP
 	string "Secure copy (scp) command"
-	default "scp -o ConnectTimeout=10"
+	default "scp"
 
 config BR2_SFTP
 	string "Secure file transfer (sftp) command"
-	default "sftp -o ConnectTimeout=10"
+	default "sftp"
 
 config BR2_HG
 	string "Mercurial (hg) command"
@@ -828,6 +808,8 @@ config BR2_PIC_PIE_ARCH_SUPPORTS
 	default y
 	# Microblaze glibc toolchains don't work with PIC/PIE enabled
 	depends on !BR2_microblaze
+	# Nios2 toolchains produce non working binaries with -fPIC
+	depends on !BR2_nios2
 
 config BR2_PIC_PIE
 	bool "Build code with PIC/PIE"

@@ -1,0 +1,64 @@
+#!/bin/bash
+
+# © 2010 Intel Corporation
+#
+# This software and the related documents are Intel copyrighted materials, and
+# your use of them is governed by the express license under which they were
+# provided to you ("License"). Unless the License provides otherwise, you may
+# not use, modify, copy, publish, distribute, disclose or transmit this software
+# or the related documents without Intel's prior written permission.
+#
+# This software and the related documents are provided as is, with no express or
+# implied warranties, other than those that are expressly stated in the License.
+
+# ignore any user startup code that may not work without Python version
+unset PYTHONSTARTUP
+
+if [ "x$SIMICS_BASE_PACKAGE" = "x" ]; then
+    echo "The env variable SIMICS_BASE_PACKAGE must be set to the path of"  \
+         " the Simics base package before running this script"
+    exit 1
+fi
+
+case "$1" in
+    "--project") SIMICS_PROJECT=$2; shift 2 ;;
+    *) SIMICS_PROJECT=$SIMICS_BASE_PACKAGE ;;
+esac
+
+DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+SIMICS_GDB_PACKAGE="$DIR/.."
+
+LD_LIBRARY_PATH="$SIMICS_PYTHON_PACKAGE/linux64/sys/lib:$LD_LIBRARY_PATH"
+LD_LIBRARY_PATH="$SIMICS_BASE_PACKAGE/linux64/sys/lib:$SIMICS_BASE_PACKAGE/linux64/bin:$LD_LIBRARY_PATH"
+LD_LIBRARY_PATH="$SIMICS_GDB_PACKAGE/linux64/sys/lib:$SIMICS_GDB_PACKAGE/linux64/bin:$LD_LIBRARY_PATH"
+
+unset SIMICS_PYTHON
+. "$SIMICS_BASE_PACKAGE/scripts/python-path.sh"
+. "$SIMICS_BASE_PACKAGE/scripts/simics-python.sh"
+
+if [[ "linux64" =~ "linux" ]]; then
+    PRINTER=$($SIMICS_PROJECT/bin/lookup-file      \
+		  -f scripts/gdb/sc_pretty_printer.py)
+    QT_SO=$($SIMICS_PROJECT/bin/lookup-file        \
+		-f linux64/lib/libsystemc-quickthreads-db.so)
+    if [ -n "$QT_SO" ]; then
+        QT_DB_DIR=$(dirname $QT_SO)
+    fi
+    LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$QT_DB_DIR"
+fi
+
+export LD_LIBRARY_PATH
+export MINIPYTHON="$_MINI_PYTHON"
+
+GDB=$SIMICS_GDB_PACKAGE/linux64/bin/gdb
+DATA_DIR=$SIMICS_GDB_PACKAGE/linux64/bin/data-directory
+
+LIBPATH="$SIMICS_PROJECT/linux64/lib"
+if [ -n "${PRINTER}" ]; then
+    exec "$GDB" "--data-directory=$DATA_DIR"	\
+        "--command=$PRINTER" \
+        "-iex" "add-auto-load-safe-path $LIBPATH" "$@"
+else
+    exec "$GDB" "--data-directory=$DATA_DIR"	\
+        "-iex" "add-auto-load-safe-path $LIBPATH" "$@"
+fi

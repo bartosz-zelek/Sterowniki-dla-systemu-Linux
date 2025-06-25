@@ -1,0 +1,370 @@
+{
+  "is_book": false,
+  "anchor": "programming_guides",
+  "style": "unstyled",
+  "file": "index.html",
+  "name": "C++ Device API v2",
+  "headings": [
+    {
+      "level": 1,
+      "anchor": "introduction",
+      "text": "1 Introduction"
+    },
+    {
+      "level": 1,
+      "anchor": "about-the-simics-c-device-api-version-2",
+      "text": "2 About the Simics C++ Device API version 2"
+    },
+    {
+      "level": 2,
+      "anchor": "minimal-requirements",
+      "text": "2.1 Minimal requirements"
+    },
+    {
+      "level": 1,
+      "anchor": "preparations",
+      "text": "3 Preparations"
+    },
+    {
+      "level": 2,
+      "anchor": "designing-the-simics-classes",
+      "text": "3.1 Designing the Simics classes"
+    },
+    {
+      "level": 2,
+      "anchor": "defining-attributes",
+      "text": "3.2 Defining Attributes"
+    },
+    {
+      "level": 3,
+      "anchor": "configuration-attributes",
+      "text": "3.2.1 Configuration Attributes"
+    },
+    {
+      "level": 3,
+      "anchor": "model-state",
+      "text": "3.2.2 Model State"
+    },
+    {
+      "level": 2,
+      "anchor": "interfaces",
+      "text": "3.3 Interfaces"
+    },
+    {
+      "level": 2,
+      "anchor": "register-banks",
+      "text": "3.4 Register Banks"
+    },
+    {
+      "level": 1,
+      "anchor": "simics-modules",
+      "text": "4 Simics Modules"
+    },
+    {
+      "level": 2,
+      "anchor": "module-configuration",
+      "text": "4.1 Module Configuration"
+    },
+    {
+      "level": 1,
+      "anchor": "simics-classes",
+      "text": "5 Simics Classes"
+    },
+    {
+      "level": 2,
+      "anchor": "defining-the-simics-class",
+      "text": "5.1 Defining the Simics Class"
+    },
+    {
+      "level": 3,
+      "anchor": "define-the-init_local-c-function",
+      "text": "5.1.1 Define the init_local C function"
+    },
+    {
+      "level": 3,
+      "anchor": "define-a-static-variable-of-type-registerclasswithsimics",
+      "text": "5.1.2 Define a Static Variable of Type RegisterClassWithSimics"
+    },
+    {
+      "level": 1,
+      "anchor": "ports-and-interfaces",
+      "text": "6 Ports and Interfaces"
+    },
+    {
+      "level": 2,
+      "anchor": "use-simics-c-interface",
+      "text": "6.1 Use Simics C interface"
+    },
+    {
+      "level": 2,
+      "anchor": "use-simics-c-interface-2",
+      "text": "6.2 Use Simics C++ interface"
+    },
+    {
+      "level": 2,
+      "anchor": "user-defined-interface",
+      "text": "6.3 User defined interface"
+    },
+    {
+      "level": 2,
+      "anchor": "port",
+      "text": "6.4 Port"
+    },
+    {
+      "level": 2,
+      "anchor": "connect",
+      "text": "6.5 Connect"
+    },
+    {
+      "level": 2,
+      "anchor": "methods-collision",
+      "text": "6.6 Methods collision"
+    },
+    {
+      "level": 1,
+      "anchor": "register-banks-2",
+      "text": "7 Register Banks"
+    },
+    {
+      "level": 2,
+      "anchor": "mappableconfobject",
+      "text": "7.1 MappableConfObject"
+    },
+    {
+      "level": 2,
+      "anchor": "modeling-the-register-banks",
+      "text": "7.2 Modeling the register banks"
+    },
+    {
+      "level": 3,
+      "anchor": "by-code-information-provided-by-c-classes-and-class-hierarchy",
+      "text": "7.2.1 By Code: Information Provided by C++ Classes and Class Hierarchy"
+    },
+    {
+      "level": 3,
+      "anchor": "by-data-information-provided-as-a-struct",
+      "text": "7.2.2 By Data: Information Provided as a Struct"
+    },
+    {
+      "level": 2,
+      "anchor": "bankport",
+      "text": "7.3 BankPort"
+    },
+    {
+      "level": 2,
+      "anchor": "hierarchical-object",
+      "text": "7.4 Hierarchical object"
+    },
+    {
+      "level": 3,
+      "anchor": "bank",
+      "text": "7.4.1 Bank"
+    },
+    {
+      "level": 3,
+      "anchor": "register",
+      "text": "7.4.2 Register"
+    },
+    {
+      "level": 4,
+      "anchor": "register-attribute",
+      "text": "7.4.2.1 Register Attribute"
+    },
+    {
+      "level": 4,
+      "anchor": "not-mapping-addresses-to-registers",
+      "text": "7.4.2.2 Not Mapping Addresses To Registers"
+    },
+    {
+      "level": 3,
+      "anchor": "field",
+      "text": "7.4.3 Field"
+    },
+    {
+      "level": 3,
+      "anchor": "standard-templates",
+      "text": "7.4.4 Standard Templates"
+    },
+    {
+      "level": 4,
+      "anchor": "templates-for-banks",
+      "text": "7.4.4.1 Templates for banks"
+    },
+    {
+      "level": 4,
+      "anchor": "templates-for-registers-and-fields",
+      "text": "7.4.4.2 Templates for registers and fields"
+    },
+    {
+      "level": 1,
+      "anchor": "attributes",
+      "text": "8 Attributes"
+    },
+    {
+      "level": 2,
+      "anchor": "creating-custom-get-and-set-functions",
+      "text": "8.1 Creating Custom get and set functions"
+    },
+    {
+      "level": 2,
+      "anchor": "connect-as-attribute",
+      "text": "8.2 Connect as attribute"
+    },
+    {
+      "level": 3,
+      "anchor": "connect-templates",
+      "text": "8.2.1 Connect templates"
+    },
+    {
+      "level": 2,
+      "anchor": "class-attribute",
+      "text": "8.3 Class Attribute"
+    },
+    {
+      "level": 2,
+      "anchor": "attrvalue",
+      "text": "8.4 AttrValue"
+    },
+    {
+      "level": 1,
+      "anchor": "logging",
+      "text": "9 Logging"
+    },
+    {
+      "level": 2,
+      "anchor": "example-usage",
+      "text": "9.1 Example usage"
+    },
+    {
+      "level": 1,
+      "anchor": "event",
+      "text": "10 Event"
+    },
+    {
+      "level": 2,
+      "anchor": "defining-the-behavior-of-an-event",
+      "text": "10.1 Defining the Behavior of an Event"
+    },
+    {
+      "level": 2,
+      "anchor": "registering-the-event",
+      "text": "10.2 Registering the Event"
+    },
+    {
+      "level": 2,
+      "anchor": "posting-and-removing-events",
+      "text": "10.3 Posting and Removing Events"
+    },
+    {
+      "level": 1,
+      "anchor": "after",
+      "text": "11 After"
+    },
+    {
+      "level": 2,
+      "anchor": "example",
+      "text": "11.1 Example"
+    },
+    {
+      "level": 2,
+      "anchor": "breakdown-of-the-example",
+      "text": "11.2 Breakdown of the Example"
+    },
+    {
+      "level": 1,
+      "anchor": "utilities",
+      "text": "12 Utilities"
+    },
+    {
+      "level": 2,
+      "anchor": "generator-of-simics-c-interface-header",
+      "text": "12.1 Generator of Simics C++ interface header"
+    },
+    {
+      "level": 1,
+      "anchor": "simics-c-api-modeling-extension",
+      "text": "13 Simics C++ API Modeling Extension"
+    },
+    {
+      "level": 2,
+      "anchor": "scaffolding",
+      "text": "13.1 Scaffolding"
+    },
+    {
+      "level": 2,
+      "anchor": "notification-rules",
+      "text": "13.2 Notification Rules"
+    },
+    {
+      "level": 3,
+      "anchor": "behavior-model",
+      "text": "13.2.1 Behavior Model"
+    },
+    {
+      "level": 3,
+      "anchor": "creating-notification-rules",
+      "text": "13.2.2 Creating Notification Rules"
+    },
+    {
+      "level": 3,
+      "anchor": "advanced-features",
+      "text": "13.2.3 Advanced Features"
+    },
+    {
+      "level": 3,
+      "anchor": "simple-side-effect-example",
+      "text": "13.2.4 Simple Side Effect Example"
+    },
+    {
+      "level": 2,
+      "anchor": "expressions",
+      "text": "13.3 Expressions"
+    },
+    {
+      "level": 2,
+      "anchor": "boost-sml-state-machine-library",
+      "text": "13.4 Boost SML (State Machine Library)"
+    },
+    {
+      "level": 3,
+      "anchor": "example-logger",
+      "text": "13.4.1 Example Logger"
+    },
+    {
+      "level": 3,
+      "anchor": "example-register-set",
+      "text": "13.4.2 Example Register Set"
+    },
+    {
+      "level": 3,
+      "anchor": "recommended-source-structure",
+      "text": "13.4.3 Recommended Source Structure"
+    },
+    {
+      "level": 4,
+      "anchor": "declaration",
+      "text": "13.4.3.1 Declaration"
+    },
+    {
+      "level": 4,
+      "anchor": "definition",
+      "text": "13.4.3.2 Definition"
+    },
+    {
+      "level": 4,
+      "anchor": "developer-behavior-source",
+      "text": "13.4.3.3 Developer (Behavior) Source"
+    },
+    {
+      "level": 3,
+      "anchor": "implementing-expressions",
+      "text": "13.4.4 Implementing Expressions"
+    },
+    {
+      "level": 1,
+      "anchor": "migration-guide-from-c-api-v1",
+      "text": "14 Migration Guide from C++ API V1"
+    }
+  ],
+  "children": []
+}

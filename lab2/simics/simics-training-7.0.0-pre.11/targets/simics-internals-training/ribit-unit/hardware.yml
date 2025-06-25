@@ -1,0 +1,72 @@
+%YAML 1.2
+---
+description: >- 
+  A single subsystem for the RIBIT (RISC-V-Based Internals Training) setup. 
+  Normally used from the ribit-system target and not directly. 
+params:
+  name:
+    type: str
+    allow_empty: true
+    description: Name of the unit, when used stand-alone. 
+  memory_megs:
+    type: int
+    default: 2048
+    description: Amount of RAM in the unit, in MiB.
+  top_level:
+    type: bool
+    default: true
+    description: Is this unit a top level component?
+  processor_id:
+    type: int
+    advanced: 2
+    description: >-
+      ID added to memory transactions from this unit to the system.
+  processor:
+    freq_mhz:
+      type: int
+      default: 100
+      description: Processor frequency in MHz.
+    timebase_freq_mhz:
+      type: int
+      default: 1
+      advanced: 2
+      description: Timebase frequency in MHz.
+    cpi:
+      type: int
+      default: 1
+      advanced: 3
+      description: >-
+        Clock cycles per executed instruction for the processor core.
+        Must be a power of 2.
+
+  consoles:
+    advanced: 2
+    con:
+      create:
+        type: bool
+        default: true
+        description: Create serial console.
+      show:
+        type: bool
+        default: true
+        description: >-
+          Automatically display the text console on the serial port.
+      fg_color:
+        type: str
+        default: white
+        description: >-
+          The console foreground color, as a color name or RGB in #12ab89 format."
+      bg_color:
+        type: str
+        default: black
+        description: >-
+          The console background color, as a color name or RGB in #12ab89 format."
+
+  output:
+    system:
+      type: str
+      output: true
+      description: The unit top-level component object, output parameter.
+
+script: "%script%/hardware.yml.include"
+...

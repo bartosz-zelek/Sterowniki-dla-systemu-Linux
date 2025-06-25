@@ -11,8 +11,7 @@ MESA3D_DEMOS_DEPENDENCIES = host-pkgconf
 MESA3D_DEMOS_LICENSE = MIT
 
 MESA3D_DEMOS_CONF_OPTS += \
-	-Dgles1=disabled \
-	-Dosmesa=disabled  # BR2_PACKAGE_MESA3D_OSMESA_GALLIUM removed in mesa 25.1
+	-Dgles1=disabled
 
 ifeq ($(BR2_PACKAGE_XORG7)$(BR2_PACKAGE_HAS_LIBGL),yy)
 MESA3D_DEMOS_DEPENDENCIES += libgl libglew libglu xlib_libX11 xlib_libXext
@@ -53,6 +52,14 @@ endif
 ifeq ($(BR2_PACKAGE_LIBFREEGLUT),y)
 MESA3D_DEMOS_DEPENDENCIES += libfreeglut
 MESA3D_DEMOS_CONF_OPTS += -Dwith-glut=$(STAGING_DIR)/usr
+# osmesa support depends on glut
+ifeq ($(BR2_PACKAGE_MESA3D_OSMESA_GALLIUM),y)
+MESA3D_DEMOS_CONF_OPTS += -Dosmesa=enabled
+else
+MESA3D_DEMOS_CONF_OPTS += -Dosmesa=disabled
+endif
+else
+MESA3D_DEMOS_CONF_OPTS += -Dosmesa=disabled
 endif
 
 ifeq ($(BR2_PACKAGE_LIBDECOR)$(BR2_PACKAGE_WAYLAND),yy)
@@ -60,13 +67,6 @@ MESA3D_DEMOS_DEPENDENCIES += libdecor libxkbcommon wayland
 MESA3D_DEMOS_CONF_OPTS += -Dwayland=enabled
 else
 MESA3D_DEMOS_CONF_OPTS += -Dwayland=disabled
-endif
-
-ifeq ($(BR2_PACKAGE_VULKAN_LOADER),y)
-MESA3D_DEMOS_DEPENDENCIES += vulkan-loader
-MESA3D_DEMOS_CONF_OPTS += -Dvulkan=enabled
-else
-MESA3D_DEMOS_CONF_OPTS += -Dvulkan=disabled
 endif
 
 $(eval $(meson-package))

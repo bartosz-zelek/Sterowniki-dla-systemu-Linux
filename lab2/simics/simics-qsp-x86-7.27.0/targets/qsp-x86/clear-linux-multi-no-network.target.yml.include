@@ -1,0 +1,15 @@
+
+# Run single machine hardware setup
+foreach $i in (range `params['num_machines']`) {
+        local $ns = "qsp[%d]" % $i
+        params.setdefault ("%s:machine:hardware:name" % $ns) ("qsp%d" % $i)
+        run-script "%script%/clear-linux-setup.yml" namespace = "%s:machine" % $ns
+
+        ## This check avoids low-memory issues that are very difficult to diagnose.
+        ## See SIMICS-17854
+        if (params.get ("%s:machine:hardware:memory_megs" % $ns)) < 4096 {
+                interrupt-script -error (("*** The value of memory_megs (%d) is lower than "
+                                          + "the minimum of 4096") % [$memory_megs])
+        }
+}
+

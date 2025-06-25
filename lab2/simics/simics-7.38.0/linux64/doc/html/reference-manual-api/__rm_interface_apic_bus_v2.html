@@ -1,0 +1,24 @@
+<h1 class="jdocu"><a class="not-numbered" name="__rm_interface_apic_bus_v2">apic_bus_v2</a></h1>
+<p>
+
+<a name="apic_bus_v2"></a><a name="apic_bus_v2_interface_t"></a></p><dl class="jdocu_di">
+<dt class="jdocu_descitem">Description</dt><dd class="jdocu_descitem">The interface is used to handle extended 32-bit addressing mode supported
+    by x2APIC. See <b>apic_bus</b> documentation.
+<pre class="jdocu_small">SIM_INTERFACE(apic_bus_v2) {
+        apic_bus_status_t (*interrupt)(conf_object_t *obj,
+                apic_destination_mode_t dest_mode,
+                apic_delivery_mode_t delivery_mode,
+                int level_assert,
+                apic_trigger_mode_t trigger_mode,
+                uint8 vector,
+                uint32 destination);
+};
+#define APIC_BUS_V2_INTERFACE "apic_bus_v2"
+</pre><p>
+</p><p>
+   
+</p></dd>
+<dt class="jdocu_descitem">Execution Context</dt><dd class="jdocu_descitem">Cell Context.
+   
+</dd>
+</dl><p></p>

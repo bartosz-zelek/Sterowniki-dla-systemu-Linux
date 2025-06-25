@@ -1,0 +1,46 @@
+local $subsystem_name = (params.get name)
+local $training_card = NIL
+local $name = NIL
+
+##
+## Generate name - inside master system if given, otherwise on the top level  
+## 
+if (params.get owner) {
+    $name = ((params.get owner) + "." + $subsystem_name)
+} else {
+    $name = $subsystem_name
+}
+
+##
+## Create behavioral or firmware version of device
+## (right now, there is no firmware version available)
+##
+if (params.get use_behavioral_box) {
+    load-module led-system-comp
+
+    # Create an uninstantiated version of the component 
+    $training_card = (create-led-system-comp 
+      $name
+      clock_freq            = (params.get clock_frequency)
+      pixel_update_time     = (params.get bb_pixel_update_time)
+      toggle_check_interval = (params.get bb_toggle_check_interval))
+
+    # Instantiate the objects created by the create- command  
+    instantiate-components $training_card
+    $training_card.panel.con.show
+    $training_card.panel.con.dimming value = FALSE
+    params.setdefault output:training_card $training_card
+} else {
+    interrupt-script "No firmware box model is available (yet)"    
+}
+             
+##
+## Connect to owner system, if there is a owner system to connect to
+## - It will dynamically connect the new PCIe card to the system 
+##
+if (params.get owner) {
+  if (params.get pcie_slot) {
+    connect ((params.get owner)+(params.get pcie_slot)) $training_card.pci
+  }
+}
+                         

@@ -1,0 +1,41 @@
+decl {
+	! Setup script for sample-core-timing
+	! Note! the performance numbers generated from this setup does not match
+	! any real architecture
+
+	param system : string
+	! Namespace in where to create the tool and where to find cores to attach to
+
+	param tool_name : string = "timing_tool"
+	! Name of the tool that will be created
+}
+
+$name = $system + "." + $tool_name
+$tool = (new-sample-core-timing-tool name = $name parent = $system)
+
+##
+## Adjust slow_cycles settings on attached cores
+##
+foreach $conn in ($tool->connections) {
+	$core = $conn->cpu
+	$core->pause_slow_cycles = 800
+	$core->rdtsc_slow_cycles = 1300
+	$core->port_io_slow_cycles = 800
+}
+
+##
+## The following values does not match any real hardware.
+##
+$tool.set-base-cycles-per-instruction 0.46
+$tool.set-cycles-per-read    0.05
+$tool.set-cycles-per-write   0.14
+
+$tool.add-instruction-class "call"   0.45
+$tool.add-instruction-class "ret"    0.2
+$tool.add-instruction-class "xor"    0.1
+$tool.add-instruction-class "add"    0.15
+$tool.add-instruction-class "div"    0.6
+$tool.add-instruction-class "mul"    0.18
+$tool.add-instruction-class "lea"   -0.1
+$tool.add-instruction-class "rdtsc" 1350
+

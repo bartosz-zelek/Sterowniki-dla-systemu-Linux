@@ -1,0 +1,25 @@
+decl {
+ ! Example configuration with multiple machines used in the
+ ! <em>Ethernet Networking Technology Guide</em> document. Identical to
+ ! <tt>qsp-clear-linux.simics</tt> but with some harmless warnings disabled.
+
+ params from "qsp-clear-linux.simics"
+ default auto_login_root = TRUE
+ default create_network = FALSE
+
+ param machine_count : int = 2
+
+ result system : string
+ result eth_link : string or nil
+ result service_node : string or nil
+}
+
+foreach $count in (range $machine_count) {
+    $count = "%d" % $count
+    (run-script "%script%/qsp-clear-linux.simics"
+     machine_name = ($machine_name + $count))
+}
+
+# turn off spec-violation and unimplemented messages
+log-type -disable unimpl
+log-type -disable spec-viol

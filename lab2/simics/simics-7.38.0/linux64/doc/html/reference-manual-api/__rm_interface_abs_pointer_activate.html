@@ -1,0 +1,25 @@
+<h1 class="jdocu"><a class="not-numbered" name="__rm_interface_abs_pointer_activate">abs_pointer_activate</a></h1>
+<p>
+
+<a name="abs_pointer_activate"></a><a name="abs_pointer_activate_interface_t"></a></p><dl class="jdocu_di">
+<dt class="jdocu_descitem">Description</dt><dd class="jdocu_descitem">Interface used by tablet controllers to temporary turn off and on the
+   tracking of absolute pointer locations. Implemented by consoles. When
+   disabled, no calls will be made to the controller's
+   <code>abs_pointer</code> interface.
+<p>
+   </p><pre class="jdocu_small">
+SIM_INTERFACE(abs_pointer_activate) {
+        void (*enable)(conf_object_t *obj);
+        void (*disable)(conf_object_t *obj);
+};
+
+#define ABS_POINTER_ACTIVATE_INTERFACE "abs_pointer_activate"
+</pre><p>
+</p><p>
+
+   
+</p></dd>
+<dt class="jdocu_descitem">Execution Context</dt><dd class="jdocu_descitem">Cell Context for all methods.
+   
+</dd>
+</dl><p></p>

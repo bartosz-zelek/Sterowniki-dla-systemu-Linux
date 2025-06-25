@@ -1,0 +1,1 @@
+/home/debian/Sterowniki-dla-systemu-Linux/lab2/simics/simics-7.38.0/linux64

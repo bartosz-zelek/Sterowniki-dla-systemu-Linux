@@ -1,0 +1,17 @@
+decl {
+ ! Sets up a writable persistent state.
+
+ param system : string
+ ! The root of the hierarchy for the persistent state objects.
+
+ group "Disks"
+
+ param writable_state_dir : string or nil = NIL
+ ! If not NIL, the parameter is interpreted as a directory name. It is passed as
+ ! an argument to the enable-writable-persistent-state command in order to set
+ ! up a writable persistent state for the configuration.
+}
+
+if $writable_state_dir {
+    enable-writable-persistent-state dir = $writable_state_dir root = $system
+}

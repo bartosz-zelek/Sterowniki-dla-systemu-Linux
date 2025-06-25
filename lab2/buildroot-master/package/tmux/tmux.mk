@@ -4,19 +4,12 @@
 #
 ################################################################################
 
-TMUX_VERSION = 3.5a
+TMUX_VERSION = 3.3a
 TMUX_SITE = https://github.com/tmux/tmux/releases/download/$(TMUX_VERSION)
 TMUX_LICENSE = ISC
 TMUX_LICENSE_FILES = COPYING
 TMUX_CPE_ID_VALID = YES
-TMUX_DEPENDENCIES = host-bison libevent ncurses host-pkgconf
-
-ifeq ($(BR2_PACKAGE_JEMALLOC),y)
-TMUX_DEPENDENCIES += jemalloc
-TMUX_CONF_OPTS += --enable-jemalloc
-else
-TMUX_CONF_OPTS += --disable-jemalloc
-endif
+TMUX_DEPENDENCIES = libevent ncurses host-pkgconf
 
 ifeq ($(BR2_PACKAGE_SYSTEMD),y)
 TMUX_DEPENDENCIES += systemd

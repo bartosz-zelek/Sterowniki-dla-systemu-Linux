@@ -2,18 +2,11 @@
 
 DAEMON="iptables"
 
-IPTABLES_CONF="/etc/iptables.conf"
-
-# Run only if IPTABLES_CONF exists, except when the action is "save"
-# (which creates it).
-if [ ! -f "${IPTABLES_CONF}" ] && [ "$1" != "save" ]; then
-	echo "${IPTABLES_CONF} does not exist, nothing to do."
-	exit 0
-fi
+IPTABLES_ARGS=""
 
 start() {
 	printf 'Starting %s: ' "$DAEMON"
-	iptables-restore "$IPTABLES_CONF"
+	iptables-restore /etc/iptables.conf
 	status=$?
 	if [ "$status" -eq 0 ]; then
 		echo "OK"
@@ -25,7 +18,7 @@ start() {
 
 stop() {
 	printf 'Stopping %s: ' "$DAEMON"
-	iptables --flush
+	iptables -F
 	status=$?
 	if [ "$status" -eq 0 ]; then
 		echo "OK"
@@ -37,12 +30,13 @@ stop() {
 
 restart() {
 	stop
+	sleep 1
 	start
 }
 
 save() {
 	printf 'Saving %s: ' "$DAEMON"
-	iptables-save --file "$IPTABLES_CONF"
+	iptables-save -f /etc/iptables.conf
 	status=$?
 	if [ "$status" -eq 0 ]; then
 		echo "OK"

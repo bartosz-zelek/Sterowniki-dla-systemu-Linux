@@ -1,0 +1,23 @@
+<a name="mtprof.modelstat"></a>
+<h1 id="mtprof.modelstat"><a href="#mtprof.modelstat">&lt;mtprof&gt;.modelstat</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>&lt;mtprof&gt;.modelstat</b><br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+ Helps estimating how fast the simulation would run on a host machine with enough cores to allow each cell to run on a dedicated host thread.
+<p>
+The <i>latency</i> column roughly corresponds to different min-latency settings (see <code>set-min-latency</code>).
+</p><p>
+The performance model which generates the estimate essentially models the time synchronization mechanism which keeps the virtual time in different cells in sync. It is important to note that the model does not factor in target behavior changes due to a differing latency setting, and this is often a major factor.
+</p><p>
+The lowest latency to be modeled can be specified with the <code>enable-mtprof</code>.<br>
+ 
+</p><h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.mtprof.html">mtprof</a>
+</section>

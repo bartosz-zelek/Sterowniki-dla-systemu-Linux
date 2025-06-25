@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device name="accel_vga_v2" bitorder="le">
+  <bank name="pcie_config" function="0">
+  </bank>
+  <bank name="vbe_io">
+  </bank>
+  <bank name="vbe_mem">
+  </bank>
+  <bank name="vbe_regs">
+  </bank>
+</device>

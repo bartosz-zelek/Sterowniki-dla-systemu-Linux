@@ -1,4 +1,4 @@
 config BR2_PACKAGE_DEV_MODULE
         bool "dev_module"
         help
-		Dev module
+		    Dev module

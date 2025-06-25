@@ -1,0 +1,24 @@
+<a name="gfx_break.bp-run-until-gfx"></a>
+<h1 id="gfx_break.bp-run-until-gfx"><a href="#gfx_break.bp-run-until-gfx">&lt;gfx_break&gt;.bp-run-until-gfx</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>&lt;gfx_break&gt;.bp-run-until-gfx</b> <i>filename</i> <i>interval</i> [<i>timeout</i>] [<i>timeout-rt</i>] <br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+ Run the simulation until the graphical breakpoint defined by <i>filename</i> matches.
+<p>
+A graphical breakpoint matches when its image appears on the screen, in the same location as when it was saved. The breakpoint must have been created using the Simics GUI or the command <code>save-break-xy</code>. The screen is checked for matches every <i>interval</i> seconds of virtual time on the clock associated to the console.
+</p><p>
+If <i>timeout</i> is a positive number, the command will run for at most that many seconds of virtual time.
+</p><p>
+If <i>timeout-rt</i> is a positive number, the command will run for at most that many seconds of real time.
+</p><p>
+A time-out will be signaled by throwing a CLI exception, which can be captured using try/except in order to take specific action, or to let it pass unhandled. 
+</p><h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.bp-manager.html">bp-manager</a>
+</section>

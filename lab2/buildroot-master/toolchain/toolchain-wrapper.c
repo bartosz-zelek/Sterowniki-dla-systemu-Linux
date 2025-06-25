@@ -62,9 +62,6 @@ static char *predef_args[] = {
 #endif
 	path,
 	"--sysroot", sysroot,
-#ifdef BR_CLANG_CONFIG_FILE
-	BR_CLANG_CONFIG_FILE,
-#endif
 #ifdef BR_ABI
 	"-mabi=" BR_ABI,
 #endif
@@ -248,7 +245,7 @@ int main(int argc, char **argv)
 	char *progpath = argv[0];
 	char *basename;
 	char *env_debug;
-	int ret, i, count = 0, debug = 0, found_shared = 0, found_nonoption = 0;
+	int ret, i, count = 0, debug = 0, found_shared = 0;
 
 	/* Debug the wrapper to see arguments it was called with.
 	 * If environment variable BR2_DEBUG_WRAPPER is:
@@ -314,33 +311,13 @@ int main(int argc, char **argv)
 		return 3;
 	}
 
-	/* any non-option (E.G. source / object files) arguments passed? */
+	/* skip all processing --help is specified */
 	for (i = 1; i < argc; i++) {
-		if (argv[i][0] != '-') {
-			found_nonoption = 1;
-			break;
-		}
-	}
-
-	/* Check for unsafe library and header paths */
-	for (i = 1; i < argc; i++) {
-		const struct str_len_s *opt;
-		for (opt=unsafe_opts; opt->str; opt++ ) {
-			/* Skip any non-unsafe option. */
-			if (strncmp(argv[i], opt->str, opt->len))
-				continue;
-
-			/* Handle both cases:
-			 *  - path is a separate argument,
-			 *  - path is concatenated with option.
-			 */
-			if (argv[i][opt->len] == '\0') {
-				i++;
-				if (i == argc)
-					break;
-				check_unsafe_path(argv[i-1], argv[i], 0);
-			} else
-				check_unsafe_path(argv[i], argv[i] + opt->len, 1);
+		if (!strcmp(argv[i], "--help")) {
+			argv[0] = path;
+			if (execv(path, argv))
+				perror(path);
+			return 1;
 		}
 	}
 
@@ -365,11 +342,8 @@ int main(int argc, char **argv)
 	}
 
 	/* start with predefined args */
-	for (i = 0; i < sizeof(predef_args) / sizeof(predef_args[0]); i++) {
-		/* skip linker flags when we know we are not linking */
-		if (found_nonoption || strncmp(predef_args[i], "-Wl,", strlen("-Wl,")))
-			*cur++ = predef_args[i];
-	}
+	memcpy(cur, predef_args, sizeof(predef_args));
+	cur += sizeof(predef_args) / sizeof(predef_args[0]);
 
 #ifdef BR_FLOAT_ABI
 	/* add float abi if not overridden in args */
@@ -489,7 +463,7 @@ int main(int argc, char **argv)
 		    !strcmp(argv[i], "-D__UBOOT__"))
 			break;
 	}
-	if (i == argc && found_nonoption) {
+	if (i == argc) {
 		/* https://wiki.gentoo.org/wiki/Hardened/Toolchain#Mark_Read-Only_Appropriate_Sections */
 #ifdef BR2_RELRO_PARTIAL
 		*cur++ = "-Wl,-z,relro";
@@ -498,6 +472,28 @@ int main(int argc, char **argv)
 		*cur++ = "-Wl,-z,now";
 		*cur++ = "-Wl,-z,relro";
 #endif
+	}
+
+	/* Check for unsafe library and header paths */
+	for (i = 1; i < argc; i++) {
+		const struct str_len_s *opt;
+		for (opt=unsafe_opts; opt->str; opt++ ) {
+			/* Skip any non-unsafe option. */
+			if (strncmp(argv[i], opt->str, opt->len))
+				continue;
+
+			/* Handle both cases:
+			 *  - path is a separate argument,
+			 *  - path is concatenated with option.
+			 */
+			if (argv[i][opt->len] == '\0') {
+				i++;
+				if (i == argc)
+					break;
+				check_unsafe_path(argv[i-1], argv[i], 0);
+			} else
+				check_unsafe_path(argv[i], argv[i] + opt->len, 1);
+		}
 	}
 
 	/* append forward args */

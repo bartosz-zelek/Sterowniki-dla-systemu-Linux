@@ -1,0 +1,222 @@
+
+<h1>Capabilities templates</h1>
+<p>These are templates for PCIe Capabilities. They are designed to be applied
+on a <code>group</code>. For convenience there exists a template
+<code>defining_xyz_capability</code> for each capability <code>xyz</code> which defines a group
+<code>xyz</code> with the <code>xyz_capability</code> applied. Most templates only define the
+registers with their standard access restrictions. If additional behavior is
+needed, the user of the template must implement this manually.</p>
+<p>Each capability template uses the following parameters:</p>
+<ul>
+<li><code>base</code>: Base address of the capability header</li>
+<li><code>next_ptr</code>: Value of the next_ptr field in the capability header</li>
+</ul>
+<h2 id="power-management-capability-registers"><a href="#power-management-capability-registers">Power Management Capability registers</a></h2>
+<ul>
+<li>name: <code>pm_capability</code></li>
+<li>implemented: registers only</li>
+</ul>
+<h2 id="pci-express-capability-registers"><a href="#pci-express-capability-registers">PCI Express Capability registers</a></h2>
+<ul>
+<li>name: <code>exp_capability</code></li>
+<li>implemented: functional</li>
+</ul>
+<h3 id="parameters"><a href="#parameters">Parameters:</a></h3>
+<ul>
+<li><code>has_hotplug_capable_slot</code>: Device has a native PCIe Hot-Plug capable slot.
+This param will set the <em>has_hotplug_capable</em> in the instantiated
+<em>exp_slot</em> template, default false</li>
+<li><code>has_attention_button_slot</code>: Attention button present in slot. This param
+will set the <em>has_attention_button</em> in the instantiated <em>exp_slot</em>
+template, default false</li>
+<li><code>has_links</code>: Presence of <strong>links</strong> registers, default
+<em>has_hotplug_capable_slot</em></li>
+<li><code>has_slots</code>: Presence of <strong>slots</strong> registers, default
+<em>has_hotplug_capable_slot</em></li>
+<li><code>has_root</code>: Presence of <strong>root</strong> registers, default false</li>
+<li><code>dp_type</code>: Device/port type, as indicated in <code>exp.capability.dpt</code> register field, (<a href="#device-port-type-constants">see constants</a>), default <code>PCIE_DP_Type_EP</code>.</li>
+<li><code>cap_version</code>: Version of this capability structure, as indicated in <code>exp.capability.cv</code> register field, default 2</li>
+<li><code>imn</code>: The MSI/MSI-X vector used for the interrupt message generated in
+association with any of the status bits of this Capability structure,
+default 0</li>
+</ul>
+<h4 id="adds-groups"><a href="#adds-groups">Adds groups:</a></h4>
+<ul>
+<li><code>device</code> which instantiates template <code>exp_dev</code>.</li>
+<li><code>link</code> which instantiates template <code>exp_link</code>. Optionally added depending on param <code>has_links</code>.</li>
+<li><code>slot</code> which instantiates template <code>exp_slot</code>. Optionally added depending on param <code>has_slots</code>.</li>
+<li><code>root</code> which instantiates template <code>exp_root</code>. Optionally added depending on param <code>has_root</code>.</li>
+</ul>
+<h4 id="device-port-type-constants-for-field-exp-capability-dpt"><a href="#device-port-type-constants-for-field-exp-capability-dpt">Device/port type constants for field <code>exp.capability.dpt</code> <span id="device-port-type-constants"><span></span></span></a></h4>
+<p><code>PCIE_DP_Type_EP</code>, <code>PCIE_DP_Type_Legacy_EP</code>, <code>PCIE_DP_Type_RCiEP</code>, <code>PCIE_DP_Type_RCEC</code>,
+<code>PCIE_DP_Type_RP</code>, <code>PCIE_DP_Type_UP</code>, <code>PCIE_DP_Type_DP</code>, <code>PCIE_DP_Type_BridgeX</code>, <code>PCIE_DP_Type_XBridge</code></p>
+<h3 id="pci-express-capability-device-registers"><a href="#pci-express-capability-device-registers">PCI Express Capability Device registers</a></h3>
+<ul>
+<li>name: <code>exp_dev</code></li>
+<li>implemented: functional</li>
+</ul>
+<h4 id="set_status_error-uint8-error_type-bool-is_ur-throws"><a href="#set_status_error-uint8-error_type-bool-is_ur-throws"><code>set_status_error(uint8 error_type, bool is_ur) throws</code></a></h4>
+<p>Sets the bits in the status register related to error signaling.</p>
+<h3 id="pci-express-capability-link-registers"><a href="#pci-express-capability-link-registers">PCI Express Capability Link registers</a></h3>
+<ul>
+<li>name: <code>exp_link</code></li>
+<li>implemented: link training</li>
+</ul>
+<h4 id="parameters-2"><a href="#parameters-2">Parameters:</a></h4>
+<ul>
+<li><code>dll_link_active_reporting</code>: Link supports DLL Link Active Reporting, default false</li>
+<li><code>max_link_speed</code>: Max link speed provided as a value of the
+pcie_link_speed_t enum, default PCIE_Link_Speed_Undefined</li>
+<li><code>max_link_width</code>: Max link width provided as a value of the
+pcie_link_width_t enum, PCIE_Link_Width_Undefined</li>
+<li><code>link_bandwidth_notifications</code>: Support Link Bandwidth Notifications,
+default ((dp_type == PCIE_DP_Type_DP) || (dp_type == PCIE_DP_Type_RP))</li>
+</ul>
+<h4 id="methods"><a href="#methods">Methods</a></h4>
+<h4 id="set_link_training_target-map_target_t-target"><a href="#set_link_training_target-map_target_t-target"><code>set_link_training_target(map_target_t *target)</code></a></h4>
+<p>Sets the default link training target when <code>do_link_training()</code> is called
+with NULL.</p>
+<h4 id="do_link_training-map_target_t-target"><a href="#do_link_training-map_target_t-target"><code>do_link_training(map_target_t *target)</code></a></h4>
+<p>Initiates link training by sending a link training transaction to either
+the to the target set with <code>set_link_training_target()</code>. Returns true if
+link negotiation was deemed successful. Will set the status.ls and
+status.nlw fields if the negotiation was successful. Negotiation can only
+be successful if both the initiator and the link training target has the
+params max_link_speed and max_link_width in their respective link groups
+set. <code>do_link_training</code> will by default only send a link training
+transaction to device 0. This method can be overridden for custom
+functionality where support for bifurcation might for instance be
+necessary.</p>
+<h4 id="get_target_link_speed-pcie_link_speed_t"><a href="#get_target_link_speed-pcie_link_speed_t"><code>get_target_link_speed() -&gt; (pcie_link_speed_t)</code></a></h4>
+<p>Returns the target link speed. This would be the maximum link speed if
+there is no target link speed.</p>
+<h4 id="get_max_link_width-pcie_link_width_t"><a href="#get_max_link_width-pcie_link_width_t"><code>get_max_link_width() -&gt; (pcie_link_width_t)</code></a></h4>
+<p>Returns the maximum link width</p>
+<h4 id="set_link_attributes-pcie_link_speed_t-speed-pcie_link_width_t-width"><a href="#set_link_attributes-pcie_link_speed_t-speed-pcie_link_width_t-width"><code>set_link_attributes(pcie_link_speed_t speed, pcie_link_width_t width)</code></a></h4>
+<p>Sets the status.ls and status.nlw fields.</p>
+<h3 id="pci-express-capability-slot-registers"><a href="#pci-express-capability-slot-registers">PCI Express Capability Slot registers</a></h3>
+<ul>
+<li>name: <code>exp_slot</code></li>
+<li>implemented: functional</li>
+</ul>
+<h4 id="parameters-3"><a href="#parameters-3">Parameters:</a></h4>
+<ul>
+<li><code>is_hotplug_capable</code>: Slot is native PCIe Hot-Plug capable, default false</li>
+<li><code>has_power_indicator</code>: Slot has a power indicator, default false</li>
+<li><code>has_power_controller</code>: Slot has a power controller, default false</li>
+<li><code>has_mrl_sensor</code>: Slot has an MRL sensor, default false</li>
+<li><code>has_command_completions</code>: Slot sends command completed notifications, default false</li>
+</ul>
+<h4 id="methods-2"><a href="#methods-2">Methods</a></h4>
+<h4 id="presence_change_event-pcie_hotplug_pd_t-state-bool"><a href="#presence_change_event-pcie_hotplug_pd_t-state-bool"><code>presence_change_event(pcie_hotplug_pd_t state) -&gt; (bool)</code></a></h4>
+<p>Sets the presence detect state field to <code>state</code>. If the state has
+changed, also sets the presence detect changed field and notifies
+software if applicable. Returns true if event was registered</p>
+<h4 id="mrl_sensor_event-pcie_hotplug_mrl_t-state-bool"><a href="#mrl_sensor_event-pcie_hotplug_mrl_t-state-bool"><code>mrl_sensor_event(pcie_hotplug_mrl_t state) -&gt; (bool)</code></a></h4>
+<p>Sets the MRL sensor state field to <code>state</code>. If the state has changed,
+also sets the MRL sensor changed field and notifies software if
+applicable. Returns true if event was registered</p>
+<h4 id="data_link_layer_event-bool-is_active-bool"><a href="#data_link_layer_event-bool-is_active-bool"><code>data_link_layer_event(bool is_active) -&gt; (bool)</code></a></h4>
+<p>Sets the Data Link Layer Link Active in the link status register to
+<code>is_active</code>. If this field changes value, also sets the Data Link Layer
+state changed field in the slot status register and notifies software if
+applicable. Returns true if event was registered</p>
+<h4 id="power_fault_event-bool"><a href="#power_fault_event-bool"><code>power_fault_event() -&gt; (bool)</code></a></h4>
+<p>Sets the Power Fault Detected field and notifies software if applicable.
+Returns true if event was registered</p>
+<h4 id="attention_button_event-bool"><a href="#attention_button_event-bool"><code>attention_button_event() -&gt; (bool)</code></a></h4>
+<p>Sets the Attention Button Pressed field and notifies software if
+applicable. Returns true if event was registered</p>
+<h4 id="hotplug_event_enabled-int-type-bool"><a href="#hotplug_event_enabled-int-type-bool"><code>hotplug_event_enabled(int type) -&gt; (bool)</code></a></h4>
+<p>Returns true if slot has Hot-Plug event types of type <code>type</code> enabled. The
+available types are <code>param</code>:s defined in this file that have the prefix
+SLOT_ and LINK_.</p>
+<h4 id="hotplug_capable-int-type"><a href="#hotplug_capable-int-type"><code>hotplug_capable(int type)</code></a></h4>
+<p>Returns true if the slot is capable of handling Hot-Plug events of type
+<code>type</code>. The available types are <code>param</code>:s defined in this file that have
+the prefix SLOT_ and LINK_.</p>
+<h3 id="pci-express-capability-root-registers"><a href="#pci-express-capability-root-registers">PCI Express Capability Root registers</a></h3>
+<ul>
+<li>name: <code>exp_root</code></li>
+<li>implemented: registers only</li>
+</ul>
+<h2 id="vpd-capability-registers"><a href="#vpd-capability-registers">VPD Capability registers</a></h2>
+<ul>
+<li>name: <code>vpd_capability</code></li>
+<li>implemented: registers only</li>
+</ul>
+<h2 id="message-signaled-interrupts-msi-capability-registers"><a href="#message-signaled-interrupts-msi-capability-registers">Message Signaled Interrupts (MSI) Capability registers</a></h2>
+<ul>
+<li>name: <code>msi_capability</code></li>
+<li>implemented: functional</li>
+</ul>
+<h3 id="parameters-4"><a href="#parameters-4">Parameters:</a></h3>
+<ul>
+<li><code>is_64bit_capable</code>: Support 64-bit addresses, i.e. <code>address</code> register is
+8 bytes instead of 4.</li>
+<li><code>is_pvm_capable</code>: Support Per-Vector-Masking, i.e. the <code>mask</code> register is
+present.</li>
+<li><code>is_emd_capable</code>: Support extended message data, i.e. the <code>data</code> register
+is 8 bytes instead of 4.</li>
+<li><code>num_vectors</code>: The number of interrupt vectors supported.</li>
+</ul>
+<h3 id="methods-3"><a href="#methods-3">Methods</a></h3>
+<h4 id="signal_all_pending"><a href="#signal_all_pending"><code>signal_all_pending()</code></a></h4>
+<p>Signals all pending MSI's</p>
+<h4 id="raise-uint8-i"><a href="#raise-uint8-i"><code>raise(uint8 i)</code></a></h4>
+<p>Raises MSI <code>i</code> if capable and enabled, and signals it if not masked</p>
+<h4 id="lower-uint8-i"><a href="#lower-uint8-i"><code>lower(uint8 i)</code></a></h4>
+<p>Lowers MSI <code>i</code></p>
+<h2 id="message-signaled-interrupts-x-msi-x-capability-registers"><a href="#message-signaled-interrupts-x-msi-x-capability-registers">Message Signaled Interrupts X (MSI-X) Capability registers</a></h2>
+<ul>
+<li>name: <code>msix_capability</code></li>
+<li>implemented: functional</li>
+</ul>
+<h3 id="parameters-5"><a href="#parameters-5">Parameters:</a></h3>
+<ul>
+<li><code>table_offset_bir</code>: Initial value of the Table Offset/BIR register (at
+offset 0x4 in the MSI-X capability structure).</li>
+<li><code>pba_offset_bir</code>: Initial value of the PBA Offset/BIR register (at
+offset 0x8 in the MSI-X capability structure).</li>
+<li><code>data_bank</code>: The bank which holds the Table and Pending Bits data, which
+must use the template <code>msix_table</code></li>
+<li><code>num_vectors</code>: Number of interrupt vectors supported.</li>
+</ul>
+<h3 id="methods-4"><a href="#methods-4">Methods</a></h3>
+<h4 id="raise-uint16-i"><a href="#raise-uint16-i"><code>raise(uint16 i)</code></a></h4>
+<p>Raises MSI-X <code>i</code> if enabled, and signals it if not masked</p>
+<h4 id="lower-uint16-i"><a href="#lower-uint16-i"><code>lower(uint16 i)</code></a></h4>
+<p>Lowers MSI-X <code>i</code></p>
+<h3 id="msix_table"><a href="#msix_table">msix_table</a></h3>
+<p>Template to model the msix table data and pending bits.</p>
+<h4 id="parameters-6"><a href="#parameters-6">Parameters:</a></h4>
+<ul>
+<li><code>num_vectors</code>: Number of MSI-X vectors</li>
+<li><code>msix_bank</code>: Bank containing the group instantiating the MSI-X capability.</li>
+</ul>
+<h2 id="subsystem-id-and-subsystem-vendor-id-capability-registers"><a href="#subsystem-id-and-subsystem-vendor-id-capability-registers">Subsystem ID and Subsystem Vendor ID Capability registers</a></h2>
+<ul>
+<li>name: <code>ssid_capability</code></li>
+<li>implemented: registers only</li>
+</ul>
+<h2 id="conventional-pci-advanced-features-capability-af-registers"><a href="#conventional-pci-advanced-features-capability-af-registers">Conventional PCI Advanced Features Capability (AF) registers</a></h2>
+<ul>
+<li>name: <code>af_capability</code></li>
+<li>implemented: FLR</li>
+</ul>
+<h2 id="enhanced-allocation-ea-capability-registers"><a href="#enhanced-allocation-ea-capability-registers">Enhanced Allocation (EA) Capability registers</a></h2>
+<ul>
+<li>name: <code>ea_capability</code></li>
+<li>implemented: registers only</li>
+</ul>
+<h2 id="flattening-portal-bridge-fpb-capability-registers"><a href="#flattening-portal-bridge-fpb-capability-registers">Flattening Portal Bridge (FPB) Capability registers</a></h2>
+<ul>
+<li>name: <code>fpb_capability</code></li>
+<li>implemented: registers only</li>
+</ul>
+<p>Fields and access restrictions to be added upon request.</p>
+<h2 id="null-capability-registers"><a href="#null-capability-registers">Null Capability registers</a></h2>
+<ul>
+<li>name: <code>null_capability</code></li>
+<li>implemented: registers only</li>
+</ul>

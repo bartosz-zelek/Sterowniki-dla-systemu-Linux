@@ -35,8 +35,6 @@ DPDK_LICENSE_FILES = \
 	license/exceptions.txt \
 	license/mit.txt
 
-DPDK_INSTALL_STAGING = YES
-
 DPDK_DEPENDENCIES = \
 	host-pkgconf \
 	host-python-pyelftools

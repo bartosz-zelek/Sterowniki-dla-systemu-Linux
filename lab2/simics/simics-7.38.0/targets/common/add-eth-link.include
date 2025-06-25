@@ -1,0 +1,96 @@
+if not defined create_network          { $create_network = FALSE }
+if not defined eth_vlan_enable         { $eth_vlan_enable = FALSE }
+if not defined service_node_ip_address {
+    $service_node_ip_address = "10.10.0.1"
+}
+if not defined dhcp_pool_ip   {
+    local $split_ip = (split-string -type ipv4 $service_node_ip_address)
+    $split_ip[-1] = 100
+    $dhcp_pool_ip = "%d.%d.%d.%d" % $split_ip
+ }
+if not defined dhcp_pool_size { $dhcp_pool_size = 100 }
+
+if in-list $create_network ["yes", TRUE] {
+
+    # Create an Ethernet switch if not supplied in $eth_link
+    if not defined eth_link {
+        load-module eth-links
+
+        if $eth_vlan_enable {
+            $eth_link = (create-ethernet-vlan-switch)
+        } else {
+            $eth_link = (create-ethernet-switch)
+        }
+
+        if defined network_goal_latency {
+            $eth_link->goal_latency = $network_goal_latency 
+        }
+
+        # $eth_link_gid is the global ID for the link in a distributed setup.
+        # It should only be set if the link should be distributed. The ID must
+        # match the links in other Simics sessions.
+        if defined eth_link_gid {
+            $eth_link->global_id = $eth_link_gid
+        }
+        instantiate-components $eth_link
+
+    }
+
+    # Make sure component and connectors are specified
+    if not (read-variable eth_comp) {
+       interrupt-script "$create_network set but not $eth_comp"
+    }
+    if not (read-variable eth_cnt) {
+       interrupt-script "$create_network set but not $eth_cnt"
+    }
+
+    # Verify connector. Old style connectors have a "connector_" object prefix.
+    if object-exists ($eth_comp.connector_ + $eth_cnt) {
+        $real_cnt = connector_ + $eth_cnt
+    } else if object-exists $eth_comp.$eth_cnt {
+        $real_cnt = $eth_cnt
+    } else {
+        interrupt-script ("$eth_comp.$eth_cnt (%s.%s) is not a valid connector"
+                          % [$eth_comp, $eth_cnt])
+    }
+
+    if $eth_vlan_enable {
+        if not defined eth_connector_vlan_id {
+            interrupt-script ("$eth_connector_vlan_id must be defined "
+                              + "when $eth_vlan_enable = TRUE")
+        }
+        if not (object-exists ($eth_link.vlan_ + $eth_connector_vlan_id
+                               + _dev0)) {
+            $eth_link.add-vlan $eth_connector_vlan_id
+        }
+        connect ($eth_link.get-free-connector
+                 $eth_connector_vlan_id) $eth_comp.$real_cnt
+    } else {
+        connect ($eth_link.get-free-connector) $eth_comp.$real_cnt
+    }
+
+    # Create a service-node if not supplied in $service_node
+    if not defined service_node {
+        $service_node = (new-service-node-comp)
+        local $cnt = ($service_node.add-connector $service_node_ip_address)
+        if $eth_vlan_enable {
+            if not defined service_node_vlan_id {
+                $service_node_vlan_id = eth_connector_vlan_id
+            }
+            if not (object-exists ($eth_link.vlan_ + $service_node_vlan_id
+                                   + _dev0)) {
+                $eth_link.add-vlan $service_node_vlan_id
+            }
+            connect $service_node. + $cnt ($eth_link.get-free-connector
+                                           $service_node_vlan_id)
+        } else {
+            connect $service_node. + $cnt ($eth_link.get-free-connector)
+        }
+
+        # Add a pool of IP addresses for targets booting using DHCP
+        if ($dhcp_pool_size > 0) {
+            ($service_node.sn.dhcp-add-pool $dhcp_pool_size $dhcp_pool_ip
+                                            dhcp network.sim)
+        }
+    }
+}

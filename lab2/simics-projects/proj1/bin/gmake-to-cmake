@@ -1,0 +1,9 @@
+#!/bin/bash
+# this file will be overwritten by the project setup script
+SIMICS_BASE_PACKAGE="/home/debian/Sterowniki-dla-systemu-Linux/lab2/simics/simics-7.38.0"
+export SIMICS_BASE_PACKAGE
+export SIMICS_PYTHON_PACKAGE="/home/debian/Sterowniki-dla-systemu-Linux/lab2/simics/simics-python-7.10.0"
+if [ -z "${SIMICS_PYTHON}" ]; then
+    export SIMICS_PYTHON=""
+fi
+exec "/home/debian/Sterowniki-dla-systemu-Linux/lab2/simics/simics-7.38.0/bin/gmake-to-cmake"  "$@"

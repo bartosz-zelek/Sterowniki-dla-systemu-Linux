@@ -1,0 +1,31 @@
+
+<h1>4 Interfaces</h1>
+<h2 id="serial_interrupt_slave_interface_t"><a href="#serial_interrupt_slave_interface_t">4.1 serial_interrupt_slave, serial_interrupt_master</a></h2>
+<section class="doc-item not-numbered not-in-toc">
+<h2>Name</h2>
+<p>serial_interrupt_slave, serial_interrupt_master — interfaces for serial interrupt</p>
+<h2>Synopsis</h2>
+<h3>C and DML</h3>
+<pre><code>
+SIM_INTERFACE(serial_interrupt_slave) {
+        void (*start)(conf_object_t *obj);
+        int (*fetch)(conf_object_t *obj);
+        void (*stop)(conf_object_t *obj, int mode);
+};
+
+#define SERIAL_INTERRUPT_SLAVE_INTERFACE "serial_interrupt_slave"
+SIM_INTERFACE(serial_interrupt_master) {
+        void (*start_request)(conf_object_t *obj);
+};
+
+#define SERIAL_INTERRUPT_MASTER_INTERFACE "serial_interrupt_master"
+</code></pre>
+<h2>Description</h2>
+<p>The interfaces <code>serial_interrupt_master</code> and <code>serial_interrupt_slave</code> are used to model serial interrupt communications between a serial interrupt controller and a serial interrupt device. The controller implements <code>serial_interrupt_master</code> and the device implements <code>serial_interrupt_slave</code>.</p>
+<p>The device calls <code>start_request</code> in the controller to request serial interrupt transfer cycles start frame.</p>
+<p>The controller calls <code>start</code> to start the serial interrupt communications, detects interrupt states one by one by calling <code>fetch</code>, and finishes the serial interrupt sequence by <code>stop</code>.</p>
+<p>The returned value of <code>fetch</code> is the level of the current data frame. It is either 0 (low) or 1 (high).</p>
+<p>The <code>mode</code> is used to specifies the SERIRQ transfer cycles mode. It is 1 for <em>Quiet</em> and 0 for <em>Continuous</em> mode.</p>
+<h2>Execution Context</h2>
+<p>Cell Context for all methods.</p>
+</section>

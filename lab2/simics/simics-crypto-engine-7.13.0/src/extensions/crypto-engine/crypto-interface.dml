@@ -1,0 +1,907 @@
+/*
+  © 2010 Intel Corporation
+
+  This software and the related documents are Intel copyrighted materials, and
+  your use of them is governed by the express license under which they were
+  provided to you ("License"). Unless the License provides otherwise, you may
+  not use, modify, copy, publish, distribute, disclose or transmit this software
+  or the related documents without Intel's prior written permission.
+
+  This software and the related documents are provided as is, with no express or
+  implied warranties, other than those that are expressly stated in the License.
+*/
+
+dml 1.4;
+
+header %{
+#include "../crypto-engine/crypto-interface.h"
+%}
+
+/*
+ * Documentation of these interfaces are defined in "crypto-interface.h"
+ */
+
+extern typedef int xmss_cipher_error_t;
+extern xmss_cipher_error_t Xmss_Cipher_Error_None;
+extern xmss_cipher_error_t Xmss_Cipher_Error_Verify;
+
+extern typedef struct {
+    xmss_cipher_error_t (*lms_verify)(
+        conf_object_t *obj, bytes_t public_key,
+            bytes_t message,bytes_t signature);
+} lms_cipher_interface_t;
+constant LMS_CIPHER_INTERFACE = "lms_cipher";
+
+extern typedef int stream_cipher_error_t;
+extern stream_cipher_error_t Stream_Cipher_Error_None;
+extern stream_cipher_error_t Stream_Cipher_Error_Ctx_Size;
+extern stream_cipher_error_t Stream_Cipher_Error_Key_Size;
+extern stream_cipher_error_t Stream_Cipher_Error_Unknown;
+
+extern typedef struct {
+    size_t (*context_size)(conf_object_t *obj);
+
+    stream_cipher_error_t (*encrypt_init)(
+        conf_object_t *obj, buffer_t ctx, const bytes_t key);
+    stream_cipher_error_t (*encrypt_update)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t in_data, buffer_t *out_data);
+    stream_cipher_error_t (*encrypt_final)(
+        conf_object_t *obj, buffer_t ctx, buffer_t *out_data);
+    stream_cipher_error_t (*encrypt)(
+        conf_object_t *obj, const bytes_t key,
+        const bytes_t in_data, buffer_t *out_data);
+
+    stream_cipher_error_t (*decrypt_init)(
+        conf_object_t *obj, buffer_t ctx, const bytes_t key);
+    stream_cipher_error_t (*decrypt_update)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t in_data, buffer_t *out_data);
+    stream_cipher_error_t (*decrypt_final)(
+        conf_object_t *obj, buffer_t ctx, buffer_t *out_data);
+    stream_cipher_error_t (*decrypt)(
+        conf_object_t *obj, const bytes_t key,
+        const bytes_t in_data, buffer_t *out_data);
+} stream_cipher_interface_t;
+constant STREAM_CIPHER_INTERFACE = "stream_cipher";
+
+extern typedef int block_cipher_mode_t;
+extern block_cipher_mode_t Block_Cipher_Mode_None;
+extern block_cipher_mode_t Block_Cipher_Mode_ECB;
+extern block_cipher_mode_t Block_Cipher_Mode_CBC;
+extern block_cipher_mode_t Block_Cipher_Mode_OFB;
+extern block_cipher_mode_t Block_Cipher_Mode_CFB;
+
+extern typedef int block_cipher_error_t;
+extern block_cipher_error_t Block_Cipher_Error_None;
+extern block_cipher_error_t Block_Cipher_Error_Ctx_Size;
+extern block_cipher_error_t Block_Cipher_Error_Mode;
+extern block_cipher_error_t Block_Cipher_Error_Key_Size;
+extern block_cipher_error_t Block_Cipher_Error_Data_Size;
+extern block_cipher_error_t Block_Cipher_Error_Unknown;
+
+extern typedef struct {
+    size_t (*context_size)(conf_object_t *obj);
+    int (*block_size)(conf_object_t *obj, block_cipher_mode_t mode);
+    block_cipher_error_t (*encrypt_init)(
+        conf_object_t *obj, buffer_t ctx, block_cipher_mode_t mode,
+        bool is_fast_key, const bytes_t key, buffer_t *fast_key,
+        const bytes_t iv);
+    block_cipher_error_t (*encrypt_update)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t in_data, buffer_t *out_data, buffer_t *out_iv);
+    block_cipher_error_t (*encrypt_final)(
+        conf_object_t *obj, buffer_t ctx,
+        buffer_t *out_data, buffer_t *out_iv);
+    block_cipher_error_t (*encrypt)(
+        conf_object_t *obj, block_cipher_mode_t mode,
+        bool is_fast_key, const bytes_t key, buffer_t *fast_key,
+        const bytes_t in_iv, const bytes_t in_data,
+        buffer_t *out_iv, buffer_t *out_data);
+    block_cipher_error_t (*decrypt_init)(
+        conf_object_t *obj, buffer_t ctx, block_cipher_mode_t mode,
+        bool is_fast_key, const bytes_t key, buffer_t *fast_key,
+        const bytes_t iv);
+    block_cipher_error_t (*decrypt_update)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t in_data, buffer_t *out_data, buffer_t *out_iv);
+    block_cipher_error_t (*decrypt_final)(
+        conf_object_t *obj, buffer_t ctx,
+        buffer_t *out_data, buffer_t *out_iv);
+    block_cipher_error_t (*decrypt)(
+        conf_object_t *obj, block_cipher_mode_t mode,
+        bool is_fast_key, const bytes_t key, buffer_t *fast_key,
+        const bytes_t in_iv, const bytes_t in_data,
+        buffer_t *out_iv, buffer_t *out_data);
+    block_cipher_error_t (*decrypt_key_expanded)(
+        conf_object_t *obj, block_cipher_mode_t mode, bool is_fast_key,
+        const bytes_t key, buffer_t *fast_key,
+        const bytes_t in_iv, const bytes_t in_data,
+        buffer_t *out_iv, buffer_t *out_data);
+    void (*expand_key)(conf_object_t *obj, const bytes_t *key,
+                       buffer_t *expanded,bool is_big_end);
+} block_cipher_interface_t;
+constant BLOCK_CIPHER_INTERFACE = "block_cipher";
+
+extern typedef int ctr_cipher_error_t;
+extern ctr_cipher_error_t Ctr_Cipher_Error_None;
+extern ctr_cipher_error_t Ctr_Cipher_Error_Key_Size;
+extern ctr_cipher_error_t Ctr_Cipher_Error_Data_Size;
+extern ctr_cipher_error_t Ctr_Cipher_Error_Unknown;
+
+extern typedef struct {
+    ctr_cipher_error_t (*encrypt)(
+        conf_object_t *obj,
+        const bytes_t key, uint64 *counter_u, uint64 *counter_l,
+        uint32 mod_exp, const bytes_t in_data, buffer_t *out_data);
+    ctr_cipher_error_t (*decrypt)(
+        conf_object_t *obj,
+        const bytes_t key, uint64 *counter_u, uint64 *counter_l,
+        uint32 mod_exp, const bytes_t in_data, buffer_t *out_data);
+} ctr_cipher_interface_t;
+constant CTR_CIPHER_INTERFACE = "ctr_cipher";
+
+extern typedef int xts_cipher_error_t;
+extern xts_cipher_error_t Xts_Cipher_Error_None;
+extern xts_cipher_error_t Xts_Cipher_Error_Key_Size;
+extern xts_cipher_error_t Xts_Cipher_Error_Unknown;
+
+extern typedef struct {
+    size_t (*context_size)(conf_object_t *obj, size_t sector_size);
+    xts_cipher_error_t (*encrypt_init)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t key1, const bytes_t key2,
+        uint64 sector_idx, size_t sector_size);
+    xts_cipher_error_t (*encrypt_update)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t in_data, buffer_t *out_data);
+    xts_cipher_error_t (*encrypt_final)(
+        conf_object_t *obj, buffer_t ctx, buffer_t *out_data);
+    xts_cipher_error_t (*encrypt)(
+        conf_object_t *obj,
+        const bytes_t key1, const bytes_t key2,
+        uint64 sector_idx, size_t sector_size,
+        const bytes_t in_data, buffer_t *out_data);
+    xts_cipher_error_t (*decrypt_init)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t key1, const bytes_t key2,
+        uint64 sector_idx, size_t sector_size);
+    xts_cipher_error_t (*decrypt_update)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t in_data, buffer_t *out_data);
+    xts_cipher_error_t (*decrypt_final)(
+        conf_object_t *obj, buffer_t ctx, buffer_t *out_data);
+    xts_cipher_error_t (*decrypt)(
+        conf_object_t *obj,
+        const bytes_t key1, const bytes_t key2,
+        uint64 sector_idx, size_t sector_size,
+        const bytes_t in_data, buffer_t *out_data);
+} xts_cipher_interface_t;
+constant XTS_CIPHER_INTERFACE = "xts_cipher";
+
+extern typedef struct {
+    xts_cipher_error_t err;
+    bytes_t data;
+} xts_output_t;
+
+extern typedef struct {
+    size_t (*context_size)(conf_object_t *obj, size_t sector_size);
+    xts_cipher_error_t (*encrypt_init)(
+        conf_object_t *obj, buffer_t ctx,
+        bytes_t key1, bytes_t key2,
+        bytes_t iv, size_t sector_size);
+    xts_output_t (*encrypt_update)(
+        conf_object_t *obj, buffer_t ctx, bytes_t in_data);
+    xts_output_t (*encrypt_final)(conf_object_t *obj, buffer_t ctx);
+    xts_output_t (*encrypt)(
+        conf_object_t *obj,
+        bytes_t key1, bytes_t key2,
+        bytes_t iv, size_t sector_size,
+        bytes_t in_data);
+    xts_cipher_error_t (*decrypt_init)(
+        conf_object_t *obj, buffer_t ctx,
+        bytes_t key1, bytes_t key2,
+        bytes_t iv, size_t sector_size);
+    xts_output_t (*decrypt_update)(
+        conf_object_t *obj, buffer_t ctx, bytes_t in_data);
+    xts_output_t (*decrypt_final)(conf_object_t *obj, buffer_t ctx);
+    xts_output_t (*decrypt)(
+        conf_object_t *obj,
+        bytes_t key1, bytes_t key2,
+        bytes_t iv, size_t sector_size,
+        bytes_t in_data);
+} xts_ext_cipher_interface_t;
+constant XTS_EXT_CIPHER_INTERFACE = "xts_ext_cipher";
+
+extern typedef int ccm_cipher_error_t;
+extern ccm_cipher_error_t Ccm_Cipher_Error_None;
+extern ccm_cipher_error_t Ccm_Cipher_Error_Key_Size;
+extern ccm_cipher_error_t Ccm_Cipher_Error_Data_Size;
+extern ccm_cipher_error_t Ccm_Cipher_Error_Tag_Size;
+extern ccm_cipher_error_t Ccm_Cipher_Error_Tag_Check_Fail;
+extern ccm_cipher_error_t Ccm_Cipher_Error_Unknown;
+
+extern typedef struct {
+    ccm_cipher_error_t (*encrypt_lowlevel)(
+        conf_object_t *obj,
+        const bytes_t key, const bytes_t aad,
+        const bytes_t B0, uint64 counter_u, uint64 counter_l,
+        const bytes_t in_data, buffer_t *out_data,
+        buffer_t *calculated_mac, buffer_t *encrypted_mac);
+    ccm_cipher_error_t (*encrypt)(
+        conf_object_t *obj,
+        const bytes_t key, const bytes_t iv,
+        const bytes_t aad, int tag_len,
+        const bytes_t in_data, buffer_t *out_data);
+    ccm_cipher_error_t (*decrypt_lowlevel)(
+        conf_object_t *obj,
+        const bytes_t key, const bytes_t aad,
+        const bytes_t B0, uint64 counter_u, uint64 counter_l,
+        const bytes_t in_data, const bytes_t mac,
+        buffer_t *out_data,
+        buffer_t *calculated_mac, buffer_t *decrypted_mac);
+    ccm_cipher_error_t (*decrypt)(
+        conf_object_t *obj,
+        const bytes_t key, const bytes_t iv,
+        const bytes_t aad, int tag_len,
+        const bytes_t in_data, buffer_t *out_data);
+} ccm_cipher_interface_t;
+constant CCM_CIPHER_INTERFACE = "ccm_cipher";
+
+extern typedef int gcm_cipher_error_t;
+extern gcm_cipher_error_t Gcm_Cipher_Error_None;
+extern gcm_cipher_error_t Gcm_Cipher_Error_Key_Size;
+extern gcm_cipher_error_t Gcm_Cipher_Error_Unknown;
+
+extern typedef struct {
+    size_t (*context_size)(conf_object_t *obj);
+    gcm_cipher_error_t (*encrypt_init)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t key, const bytes_t iv);
+    gcm_cipher_error_t (*encrypt_update)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t aad, const bytes_t in_data,
+        buffer_t *out_data);
+    gcm_cipher_error_t (*encrypt_final)(
+        conf_object_t *obj, buffer_t ctx,
+        buffer_t *out_data, buffer_t *mac);
+    gcm_cipher_error_t (*encrypt)(
+        conf_object_t *obj,
+        const bytes_t key, const bytes_t iv,
+        const bytes_t aad,
+        const bytes_t in_data, buffer_t *out_data, buffer_t *mac);
+    gcm_cipher_error_t (*decrypt_init)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t key, const bytes_t iv);
+    gcm_cipher_error_t (*decrypt_update)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t aad, const bytes_t in_data,
+        buffer_t *out_data);
+    gcm_cipher_error_t (*decrypt_final)(
+        conf_object_t *obj, buffer_t ctx,
+        buffer_t *out_data, buffer_t *mac);
+    gcm_cipher_error_t (*decrypt)(
+        conf_object_t *obj,
+        const bytes_t key, const bytes_t iv, const bytes_t aad,
+        const bytes_t in_data, buffer_t *out_data, buffer_t *mac);
+} gcm_cipher_interface_t;
+constant GCM_CIPHER_INTERFACE = "gcm_cipher";
+
+extern typedef struct {
+    gcm_cipher_error_t err;
+    bytes_t data;
+    bytes_t tag;
+} gcm_output_t;
+
+extern typedef struct {
+    size_t (*context_size)(conf_object_t *obj);
+    gcm_cipher_error_t (*encrypt_init)(
+        conf_object_t *obj, buffer_t ctx,
+        bytes_t key, bytes_t iv, bool iv_is_j0);
+    gcm_output_t (*encrypt_update)(
+        conf_object_t *obj, buffer_t ctx,
+        bytes_t aad, bytes_t in_data);
+    gcm_output_t (*encrypt_final)(conf_object_t *obj, buffer_t ctx);
+    gcm_output_t (*encrypt)(conf_object_t *obj,
+        bytes_t key, bytes_t iv, bool iv_is_j0, bytes_t aad, bytes_t in_data);
+    gcm_cipher_error_t (*decrypt_init)(
+        conf_object_t *obj, buffer_t ctx,
+        bytes_t key, bytes_t iv, bool iv_is_j0);
+    gcm_output_t (*decrypt_update)(
+        conf_object_t *obj, buffer_t ctx, bytes_t aad, bytes_t in_data);
+    gcm_output_t (*decrypt_final)(conf_object_t *obj, buffer_t ctx);
+    gcm_output_t (*decrypt)(conf_object_t *obj,
+        bytes_t key, bytes_t iv, bool iv_is_j0, bytes_t aad, bytes_t in_data);
+} gcm_ext_cipher_interface_t;
+constant GCM_EXT_CIPHER_INTERFACE = "gcm_ext_cipher";
+
+extern typedef int f8_error_t;
+extern f8_error_t F8_Error_None;
+extern f8_error_t F8_Error_Key_Size;
+extern f8_error_t F8_Error_Unknown;
+
+extern typedef struct {
+    size_t (*context_size)(conf_object_t *obj);
+    f8_error_t (*init)(
+        conf_object_t *obj, buffer_t ctx,
+        bool is_fast_key, const bytes_t key, buffer_t *fast_key,
+        uint32 count, uint8 bearer, uint8 direction, uint16 ca, uint16 ce);
+    f8_error_t (*update)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t in_data, int bits, buffer_t *out_data);
+    f8_error_t (*final)(
+        conf_object_t *obj, buffer_t ctx, buffer_t *out_data);
+    f8_error_t (*f8)(
+        conf_object_t *obj,
+        bool is_fast_key, const bytes_t key, buffer_t *fast_key,
+        uint32 count, uint8 bearer, uint8 direction, uint16 ca, uint16 ce,
+        const bytes_t in_data, int bits, buffer_t *out_data);
+} f8_interface_t;
+constant F8_INTERFACE = "f8";
+
+extern typedef struct {
+    size_t (*context_size)(conf_object_t *obj);
+    f8_error_t (*init)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t key,
+        uint32 count, uint8 bearer, uint8 direction, uint16 ca, uint16 ce);
+    f8_error_t (*init_raw)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t key, const bytes_t iv);
+    f8_error_t (*update)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t in_data, int bits, buffer_t out_data);
+    f8_error_t (*final)(
+        conf_object_t *obj, buffer_t ctx, buffer_t out_data);
+
+    f8_error_t (*f8)(
+        conf_object_t *obj,
+        const bytes_t key,
+        uint32 count, uint8 bearer, uint8 direction, uint16 ca, uint16 ce,
+        const bytes_t in_data, int bits, buffer_t out_data);
+    f8_error_t (*f8_raw)(
+        conf_object_t *obj,
+        const bytes_t key, const bytes_t iv,
+        const bytes_t in_data, int bits, buffer_t out_data);
+} f8_ex_interface_t;
+constant F8_EX_INTERFACE = "f8_ex";
+
+extern typedef int f9_error_t;
+extern f9_error_t F9_Error_None;
+extern f9_error_t F9_Error_Key_Size;
+extern f9_error_t F9_Error_Unknown;
+
+extern typedef struct {
+    size_t (*context_size)(conf_object_t *obj);
+    f9_error_t (*init)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t key, uint32 count, uint32 fresh, uint8 direction);
+    f9_error_t (*update)(
+        conf_object_t *obj, buffer_t ctx, const bytes_t in_data, int bits);
+    f9_error_t (*final)(
+        conf_object_t *obj, buffer_t ctx, buffer_t *mac);
+    f9_error_t (*f9)(
+        conf_object_t *obj,
+        const bytes_t key, uint32 count, uint32 fresh, uint8 direction,
+        const bytes_t in_data, int bits, buffer_t *mac);
+} f9_interface_t;
+constant F9_INTERFACE = "f9";
+
+extern typedef struct {
+    size_t (*context_size)(conf_object_t *obj);
+    f9_error_t (*init)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t key, uint32 count, uint32 fresh, uint8 direction);
+    f9_error_t (*init_raw)(
+        conf_object_t *obj, buffer_t ctx,
+        const bytes_t key, const bytes_t iv);
+    f9_error_t (*update)(
+        conf_object_t *obj, buffer_t ctx, const bytes_t in_data, int bits);
+    f9_error_t (*final)(
+        conf_object_t *obj, buffer_t ctx, buffer_t mac);
+    f9_error_t (*f9)(
+        conf_object_t *obj,
+        const bytes_t key, uint32 count, uint32 fresh, uint8 direction,
+        const bytes_t in_data, int bits, buffer_t mac);
+    f9_error_t (*f9_raw)(
+        conf_object_t *obj,
+        const bytes_t key, const bytes_t iv,
+        const bytes_t in_data, int bits, buffer_t mac);
+} f9_ex_interface_t;
+constant F9_EX_INTERFACE = "f9_ex";
+
+extern typedef int zuc_error_t;
+extern zuc_error_t ZUC_Error_None;
+extern zuc_error_t ZUC_Error_Size;
+extern zuc_error_t ZUC_Error_Unknown;
+
+extern typedef struct {
+        size_t length;
+        zuc_error_t err;
+} zuc_output_t;
+
+extern typedef struct {
+    size_t (*context_size)(conf_object_t *obj, int key_size);
+
+    zuc_error_t (*enc_init)(conf_object_t *obj, buffer_t ctx,
+                            bytes_t key, bytes_t iv);
+    zuc_output_t (*enc_update)(conf_object_t *obj, buffer_t ctx,
+                               bytes_t input, size_t length, buffer_t output);
+    zuc_output_t (*enc_final)(conf_object_t *obj,
+                              buffer_t ctx, buffer_t output);
+    zuc_output_t (*encrypt)(conf_object_t *obj, bytes_t key, bytes_t iv,
+                            bytes_t input, size_t length, buffer_t output);
+    
+    zuc_error_t (*mac_init)(conf_object_t *obj, buffer_t ctx,
+                            int mac_size, bytes_t key, bytes_t iv);
+    zuc_error_t (*mac_update)(conf_object_t *obj, buffer_t ctx,
+                              bytes_t input, size_t length);
+    zuc_error_t (*mac_final)(conf_object_t *obj, buffer_t ctx, buffer_t output);
+    zuc_error_t (*mac)(conf_object_t *obj, int mac_size,
+                       bytes_t key, bytes_t iv,
+                       bytes_t input, size_t length, buffer_t output);
+} zuc_interface_t;
+constant ZUC_INTERFACE = "zuc";
+
+extern typedef struct {
+    uintptr_t (*context_new)(conf_object_t *obj);
+    void (*context_free)(conf_object_t *obj, uintptr_t ctx);
+    int (*block_size)(conf_object_t *obj);
+    bool (*encrypt_init)(conf_object_t *obj, uintptr_t ctx, bytes_t key, bytes_t iv);
+    bool (*decrypt_init)(conf_object_t *obj, uintptr_t ctx, bytes_t key, bytes_t iv);
+    int (*encrypt_update)(conf_object_t *obj, uintptr_t ctx, bytes_t in_data, buffer_t out_data);
+    int (*decrypt_update)(conf_object_t *obj, uintptr_t ctx, bytes_t in_data, buffer_t out_data);
+    bool (*encrypt_final)(conf_object_t *obj, uintptr_t ctx);
+    bool (*decrypt_final)(conf_object_t *obj, uintptr_t ctx);
+    int (*encrypt)(conf_object_t *obj, bytes_t key, bytes_t iv,
+                   bytes_t in_data, buffer_t out_data);
+    int (*decrypt)(conf_object_t *obj, bytes_t key, bytes_t iv,
+                   bytes_t in_data, buffer_t out_data);
+} evp_cipher_interface_t;
+constant EVP_CIPHER_INTERFACE = "evp_cipher";
+
+extern typedef struct {
+    bool (*get_tag)(conf_object_t *obj, uintptr_t ctx, buffer_t tag);
+    bool (*set_tag)(conf_object_t *obj, uintptr_t ctx, bytes_t tag);
+    int (*encrypt)(conf_object_t *obj, bytes_t key, bytes_t iv,
+                   bytes_t aad, bytes_t in_data, buffer_t out_data, buffer_t tag);
+    int (*decrypt)(conf_object_t *obj, bytes_t key, bytes_t iv,
+                   bytes_t aad, bytes_t in_data, bytes_t tag, buffer_t out_data);
+} evp_aead_interface_t;
+constant EVP_AEAD_INTERFACE = "evp_aead";
+
+extern typedef struct {
+    size_t (*hash_size)(conf_object_t *obj);
+    uintptr_t (*hash_context_new)(conf_object_t *obj);
+    void (*hash_context_free)(conf_object_t *obj, uintptr_t ctx);
+    bool (*hash_init)(conf_object_t *obj, uintptr_t ctx);
+    bool (*hash_update)(conf_object_t *obj, uintptr_t ctx, bytes_t input);
+    bool (*hash_final)(conf_object_t *obj, uintptr_t ctx, buffer_t output);
+    bool (*hash)(conf_object_t *obj, bytes_t input, buffer_t output);
+} evp_hash_interface_t;
+constant EVP_HASH_INTERFACE = "evp_hash";
+
+extern typedef struct {
+    size_t (*mac_size)(conf_object_t *obj);
+    uintptr_t (*mac_context_new)(conf_object_t *obj);
+    void (*mac_context_free)(conf_object_t *obj, uintptr_t ctx);
+    bool (*mac_init)(conf_object_t *obj, uintptr_t ctx, bytes_t key);
+    bool (*mac_update)(conf_object_t *obj, uintptr_t ctx, bytes_t input);
+    bool (*mac_final)(conf_object_t *obj, uintptr_t ctx, buffer_t output);
+    bool (*mac)(conf_object_t *obj, bytes_t key,
+                bytes_t input, buffer_t output);
+} evp_hmac_interface_t;
+constant EVP_HMAC_INTERFACE = "evp_hmac";
+
+extern typedef int sha3_error_t;
+extern sha3_error_t SHA3_Error_None;
+extern sha3_error_t SHA3_Error_Unknown;
+
+extern typedef struct {
+    size_t (*context_size)(conf_object_t *obj);
+    sha3_error_t (*init)(
+        conf_object_t *obj, buffer_t ctx, uint8 pad_prefix, uint8 pad_postfix);
+    sha3_error_t (*update)(
+        conf_object_t *obj, buffer_t ctx, const bytes_t in_data);
+    sha3_error_t (*final)(
+        conf_object_t *obj, buffer_t ctx, buffer_t *out_data, bool pad_is_needed);
+    sha3_error_t (*sha3)(
+        conf_object_t *obj, const bytes_t in_data, buffer_t *out_data,
+        uint8 pad_prefix, uint8 pad_postfix, bool pad_is_needed);
+} sha3_interface_t;
+constant SHA3_INTERFACE = "sha3";
+
+extern typedef struct {
+    size_t (*context_size)(conf_object_t *obj);
+    sha3_error_t (*init)(
+        conf_object_t *obj, buffer_t ctx, const bytes_t key,
+        uint8 pad_prefix, uint8 pad_postfix);
+    sha3_error_t (*update)(
+        conf_object_t *obj, buffer_t ctx, const bytes_t in_data);
+    sha3_error_t (*final)(
+        conf_object_t *obj, buffer_t ctx, buffer_t *out_data, bool pad_is_needed);
+    sha3_error_t (*mac)(
+        conf_object_t *obj, const bytes_t key,
+        const bytes_t in_data, buffer_t *out_data,
+        uint8 pad_prefix, uint8 pad_postfix, bool pad_is_needed);
+} sha3_hmac_interface_t;
+constant SHA3_HMAC_INTERFACE = "sha3_hmac";
+
+extern typedef int hash_error_t;
+extern hash_error_t Hash_Error_None;
+extern hash_error_t Hash_Error_Unknown;
+
+constant HASH_SHA1      = 1;
+constant HASH_SHA256    = 2;
+constant HASH_SHA384    = 3;
+constant HASH_SHA512    = 4;
+
+extern typedef int hash_type_t;
+extern hash_type_t Hash_Sha1;
+extern hash_type_t Hash_Sha256;
+extern hash_type_t Hash_Sha384;
+extern hash_type_t Hash_Sha512;
+
+extern typedef struct {
+    size_t (*context_size)(conf_object_t *obj);
+    hash_error_t (*init)(
+        conf_object_t *obj, buffer_t ctx);
+    hash_error_t (*update)(
+        conf_object_t *obj, buffer_t ctx, const bytes_t in_data);
+    hash_error_t (*final)(
+        conf_object_t *obj, buffer_t ctx, buffer_t *out_data);
+    hash_error_t (*hash)(
+        conf_object_t *obj, const bytes_t in_data, buffer_t *out_data);
+    hash_error_t (*hash_ex)(
+        conf_object_t *obj, const bytes_t snapshot, const bytes_t in_data,
+        buffer_t *out_data);
+    hash_error_t (*init_ex)(
+        conf_object_t *obj, buffer_t ctx, const bytes_t snapshot,
+        size_t message_length);
+    hash_error_t (*snapshot)(
+        conf_object_t *obj, buffer_t ctx, buffer_t *out_data);
+} hash_interface_t;
+constant HASH_INTERFACE = "hash";
+
+extern typedef int mac_error_t;
+extern mac_error_t Mac_Error_None;
+extern mac_error_t Mac_Error_Key_Size;
+extern mac_error_t Mac_Error_Unknown;
+
+extern typedef struct {
+    size_t (*context_size)(conf_object_t *obj);
+    mac_error_t (*init)(
+        conf_object_t *obj, buffer_t ctx, const bytes_t key);
+    mac_error_t (*update)(
+        conf_object_t *obj, buffer_t ctx, const bytes_t in_data);
+    mac_error_t (*final)(
+        conf_object_t *obj, buffer_t ctx, buffer_t *out_data);
+    mac_error_t (*mac)(
+        conf_object_t *obj,
+        const bytes_t key, const bytes_t in_data,
+        buffer_t *out_data);
+} mac_interface_t;
+constant MAC_INTERFACE = "mac";
+
+extern typedef int hmac_error_t;
+extern hmac_error_t Hmac_Error_None;
+extern hmac_error_t Hmac_Error_Key_Size;
+extern hmac_error_t Hmac_Error_Unknown;
+
+extern typedef struct {
+    size_t (*context_size)(conf_object_t *obj);
+    hmac_error_t (*init)(
+        conf_object_t *obj, buffer_t ctx, const bytes_t key,
+        bool key_is_ipad_opad, buffer_t *ipad_opad);
+    hmac_error_t (*update)(
+        conf_object_t *obj, buffer_t ctx, const bytes_t in_data);
+    hmac_error_t (*final)(
+        conf_object_t *obj, buffer_t ctx, buffer_t *out_data);
+    hmac_error_t (*mac)(
+        conf_object_t *obj,
+        const bytes_t key, bool key_is_ipad_opad, const bytes_t in_data,
+        buffer_t *ipad_opad, buffer_t *out_data);
+} hmac_interface_t;
+constant HMAC_INTERFACE = "hmac";
+
+extern typedef int xcbc_precompute_error_t;
+extern xcbc_precompute_error_t Xcbc_Precompute_Error_None;
+extern xcbc_precompute_error_t Xcbc_Precompute_Error_Key_Size;
+extern xcbc_precompute_error_t Xcbc_Precompute_Error_E_Size;
+extern xcbc_precompute_error_t Xcbc_Precompute_Unaligned_Data;
+extern xcbc_precompute_error_t Xcbc_Precompute_Error_Unknown;
+extern typedef struct {
+    size_t (*context_size)(conf_object_t *obj);
+    xcbc_precompute_error_t (*init)(
+        conf_object_t *obj, buffer_t ctx, const bytes_t k1,
+        const bytes_t k2, const bytes_t k3, const bytes_t e);
+    xcbc_precompute_error_t (*update)(
+        conf_object_t *obj, buffer_t ctx, const bytes_t in_data);
+    xcbc_precompute_error_t (*final)(
+        conf_object_t *obj, buffer_t ctx, buffer_t *out_data);
+    xcbc_precompute_error_t (*mac)(
+        conf_object_t *obj, const bytes_t k1, const bytes_t k2,
+        const bytes_t k3, const bytes_t e, const bytes_t in_data,
+        buffer_t *out_data);
+} xcbc_precompute_interface_t;
+constant XCBC_PRECOMPUTE_INTERFACE = "xcbc_precompute";
+
+extern typedef struct {
+    uint64 (*crc)(
+        conf_object_t *obj,
+        uint64 poly, int width, uint64 initial_crc,
+        bool reverse_initial_crc, bool reverse_input,
+        bool reverse_output, bool swap_output, bool complement_output,
+        bytes_t in_data);
+} crc_interface_t;
+constant CRC_INTERFACE = "crc";
+
+constant RSA_PKCS1_PADDING       = 1;
+constant RSA_SSLV23_PADDING      = 2;
+constant RSA_NO_PADDING          = 3;
+constant RSA_PKCS1_OAEP_PADDING  = 4;
+constant RSA_X931_PADDING        = 5;
+
+extern typedef struct {
+    int32 (*generate_key)(conf_object_t *obj, uint8 *pubkey, uint32 *publen,
+                          uint8 *privkey, uint32 *privlen,
+                          uint8 *P, uint32 *plen,
+                          uint8 *Q, uint32 *qlen);
+    int32 (*private_decrypt)(conf_object_t *obj, uint8 *pubkey, uint32 publen,
+                           uint8 *privkey, uint32 privlen,
+                           int32 flen, uint8 *from, uint8 *to, int32 padding);
+    int32 (*public_encrypt)(conf_object_t *obj, uint8 *pubkey, uint32 publen,
+                          uint8 *privkey, uint32 privlen,
+                          int32 flen, uint8 *from, uint8 *to, int32 padding);
+    int32 (*sign)(conf_object_t *obj, uint8 *pubkey, uint32 publen,
+                 uint8 *privkey, uint32 privlen, int32 md_type, uint8 *dgst,
+                 uint32 dlen, uint8 *sig, uint32 *siglen);
+    int32 (*verify_sig)(conf_object_t *obj, uint8 *pubkey, uint32 publen,
+                 uint8 *privkey, uint32 privlen, int32 md_type, uint8 *dgst,
+                 uint32 dlen, uint8 *sig, uint32 siglen);
+    int32 (*mgf1)(conf_object_t *obj, uint8 *mask, int32 len,
+                        const uint8 *seed, int32 seedlen);
+    int32 (*add_oaep_padding)(conf_object_t *obj, uint8 *to, int32 tlen,
+                        uint8 *f, int32 fl, uint8 *p, int32 pl);
+    int32 (*check_oaep_padding)(conf_object_t *obj, uint8 *to, int32 tlen,
+                        uint8 *f, int32 fl, int32 rsa_len, uint8 *p, int32 pl);
+    int32 (*private_from_primes)(conf_object_t *obj, uint8 *pubkey,
+                                 uint32 publen, uint8 *privkey, uint32 *privlen,
+                                 uint8 *pprime, uint32 plen,
+                                 uint8 *qprime, uint32 qlen);
+    int (*generate_key_full)(conf_object_t *obj, const uint8 *P, const uint8 *Q,
+                             const uint8 *E, uint8 *N, uint8 *D, uint8 *dP,
+                             uint8 *dQ, uint8 *qInv, uint32 bitLength);
+    int (*private2_decrypt)(conf_object_t *obj, const uint8 *C, 
+                            const uint8 *P, const uint8 *Q,
+                            const uint8 *dP, const uint8 *dQ,
+                            const uint8 *qInv, uint8 *M, uint32 bitLength);
+} rsa_interface_t;
+constant RSA_INTERFACE = "rsa";
+
+extern typedef int rsa_padding_t;
+extern rsa_padding_t RSA_PKCS1_Padding;
+extern rsa_padding_t RSA_SSLV23_Padding;
+extern rsa_padding_t RSA_No_Padding;
+extern rsa_padding_t RSA_PKCS1_OAEP_Padding;
+extern rsa_padding_t RSA_X931_Padding;
+
+extern typedef struct {
+    void (*generate_key)(conf_object_t *obj, uint64 e,
+                         buffer_t n, buffer_t p,
+                         buffer_t q, buffer_t d);
+
+    size_t (*key_from_primes)(
+        conf_object_t *obj,
+        bytes_t n, uint64 e, bytes_t p, bytes_t q, buffer_t d);
+
+    size_t (*buffer_size)(conf_object_t *obj, bytes_t n, uint64 e);
+
+    size_t (*encrypt)(conf_object_t *obj,
+                      bytes_t n, uint64 e,
+                      bytes_t from, buffer_t to, rsa_padding_t padding);
+
+    size_t (*decrypt)(conf_object_t *obj,
+                      bytes_t n, uint64 e, bytes_t d,
+                      bytes_t from, buffer_t to, rsa_padding_t padding);
+
+    void (*mgf1)(conf_object_t *obj, bytes_t from, buffer_t out,
+                 hash_type_t type);
+
+    size_t (*sign)(conf_object_t *obj,
+                   bytes_t n, uint64 e, bytes_t d,
+                   hash_type_t type, bytes_t digest, buffer_t sig);
+
+    bool (*verify)(conf_object_t *obj,
+                   bytes_t n, uint64 e,
+                   hash_type_t type, bytes_t digest, bytes_t sig);
+
+    void (*add_oaep_padding)(conf_object_t *obj,
+                             bytes_t from, bytes_t params, buffer_t to);
+
+    size_t (*check_oaep_padding)(conf_object_t *obj,
+                                 bytes_t from, int rsa_len, bytes_t params,
+                                 buffer_t to);
+
+    // This method may only be called when using package 1030 version 6.0.6 or higher.
+    void (*generate_crt_key)(conf_object_t *obj,
+                             bytes_t p, bytes_t q, bytes_t e,
+                             buffer_t n, buffer_t d, buffer_t dP,
+                             buffer_t dQ, buffer_t qInv);
+
+    void (*generate_private_key)(conf_object_t *obj,
+                             bytes_t p, bytes_t q, bytes_t e,
+                             buffer_t n, buffer_t d);
+
+    size_t (*encrypt_ex)(conf_object_t *obj,
+                      bytes_t n, bytes_t e,
+                      bytes_t from, buffer_t to, rsa_padding_t padding);
+
+    void (*generate_key_form2_reduced_lambda)(conf_object_t *obj,
+                                              bytes_t p, bytes_t q, bytes_t e,
+                                              buffer_t n, buffer_t d, buffer_t dP,
+                                              buffer_t dQ, buffer_t qInv);
+} rsa_v2_interface_t;
+constant RSA_V2_INTERFACE = "rsa_v2";
+
+extern typedef struct {
+    bool (*generate_key)(
+        conf_object_t *obj,
+        bytes_t p, bytes_t q, bytes_t e, buffer_t n,
+        buffer_t d, buffer_t dp, buffer_t dq, buffer_t q_inv);
+
+    size_t (*buffer_size)(conf_object_t *obj, bytes_t n, bytes_t e);
+
+    bool (*decrypt)(
+        conf_object_t *obj,
+        bytes_t p, bytes_t q, bytes_t dp, bytes_t dq, bytes_t q_inv,
+        bytes_t from, buffer_t to);
+} rsa_ex_interface_t;
+
+extern typedef struct {
+    int32 (*oaep_encode)(conf_object_t *obj, uint8 *to, int32 tlen, uint8 *f,
+                         int32 fl, uint8 *p, int32 pl, int32 hash);
+    int32 (*oaep_decode)(conf_object_t *obj, uint8 *to, int32 tlen, uint8 *f,
+                         int32 fl, int32 rsa_len, uint8 *p, int32 pl,
+                         int32 hash);
+    int32 (*pss_encode)(conf_object_t *obj, uint8 *pubkey, uint32 publen,
+                        uint8 *digest, uint8 *emsg, int32 slen, int32 hash);
+    int32 (*pss_decode)(conf_object_t *obj, uint8 *pubkey, uint32 publen,
+                        uint8 *digest, uint8 *emsg, int32 slen, int32 hash);
+    int32 (*ssa_encode)(conf_object_t *obj, uint32 tlen, uint8 *to, uint32 flen,
+                        uint8 *from, int32 dlen, const uint8 *der);
+    int32 (*ssa_decode)(conf_object_t *obj, uint32 dsize, uint8 *digest,
+                        uint32 esize, uint8 *emsg, int32 dlen,
+                        const uint8 *der);
+} tpm_rsa_interface_t;
+constant TPM_RSA_INTERFACE = "tpm_rsa";
+
+extern typedef int dh_error_t;
+extern dh_error_t Dh_Error_None;
+extern dh_error_t Dh_Error_Key_Size;
+extern dh_error_t Dh_Error_Unknown;
+
+extern typedef struct {
+    dh_error_t (*dh)(conf_object_t *obj, const uint8 *base, uint32 baselen,
+                     const uint8 *secret, uint32 secretlen,
+                     const uint8 *modulus, uint32 moduluslen,
+                     uint8 *res, uint32 *reslen);
+} dh_interface_t;
+constant DH_INTERFACE = "dh";
+
+extern typedef struct {
+    int32 (*generate_g)(conf_object_t *obj, uint8 *P, uint8 *Q , uint8 *H,
+                          uint8 *G, uint32 bitLength, uint32 signLength);
+
+    int32 (*generate_y)(conf_object_t *obj, uint8 *P, uint8 *G , uint8 *X,
+                          uint8 *Y, uint32 bitLength, uint32 signLength);
+
+    int32 (*sign_rs)(conf_object_t *obj, uint8 *M, uint8 *K, uint8 *P,
+                     uint8 *Q, uint8 *G, uint8 *X, uint8 *R, uint8 *S,
+                     uint32 bitLength, uint32 signLength);
+
+    int32 (*verify_sig)(conf_object_t *obj, uint8 *R, uint8 *S, uint8 *M,
+                        uint8 *P, uint8 *Q, uint8 *G, uint8 *Y,
+                        uint32 bitLength, uint32 signLength);
+} dsa_interface_t;
+constant DSA_INTERFACE = "dsa";
+
+extern typedef struct {
+    int32 (*generate_p)(conf_object_t *obj, bytes_t x, bytes_t q, buffer_t p);
+
+    int32 (*generate_g)(conf_object_t *obj, bytes_t p, bytes_t q, bytes_t h,
+                        buffer_t g);
+
+    int32 (*generate_y)(conf_object_t *obj, bytes_t p, bytes_t g, bytes_t x,
+                        buffer_t y);
+
+    int32 (*sign_rs)(conf_object_t *obj, bytes_t m, bytes_t k, bytes_t p,
+                     bytes_t q, bytes_t g, bytes_t x, buffer_t r, buffer_t s);
+
+    int32 (*sign_s)(conf_object_t *obj, bytes_t m, bytes_t k,
+                    bytes_t q, bytes_t r, bytes_t x, buffer_t s);
+
+    int32 (*sign_r)(conf_object_t *obj, bytes_t k, bytes_t p, bytes_t q,
+                    bytes_t g, buffer_t r);
+
+    int32 (*verify_sig)(conf_object_t *obj, bytes_t r, bytes_t s, bytes_t m,
+                        bytes_t p, bytes_t q, bytes_t g, bytes_t y);
+} dsa_v2_interface_t;
+constant DSA_V2_INTERFACE = "dsa_v2";
+
+extern typedef struct {
+    int32 (*mul_gfp)(conf_object_t *obj, uint8 *A, uint8 *B, uint8 *P,
+                     uint8 *xG, uint8 *yG, uint8 *K,
+                     uint8 *xR, uint8 *yR, int bitLength);
+
+    int32 (*sign_r_gfp)(conf_object_t *obj, uint8 *A, uint8 *B, uint8 *P,
+                        uint8 *N, uint8 *xG, uint8 *yG, uint8 *K,
+                        uint8 *R, int bitLength);
+
+    int32 (*sign_s_gfp)(conf_object_t *obj, uint8 *E, uint8 *D, uint8 *R,
+                        uint8 *K, uint8 *N, uint8 *S, int bitLength);
+
+    int32 (*sign_rs_gfp)(conf_object_t *obj, uint8 *A, uint8 *B, uint8 *P,
+                         uint8 *N, uint8 *xG, uint8 *yG, uint8 *K,
+                         uint8 *E, uint8 *D, uint8 *R, uint8 *S, int bitLength);
+
+    int32 (*verify_gfp)(conf_object_t *obj, uint8 *A, uint8 *B, uint8 *P,
+                        uint8 *N, uint8 *xG, uint8 *yG, uint8 *xQ, uint8 *yQ,
+                        uint8 *E, uint8 *R, uint8 *S, int bitLength);
+} ecdsa_interface_t;
+constant ECDSA_INTERFACE = "ecdsa";
+
+extern typedef struct {
+    // gfp
+
+    int32 (*mul_gfp)(conf_object_t *obj, bytes_t A, bytes_t B, bytes_t P,
+                     bytes_t xG, bytes_t yG, bytes_t K, buffer_t xR,
+                     buffer_t yR, uint32 bitLength);
+
+    int32 (*sign_r_gfp)(conf_object_t *obj, bytes_t A, bytes_t B, bytes_t P,
+                        bytes_t N, bytes_t xG, bytes_t yG, bytes_t K,
+                        buffer_t R, uint32 bitLength);
+
+    int32 (*sign_s_gfp)(conf_object_t *obj, bytes_t E, bytes_t D, bytes_t R,
+                        bytes_t K, bytes_t N, buffer_t S, uint32 bitLength);
+
+    int32 (*sign_rs_gfp)(conf_object_t *obj, bytes_t A, bytes_t B, bytes_t P,
+                         bytes_t N, bytes_t xG, bytes_t yG, bytes_t K,
+                         bytes_t E, bytes_t D, buffer_t R, buffer_t S,
+                         uint32 bitLength);
+    int32 (*verify_gfp)(conf_object_t *obj, bytes_t A, bytes_t B, bytes_t P,
+                        bytes_t N, bytes_t xG, bytes_t yG, bytes_t xQ,
+                        bytes_t yQ, bytes_t E, buffer_t R, bytes_t S,
+                        int bitLength);
+
+    // gf2
+
+    int32 (*sign_r_gf2)(conf_object_t *obj, bytes_t A, bytes_t B, bytes_t P,
+                        bytes_t N, bytes_t xG, bytes_t yG, bytes_t K,
+                        buffer_t R, uint32 bitLength);
+
+    int32 (*sign_s_gf2)(conf_object_t *obj, bytes_t E, bytes_t D, bytes_t R,
+                        bytes_t K, bytes_t N, buffer_t S, uint32 bitLength);
+
+    int32 (*sign_rs_gf2)(conf_object_t *obj, bytes_t A, bytes_t B, bytes_t P,
+                         bytes_t N, bytes_t xG, bytes_t yG, bytes_t K,
+                         bytes_t E, bytes_t D, buffer_t R, buffer_t S,
+                         uint32 bitLength);
+
+
+    int32 (*sign_rs_ecc)(conf_object_t *obj, bytes_t K, bytes_t E, bytes_t D,
+                         buffer_t R, buffer_t S, int curve_type,
+                         uint32 bitLength);
+
+    int32 (*verify_gf2)(conf_object_t *obj, bytes_t A, bytes_t B, bytes_t P,
+                        bytes_t N, bytes_t xG, bytes_t yG, bytes_t xQ,
+                        bytes_t yQ, bytes_t E, buffer_t R, bytes_t S,
+                        uint32 bitLength);
+} ecdsa_v2_interface_t;
+constant ECDSA_V2_INTERFACE = "ecdsa_v2";
+
+extern typedef struct {
+    bool (*set_key)(conf_object_t *obj, bytes_t key, bool decrypt);
+    bool (*des)(conf_object_t *obj, buffer_t to, bytes_t from);
+} vnc_des_interface_t;
+constant VNC_DES_INTERFACE = "vnc_des";

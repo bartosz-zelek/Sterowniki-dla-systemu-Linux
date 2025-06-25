@@ -1,0 +1,5 @@
+project: /home/debian/Sterowniki-dla-systemu-Linux/lab2/simics-projects/proj1
+simics-root: /home/debian/Sterowniki-dla-systemu-Linux/lab2/simics/simics-7.38.0
+simics-model-builder: /home/debian/Sterowniki-dla-systemu-Linux/lab2/simics/simics-7.38.0
+simics-python: /home/debian/Sterowniki-dla-systemu-Linux/lab2/simics/simics-python-7.10.0
+mingw: None

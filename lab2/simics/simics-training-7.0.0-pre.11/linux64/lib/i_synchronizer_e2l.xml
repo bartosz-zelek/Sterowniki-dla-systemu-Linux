@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device name="i_synchronizer_e2l" bitorder="le">
+  <bank name="regs">
+  </bank>
+</device>

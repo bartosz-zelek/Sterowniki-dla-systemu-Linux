@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device name="mmc_card" desc="eMMC card" documentation="The &lt;class&gt;mmc_card&lt;/class&gt; implements JESD84-B50.1-compliant eMMC card." limitations="&lt;ul&gt;  &lt;li&gt;Unimplemented features:    &lt;ul&gt;      &lt;li&gt;Write Protection (including Perm &amp; Temp).&lt;/li&gt;      &lt;li&gt;Device lock/unlock operation (password protection).&lt;/li&gt;      &lt;li&gt;Extended Security Protocols Pass Through Commands.&lt;/li&gt;      &lt;li&gt;Context Management.&lt;/li&gt;      &lt;li&gt;Data Tag Mechanism.&lt;/li&gt;      &lt;li&gt;Packed Commands.&lt;/li&gt;      &lt;li&gt;Command Queuing.&lt;/li&gt;    &lt;/ul&gt;  &lt;/li&gt;&lt;/ul&gt;" bitorder="le">
+  <bank name="regs" documentation="Set of common information registers" byte_order="little-endian">
+  </bank>
+</device>

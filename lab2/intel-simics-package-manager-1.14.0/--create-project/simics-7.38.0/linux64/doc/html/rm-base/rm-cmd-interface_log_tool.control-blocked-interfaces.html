@@ -1,0 +1,18 @@
+<a name="interface_log_tool.control-blocked-interfaces"></a>
+<h1 id="interface_log_tool.control-blocked-interfaces"><a href="#interface_log_tool.control-blocked-interfaces">&lt;interface_log_tool&gt;.control-blocked-interfaces</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>&lt;interface_log_tool&gt;.control-blocked-interfaces</b> ([ <i>"ifaces"</i> ... ] | list of <i>"ifaces"</i>) [-remove] <br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+This command can be used to control the logging of the interfaces when the tool has been created. <i>ifaces</i> sets the list of blocked interfaces not to log. Each string can be a name of an individual interface to consider, or one Python regular expressions that can match several interfaces. All interfaces mentioned are blocked from logging. If <tt>-remove</tt> is given already blocked interfaces that match the ifaces list will be removed from the blocking list. If no flag is used, the current setting is printed.
+<p>
+The command can be given several times, adding or removing interfaces from the blocked list. 
+</p><h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.interface-log-tool.html">interface-log-tool</a>
+</section>

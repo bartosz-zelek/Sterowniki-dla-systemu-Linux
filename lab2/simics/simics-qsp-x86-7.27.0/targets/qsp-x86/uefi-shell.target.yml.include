@@ -1,0 +1,33 @@
+run-script "%script%/hardware.yml" namespace = machine:hardware
+
+
+local $system = (params.get machine:hardware:output:system)
+
+
+instantiate-components $system
+
+# Set video mode in Simics UEFI meta-data device
+if (params.get machine:hardware:simulation:uefi_dev_name) {
+        local $uefi_dev = ($system + ".mb." +
+                          (params.get machine:hardware:simulation:uefi_dev_name))
+        $uefi_dev->video_mode = (params.get machine:uefi_device:video_mode)
+}
+
+## Name system
+$system->system_info = (params.get machine:system_info)
+
+## Set a time quantum that provides reasonable performance
+set-time-quantum cell = ((($system->cpu_list)[0])->cell) seconds = 0.0001
+
+## Set up Ethernet
+run-script "%simics%/targets/common/ethernet-setup.yml" namespace = network:switch
+if (params.get network:switch:create_network) {
+    local $ethernet_switch = (params.get network:switch:ethernet_switch:name)
+    connect ($ethernet_switch.get-free-connector) (params.get machine:hardware:output:eth_slot)
+    instantiate-components (params.get network:switch:ethernet_switch:name)
+}
+run-script "%simics%/targets/common/sn-setup.yml" namespace = network:service_node
+
+local $system = (params.get machine:hardware:output:system)
+
+$system.mb.simics_uefi->selected_boot_option = "Internal Shell"

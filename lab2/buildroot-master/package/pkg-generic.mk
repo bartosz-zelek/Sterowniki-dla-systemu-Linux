@@ -231,13 +231,29 @@ $(BUILD_DIR)/%/.stamp_rsynced:
 	$(Q)touch $@
 
 # Patch
+#
+# The RAWNAME variable is the lowercased package name, which allows to
+# find the package directory (typically package/<pkgname>) and the
+# prefix of the patches
+#
+# For BR2_GLOBAL_PATCH_DIR, only generate if it is defined
+$(BUILD_DIR)/%/.stamp_patched: PATCH_BASE_DIRS =  $(PKGDIR)
+$(BUILD_DIR)/%/.stamp_patched: PATCH_BASE_DIRS += $(addsuffix /$(RAWNAME),$(call qstrip,$(BR2_GLOBAL_PATCH_DIR)))
 $(BUILD_DIR)/%/.stamp_patched:
 	@$(call step_start,patch)
 	@$(call MESSAGE,"Patching")
 	$(foreach hook,$($(PKG)_PRE_PATCH_HOOKS),$(call $(hook))$(sep))
 	$(foreach p,$($(PKG)_PATCH),$(APPLY_PATCHES) $(@D) $($(PKG)_DL_DIR) $(notdir $(p))$(sep))
-	$(foreach dir,$(call pkg-patches-dirs,$(PKG)),\
-		$(Q)$(APPLY_PATCHES) $(@D) $(dir) \*.patch$(sep)\
+	$(Q)( \
+	for D in $(PATCH_BASE_DIRS); do \
+	  if test -d $${D}; then \
+	    if test -d $${D}/$($(PKG)_VERSION); then \
+	      $(APPLY_PATCHES) $(@D) $${D}/$($(PKG)_VERSION) \*.patch || exit 1; \
+	    else \
+	      $(APPLY_PATCHES) $(@D) $${D} \*.patch || exit 1; \
+	    fi; \
+	  fi; \
+	done; \
 	)
 	$(foreach hook,$($(PKG)_POST_PATCH_HOOKS),$(call $(hook))$(sep))
 	@$(call step_end,patch)
@@ -501,7 +517,7 @@ $(2)_VERSION := $$(call sanitize,$$($(2)_DL_VERSION))
 
 $(2)_HASH_FILES = \
 	$$(strip \
-		$$(foreach d, $$(call pkg-patch-hash-dirs,$(2)),\
+		$$(foreach d, $$($(2)_PKGDIR) $$(addsuffix /$$($(2)_RAWNAME), $$(call qstrip,$$(BR2_GLOBAL_PATCH_DIR))),\
 			$$(if $$(wildcard $$(d)/$$($(2)_VERSION)/$$($(2)_RAWNAME).hash),\
 				$$(d)/$$($(2)_VERSION)/$$($(2)_RAWNAME).hash,\
 				$$(d)/$$($(2)_RAWNAME).hash\
@@ -1226,9 +1242,6 @@ endif
 ifneq ($$($(2)_USERS),)
 PACKAGES_USERS += $$($(2)_USERS)$$(sep)
 endif
-ifneq ($$($(2)_BUSYBOX_CONFIG_FIXUPS),)
-PACKAGES_BUSYBOX_CONFIG_FIXUPS += $$($(2)_BUSYBOX_CONFIG_FIXUPS)$$(sep)
-endif
 ifneq ($$($(2)_LINUX_CONFIG_FIXUPS),)
 PACKAGES_LINUX_CONFIG_FIXUPS += $$($(2)_LINUX_CONFIG_FIXUPS)$$(sep)
 endif
@@ -1260,7 +1273,7 @@ else ifeq ($$($(2)_SITE_METHOD),hg)
 DL_TOOLS_DEPENDENCIES += hg
 else ifeq ($$($(2)_SITE_METHOD),cvs)
 DL_TOOLS_DEPENDENCIES += cvs
-else ifneq ($(filter ftp ftps smb,$$($(2)_SITE_METHOD)),)
+else ifneq ($(filter ftp ftps,$$($(2)_SITE_METHOD)),)
 DL_TOOLS_DEPENDENCIES += curl
 endif # SITE_METHOD
 

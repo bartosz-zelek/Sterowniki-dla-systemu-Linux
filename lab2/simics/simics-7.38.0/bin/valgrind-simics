@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# © 2010 Intel Corporation
+#
+# This software and the related documents are Intel copyrighted materials, and
+# your use of them is governed by the express license under which they were
+# provided to you ("License"). Unless the License provides otherwise, you may
+# not use, modify, copy, publish, distribute, disclose or transmit this software
+# or the related documents without Intel's prior written permission.
+#
+# This software and the related documents are provided as is, with no express or
+# implied warranties, other than those that are expressly stated in the License.
+
+# PROJECT_SETUP_PROJECT_ARGUMENT
+# PROJECT_SETUP_PYTHON_ARGUMENT
+
+SIMICS_MODEL_BUILDER=`cd "$(dirname "$0")"/.. ; pwd`
+if [ "x$SIMICS_BASE_PACKAGE" = "x" ]; then
+    SIMICS_BASE_PACKAGE=$SIMICS_MODEL_BUILDER
+fi
+
+DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+_base="${DIR}/.."
+
+if [ x`which valgrind 2> /dev/null` = "x" ]; then
+    echo "Sorry, you must have a valgrind binary in your PATH. Aborting."
+    exit 1
+fi
+
+echo "You may specify the options to valgrind by setting the" \
+      "VALGRIND_OPTIONS environment variable"
+
+if [ "$VALGRIND_OPTIONS" = "" ]; then
+    VALGRIND_OPTIONS="--tool=memcheck"
+    VALGRIND_OPTIONS+=" --suppressions=$SIMICS_MODEL_BUILDER/scripts/simics-valgrind.supp"
+    VALGRIND_OPTIONS+=" --soname-synonyms=somalloc=NONE"  # overloaded new/delete
+    echo "Using default options: $VALGRIND_OPTIONS"
+fi
+
+# Our valgrind wrapper only works with mini-python
+unset SIMICS_PYTHON
+. "$_base/scripts/python-path.sh"
+. "$_base/scripts/simics-python.sh"
+
+if ! [ -z "${SIMICS_PYTHON_PACKAGE+x}" ]; then
+    export PYTHONHOME="$SIMICS_PYTHON_PACKAGE/linux64"
+    export PYTHONPATH="$SIMICS_PYTHON_PACKAGE/linux64:$_base/linux64:$PYTHONPATH"
+fi
+
+init_cmd="try { load-module valgrind-support } except { echo \
+\"To run valgrind, you must compile your own valgrind-support module\"; quit }"
+
+exec valgrind $VALGRIND_OPTIONS \
+     "$_MINI_PYTHON" \
+     "$SIMICS_BASE_PACKAGE/linux64/simics" \
+     -e "$init_cmd" "$@"

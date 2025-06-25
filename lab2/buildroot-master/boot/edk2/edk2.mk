@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-EDK2_VERSION = edk2-stable202411
+EDK2_VERSION = edk2-stable202405
 EDK2_SITE = https://github.com/tianocore/edk2
 EDK2_SITE_METHOD = git
 EDK2_LICENSE = BSD-2-Clause-Patent
@@ -115,7 +115,7 @@ endef
 
 else ifeq ($(BR2_TARGET_EDK2_PLATFORM_SOLIDRUN_ARMADA80X0MCBIN),y)
 EDK2_ARCH = AARCH64
-EDK2_DEPENDENCIES += host-dtc edk2-non-osi
+EDK2_DEPENDENCIES += host-dtc arm-trusted-firmware edk2-non-osi
 EDK2_PACKAGE_NAME = Platform/SolidRun/Armada80x0McBin
 EDK2_PLATFORM_NAME = Armada80x0McBin
 EDK2_BUILD_DIR = $(EDK2_PLATFORM_NAME)-$(EDK2_ARCH)

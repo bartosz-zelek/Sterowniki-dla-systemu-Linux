@@ -1,0 +1,283 @@
+[
+  {
+    "build_id": 7013,
+    "version": "7.0.0",
+    "notes": {}
+  },
+  {
+    "build_id": 7019,
+    "version": "7.1.0",
+    "notes": {
+      "Python": [
+        [
+          {
+            "items": [
+              [
+                "The Simics embedded Python interpreter has been upgraded to version 3.10.14."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ],
+      "mini-python": [
+        [
+          {
+            "items": [
+              [
+                "Fixed a problem where mini-python failed to run on Windows machines with restrictive execution policies."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7023,
+    "version": "7.2.0",
+    "notes": {
+      "Common": [
+        [
+          {
+            "items": [
+              [
+                "The signing certificate on Simics packages has been updated."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7028,
+    "version": "7.3.0",
+    "notes": {
+      "Python": [
+        [
+          {
+            "items": [
+              [
+                "The ",
+                {
+                  "code": "importlib_metadata",
+                  "tag": "code"
+                },
+                " and ",
+                {
+                  "code": "zipp",
+                  "tag": "code"
+                },
+                " Python modules are not distributed anymore."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7033,
+    "version": "7.4.0",
+    "notes": {
+      "Python": [
+        [
+          {
+            "items": [
+              [
+                "Some Python modules have been upgraded. The new versions are ",
+                {
+                  "code": "PyYAML",
+                  "tag": "code"
+                },
+                " 6.0.1, ",
+                {
+                  "code": "distro",
+                  "tag": "code"
+                },
+                " 1.9.0, ",
+                {
+                  "code": "flake8",
+                  "tag": "code"
+                },
+                " 7.1.0, ",
+                {
+                  "code": "mccabe",
+                  "tag": "code"
+                },
+                " 0.7.0, ",
+                {
+                  "code": "psutil",
+                  "tag": "code"
+                },
+                " 6.0.0, ",
+                {
+                  "code": "pycodestyle",
+                  "tag": "code"
+                },
+                " 2.12.0, ",
+                {
+                  "code": "pyflakes",
+                  "tag": "code"
+                },
+                " 3.2.0, ",
+                {
+                  "code": "typing_extensions",
+                  "tag": "code"
+                },
+                " 4.12.2."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7041,
+    "version": "7.5.0",
+    "notes": {
+      "Python": [
+        [
+          {
+            "items": [
+              [
+                "On Linux, the Python library is now also distributed under the name ",
+                {
+                  "code": "libpython3.10.so",
+                  "tag": "code"
+                },
+                "."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7050,
+    "version": "7.6.0",
+    "notes": {
+      "mini-python": [
+        [
+          {
+            "items": [
+              [
+                "Fixed a problem on Windows when running ",
+                {
+                  "code": "mini-python",
+                  "tag": "code"
+                },
+                " directly from a Simics-Base installation without any command line arguments."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7061,
+    "version": "7.7.0",
+    "notes": {
+      "Python": [
+        [
+          {
+            "items": [
+              [
+                "The Python library is no longer distributed in the Simics-Base package, only in package 1033."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ],
+      "mini-python": [
+        [
+          {
+            "items": [
+              [
+                "The ",
+                {
+                  "code": "mini-python",
+                  "tag": "code"
+                },
+                " binary is no longer distributed in the Simics-Base package, only in package 1033. Its trampoline is still available in Simics-Base."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7066,
+    "version": "7.8.0",
+    "notes": {
+      "Python": [
+        [
+          {
+            "items": [
+              [
+                "Fixed a problem on Windows, where the GUI framework could not be initialised."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7075,
+    "version": "7.9.0",
+    "notes": {}
+  },
+  {
+    "build_id": 7080,
+    "version": "7.10.0",
+    "notes": {
+      "Python": [
+        [
+          {
+            "items": [
+              [
+                "Added missing ",
+                {
+                  "code": "libncurses",
+                  "tag": "code"
+                },
+                " libraries to package 1033 (fixes HSD-15017625594)."
+              ]
+            ],
+            "tag": "list"
+          }
+        ],
+        [
+          {
+            "items": [
+              [
+                "The ",
+                {
+                  "code": "libexpat",
+                  "tag": "code"
+                },
+                " library used by Python has been upgraded to version 2.7.1."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  }
+]

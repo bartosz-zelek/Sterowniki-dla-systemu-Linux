@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device name="ich10_timer" desc="models Intel® ICH10 8254 timers" documentation="8254 Timers in Intel® ICH10." bitorder="le">
+  <bank name="fixed_io" byte_order="little-endian" function="0">
+    <group name="counters" vsize="3">
+    </group>
+    <register name="sts_acc" vsize="3" desc="Counter status byte/access port registers" offset="0 1 2" size="1">
+    </register>
+    <register name="timer_tcw" desc="Timer Control Word register" offset="3" size="1">
+      <field name="CMD" desc="Data bits of control word" msb="5" lsb="0" />
+      <field name="CSEL" desc="Counter Select" msb="7" lsb="6" />
+    </register>
+  </bank>
+</device>

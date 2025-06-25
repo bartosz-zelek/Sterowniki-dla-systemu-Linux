@@ -1,0 +1,154 @@
+<h1 id="qsp-cpu-release-notes"><a href="#qsp-cpu-release-notes">QSP-CPU Release Notes</a></h1>
+<p>This document identifies important information for the QSP-CPU package
+for Simics 7.
+All users of this specific package should review this document carefully.</p>
+<h2 id="changes-since-version-7-0-0"><a href="#changes-since-version-7-0-0">Changes Since Version 7.0.0</a></h2>
+<p>The following is a list of changes since the initial 7.0.0 release.</p>
+<h2 id="7-11-0-build-7077"><a href="#7-11-0-build-7077">7.11.0 (build 7077)</a></h2>
+<h3 id="new-features-and-bug-fixes"><a href="#new-features-and-bug-fixes">New features and bug fixes</a></h3>
+<ul>
+<li>Fix for wrong RIP on VMEXIT when PREEMPTION TIMER=0 and #DB exception (partial fix for HSD-15015916269).</li>
+</ul>
+<h2 id="7-10-0-build-7076"><a href="#7-10-0-build-7076">7.10.0 (build 7076)</a></h2>
+<h3 id="new-features-and-bug-fixes-2"><a href="#new-features-and-bug-fixes-2">New features and bug fixes</a></h3>
+<ul>
+<li>Implemented IP Filter type 2 for Processor Trace (HSD-18041345372).</li>
+</ul>
+<h2 id="7-9-0-build-7071"><a href="#7-9-0-build-7071">7.9.0 (build 7071)</a></h2>
+<h3 id="new-features-and-bug-fixes-3"><a href="#new-features-and-bug-fixes-3">New features and bug fixes</a></h3>
+<ul>
+<li>Implemented IP Filter type 1 for Processor Trace (HSD-18041345372).</li>
+<li>Fixed Processor Trace bug causing PSB packets with FUP indicating branch target to appear before TIP for that branch (fixes HSD-18041507035).</li>
+</ul>
+<h2 id="7-8-0-build-7068"><a href="#7-8-0-build-7068">7.8.0 (build 7068)</a></h2>
+<h2 id="7-7-0-build-7064"><a href="#7-7-0-build-7064">7.7.0 (build 7064)</a></h2>
+<h3 id="new-features-and-bug-fixes-4"><a href="#new-features-and-bug-fixes-4">New features and bug fixes</a></h3>
+<ul>
+<li>Fixed attribute for SGX feature: removed side effects when setting the value.</li>
+<li>Instead of ambiguous "64-bit mode" used before, <code>print-registers</code> is updated to mention specifically 4- and 5-level paging modes.</li>
+</ul>
+<h2 id="7-6-0-build-7062"><a href="#7-6-0-build-7062">7.6.0 (build 7062)</a></h2>
+<h3 id="new-features-and-bug-fixes-5"><a href="#new-features-and-bug-fixes-5">New features and bug fixes</a></h3>
+<ul>
+<li>Host processors older than the fourth generation Intel(R) Core(TM) processors (formerly Haswell) are no longer supported.</li>
+<li>Fixed a rare bug in Processor Trace PSB+ FUP generation that caused incorrect FUP.IP payload</li>
+<li>Fix SMM flow (HSD-14018530725).</li>
+<li>Fix callbacks for MSR 0x2e2 - 0x2e5 (fixes HSD-16026004728).</li>
+<li>Check reserved guest physical address width bits in guest page table entries in VMX non-root mode (partially fixes HSD-15015896288).</li>
+<li>Fixed a bug in Processor Trace PSB+ generation when packet_en transitions to enabled. FUP and MODE.Exec are suppressed until TIP.PGE is sent.</li>
+<li>Implemented Power Event Trace enumeration and packet generation (implements HSD-18013500825).</li>
+</ul>
+<h2 id="7-5-0-build-7049"><a href="#7-5-0-build-7049">7.5.0 (build 7049)</a></h2>
+<h3 id="new-features-and-bug-fixes-6"><a href="#new-features-and-bug-fixes-6">New features and bug fixes</a></h3>
+<ul>
+<li>Added Processor Trace VMCS packet generation and VMX scenarios for FUP, PIP, TIP and MODE.Exec (fixes HSD-18039542262).</li>
+</ul>
+<h2 id="7-4-0-build-7045"><a href="#7-4-0-build-7045">7.4.0 (build 7045)</a></h2>
+<h3 id="new-features-and-bug-fixes-7"><a href="#new-features-and-bug-fixes-7">New features and bug fixes</a></h3>
+<ul>
+<li>Optimized writes to TPR in VMP when the target enables interrupt virtualization in VMX non-root mode. This noticeably improves performance when running Windows with Virtualization-based Security enabled on the target.</li>
+</ul>
+<h2 id="7-3-0-build-7044"><a href="#7-3-0-build-7044">7.3.0 (build 7044)</a></h2>
+<h3 id="intel-64-public-cores"><a href="#intel-64-public-cores">Intel® 64 public cores</a></h3>
+<ul>
+<li>Add MSR IA32_DEBUGCTL[2] bit to reserved mask for the <code>x86-alderlake</code> CPU class (fixes HSD-14023239580).</li>
+</ul>
+<h2 id="7-2-0-build-7034"><a href="#7-2-0-build-7034">7.2.0 (build 7034)</a></h2>
+<h3 id="intel-64-public-cores-2"><a href="#intel-64-public-cores-2">Intel® 64 public cores</a></h3>
+<ul>
+<li>Added new optional "format" parameter to trace-msr and trace-msr-read commands</li>
+<li>Added a check that ACM fits into MTRR range in the CPU classes starting <code>x86-wlc</code> and <code>x86-tnt</code> (implements HSD-22020285641).</li>
+<li>Removed ACM alignment requirement in the CPU classes starting <code>x86-wlc</code> and <code>x86-tnt</code> (implements HSD-22020285641).</li>
+</ul>
+<h3 id="new-features-and-bug-fixes-8"><a href="#new-features-and-bug-fixes-8">New features and bug fixes</a></h3>
+<ul>
+<li>Added Processor Trace CYC packets generation for PIP and TNT, changed standalone CYC frequency.</li>
+</ul>
+<h2 id="7-1-0-build-7030"><a href="#7-1-0-build-7030">7.1.0 (build 7030)</a></h2>
+<h3 id="common"><a href="#common">Common</a></h3>
+<ul>
+<li>The signing certificate on Simics packages has been updated.</li>
+</ul>
+<h3 id="flexible-return-and-event-delivery-fred"><a href="#flexible-return-and-event-delivery-fred">Flexible Return and Event Delivery (FRED)</a></h3>
+<ul>
+<li>Record event data injected at VM-entry over NMI source information in FRED return stack. This is according to FRED 5.0 specification (chapter 9.5.4).</li>
+<li>Fixed a bug where the NMI source was not recorded if an NMI occurred in VMX non-root mode with FRED disabled in the guest (fixes HSD-22020188866).</li>
+</ul>
+<h3 id="intel-64-public-cores-3"><a href="#intel-64-public-cores-3">Intel® 64 public cores</a></h3>
+<ul>
+<li>msr-get, msr-set, msr-read and msr-write commands were added.</li>
+<li>print-msrs command was added.</li>
+<li>Removed incorrect enumeration of Intel® SGX from the <code>x86-alderlake</code> CPU class.</li>
+</ul>
+<h3 id="new-features-and-bug-fixes-9"><a href="#new-features-and-bug-fixes-9">New features and bug fixes</a></h3>
+<ul>
+<li>Corrected the DWARF IDs used by the R16-R31 registers added by APX (fixes HSD-18039292554).</li>
+<li>Fixed a situation when a target using 5-level EPT paging caused VMP to misinterpret it as 4-level EPT paging (fixes HSD-15016077738).</li>
+<li>Honor PT2GPA and EPT on the first Processor Trace packets when tracing starts disabled due to context.</li>
+<li>Fixed a bug in ia32_spec_ctrl MSR handler that caused some side effects when no side effects access was used (fixes HSD-14022136686).</li>
+<li>Fixed a bug that could cause incorrect state component offsets when saving compacted XSAVE state if non-saved aligned components were included (fixes HSD-14022348780).</li>
+<li>Add SEAM safe address checks for RTIT. Intel® TDX key bits cannot be set in mask or address when it is  outside the SEAM (fixes HSD-18020627633).</li>
+<li>Ensure that the MXCSR mask always reports the same value in all simulation engines on Intel® 64 Architecture targets (fixes HSD-15015935589).</li>
+<li>Fix CR4.FRED handling upon GETSEC[ENTERACCS/EXITAC] (fixes HSD-18038889559).</li>
+<li>Run single_step if inside opcode that clears TF. Fixes one of the problems reported in (fixes HSD-15015891903).</li>
+<li>De-enumerate MPX on all CPU models that claimed to support it. MPX has been officially deprecated since 2019. It has been operating as NOPs in Simics since 2022. It is no longer enumerated in CPUID (fixes HSD-1309925665 and HSD-18038801416.</li>
+<li>Fix IDTR:LIMIT handling upon GETSEC[ENTERACCS/EXITAC] (fixes HSD-18038890251).</li>
+<li>Clear pending debug exception on cpu reset. Fixes an issue where old pending debug exception could be delivered after reset.</li>
+<li>The rflags register is now exposed to TCF through the describe_registers interface (fixes HSD-18038862421).</li>
+<li>Fix calculation of max XSAVE area required in CPUID.0DH.00H:EBX and ECX (fixes HSD-18038659155).</li>
+<li>Handle VMX injected event while MTF is enabled. Fixes one of the problems reported in (fixes HSD-15015916269).</li>
+<li>More precise check for reserved bits in CR3. Fixes one of the problems reported in (fixes HSD-15015916269).</li>
+<li>Fixed crash on cross-page Processor Trace write in VMX mode (fixes HSD-15012410613).</li>
+<li>Removed a <code>INST_INFO: 0xX</code> debug printout accidentally left in the VM exit code (fixes HSD-14022562102).</li>
+<li>Handle #DB/#BP when RTM advanced debug enabled. Fixes one of the problems reported in (fixes HSD-15015916269).</li>
+<li>Use MSR 0x2d9 FUSA_CAPABILITIES fields STARTUP_SCAN_BIST[0] and PERIODIC_SCAN_BIST[4] to determine if SAF is enumerated (fixes SIMICSTS-1318).</li>
+<li>Correct DR6 register and exit qualifier VMCS field. Bits in DR6 are no longer cleared after every #DB, and VCMS field exit qualifier will have all bits correctly set if more than 1 exception scenario happens on the same cycle. This fixes one of the problems reported in (fixes HSD-15015916269).</li>
+<li>Use MSR 0x2d9 FUSA_CAPABILITIES.SBFT[8] to determine if SBFT is enumerated (fixes SIMICSTS-1316).</li>
+<li>Change Processor Trace packet order so MODE.Exec is in between coupled FUP and TIP.</li>
+<li>Fix writing to MSR ACTIVATE_SCAN (0x2c6). Start using mask taken from register drop, instead of hardcoded value (fixes SIMICSTS-1317).</li>
+<li>Fix writing to MSR ACTIVATE_SBFT (0x2bc). Start using mask taken from register drop, instead of hardcoded value (fixes HSD-18020627607).</li>
+<li>Set EXT bit in the interrupt error code correctly (fixes HSD-15013738894).</li>
+<li>Implement Processor Trace TIP package generation scenarios: IRET, SYSENTER/SYSEXIT, SYSCALL/SYSRET, JMPABS.</li>
+<li>Do not report mixing reset flows for unrelated processors (fixes SIMICSTS-1305).</li>
+<li>Fix Processor Trace TNT branch taken detection in case where taken and not-taken destinations differ only by page part of the address.</li>
+<li>Fix writing invalid page part of the address to LBR_x_TO MSRs (fixes HSD-18034413312).</li>
+<li>Fix invalid IP payload generation in Processor Trace TIP packet when near return crosses page boundary (fixes HSD-18035194187).</li>
+<li>Implement 64-bit IP payload for Processor Trace FUP, TIP and TIP.PGE packets.</li>
+<li>Add information about linear address masking (LAM) in 4- and 5-level paging modes for user code (LAM_U48 and LAM_U57) to layout of CR3 available via describe_registers interface (fixes HSD-18031041673).</li>
+<li>Add TNT buffer flush on Processor Trace PSB packet (fixes HSD-18035192151).</li>
+<li>Change Processor Trace CYC packet format to match the specification.</li>
+<li>Add SEAM safe address check for APIC_BASE. Upper bits cannot be set in address when it is outside the SEAM (fixes SIMICSTS-1259).</li>
+<li>Add SEAM safe address check for TME_EXCLUDE. Upper bits cannot be set in address when it is outside the SEAM (fixes SIMICSTS-1261).</li>
+<li>Revert SEAM safe mask check for PRMRR. Following the documentation, PRMRR_MASK ignores bits above physical size in calculations (fixes HSD-14022009940).</li>
+<li>Add clearing of CPU caches at SMM exit to protect SMM-private memory from being accessible outside SMM (fixes HSD-15014556607).</li>
+<li>Fixed handling of SIPI signals during Application Processor startup (fixes HSD-15015543927).</li>
+<li>Add SEAM safe address check for HW_FEEDBACK_PTR. Intel® TDX key bits cannot be set in address when it is outside the SEAM (fixes SIMICSTS-1258).</li>
+<li>Implement Processor Trace Paging Information Packet generation (fixes HSD-18021309126).</li>
+<li>Fixed delivery of INIT signals received in Virtual Machine Extensions (VMX) root mode (fixes HSD-13011704431).</li>
+<li>Add SEAM safe address and mask checks for FUSARR. Intel® TDX key bits cannot be set in mask or address when it is outside the SEAM (fixes SIMICSTS-1255).</li>
+<li>Add SEAM safe address and mask checks for PRMRR. Intel® TDX key bits cannot be set in mask or address when it is outside the SEAM (fixes SIMICSTS-1254).</li>
+<li>Removed support for usage of final opcodes other than [0x0f, 0x00, 0xc4] from the <code>sgx_mcheck_module</code> attribute.</li>
+<li>Add SEAM safe address and mask checks for SMRR2. Intel® TDX key bits cannot be set in mask or address when it is outside the SEAM (fixes SIMICSTS-1253).</li>
+<li>Add SEAM safe address and mask checks for SMRR. Intel® TDX key bits cannot be set in mask or address when it is outside the SEAM (fixes SIMICSTS-1252).</li>
+<li>Fix activity state machine on signal trigger (fixes HSD-22014874712 ).</li>
+<li>Added check to be ensured that physical addresses in MTRR ranges not be accessed by VMP when CPU not in SMM mode (fixes HSD-15014556607).</li>
+<li>Ensured monitored address range established using MONITOR/MWAIT is cleared while asserting the INIT# pin (fixes HSD-15015405027).</li>
+<li>Bit2 of ia32_mcu_enumeration depends on the value of 2 other MSRs. bit3 of prmrr_base_0 and bit10 of prmrr_mask (fixes HSD-14018515716).</li>
+<li>Improvement of variable MTRR ranges support. Supported number of variable MTRR ranges as enumerated in IA32_MTRRCAP.VCNT field (bits 0-7). Static amount of cached ranges changed to VCNT dynamic base. Car support updated in acordance of relevant changes of variable MTRR ranges (fixes HSD-15010401529).</li>
+<li>Added missing minimum ACM size validation to GETSEC[ENTERACCS] (fixes HSD-18036827407).</li>
+</ul>
+<h2 id="7-0-0-build-7008"><a href="#7-0-0-build-7008">7.0.0 (build 7008)</a></h2>
+<h2 id="changes-in-version-7"><a href="#changes-in-version-7">Changes in version 7</a></h2>
+<h2 id="disclaimer"><a href="#disclaimer">Disclaimer</a></h2>
+<p>This is a pre-release of QSP-CPU.</p>
+<ol>
+<li>There is no guarantee about compatibility between this pre-release
+any other pre-releases of QSP-CPU, older or newer.</li>
+<li>This pre-release may not be fully tested and may contain bugs or
+errors.</li>
+<li>Regulatory approvals (such  as UL  or FCC)  have not been obtained, and
+this pre-release may therefore not be certified for use in certain
+countries or environments.</li>
+<li>Intel can provide no assurance that it will ever produce or make
+generally available a non-pre-release of QSP-CPU.</li>
+</ol>

@@ -1,0 +1,10 @@
+/*
+  © 2016 Intel Corporation
+*/
+
+#ifndef EMPTY_SOFTWARE_TRACKER_COMMON_H
+#define EMPTY_SOFTWARE_TRACKER_COMMON_H
+
+#define ROOT_ENTITY_ID 0
+
+#endif // EMPTY_SOFTWARE_TRACKER_COMMON_H

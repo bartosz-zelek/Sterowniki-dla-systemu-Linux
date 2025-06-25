@@ -18,10 +18,6 @@ else
 CONMON_DISABLE_SECCOMP = 1
 endif
 
-ifeq ($(BR2_PACKAGE_SYSTEMD),y)
-CONMON_DEPENDENCIES += systemd
-endif
-
 define CONMON_CONFIGURE_CMDS
 	printf '#!/bin/bash\necho "$(CONMON_DISABLE_SECCOMP)"\n' > \
 		$(@D)/hack/seccomp-notify.sh

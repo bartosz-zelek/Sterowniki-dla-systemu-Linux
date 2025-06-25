@@ -1,0 +1,10 @@
+if not defined host_name {$host_name = ""}
+$cpu_class = "sample-risc"
+$core_class = "sample-risc-core"
+run-script "%script%/queues_in_cosimulator.py"
+
+log-level 4
+
+echo "This is an example machine for connecting external processor "
+echo "models to Simics. No program is loaded, only NOPs will be executed."
+echo

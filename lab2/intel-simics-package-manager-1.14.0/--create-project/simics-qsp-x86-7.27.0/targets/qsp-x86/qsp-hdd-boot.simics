@@ -1,0 +1,45 @@
+decl {
+ ! Starts a virtual machine that boots from the HDD set by a given craff file.
+
+ params from "qsp-system.include"
+  # Do not expose all advanced options to the end user
+  except use_acpi, use_vmp, lan_bios_image, spi_flash_image,
+         enable_efi, vga_bios_image, bios_image, disk0_image
+  default disk0_size = 200Gi
+  default enable_break_on_reboot = FALSE
+
+ param disk0_image : file("*")
+ ! Image file representing the contents of the primary disk.
+
+ params from "qsp-device-boot.include"
+  except system, machine_name, mac_address
+  default system_info = "QSP x86 - HDD boot UEFI"
+
+ params from "qsp-uefi.include"
+
+ group "Simulation"
+ param create_tracker : bool = FALSE
+ ! Creates the tracker object.
+ ! Only available for Linux target OS.
+ param tracker_params : file("*.params") or nil = NIL
+ ! OS awareness parameter file for the kernel running on the machine.
+ ! Only available for Linux target OS.
+
+ result system : string
+ result eth_link : string or nil
+ result service_node : string or nil
+}
+
+run-script "%script%/qsp-system.include"
+
+instantiate-components
+
+run-script "%simics%/targets/qsp-x86/qsp-device-boot.include"
+
+if $create_tracker {
+    local $lx_tracker = ($system.software.insert-tracker
+                         tracker = "linux_tracker_comp")
+    if $tracker_params != NIL {
+        $lx_tracker.load-parameters $tracker_params
+    }
+}

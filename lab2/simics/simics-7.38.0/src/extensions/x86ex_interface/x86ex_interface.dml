@@ -1,0 +1,149 @@
+/*
+  x86ex_interface.dml - a collection of IA-32 CPU internal interfaces.
+
+  © 2010 Intel Corporation
+
+  This software and the related documents are Intel copyrighted materials, and
+  your use of them is governed by the express license under which they were
+  provided to you ("License"). Unless the License provides otherwise, you may
+  not use, modify, copy, publish, distribute, disclose or transmit this software
+  or the related documents without Intel's prior written permission.
+
+  This software and the related documents are provided as is, with no express or
+  implied warranties, other than those that are expressly stated in the License.
+*/
+
+dml 1.4;
+
+header %{
+#include "x86ex_interface.h"
+%}
+
+import "simics/devs/apic.dml";
+
+extern typedef int txt_msg_t;
+param Txt_Msg_Senter = 0;
+param Txt_Msg_Senter_Ack = 1;
+param Txt_Msg_Senter_Cont = 2;
+param Txt_Msg_Sexit = 3;
+param Txt_Msg_Sexit_Ack = 4;
+param Txt_Msg_Wakeup = 5;
+param Txt_Msg_Processor_Hold = 6;
+param Txt_Msg_Open_Private = 7;
+param Txt_Msg_Open_Locality3 = 8;
+param Txt_Msg_Close_Locality3 = 9;
+param Txt_Msg_Lock_Smram = 10;
+param Txt_Msg_Processor_Release = 11;
+param Txt_Msg_Unlock_Smram = 12;
+param Txt_Msg_Sexit_Continue = 13;
+param Txt_Msg_Close_Private = 14;
+// Internal interface. Used by the CPU to access TXT chipset functionality.
+extern typedef struct {
+        void (*signal_txt_msg)(conf_object_t *obj, txt_msg_t txt_msg,
+                uint8 package_id);
+
+        //supporting method to report platform capabilities to processor
+        bool (*get_platform_feature)(conf_object_t *obj, int feature);
+
+        //get list of cpus (threads) available in the current system
+        attr_value_t (*get_platform_cpus)(conf_object_t *obj);
+} x86_txt_chipset_interface_t;
+
+extern const char *const X86_TXT_CHIPSET_INTERFACE;
+
+extern typedef struct {
+        int (*unplug_core)(conf_object_t *obj);
+        int (*replug_core)(conf_object_t *obj);
+        int (*disable_ht_package)(conf_object_t *obj);
+        int (*enable_ht_package)(conf_object_t *obj);
+} x86_unplug_interface_t;
+
+extern const char *const X86_UNPLUG_INTERFACE;
+
+extern typedef struct {
+        int (*unplug_core)(conf_object_t *obj);
+        int (*replug_core)(conf_object_t *obj);
+        int (*disable_core_ht)(conf_object_t *obj);
+        int (*enable_core_ht)(conf_object_t *obj);
+        bool (*core_is_plugged)(conf_object_t *obj);
+        bool (*core_ht_is_enabled)(conf_object_t *obj);
+        void (*set_alive_logical_processors)(conf_object_t *obj, int count);
+        int (*get_alive_logical_processors)(conf_object_t *obj);
+} x86_unplug_v2_interface_t;
+
+extern const char *const X86_UNPLUG_V2_INTERFACE;
+
+extern typedef struct {
+        void (*triple_fault_event)(conf_object_t *obj);
+} x86_external_reset_interface_t;
+
+extern const char *X86_EXTERNAL_RESET_INTERFACE;
+
+extern typedef int x86_smm_event_type_t;
+param X86_Smm_Enter  = 0;
+param X86_Smm_Leave  = 1;
+extern typedef int x86_smm_phase_type_t;
+param X86_Smm_Phase0 = 0;
+param X86_Smm_Phase1 = 1;
+
+extern typedef struct {
+        void (*notification)(conf_object_t *listener, conf_object_t *cpu,
+                             x86_smm_event_type_t event,
+                             x86_smm_phase_type_t phase);
+} x86_smm_notification_interface_t;
+
+extern const char *const X86_SMM_NOTIFICATION_INTERFACE;
+
+extern typedef struct {
+        apic_bus_status_t (*interrupt)(conf_object_t *obj,
+                apic_destination_mode_t dest_mode,
+                apic_delivery_mode_t delivery_mode,
+                int level_assert,
+                apic_trigger_mode_t trigger_mode,
+                uint8 vector,
+                uint32 destination);
+} apic_bus_v2_interface_t;
+
+extern const char *const APIC_BUS_V2_INTERFACE;
+
+extern typedef int apic_timer_mode_t;
+
+param Apic_Timer_Mode_One_Shot        = 0;
+param Apic_Timer_Mode_Periodic        = 1;
+param Apic_Timer_Mode_Tsc_Deadline    = 2;
+
+extern typedef struct {
+        void (*enable_timer)(conf_object_t *obj);
+        void (*disable_timer)(conf_object_t *obj);
+        int (*is_timer_enabled)(conf_object_t *obj);
+        apic_timer_mode_t (*get_timer_mode)(conf_object_t *obj);
+        void (*set_timer_mode)(conf_object_t *obj, apic_timer_mode_t mode);
+        uint32 (*get_timer_initial_count)(conf_object_t *obj);
+        void (*set_timer_initial_count)(conf_object_t *obj, uint32 initial_count);
+        uint32 (*get_timer_current_count)(conf_object_t *obj);
+        void (*set_timer_current_count)(conf_object_t *obj, uint32 current_count);
+        uint32 (*get_timer_divisor)(conf_object_t *obj);
+        void (*set_timer_divisor)(conf_object_t *obj, uint32 divisor);
+        uint64 (*get_timer_tsc)(conf_object_t *obj);
+        void (*set_timer_tsc)(conf_object_t *obj, uint64 tsc);
+        uint64 (*get_timer_tsc_deadline)(conf_object_t *obj);
+        void (*set_timer_tsc_deadline)(conf_object_t *obj, uint64 tsc_deadline);
+} apic_timer_interface_t;
+
+extern const char *const APIC_TIMER_INTERFACE;
+
+extern typedef struct {
+    uint64  (*get_current_sai)(conf_object_t *obj);
+} x86_sai_interface_t;
+extern const char *const X86_SAI_INTERFACE;
+
+extern typedef int mktme_keyctrl_t;
+
+extern typedef struct {
+    void (*command)(conf_object_t *obj, uint16 key_id, mktme_keyctrl_t cmd,
+                    uint8 keyid_key[64], uint8 tweak_key[64]);
+    void (*enable_tme)  (conf_object_t *obj);
+    void (*enable_mktme)(conf_object_t *obj, uint8 key_msb, uint8 key_lsb);
+    void (*is_internal_transaction) (conf_object_t *obj, bool val);
+} mktme_interface_t;
+extern const char *const MKTME_INTERFACE;

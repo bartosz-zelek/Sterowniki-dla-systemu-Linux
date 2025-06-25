@@ -1,0 +1,3 @@
+# Auto-generated file. Any changes will be overwritten!
+decl { substitute "/home/debian/Sterowniki-dla-systemu-Linux/lab2/simics/simics-qsp-x86-7.27.0/targets/qsp-x86/qsp-usb-boot.simics" }
+run-script "/home/debian/Sterowniki-dla-systemu-Linux/lab2/simics/simics-qsp-x86-7.27.0/targets/qsp-x86/qsp-usb-boot.simics"

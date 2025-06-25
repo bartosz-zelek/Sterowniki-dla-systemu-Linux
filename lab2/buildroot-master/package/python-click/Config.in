@@ -1,6 +1,7 @@
 config BR2_PACKAGE_PYTHON_CLICK
 	bool "python-click"
 	help
-	  Python composable command line interface toolkit.
+	  A simple wrapper around optparse for powerful command line
+	  utilities.
 
 	  https://pypi.python.org/pypi/click
