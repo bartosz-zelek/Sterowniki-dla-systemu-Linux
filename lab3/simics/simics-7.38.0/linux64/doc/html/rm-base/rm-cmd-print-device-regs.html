@@ -1,0 +1,32 @@
+<a name="print-device-regs"></a>
+<h1 id="print-device-regs"><a href="#print-device-regs">print-device-regs</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>print-device-regs</b> <i>"bank"</i> [<i>"pattern"</i>] [<i>"substr"</i>] [-s] [-description] <br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+ Print information about the registers in <i>bank</i>. The <i>bank</i> argument can either be a <tt>device</tt> or a bank object, i.e. <tt>device.bank.&lt;bank-name&gt;</tt>. For a device object, all banks of the device will be listed. The old way to specify register banks (<tt>device.&lt;bank-name&gt;</tt>) is supported but deprecated.
+<p>
+The optional argument <i>pattern</i> is a glob pattern that will be used to match against register names. By default, all registers in the bank will be matched.
+</p><p>
+The optional argument <i>substr</i> is a convenience for using the pattern argument. For example, <tt>substr=foo</tt> is equivalent to using <tt>pattern="*foo*"</tt>.
+</p><p>
+<tt>-s</tt>, if provided, will sort the output by the name of the registers instead of their offsets, which is the default.
+</p><p>
+<tt>-description</tt>, if provided, the register description will be output for each register that has description.
+</p><p>
+If used in an expression, the return value is a list of lists in the format [[&lt;offset&gt;, &lt;bank&gt;, &lt;name&gt;, &lt;size&gt;, &lt;value&gt;]*]. The returned list is always sorted by offsets and not affected by the <tt>-s</tt> flag. 
+</p><h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.simics.core.html">Simics Core</a>
+<h2 id="see-also">
+<a href="#see-also">See Also</a>
+</h2>
+<a href="rm-cmd-print-device-reg-info.html">print-device-reg-info</a>, 
+<a href="rm-cmd-get-device-reg.html">get-device-reg</a>, 
+<a href="rm-cmd-get-device-offset.html">get-device-offset</a>
+</section>

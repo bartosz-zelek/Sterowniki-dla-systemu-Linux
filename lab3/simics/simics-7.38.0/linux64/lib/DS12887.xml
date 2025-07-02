@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device name="DS12887" bitorder="le">
+  <bank name="partially_persistent_registers">
+  </bank>
+  <bank name="port_registers" function="0">
+  </bank>
+  <bank name="registers" function="1">
+  </bank>
+</device>

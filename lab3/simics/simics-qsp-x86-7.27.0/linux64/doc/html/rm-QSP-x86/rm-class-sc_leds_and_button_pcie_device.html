@@ -1,0 +1,351 @@
+<h1 id="sc_leds_and_button_pcie_device"><a href="#sc_leds_and_button_pcie_device">sc_leds_and_button_pcie_device</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+The <tt>sc_leds_and_button_pcie_device</tt> is a Simics module encapsulating a SystemC TLM2-based PCI device to demonstrate the use of Simics SystemC Library.
+<h2 id="interfaces-implemented">
+<a href="#interfaces-implemented">Interfaces Implemented</a>
+</h2>conf_object, log_object, io_memory, pci_device, pci_express, checkpoint, temporal_state, sc_simcontext, sc_memory_profiler_control, sc_process_profiler_control, sc_version, event_delta, execute, frequency, concurrency_group, concurrency_mode, execute_control, sc_gasket_info, cycle
+<h2 id="notifiers">
+<a href="#notifiers">Notifiers</a>
+</h2>
+<dl>
+<dt id="dt:cell-change"><a href="#dt:cell-change">cell-change</a></dt>
+<dd>Notifier that is triggered after the object's cell was changed.</dd>
+<dt id="dt:frequency-change"><a href="#dt:frequency-change">frequency-change</a></dt>
+<dd>Notifier that is triggered when frequency changes. New frequency can be read via the frequency interface of the object.</dd>
+<dt id="dt:object-delete"><a href="#dt:object-delete">object-delete</a></dt>
+<dd>Notifier that is triggered just before Simics object is deleted.</dd>
+<dt id="dt:queue-change"><a href="#dt:queue-change">queue-change</a></dt>
+<dd>Notifier that is triggered after the object's clock was changed. New clock can be obtained with the SIM_object_clock function.</dd>
+</dl>
+<h2 id="port-objects">
+<a href="#port-objects">Port Objects</a>
+</h2>
+<dl>
+<dt id="dt:engine"><a href="#dt:engine">engine</a></dt>
+<dd>co-execute – executor</dd>
+<dt id="dt:port-dma"><a href="#dt:port-dma">port.dma</a></dt>
+<dd>
+<a href="rm-class-sc_leds_and_button_pcie_device.html#sc_leds_and_button_pcie_device.port">sc_leds_and_button_pcie_device.port</a>
+ – sc_leds_and_button_pcie_device port</dd>
+<dt id="dt:vtime"><a href="#dt:vtime">vtime</a></dt>
+<dd>vtime – event handler</dd>
+<dt id="dt:vtime-cycles"><a href="#dt:vtime-cycles">vtime.cycles</a></dt>
+<dd>cycle-counter – cycle queue</dd>
+<dt id="dt:vtime-ps"><a href="#dt:vtime-ps">vtime.ps</a></dt>
+<dd>ps-clock – event queue (ps)</dd>
+</dl>
+<h2 id="commands-for-this-class">
+<a href="#commands-for-this-class">Commands for this class</a>
+</h2>
+<ul>
+<li>
+<a href="rm-cmd-sc_leds_and_button_pcie_device.info.html">info</a>
+ – print information about the object</li>
+<li>
+<a href="rm-cmd-sc_leds_and_button_pcie_device.new-sc-break-tool.html">new-sc-break-tool</a>
+ – create a new sc_leds_and_button_pcie_dev_sc_break_tool object</li>
+<li>
+<a href="rm-cmd-sc_leds_and_button_pcie_device.new-sc-protocol-checker-tool.html">new-sc-protocol-checker-tool</a>
+ – create a new sc_leds_and_button_pcie_dev_sc_protocol_checker_tool object</li>
+<li>
+<a href="rm-cmd-sc_leds_and_button_pcie_device.new-sc-trace-tool.html">new-sc-trace-tool</a>
+ – create a new sc_leds_and_button_pcie_dev_sc_trace_tool object</li>
+<li>
+<a href="rm-cmd-sc_leds_and_button_pcie_device.new-sc-transaction-tracker-tool.html">new-sc-transaction-tracker-tool</a>
+ – create a new sc_leds_and_button_pcie_dev_sc_transaction_tracker_tool object</li>
+<li>
+<a href="rm-cmd-sc_leds_and_button_pcie_device.new-sc-vcd-trace-tool.html">new-sc-vcd-trace-tool</a>
+ – create a new sc_leds_and_button_pcie_dev_sc_vcd_trace_tool object</li>
+<li>
+<a href="rm-cmd-sc_leds_and_button_pcie_device.status.html">status</a>
+ – print status of the object</li>
+</ul>
+<h2 id="commands-for-interface-sc_simcontext">
+<a href="#commands-for-interface-sc_simcontext">Commands for interface sc_simcontext</a>
+</h2>
+<ul>
+<li>
+<a href="rm-cmd-sc_simcontext.break-sc-event-all.html">break-sc-event-all</a>
+ – break all SystemC event objects</li>
+<li>
+<a href="rm-cmd-sc_simcontext.break-sc-process-all.html">break-sc-process-all</a>
+ – break all SystemC process objects</li>
+<li>
+<a href="rm-cmd-sc_simcontext.break-sc-signal-all.html">break-sc-signal-all</a>
+ – break all SystemC signal objects</li>
+<li>
+<a href="rm-cmd-sc_simcontext.break-sc-socket-all.html">break-sc-socket-all</a>
+ – break all SystemC socket objects</li>
+<li>
+<a href="rm-cmd-sc_simcontext.trace-sc-event-all.html">trace-sc-event-all</a>
+ – trace all SystemC event objects</li>
+<li>
+<a href="rm-cmd-sc_simcontext.trace-sc-process-all.html">trace-sc-process-all</a>
+ – trace all SystemC process objects</li>
+<li>
+<a href="rm-cmd-sc_simcontext.trace-sc-signal-all.html">trace-sc-signal-all</a>
+ – trace all SystemC signal objects</li>
+<li>
+<a href="rm-cmd-sc_simcontext.trace-sc-socket-all.html">trace-sc-socket-all</a>
+ – trace all SystemC socket objects</li>
+<li>
+<a href="rm-cmd-sc_simcontext.track-transactions-all.html">track-transactions-all</a>
+ – track transactions on all SystemC socket objects</li>
+<li>
+<a href="rm-cmd-sc_simcontext.unbreak-sc-event-all.html">unbreak-sc-event-all</a>
+ – unbreak all SystemC event objects</li>
+<li>
+<a href="rm-cmd-sc_simcontext.unbreak-sc-process-all.html">unbreak-sc-process-all</a>
+ – unbreak all SystemC process objects</li>
+<li>
+<a href="rm-cmd-sc_simcontext.unbreak-sc-signal-all.html">unbreak-sc-signal-all</a>
+ – unbreak all SystemC signal objects</li>
+<li>
+<a href="rm-cmd-sc_simcontext.unbreak-sc-socket-all.html">unbreak-sc-socket-all</a>
+ – unbreak all SystemC socket objects</li>
+<li>
+<a href="rm-cmd-sc_simcontext.untrace-sc-event-all.html">untrace-sc-event-all</a>
+ – untrace all SystemC event objects</li>
+<li>
+<a href="rm-cmd-sc_simcontext.untrace-sc-process-all.html">untrace-sc-process-all</a>
+ – untrace all SystemC process objects</li>
+<li>
+<a href="rm-cmd-sc_simcontext.untrace-sc-signal-all.html">untrace-sc-signal-all</a>
+ – untrace all SystemC signal objects</li>
+<li>
+<a href="rm-cmd-sc_simcontext.untrace-sc-socket-all.html">untrace-sc-socket-all</a>
+ – untrace all SystemC socket objects</li>
+<li>
+<a href="rm-cmd-sc_simcontext.untrack-transactions-all.html">untrack-transactions-all</a>
+ – untrack transactions on all SystemC socket objects</li>
+</ul>
+<h2 id="attributes">
+<a href="#attributes">Attributes</a>
+</h2>
+<dl>
+<dt id="dt:vendor_id"><a href="#dt:vendor_id">
+<i>vendor_id</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>The value of vendor id register.</dd>
+<dt id="dt:device_id"><a href="#dt:device_id">
+<i>device_id</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>The value of device id register.</dd>
+<dt id="dt:command"><a href="#dt:command">
+<i>command</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>The value of command register.</dd>
+<dt id="dt:status"><a href="#dt:status">
+<i>status</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>The value of status register.</dd>
+<dt id="dt:base_address_0"><a href="#dt:base_address_0">
+<i>base_address_0</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>The value of BAR0 base address.</dd>
+<dt id="dt:base_address_1"><a href="#dt:base_address_1">
+<i>base_address_1</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>The value of BAR1 base address.</dd>
+<dt id="dt:base_address_2"><a href="#dt:base_address_2">
+<i>base_address_2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>The value of BAR2 base address.</dd>
+<dt id="dt:version"><a href="#dt:version">
+<i>version</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>The value of (MMIO) version register.</dd>
+<dt id="dt:system_onoff_led_value"><a href="#dt:system_onoff_led_value">
+<i>system_onoff_led_value</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>boolean value of device's sc_out system_onoff_led pin</dd>
+<dt id="dt:system_onoff_led_count_value"><a href="#dt:system_onoff_led_count_value">
+<i>system_onoff_led_count_value</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>value of device's sc_out system_onoff_led_count</dd>
+<dt id="dt:pin_out_values"><a href="#dt:pin_out_values">
+<i>pin_out_values</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[bbbb]</code>
+<br>Values of all sc_out pin_out pins</dd>
+<dt id="dt:pin_out_0"><a href="#dt:pin_out_0">
+<i>pin_out_0</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o|n</code>
+<br>Pin 0 LED.</dd>
+<dt id="dt:pin_out_1"><a href="#dt:pin_out_1">
+<i>pin_out_1</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o|n</code>
+<br>Pin 1 LED.</dd>
+<dt id="dt:pin_out_2"><a href="#dt:pin_out_2">
+<i>pin_out_2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o|n</code>
+<br>Pin 2 LED.</dd>
+<dt id="dt:pin_out_3"><a href="#dt:pin_out_3">
+<i>pin_out_3</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o|n</code>
+<br>Pin 3 LED.</dd>
+<dt id="dt:system_onoff_led"><a href="#dt:system_onoff_led">
+<i>system_onoff_led</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o|n</code>
+<br>System On/Off LED.</dd>
+<dt id="dt:pci_bus"><a href="#dt:pci_bus">
+<i>pci_bus</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o|n</code>
+<br>The PCI-bus to connect to.</dd>
+<dt id="dt:do_not_schedule"><a href="#dt:do_not_schedule">
+<i>do_not_schedule</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>Set to TRUE to prevent this object from being scheduled by the cell.</dd>
+<dt id="dt:allow_unconnected_ports"><a href="#dt:allow_unconnected_ports">
+<i>allow_unconnected_ports</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>This attribute is used for allowing ports to be left unconnected/unbound after elaboration. They will then automatically be bound to a dedicated object that will log whenever the port it used.</dd>
+<dt id="dt:create_proxy_objects"><a href="#dt:create_proxy_objects">
+<i>create_proxy_objects</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>This attribute is used to enable (=default) or disable the creation of SystemC proxy objects. Without proxy objects the user cannot interact with the SystemC objects to enable tracing, set breakpoints, collect profiling data, etc.</dd>
+<dt id="dt:argv"><a href="#dt:argv">
+<i>argv</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[s*]</code>
+<br>Argument vector to pass to SystemC setup</dd>
+<dt id="dt:gasket_list"><a href="#dt:gasket_list">
+<i>gasket_list</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[o*]</code>
+<br>The connected gaskets.</dd>
+<dt id="dt:run_next_delta"><a href="#dt:run_next_delta">
+<i>run_next_delta</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>write-only</b> access; type: 
+<code>i</code>
+<br>Run the next delta cycle by invoking sc_start(0). Multiple delta cycles can be run at once by setting a value greater than one.</dd>
+<dt id="dt:cci_preset_values"><a href="#dt:cci_preset_values">
+<i>cci_preset_values</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>write-only</b> access; type: 
+<code>[[ss]*]</code>
+<br>List containing key-value tuples of CCI preset values.</dd>
+<dt id="dt:same_cell_as"><a href="#dt:same_cell_as">
+<i>same_cell_as</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>o</code>
+<br>This adapter should have same cell as the object assigned. For internal use only.</dd>
+<dt id="dt:cell"><a href="#dt:cell">
+<i>cell</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o|n</code>
+<br>The cell this object clock/cpu belongs to</dd>
+<dt id="dt:sc_state"><a href="#dt:sc_state">
+<i>sc_state</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[s*]</code>
+<br>When this attribute is set the SystemC state is restored from disk</dd>
+</dl>
+<h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.sc-leds-and-button-pcie-dev.html">sc-leds-and-button-pcie-dev</a>
+</section>
+<h2 id="sc_leds_and_button_pcie_device.port"><a href="#sc_leds_and_button_pcie_device.port">sc_leds_and_button_pcie_device.port</a></h2>

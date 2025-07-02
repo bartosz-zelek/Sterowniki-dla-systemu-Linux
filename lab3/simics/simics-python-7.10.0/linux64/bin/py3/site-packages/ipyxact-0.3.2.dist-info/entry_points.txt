@@ -1,0 +1,2 @@
+[console_scripts]
+ipxact2v = ipyxact.ipxact2v:main

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device name="generic_eth_phy" bitorder="le">
+  <bank name="mii_regs">
+  </bank>
+  <bank name="mmd_auto_neg">
+  </bank>
+  <bank name="mmd_default">
+  </bank>
+  <bank name="mmd_dte_xs">
+  </bank>
+  <bank name="mmd_mii_ext">
+  </bank>
+  <bank name="mmd_pcs">
+  </bank>
+  <bank name="mmd_phy_xs">
+  </bank>
+  <bank name="mmd_pma_pmd">
+  </bank>
+  <bank name="mmd_tc">
+  </bank>
+  <bank name="mmd_vendor1">
+  </bank>
+  <bank name="mmd_vendor2">
+  </bank>
+  <bank name="mmd_wis">
+  </bank>
+</device>

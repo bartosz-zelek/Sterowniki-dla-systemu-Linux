@@ -1,0 +1,26 @@
+read-configuration `os.path.join(fileprefix, "conf02.config")`
+
+enable-unsupported-feature internals
+uncatch-signal 11
+
+bp.step.break $duration
+c
+
+write-configuration `os.path.join(fileprefix,"conf04b.config")`
+bp.step.break $duration
+c
+
+write-configuration `os.path.join(fileprefix, "conf04c.config")`
+bp.step.break $duration
+c
+
+write-configuration `os.path.join(fileprefix, "conf04d.config")`
+bp.step.break $duration
+c
+
+write-configuration `os.path.join(fileprefix, "conf04e.config")`
+bp.step.break $duration
+c
+
+$expected_end = ($start + 5 * $duration)
+run-script ($test_script_dir + "/check-step-and-cycle-counts.simics")

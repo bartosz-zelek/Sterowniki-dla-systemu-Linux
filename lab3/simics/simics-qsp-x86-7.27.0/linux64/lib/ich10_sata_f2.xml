@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device name="ich10_sata_f2" desc="model of Intel® ICH10 SATA controller" documentation="SATA controller function 2 in Intel® ICH10." limitations="FIS-based Switching is not implemented. Port Multipliers are not implemented. Multiple MSI based messages are not implemented. Enclosure Management is not implemented. Command Completion Coalescing is not implemented. Device Sleep is not implemented." bitorder="le">
+  <bank name="ahci" desc="model of AHCI generic host control registers" byte_order="little-endian" function="2">
+    <register name="bohc" desc="BIOS/OS Handoff Control and Status" offset="40" size="4">
+      <field name="bb" msb="4" lsb="4" />
+      <field name="bos" msb="0" lsb="0" />
+      <field name="ooc" msb="3" lsb="3" />
+      <field name="oos" limitations="Not implemented." msb="1" lsb="1" />
+      <field name="sooe" limitations="Not implemented." msb="2" lsb="2" />
+    </register>
+    <register name="cap" desc="Host Capabilities" offset="0" size="4">
+      <field name="cccs" msb="7" lsb="7" />
+      <field name="ems" msb="6" lsb="6" />
+      <field name="fbss" msb="16" lsb="16" />
+      <field name="iss" msb="23" lsb="20" />
+      <field name="ncs" msb="12" lsb="8" />
+      <field name="np" msb="4" lsb="0" />
+      <field name="pmd" msb="15" lsb="15" />
+      <field name="psc" msb="13" lsb="13" />
+      <field name="s64a" msb="31" lsb="31" />
+      <field name="sal" msb="25" lsb="25" />
+      <field name="salp" msb="26" lsb="26" />
+      <field name="sam" msb="18" lsb="18" />
+      <field name="sclo" msb="24" lsb="24" />
+      <field name="smps" msb="28" lsb="28" />
+      <field name="sncq" msb="30" lsb="30" />
+      <field name="spm" msb="17" lsb="17" />
+      <field name="ssc" msb="14" lsb="14" />
+      <field name="ssntf" msb="29" lsb="29" />
+      <field name="sss" msb="27" lsb="27" />
+      <field name="sxs" msb="5" lsb="5" />
+    </register>
+    <register name="cap2" desc="Host Capabilities Extended" offset="36" size="4">
+    </register>
+    <register name="ccc_ctl" desc="Command Completion Coalescing Control" offset="20" size="4">
+      <field name="cc" msb="15" lsb="8" />
+      <field name="en" msb="0" lsb="0" />
+      <field name="intr" msb="7" lsb="3" />
+      <field name="tv" msb="31" lsb="16" />
+    </register>
+    <register name="ccc_ports" desc="Command Completion Coalescing Ports" limitations="Not implemented." offset="24" size="4">
+    </register>
+    <register name="em_ctrl" desc="Enclosure Management Control" offset="32" size="4">
+      <field name="alhd" msb="26" lsb="26" />
+      <field name="led" msb="16" lsb="16" />
+      <field name="mr" msb="0" lsb="0" />
+      <field name="pm" msb="27" lsb="27" />
+      <field name="rst" msb="9" lsb="9" />
+      <field name="safte" msb="17" lsb="17" />
+      <field name="ses2" msb="18" lsb="18" />
+      <field name="sgpio" msb="19" lsb="19" />
+      <field name="smb" msb="24" lsb="24" />
+      <field name="tm" msb="8" lsb="8" />
+      <field name="xmt" msb="25" lsb="25" />
+    </register>
+    <register name="em_loc" desc="Enclosure Management Location" offset="28" size="4">
+      <field name="ofst" msb="31" lsb="16" />
+      <field name="sz" msb="15" lsb="0" />
+    </register>
+    <register name="em_msg" vsize="2" desc="Enclosure Management Buffer" offset="1024 1028" size="4">
+    </register>
+    <register name="ghc" desc="Global Host Control" offset="4" size="4">
+      <field name="ae" msb="31" lsb="31" />
+      <field name="hr" msb="0" lsb="0" />
+      <field name="ie" msb="1" lsb="1" />
+      <field name="mrsm" msb="2" lsb="2" />
+    </register>
+    <register name="isr" desc="Interrupt Status" offset="8" size="4">
+    </register>
+    <group name="p0pcr">
+      <register name="ci" desc="Command Issue" offset="312" size="4">
+      </register>
+      <register name="clb" desc="Command List Base Address" offset="256" size="4">
+      </register>
+      <register name="clbu" desc="Command List Base Address Upper 32-Bits" offset="260" size="4">
+      </register>
+      <register name="cmd" desc="Command and Status" offset="280" size="4">
+        <field name="alpe" msb="26" lsb="26" />
+        <field name="asp" msb="27" lsb="27" />
+        <field name="atapi" msb="24" lsb="24" />
+        <field name="ccs" msb="12" lsb="8" />
+        <field name="clo" msb="3" lsb="3" />
+        <field name="cpd" msb="20" lsb="20" />
+        <field name="cr" msb="15" lsb="15" />
+        <field name="dlae" msb="25" lsb="25" />
+        <field name="esp" msb="21" lsb="21" />
+        <field name="fr" msb="14" lsb="14" />
+        <field name="fre" msb="4" lsb="4" />
+        <field name="hpcp" msb="18" lsb="18" />
+        <field name="icc" msb="31" lsb="28" />
+        <field name="isp" msb="19" lsb="19" />
+        <field name="iss" msb="13" lsb="13" />
+        <field name="pma" msb="17" lsb="17" />
+        <field name="pmfse" msb="16" lsb="16" />
+        <field name="pod" msb="2" lsb="2" />
+        <field name="st" msb="0" lsb="0" />
+        <field name="sud" msb="1" lsb="1" />
+      </register>
+      <register name="devslp" offset="324" size="4">
+      </register>
+      <register name="dummy" offset="284" size="4">
+      </register>
+      <register name="fb" desc="FIS Base Address" offset="264" size="4">
+      </register>
+      <register name="fbs" desc="FIS-based Switching Control" offset="320" size="4">
+        <field name="ado" msb="15" lsb="12" />
+        <field name="dec" msb="1" lsb="1" />
+        <field name="devi" msb="11" lsb="8" />
+        <field name="dwe" msb="19" lsb="16" />
+        <field name="en" msb="0" lsb="0" />
+        <field name="sde" msb="2" lsb="2" />
+      </register>
+      <register name="fbu" desc="FIS Base Address Upper 32-Bits" offset="268" size="4">
+      </register>
+      <register name="ie" desc="Interrupt Enable" offset="276" size="4">
+      </register>
+      <register name="isr" desc="Interrupt Status" offset="272" size="4">
+      </register>
+      <register name="sact" desc="Serial ATA Active" offset="308" size="4">
+      </register>
+      <group name="sata">
+        <register name="sctl" desc="Serial ATA Control" offset="300" size="4">
+          <field name="det" msb="3" lsb="0" />
+          <field name="ipm" msb="11" lsb="8" />
+          <field name="pmp" msb="19" lsb="16" />
+          <field name="spd" msb="7" lsb="4" />
+          <field name="spm" msb="15" lsb="12" />
+        </register>
+        <register name="serr" desc="Serial ATA Error" offset="304" size="4">
+          <field name="b" msb="19" lsb="19" />
+          <field name="c" msb="21" lsb="21" />
+          <field name="d" msb="20" lsb="20" />
+          <field name="e" msb="11" lsb="11" />
+          <field name="f" msb="25" lsb="25" />
+          <field name="h" msb="22" lsb="22" />
+          <field name="i" msb="17" lsb="17" />
+          <field name="m" msb="1" lsb="1" />
+          <field name="n" msb="16" lsb="16" />
+          <field name="p" msb="10" lsb="10" />
+          <field name="pcdie" msb="9" lsb="9" />
+          <field name="rdie" msb="0" lsb="0" />
+          <field name="t" msb="8" lsb="8" />
+          <field name="t0" msb="23" lsb="23" />
+          <field name="t1" msb="24" lsb="24" />
+          <field name="w" msb="18" lsb="18" />
+          <field name="x" msb="26" lsb="26" />
+        </register>
+        <register name="ssts" desc="Serial ATA Status" offset="296" size="4">
+          <field name="det" msb="3" lsb="0" />
+          <field name="ipm" msb="11" lsb="8" />
+          <field name="spd" msb="7" lsb="4" />
+        </register>
+      </group>
+      <register name="sig" desc="Signature" offset="292" size="4">
+      </register>
+      <register name="sntf" desc="SATA Notification" offset="316" size="4">
+      </register>
+      <register name="tfd" desc="Task File Data" offset="288" size="4">
+        <field name="err" msb="15" lsb="8" />
+        <field name="sts" msb="7" lsb="0" />
+      </register>
+      <register name="vs" vsize="4" desc="Vendor Specific" offset="368 372 376 380" size="4">
+      </register>
+    </group>
+    <group name="p1pcr">
+      <register name="ci" desc="Command Issue" offset="440" size="4">
+      </register>
+      <register name="clb" desc="Command List Base Address" offset="384" size="4">
+      </register>
+      <register name="clbu" desc="Command List Base Address Upper 32-Bits" offset="388" size="4">
+      </register>
+      <register name="cmd" desc="Command and Status" offset="408" size="4">
+        <field name="alpe" msb="26" lsb="26" />
+        <field name="asp" msb="27" lsb="27" />
+        <field name="atapi" msb="24" lsb="24" />
+        <field name="ccs" msb="12" lsb="8" />
+        <field name="clo" msb="3" lsb="3" />
+        <field name="cpd" msb="20" lsb="20" />
+        <field name="cr" msb="15" lsb="15" />
+        <field name="dlae" msb="25" lsb="25" />
+        <field name="esp" msb="21" lsb="21" />
+        <field name="fr" msb="14" lsb="14" />
+        <field name="fre" msb="4" lsb="4" />
+        <field name="hpcp" msb="18" lsb="18" />
+        <field name="icc" msb="31" lsb="28" />
+        <field name="isp" msb="19" lsb="19" />
+        <field name="iss" msb="13" lsb="13" />
+        <field name="pma" msb="17" lsb="17" />
+        <field name="pmfse" msb="16" lsb="16" />
+        <field name="pod" msb="2" lsb="2" />
+        <field name="st" msb="0" lsb="0" />
+        <field name="sud" msb="1" lsb="1" />
+      </register>
+      <register name="devslp" offset="452" size="4">
+      </register>
+      <register name="dummy" offset="412" size="4">
+      </register>
+      <register name="fb" desc="FIS Base Address" offset="392" size="4">
+      </register>
+      <register name="fbs" desc="FIS-based Switching Control" offset="448" size="4">
+        <field name="ado" msb="15" lsb="12" />
+        <field name="dec" msb="1" lsb="1" />
+        <field name="devi" msb="11" lsb="8" />
+        <field name="dwe" msb="19" lsb="16" />
+        <field name="en" msb="0" lsb="0" />
+        <field name="sde" msb="2" lsb="2" />
+      </register>
+      <register name="fbu" desc="FIS Base Address Upper 32-Bits" offset="396" size="4">
+      </register>
+      <register name="ie" desc="Interrupt Enable" offset="404" size="4">
+      </register>
+      <register name="isr" desc="Interrupt Status" offset="400" size="4">
+      </register>
+      <register name="sact" desc="Serial ATA Active" offset="436" size="4">
+      </register>
+      <group name="sata">
+        <register name="sctl" desc="Serial ATA Control" offset="428" size="4">
+          <field name="det" msb="3" lsb="0" />
+          <field name="ipm" msb="11" lsb="8" />
+          <field name="pmp" msb="19" lsb="16" />
+          <field name="spd" msb="7" lsb="4" />
+          <field name="spm" msb="15" lsb="12" />
+        </register>
+        <register name="serr" desc="Serial ATA Error" offset="432" size="4">
+          <field name="b" msb="19" lsb="19" />
+          <field name="c" msb="21" lsb="21" />
+          <field name="d" msb="20" lsb="20" />
+          <field name="e" msb="11" lsb="11" />
+          <field name="f" msb="25" lsb="25" />
+          <field name="h" msb="22" lsb="22" />
+          <field name="i" msb="17" lsb="17" />
+          <field name="m" msb="1" lsb="1" />
+          <field name="n" msb="16" lsb="16" />
+          <field name="p" msb="10" lsb="10" />
+          <field name="pcdie" msb="9" lsb="9" />
+          <field name="rdie" msb="0" lsb="0" />
+          <field name="t" msb="8" lsb="8" />
+          <field name="t0" msb="23" lsb="23" />
+          <field name="t1" msb="24" lsb="24" />
+          <field name="w" msb="18" lsb="18" />
+          <field name="x" msb="26" lsb="26" />
+        </register>
+        <register name="ssts" desc="Serial ATA Status" offset="424" size="4">
+          <field name="det" msb="3" lsb="0" />
+          <field name="ipm" msb="11" lsb="8" />
+          <field name="spd" msb="7" lsb="4" />
+        </register>
+      </group>
+      <register name="sig" desc="Signature" offset="420" size="4">
+      </register>
+      <register name="sntf" desc="SATA Notification" offset="444" size="4">
+      </register>
+      <register name="tfd" desc="Task File Data" offset="416" size="4">
+        <field name="err" msb="15" lsb="8" />
+        <field name="sts" msb="7" lsb="0" />
+      </register>
+      <register name="vs" vsize="4" desc="Vendor Specific" offset="496 500 504 508" size="4">
+      </register>
+    </group>
+    <group name="p2pcr">
+      <register name="ci" desc="Command Issue" offset="568" size="4">
+      </register>
+      <register name="clb" desc="Command List Base Address" offset="512" size="4">
+      </register>
+      <register name="clbu" desc="Command List Base Address Upper 32-Bits" offset="516" size="4">
+      </register>
+      <register name="cmd" desc="Command and Status" offset="536" size="4">
+        <field name="alpe" msb="26" lsb="26" />
+        <field name="asp" msb="27" lsb="27" />
+        <field name="atapi" msb="24" lsb="24" />
+        <field name="ccs" msb="12" lsb="8" />
+        <field name="clo" msb="3" lsb="3" />
+        <field name="cpd" msb="20" lsb="20" />
+        <field name="cr" msb="15" lsb="15" />
+        <field name="dlae" msb="25" lsb="25" />
+        <field name="esp" msb="21" lsb="21" />
+        <field name="fr" msb="14" lsb="14" />
+        <field name="fre" msb="4" lsb="4" />
+        <field name="hpcp" msb="18" lsb="18" />
+        <field name="icc" msb="31" lsb="28" />
+        <field name="isp" msb="19" lsb="19" />
+        <field name="iss" msb="13" lsb="13" />
+        <field name="pma" msb="17" lsb="17" />
+        <field name="pmfse" msb="16" lsb="16" />
+        <field name="pod" msb="2" lsb="2" />
+        <field name="st" msb="0" lsb="0" />
+        <field name="sud" msb="1" lsb="1" />
+      </register>
+      <register name="devslp" offset="580" size="4">
+      </register>
+      <register name="dummy" offset="540" size="4">
+      </register>
+      <register name="fb" desc="FIS Base Address" offset="520" size="4">
+      </register>
+      <register name="fbs" desc="FIS-based Switching Control" offset="576" size="4">
+        <field name="ado" msb="15" lsb="12" />
+        <field name="dec" msb="1" lsb="1" />
+        <field name="devi" msb="11" lsb="8" />
+        <field name="dwe" msb="19" lsb="16" />
+        <field name="en" msb="0" lsb="0" />
+        <field name="sde" msb="2" lsb="2" />
+      </register>
+      <register name="fbu" desc="FIS Base Address Upper 32-Bits" offset="524" size="4">
+      </register>
+      <register name="ie" desc="Interrupt Enable" offset="532" size="4">
+      </register>
+      <register name="isr" desc="Interrupt Status" offset="528" size="4">
+      </register>
+      <register name="sact" desc="Serial ATA Active" offset="564" size="4">
+      </register>
+      <group name="sata">
+        <register name="sctl" desc="Serial ATA Control" offset="556" size="4">
+          <field name="det" msb="3" lsb="0" />
+          <field name="ipm" msb="11" lsb="8" />
+          <field name="pmp" msb="19" lsb="16" />
+          <field name="spd" msb="7" lsb="4" />
+          <field name="spm" msb="15" lsb="12" />
+        </register>
+        <register name="serr" desc="Serial ATA Error" offset="560" size="4">
+          <field name="b" msb="19" lsb="19" />
+          <field name="c" msb="21" lsb="21" />
+          <field name="d" msb="20" lsb="20" />
+          <field name="e" msb="11" lsb="11" />
+          <field name="f" msb="25" lsb="25" />
+          <field name="h" msb="22" lsb="22" />
+          <field name="i" msb="17" lsb="17" />
+          <field name="m" msb="1" lsb="1" />
+          <field name="n" msb="16" lsb="16" />
+          <field name="p" msb="10" lsb="10" />
+          <field name="pcdie" msb="9" lsb="9" />
+          <field name="rdie" msb="0" lsb="0" />
+          <field name="t" msb="8" lsb="8" />
+          <field name="t0" msb="23" lsb="23" />
+          <field name="t1" msb="24" lsb="24" />
+          <field name="w" msb="18" lsb="18" />
+          <field name="x" msb="26" lsb="26" />
+        </register>
+        <register name="ssts" desc="Serial ATA Status" offset="552" size="4">
+          <field name="det" msb="3" lsb="0" />
+          <field name="ipm" msb="11" lsb="8" />
+          <field name="spd" msb="7" lsb="4" />
+        </register>
+      </group>
+      <register name="sig" desc="Signature" offset="548" size="4">
+      </register>
+      <register name="sntf" desc="SATA Notification" offset="572" size="4">
+      </register>
+      <register name="tfd" desc="Task File Data" offset="544" size="4">
+        <field name="err" msb="15" lsb="8" />
+        <field name="sts" msb="7" lsb="0" />
+      </register>
+      <register name="vs" vsize="4" desc="Vendor Specific" offset="624 628 632 636" size="4">
+      </register>
+    </group>
+    <group name="p3pcr">
+      <register name="ci" desc="Command Issue" offset="696" size="4">
+      </register>
+      <register name="clb" desc="Command List Base Address" offset="640" size="4">
+      </register>
+      <register name="clbu" desc="Command List Base Address Upper 32-Bits" offset="644" size="4">
+      </register>
+      <register name="cmd" desc="Command and Status" offset="664" size="4">
+        <field name="alpe" msb="26" lsb="26" />
+        <field name="asp" msb="27" lsb="27" />
+        <field name="atapi" msb="24" lsb="24" />
+        <field name="ccs" msb="12" lsb="8" />
+        <field name="clo" msb="3" lsb="3" />
+        <field name="cpd" msb="20" lsb="20" />
+        <field name="cr" msb="15" lsb="15" />
+        <field name="dlae" msb="25" lsb="25" />
+        <field name="esp" msb="21" lsb="21" />
+        <field name="fr" msb="14" lsb="14" />
+        <field name="fre" msb="4" lsb="4" />
+        <field name="hpcp" msb="18" lsb="18" />
+        <field name="icc" msb="31" lsb="28" />
+        <field name="isp" msb="19" lsb="19" />
+        <field name="iss" msb="13" lsb="13" />
+        <field name="pma" msb="17" lsb="17" />
+        <field name="pmfse" msb="16" lsb="16" />
+        <field name="pod" msb="2" lsb="2" />
+        <field name="st" msb="0" lsb="0" />
+        <field name="sud" msb="1" lsb="1" />
+      </register>
+      <register name="devslp" offset="708" size="4">
+      </register>
+      <register name="dummy" offset="668" size="4">
+      </register>
+      <register name="fb" desc="FIS Base Address" offset="648" size="4">
+      </register>
+      <register name="fbs" desc="FIS-based Switching Control" offset="704" size="4">
+        <field name="ado" msb="15" lsb="12" />
+        <field name="dec" msb="1" lsb="1" />
+        <field name="devi" msb="11" lsb="8" />
+        <field name="dwe" msb="19" lsb="16" />
+        <field name="en" msb="0" lsb="0" />
+        <field name="sde" msb="2" lsb="2" />
+      </register>
+      <register name="fbu" desc="FIS Base Address Upper 32-Bits" offset="652" size="4">
+      </register>
+      <register name="ie" desc="Interrupt Enable" offset="660" size="4">
+      </register>
+      <register name="isr" desc="Interrupt Status" offset="656" size="4">
+      </register>
+      <register name="sact" desc="Serial ATA Active" offset="692" size="4">
+      </register>
+      <group name="sata">
+        <register name="sctl" desc="Serial ATA Control" offset="684" size="4">
+          <field name="det" msb="3" lsb="0" />
+          <field name="ipm" msb="11" lsb="8" />
+          <field name="pmp" msb="19" lsb="16" />
+          <field name="spd" msb="7" lsb="4" />
+          <field name="spm" msb="15" lsb="12" />
+        </register>
+        <register name="serr" desc="Serial ATA Error" offset="688" size="4">
+          <field name="b" msb="19" lsb="19" />
+          <field name="c" msb="21" lsb="21" />
+          <field name="d" msb="20" lsb="20" />
+          <field name="e" msb="11" lsb="11" />
+          <field name="f" msb="25" lsb="25" />
+          <field name="h" msb="22" lsb="22" />
+          <field name="i" msb="17" lsb="17" />
+          <field name="m" msb="1" lsb="1" />
+          <field name="n" msb="16" lsb="16" />
+          <field name="p" msb="10" lsb="10" />
+          <field name="pcdie" msb="9" lsb="9" />
+          <field name="rdie" msb="0" lsb="0" />
+          <field name="t" msb="8" lsb="8" />
+          <field name="t0" msb="23" lsb="23" />
+          <field name="t1" msb="24" lsb="24" />
+          <field name="w" msb="18" lsb="18" />
+          <field name="x" msb="26" lsb="26" />
+        </register>
+        <register name="ssts" desc="Serial ATA Status" offset="680" size="4">
+          <field name="det" msb="3" lsb="0" />
+          <field name="ipm" msb="11" lsb="8" />
+          <field name="spd" msb="7" lsb="4" />
+        </register>
+      </group>
+      <register name="sig" desc="Signature" offset="676" size="4">
+      </register>
+      <register name="sntf" desc="SATA Notification" offset="700" size="4">
+      </register>
+      <register name="tfd" desc="Task File Data" offset="672" size="4">
+        <field name="err" msb="15" lsb="8" />
+        <field name="sts" msb="7" lsb="0" />
+      </register>
+      <register name="vs" vsize="4" desc="Vendor Specific" offset="752 756 760 764" size="4">
+      </register>
+    </group>
+    <group name="p4pcr">
+      <register name="ci" desc="Command Issue" offset="824" size="4">
+      </register>
+      <register name="clb" desc="Command List Base Address" offset="768" size="4">
+      </register>
+      <register name="clbu" desc="Command List Base Address Upper 32-Bits" offset="772" size="4">
+      </register>
+      <register name="cmd" desc="Command and Status" offset="792" size="4">
+        <field name="alpe" msb="26" lsb="26" />
+        <field name="asp" msb="27" lsb="27" />
+        <field name="atapi" msb="24" lsb="24" />
+        <field name="ccs" msb="12" lsb="8" />
+        <field name="clo" msb="3" lsb="3" />
+        <field name="cpd" msb="20" lsb="20" />
+        <field name="cr" msb="15" lsb="15" />
+        <field name="dlae" msb="25" lsb="25" />
+        <field name="esp" msb="21" lsb="21" />
+        <field name="fr" msb="14" lsb="14" />
+        <field name="fre" msb="4" lsb="4" />
+        <field name="hpcp" msb="18" lsb="18" />
+        <field name="icc" msb="31" lsb="28" />
+        <field name="isp" msb="19" lsb="19" />
+        <field name="iss" msb="13" lsb="13" />
+        <field name="pma" msb="17" lsb="17" />
+        <field name="pmfse" msb="16" lsb="16" />
+        <field name="pod" msb="2" lsb="2" />
+        <field name="st" msb="0" lsb="0" />
+        <field name="sud" msb="1" lsb="1" />
+      </register>
+      <register name="devslp" offset="836" size="4">
+      </register>
+      <register name="dummy" offset="796" size="4">
+      </register>
+      <register name="fb" desc="FIS Base Address" offset="776" size="4">
+      </register>
+      <register name="fbs" desc="FIS-based Switching Control" offset="832" size="4">
+        <field name="ado" msb="15" lsb="12" />
+        <field name="dec" msb="1" lsb="1" />
+        <field name="devi" msb="11" lsb="8" />
+        <field name="dwe" msb="19" lsb="16" />
+        <field name="en" msb="0" lsb="0" />
+        <field name="sde" msb="2" lsb="2" />
+      </register>
+      <register name="fbu" desc="FIS Base Address Upper 32-Bits" offset="780" size="4">
+      </register>
+      <register name="ie" desc="Interrupt Enable" offset="788" size="4">
+      </register>
+      <register name="isr" desc="Interrupt Status" offset="784" size="4">
+      </register>
+      <register name="sact" desc="Serial ATA Active" offset="820" size="4">
+      </register>
+      <group name="sata">
+        <register name="sctl" desc="Serial ATA Control" offset="812" size="4">
+          <field name="det" msb="3" lsb="0" />
+          <field name="ipm" msb="11" lsb="8" />
+          <field name="pmp" msb="19" lsb="16" />
+          <field name="spd" msb="7" lsb="4" />
+          <field name="spm" msb="15" lsb="12" />
+        </register>
+        <register name="serr" desc="Serial ATA Error" offset="816" size="4">
+          <field name="b" msb="19" lsb="19" />
+          <field name="c" msb="21" lsb="21" />
+          <field name="d" msb="20" lsb="20" />
+          <field name="e" msb="11" lsb="11" />
+          <field name="f" msb="25" lsb="25" />
+          <field name="h" msb="22" lsb="22" />
+          <field name="i" msb="17" lsb="17" />
+          <field name="m" msb="1" lsb="1" />
+          <field name="n" msb="16" lsb="16" />
+          <field name="p" msb="10" lsb="10" />
+          <field name="pcdie" msb="9" lsb="9" />
+          <field name="rdie" msb="0" lsb="0" />
+          <field name="t" msb="8" lsb="8" />
+          <field name="t0" msb="23" lsb="23" />
+          <field name="t1" msb="24" lsb="24" />
+          <field name="w" msb="18" lsb="18" />
+          <field name="x" msb="26" lsb="26" />
+        </register>
+        <register name="ssts" desc="Serial ATA Status" offset="808" size="4">
+          <field name="det" msb="3" lsb="0" />
+          <field name="ipm" msb="11" lsb="8" />
+          <field name="spd" msb="7" lsb="4" />
+        </register>
+      </group>
+      <register name="sig" desc="Signature" offset="804" size="4">
+      </register>
+      <register name="sntf" desc="SATA Notification" offset="828" size="4">
+      </register>
+      <register name="tfd" desc="Task File Data" offset="800" size="4">
+        <field name="err" msb="15" lsb="8" />
+        <field name="sts" msb="7" lsb="0" />
+      </register>
+      <register name="vs" vsize="4" desc="Vendor Specific" offset="880 884 888 892" size="4">
+      </register>
+    </group>
+    <group name="p5pcr">
+      <register name="ci" desc="Command Issue" offset="952" size="4">
+      </register>
+      <register name="clb" desc="Command List Base Address" offset="896" size="4">
+      </register>
+      <register name="clbu" desc="Command List Base Address Upper 32-Bits" offset="900" size="4">
+      </register>
+      <register name="cmd" desc="Command and Status" offset="920" size="4">
+        <field name="alpe" msb="26" lsb="26" />
+        <field name="asp" msb="27" lsb="27" />
+        <field name="atapi" msb="24" lsb="24" />
+        <field name="ccs" msb="12" lsb="8" />
+        <field name="clo" msb="3" lsb="3" />
+        <field name="cpd" msb="20" lsb="20" />
+        <field name="cr" msb="15" lsb="15" />
+        <field name="dlae" msb="25" lsb="25" />
+        <field name="esp" msb="21" lsb="21" />
+        <field name="fr" msb="14" lsb="14" />
+        <field name="fre" msb="4" lsb="4" />
+        <field name="hpcp" msb="18" lsb="18" />
+        <field name="icc" msb="31" lsb="28" />
+        <field name="isp" msb="19" lsb="19" />
+        <field name="iss" msb="13" lsb="13" />
+        <field name="pma" msb="17" lsb="17" />
+        <field name="pmfse" msb="16" lsb="16" />
+        <field name="pod" msb="2" lsb="2" />
+        <field name="st" msb="0" lsb="0" />
+        <field name="sud" msb="1" lsb="1" />
+      </register>
+      <register name="devslp" offset="964" size="4">
+      </register>
+      <register name="dummy" offset="924" size="4">
+      </register>
+      <register name="fb" desc="FIS Base Address" offset="904" size="4">
+      </register>
+      <register name="fbs" desc="FIS-based Switching Control" offset="960" size="4">
+        <field name="ado" msb="15" lsb="12" />
+        <field name="dec" msb="1" lsb="1" />
+        <field name="devi" msb="11" lsb="8" />
+        <field name="dwe" msb="19" lsb="16" />
+        <field name="en" msb="0" lsb="0" />
+        <field name="sde" msb="2" lsb="2" />
+      </register>
+      <register name="fbu" desc="FIS Base Address Upper 32-Bits" offset="908" size="4">
+      </register>
+      <register name="ie" desc="Interrupt Enable" offset="916" size="4">
+      </register>
+      <register name="isr" desc="Interrupt Status" offset="912" size="4">
+      </register>
+      <register name="sact" desc="Serial ATA Active" offset="948" size="4">
+      </register>
+      <group name="sata">
+        <register name="sctl" desc="Serial ATA Control" offset="940" size="4">
+          <field name="det" msb="3" lsb="0" />
+          <field name="ipm" msb="11" lsb="8" />
+          <field name="pmp" msb="19" lsb="16" />
+          <field name="spd" msb="7" lsb="4" />
+          <field name="spm" msb="15" lsb="12" />
+        </register>
+        <register name="serr" desc="Serial ATA Error" offset="944" size="4">
+          <field name="b" msb="19" lsb="19" />
+          <field name="c" msb="21" lsb="21" />
+          <field name="d" msb="20" lsb="20" />
+          <field name="e" msb="11" lsb="11" />
+          <field name="f" msb="25" lsb="25" />
+          <field name="h" msb="22" lsb="22" />
+          <field name="i" msb="17" lsb="17" />
+          <field name="m" msb="1" lsb="1" />
+          <field name="n" msb="16" lsb="16" />
+          <field name="p" msb="10" lsb="10" />
+          <field name="pcdie" msb="9" lsb="9" />
+          <field name="rdie" msb="0" lsb="0" />
+          <field name="t" msb="8" lsb="8" />
+          <field name="t0" msb="23" lsb="23" />
+          <field name="t1" msb="24" lsb="24" />
+          <field name="w" msb="18" lsb="18" />
+          <field name="x" msb="26" lsb="26" />
+        </register>
+        <register name="ssts" desc="Serial ATA Status" offset="936" size="4">
+          <field name="det" msb="3" lsb="0" />
+          <field name="ipm" msb="11" lsb="8" />
+          <field name="spd" msb="7" lsb="4" />
+        </register>
+      </group>
+      <register name="sig" desc="Signature" offset="932" size="4">
+      </register>
+      <register name="sntf" desc="SATA Notification" offset="956" size="4">
+      </register>
+      <register name="tfd" desc="Task File Data" offset="928" size="4">
+        <field name="err" msb="15" lsb="8" />
+        <field name="sts" msb="7" lsb="0" />
+      </register>
+      <register name="vs" vsize="4" desc="Vendor Specific" offset="1008 1012 1016 1020" size="4">
+      </register>
+    </group>
+    <register name="pi" desc="Ports Implemented" offset="12" size="4">
+    </register>
+    <register name="vs" desc="AHCI Version" offset="16" size="4">
+    </register>
+    <register name="vsp" desc="Vendor Specific" offset="160" size="4">
+      <field name="slpd" msb="0" lsb="0" />
+    </register>
+  </bank>
+  <bank name="ahci_w7_workaround" desc="workaround for windows 7 shutdown" documentation="Windows 7 accesses AHCI ABAR memory space after unmapping it at shutdown. This bank is mapped to prevent unmapped  access error." byte_order="little-endian" function="3">
+  </bank>
+  <bank name="aidp" desc="model of AHCI index/data pair registers" byte_order="little-endian">
+    <register name="aidr" desc="AHCI Index Data Register" offset="4" size="4">
+    </register>
+    <register name="air" desc="AHCI Index Register" offset="0" size="4">
+      <field name="idx" desc="Index" msb="10" lsb="2" />
+    </register>
+  </bank>
+  <bank name="bm" desc="bus master IDE I/O registers" byte_order="little-endian" function="0">
+    <group name="ch" vsize="2">
+      <register name="bmic" desc="Command Register" offset="0 8" size="1">
+        <field name="rwc" msb="3" lsb="3" />
+        <field name="start" msb="0" lsb="0" />
+      </register>
+      <register name="bmid" desc="Bus Master IDE Descriptor Table Pointer" offset="4 12" size="4">
+      </register>
+      <register name="bmis" desc="Bus Master IDE Status Register" offset="2 10" size="1">
+        <field name="act" msb="0" lsb="0" />
+        <field name="d0dma" msb="5" lsb="5" />
+        <field name="d1dma" msb="6" lsb="6" />
+        <field name="err" msb="1" lsb="1" />
+        <field name="intr" msb="2" lsb="2" />
+        <field name="prd_is" msb="7" lsb="7" />
+      </register>
+      <register name="res1" offset="1 9" size="1">
+      </register>
+      <register name="res2" offset="3 11" size="1">
+      </register>
+    </group>
+  </bank>
+  <bank name="pci_config" documentation="The PCI configuration space." byte_order="little-endian" function="255">
+    <register name="abar_sidpba" desc="AHCI/SATA Index Data Pair Base Address" offset="36" size="4">
+      <field name="base" msb="31" lsb="4" />
+      <field name="res" msb="3" lsb="1" />
+      <field name="s" msb="0" lsb="0" />
+    </register>
+    <register name="atc" desc="APM Trapping Control" limitations="Not implemented." offset="192" size="1">
+    </register>
+    <register name="ats" desc="ATM Trapping Status" limitations="Not implemented." offset="196" size="1">
+    </register>
+    <register name="bar" desc="Legacy Bus Master Base Address" offset="32" size="4">
+      <field name="base" documentation="The base address" msb="31" lsb="2" />
+      <field name="p" desc="Reserved" msb="1" lsb="1" />
+      <field name="s" documentation="I/O Space Indicator" msb="0" lsb="0" />
+    </register>
+    <register name="bfcs" desc="BIST FIS Control/Status" limitations="Not implemented." offset="224" size="4">
+    </register>
+    <register name="bftd1" desc="BIST FIS Transmit Data, DW1" limitations="Not implemented." offset="228" size="4">
+    </register>
+    <register name="bftd2" desc="BIST FIS Transmit Data, DW2" limitations="Not implemented." offset="232" size="4">
+    </register>
+    <register name="bist" documentation="Build-in Self Test" offset="15" size="1">
+    </register>
+    <register name="cache_line_size" documentation="CacheLine Size" offset="12" size="1">
+    </register>
+    <register name="capabilities_ptr" documentation="Capabilities Pointer" offset="52" size="1">
+    </register>
+    <register name="cardbus_cis_ptr" documentation="Cardbus CIS Pointer" offset="40" size="4">
+    </register>
+    <register name="class_code" documentation="Class Code" offset="9" size="3">
+    </register>
+    <register name="command" documentation="Command Register" offset="4" size="2">
+      <field name="fb" desc="Fast Back-to-Back Transactions Enable" msb="9" lsb="9" />
+      <field name="id" desc="Interrupt Disable" msb="10" lsb="10" />
+      <field name="io" desc="I/O Space Enable" msb="0" lsb="0" />
+      <field name="m" desc="Bus Master Enable" msb="2" lsb="2" />
+      <field name="mem" desc="Memory Space Enable" msb="1" lsb="1" />
+      <field name="mwi" desc="Memory Write and Invalidate" msb="4" lsb="4" />
+      <field name="pe" desc="Parity Error Response" msb="6" lsb="6" />
+      <field name="sc" desc="Special Cycle Enable" msb="3" lsb="3" />
+      <field name="se" desc="SERR# Enable" msb="8" lsb="8" />
+      <field name="vga" desc="VGA Palette Snoop" msb="5" lsb="5" />
+      <field name="wc" desc="IDSEL Steppin/Wait Cycle Control" msb="7" lsb="7" />
+    </register>
+    <register name="device_id" documentation="Device ID" offset="2" size="2">
+    </register>
+    <register name="dftd" offset="164" size="4">
+    </register>
+    <register name="dfti" offset="160" size="4">
+    </register>
+    <register name="expansion_rom_base" desc="Expansion ROM base address" offset="48" size="4">
+      <field name="base" documentation="The base address" msb="31" lsb="1" />
+      <field name="e" documentation="Address decode enable" msb="0" lsb="0" />
+    </register>
+    <register name="flr_cap" desc="Capability ID" offset="176" size="1">
+    </register>
+    <register name="flr_clv_hi" desc="FLR Capability Length and Version" offset="179" size="1">
+    </register>
+    <register name="flr_clv_lo" desc="Vendor-Specific Capability ID" offset="178" size="1">
+    </register>
+    <register name="flr_control" desc="FLR Control" offset="180" size="2">
+      <field name="iflr" desc="Initiate FLR" limitations="Not implemented." msb="0" lsb="0" />
+      <field name="txp" desc="Transactions Pending" msb="8" lsb="8" />
+    </register>
+    <register name="flr_next" desc="Next Capability Pointer" offset="177" size="1">
+    </register>
+    <register name="header_type" documentation="Header Type" offset="14" size="1">
+      <field name="mf" desc="Multi-Function Device" msb="7" lsb="7" />
+      <field name="type" desc="Header Layout" msb="6" lsb="0" />
+    </register>
+    <register name="ide_tim" vsize="2" desc="Primary/Secondary IDE Timing Register" offset="64 66" size="2">
+      <field name="ide" desc="IDE Decode Enable" msb="15" lsb="15" />
+    </register>
+    <register name="interrupt_line" documentation="Interrupt Line" offset="60" size="1">
+    </register>
+    <register name="interrupt_pin" documentation="Interrupt Pin" offset="61" size="1">
+    </register>
+    <register name="latency_timer" documentation="Latency Timer" offset="13" size="1">
+    </register>
+    <register name="map" desc="Address Map" offset="144" size="2">
+      <field name="mv" desc="Map Value" msb="1" lsb="0" />
+      <field name="sc" desc="SATA Port-to-Controller Configuration" msb="5" lsb="5" />
+      <field name="sms" desc="SATA Mode Select" msb="7" lsb="6" />
+    </register>
+    <register name="max_lat" documentation="MAX_LAT" offset="63" size="1">
+    </register>
+    <register name="min_gnt" documentation="MIN_GNT" offset="62" size="1">
+    </register>
+    <register name="msi_address" documentation="Message Address" offset="132" size="4">
+    </register>
+    <register name="msi_capability_header" documentation="Capability Header" offset="128" size="2">
+      <field name="id" desc="Capability ID" msb="7" lsb="0" />
+      <field name="next_ptr" desc="Next Capability Pointer" msb="15" lsb="8" />
+    </register>
+    <register name="msi_control" documentation="Message Control" offset="130" size="2">
+      <field name="ac64" desc="64-bit Address Capable" msb="7" lsb="7" />
+      <field name="mmc" desc="Multiple Message Capable" msb="3" lsb="1" />
+      <field name="mme" desc="Multiple Message Enable" msb="6" lsb="4" />
+      <field name="msie" desc="MSI Enable" msb="0" lsb="0" />
+      <field name="pvmc" desc="Per-Vector Masking Capable" msb="8" lsb="8" />
+    </register>
+    <register name="msi_data" documentation="Message Data" offset="136" size="2">
+    </register>
+    <register name="pc" desc="PCI Power Management Capabilities" offset="114" size="2">
+    </register>
+    <register name="pcmd_bar" desc="Primary Command Block Base Address" offset="16" size="4">
+      <field name="base" documentation="The base address" msb="31" lsb="2" />
+      <field name="p" desc="Reserved" msb="1" lsb="1" />
+      <field name="s" documentation="I/O Space Indicator" msb="0" lsb="0" />
+    </register>
+    <register name="pcnl_bar" desc="Primary Control Block Base Address" offset="20" size="4">
+      <field name="base" documentation="The base address" msb="31" lsb="2" />
+      <field name="p" desc="Reserved" msb="1" lsb="1" />
+      <field name="s" documentation="I/O Space Indicator" msb="0" lsb="0" />
+    </register>
+    <register name="pcs" desc="Port Control and Status" offset="146" size="2">
+      <field name="orm" msb="15" lsb="15" />
+      <field name="pxe" msb="5" lsb="0" />
+      <field name="pxp" msb="13" lsb="8" />
+    </register>
+    <register name="pid" desc="PCI Power Management Capability Identification Register" offset="112" size="2">
+    </register>
+    <register name="pmcs" desc="PCI Power Management Control and Status" offset="116" size="2">
+      <field name="nsfrst" desc="No Soft Reset" msb="3" lsb="3" />
+      <field name="pmee" desc="PME Enable" msb="8" lsb="8" />
+      <field name="pmes" desc="PME Status" msb="15" lsb="15" />
+      <field name="ps" desc="Power State" limitations="Not implemented." msb="1" lsb="0" />
+    </register>
+    <register name="revision_id" documentation="Revision ID" offset="8" size="1">
+    </register>
+    <register name="sata_capability_bar" offset="172" size="4">
+      <field name="barloc" desc="BAR Location" msb="3" lsb="0" />
+      <field name="barofst" desc="BAR Offset" msb="15" lsb="4" />
+    </register>
+    <register name="sata_capability_header" offset="168" size="4">
+      <field name="id" desc="Capability ID" msb="7" lsb="0" />
+      <field name="majrev" desc="Major Revision" msb="23" lsb="20" />
+      <field name="minrev" desc="Minor Revision" msb="19" lsb="16" />
+      <field name="next_ptr" desc="Next Capability Pointer" msb="15" lsb="8" />
+    </register>
+    <register name="scgc" desc="SATA Clock Gating Control" limitations="Not implemented." offset="148" size="4">
+    </register>
+    <register name="sclkgc" desc="SATA Clock General Configuration" offset="156" size="4">
+      <field name="aie" desc="SATA Mode Select" msb="7" lsb="7" />
+    </register>
+    <register name="scmd_bar" desc="Secondary Command Block Base Address" offset="24" size="4">
+      <field name="base" documentation="The base address" msb="31" lsb="2" />
+      <field name="p" desc="Reserved" msb="1" lsb="1" />
+      <field name="s" documentation="I/O Space Indicator" msb="0" lsb="0" />
+    </register>
+    <register name="scnl_bar" desc="Secondary Control Block Base Address" offset="28" size="4">
+      <field name="base" documentation="The base address" msb="31" lsb="2" />
+      <field name="p" desc="Reserved" msb="1" lsb="1" />
+      <field name="s" documentation="I/O Space Indicator" msb="0" lsb="0" />
+    </register>
+    <register name="sp" desc="Scratch Pad" offset="208" size="4">
+    </register>
+    <register name="status" documentation="Status Register" offset="6" size="2">
+      <field name="c" desc="Capabilities List" msb="4" lsb="4" />
+      <field name="dpe" desc="Detected Parity Error" msb="15" lsb="15" />
+      <field name="ds" desc="DEVSEL timing" msb="10" lsb="9" />
+      <field name="fbb" desc="Fast Back-to-Back Transactions Capable" msb="7" lsb="7" />
+      <field name="ins" desc="Interrupt Status" msb="3" lsb="3" />
+      <field name="ir" desc="Immediate Readiness" msb="0" lsb="0" />
+      <field name="mhz" desc="66 MHz Capable" msb="5" lsb="5" />
+      <field name="pe" desc="Master Data Parity Error" msb="8" lsb="8" />
+      <field name="rma" desc="Received Master Abort" msb="13" lsb="13" />
+      <field name="rta" desc="Received Target Abort" msb="12" lsb="12" />
+      <field name="ssa" desc="Signaled System Abort" msb="14" lsb="14" />
+      <field name="sta" desc="Signaled Target Abort" msb="11" lsb="11" />
+    </register>
+    <register name="subsystem_id" documentation="Subsystem ID" offset="46" size="2">
+    </register>
+    <register name="subsystem_vendor_id" documentation="Subsystem Vendor ID" offset="44" size="2">
+    </register>
+    <register name="vendor_id" documentation="Vendor ID" offset="0" size="2">
+    </register>
+  </bank>
+  <bank name="sidp" desc="serial ATA index/data pair registers" byte_order="little-endian" function="1">
+    <register name="Reserved" vsize="2" offset="8 12" size="4">
+    </register>
+    <register name="sdata" desc="Serial ATA DATA" offset="4" size="4">
+    </register>
+    <register name="sindex" desc="Serial ATA Index" offset="0" size="4">
+      <field name="pidx" desc="Port Index" msb="15" lsb="8" />
+      <field name="ridx" desc="Register Index" msb="7" lsb="0" />
+    </register>
+  </bank>
+</device>

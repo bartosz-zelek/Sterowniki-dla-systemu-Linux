@@ -1,0 +1,16 @@
+<h1 class="jdocu"><a name="connect-windbg">2.4 Connect Windows Kernel Debugger to the Target</a></h1>
+<p>
+  
+</p><p>
+  With a Windows image configured as shown in section
+  <a class="reference" href="setup-windows-debug.html">2.3</a>, you are ready to set up the network
+  connections to allow WinDbg on the host to connect to the target system. This
+  requires setting up an <b>outbound port translation</b> in Simics. The reason
+  is that WinDbg connections are initiated from the target system, and not from
+  the debugger. When kernel or boot debug is enabled, Windows will periodically
+  reach out to the IP and port you configured above, and see if there is a
+  WinDbg running there and listening to connections from the target.
+</p><p>
+  
+  
+</p>

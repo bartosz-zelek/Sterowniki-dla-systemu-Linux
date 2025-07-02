@@ -1,0 +1,16 @@
+# desc: The generic cycle interface
+# type: Other
+# ip-owner: Simics
+# keywords:
+# docs: None
+# comment:
+
+Group: generic-cycle-iface/shared/src
+Require-tokens: public
+  src/extensions/cycle-common/generic-cycle-iface.c
+  src/extensions/cycle-common/generic-cycle-iface.h
+  src/extensions/cycle-common/CMakeLists.txt
+
+Group: cycle-common/moduleinfo
+Require-tokens: public
+  src/extensions/cycle-common/MODULEINFO

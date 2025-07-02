@@ -1,0 +1,13 @@
+<h1 id="multiple-operating-systems-on-a-single-machine"><a href="#multiple-operating-systems-on-a-single-machine">2.11 Multiple Operating Systems on a Single Machine</a></h1>
+<p>It is possible to use several trackers on a single machine running multiple operating systems. In that case each operating system must have dedicated processors. Such a system requires some additional configuration steps, that has to be done after the processor objects have been instantiated. First create a software object for each operating system. This is done with the <code>new-os-awareness</code> command. Then set the <code>processors</code> attribute of each software object to match that of the operating system it is going to track. The trackers are now ready to be used.</p>
+<pre><code class="language-simics">simics&gt; <strong>load-module os-awareness</strong>
+os-awareness module loaded
+simics&gt; <strong>new-os-awareness name = board.softwareA</strong>
+Created OS awareness framework 'board.softwareA'
+simics&gt; <strong>new-os-awareness name = board.softwareB</strong>
+Created OS awareness framework 'board.softwareB'
+simics&gt; <strong>@conf.board.softwareA.processors = [conf.board.mb.cpu0.core[0][0]]</strong>
+&lt;
+simics&gt; <strong>@conf.board.softwareB.processors = [conf.board.mb.cpu1.core[0][0]]</strong>
+&lt;
+</code></pre>

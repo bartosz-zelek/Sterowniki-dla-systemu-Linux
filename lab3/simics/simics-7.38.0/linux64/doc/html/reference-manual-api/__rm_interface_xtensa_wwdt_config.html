@@ -1,0 +1,18 @@
+<h1 class="jdocu"><a class="not-numbered" name="__rm_interface_xtensa_wwdt_config">xtensa_wwdt_config</a></h1>
+<p>
+
+<a name="xtensa_wwdt_config"></a><a name="xtensa_wwdt_config_interface_t"></a></p><dl class="jdocu_di">
+<dt class="jdocu_descitem">Description</dt><dd class="jdocu_descitem">This interface is implemented by the Xtensa core which holds the
+   configuration of the Windowed Watchdog Timer. The device itself is not part
+   of the core, but implemented as an external device which fetches these
+   values for correct device simulation, making the wwdt device generic
+   for all configurations.
+<p>
+   The <code>has_wwdt</code> method reports if the wwdt option is included in the
+   core at all. The rest of the member functions extract configuration details
+   from the core, if the core does not have wwdt enabled, all are zeros.
+</p></dd>
+<dt class="jdocu_descitem">Execution Context</dt><dd class="jdocu_descitem">Cell Context for all methods.
+   
+</dd>
+</dl><p></p>

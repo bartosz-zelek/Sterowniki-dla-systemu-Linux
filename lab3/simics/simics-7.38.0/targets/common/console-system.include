@@ -1,0 +1,96 @@
+decl {
+        ! Help script for setting up console
+
+        group "Console"
+
+        param create_con : bool = TRUE
+        ! Create default console.
+
+        param con_name : string
+        ! The console name.
+
+        param con_connector : string
+        ! Console connector on the target machine to connect to console.
+
+        param con_fg_color : string = "black"
+        ! The console foreground color.
+
+        param con_bg_color : string = "grey"
+        ! The console background color.
+
+        param con_width : int = 80
+        ! The console width.
+
+        param con_height : int = 24
+        ! The console height.
+
+        param con_win32_font : string = "Lucida Console:Regular:10"
+        ! The console win32 font.
+
+        param con_x11_font : string = "6x10"
+        ! The console x11 font.
+
+        param con_type : {"text", "telnet", "host"} = "text"
+        ! The type of text or connected console.
+
+        param con_port : string or nil = NIL
+        ! The port name for the host port connection. Valid if con_type is "host".
+
+        param con_telnet_port : int or nil = NIL
+        ! The port number for the telnet console connection. Valid if con_type is "telnet".
+
+        param con_visible : bool = TRUE
+        ! Should the console be visible?
+        
+        group "Component"
+
+        result console : string
+        ! The default console component.
+}
+
+load-module console-components
+
+if $create_con {
+        if $con_port != NIL and $con_telnet_port != NIL {
+                # Set up both telnet and host-serial servers
+                $console = (create-txt-console-comp
+                            name = $con_name
+                            visible = $con_visible
+                            bg_color = $con_bg_color
+                            fg_color = $con_fg_color
+                            height = $con_height
+                            width = $con_width
+                            pty = $con_port
+                            telnet_port = $con_telnet_port)
+        } else if $con_port != NIL {
+                # Set up host-serial server
+                $console = (create-txt-console-comp
+                            name = $con_name
+                            visible = $con_visible
+                            bg_color = $con_bg_color
+                            fg_color = $con_fg_color
+                            height = $con_height
+                            width = $con_width
+                            pty = $con_port)
+        } else if $con_telnet_port != NIL {
+                # Set up telnet server
+                $console = (create-txt-console-comp
+                            name = $con_name
+                            visible = $con_visible
+                            bg_color = $con_bg_color
+                            fg_color = $con_fg_color
+                            height = $con_height
+                            width = $con_width
+                            telnet_port = $con_telnet_port)
+        } else {
+                # Only GUI console without telnet or host-serial
+                $console = (create-txt-console-comp
+                            name = $con_name
+                            visible = $con_visible
+                            bg_color = $con_bg_color
+                            fg_color = $con_fg_color
+                            height = $con_height
+                            width = $con_width)
+        }
+        connect $console.serial $con_connector
+}

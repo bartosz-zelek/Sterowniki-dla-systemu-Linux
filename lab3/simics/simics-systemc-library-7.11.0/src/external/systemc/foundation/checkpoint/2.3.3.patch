@@ -1,0 +1,590 @@
+diff --git a/src/sysc/communication/sc_event_queue.h b/src/sysc/communication/sc_event_queue.h
+index 88d8340..56a6130 100644
+--- a/src/sysc/communication/sc_event_queue.h
++++ b/src/sysc/communication/sc_event_queue.h
+@@ -79,6 +79,8 @@ class SC_API sc_event_queue:
+   public sc_event_queue_if,
+   public sc_module
+ {
++    friend class simContextProxyCheckpoint;
++
+  public:
+ 
+     SC_HAS_PROCESS( sc_event_queue );
+diff --git a/src/sysc/communication/sc_fifo.h b/src/sysc/communication/sc_fifo.h
+index 2ad3f5c..69c0e81 100644
+--- a/src/sysc/communication/sc_fifo.h
++++ b/src/sysc/communication/sc_fifo.h
+@@ -52,6 +52,8 @@ class sc_fifo
+   public sc_fifo_out_if<T>,
+   public sc_prim_channel
+ {
++    friend class simContextProxyCheckpoint;
++
+ public:
+ 
+     // constructors
+diff --git a/src/sysc/communication/sc_mutex.h b/src/sysc/communication/sc_mutex.h
+index 0cfa5bc..e14453f 100644
+--- a/src/sysc/communication/sc_mutex.h
++++ b/src/sysc/communication/sc_mutex.h
+@@ -46,6 +46,8 @@ class SC_API sc_mutex
+ : public sc_mutex_if,
+   public sc_object
+ {
++    friend class simContextProxyCheckpoint;
++
+ public:
+ 
+     // constructors and destructor
+diff --git a/src/sysc/communication/sc_prim_channel.h b/src/sysc/communication/sc_prim_channel.h
+index 0b5200e..15b54ff 100644
+--- a/src/sysc/communication/sc_prim_channel.h
++++ b/src/sysc/communication/sc_prim_channel.h
+@@ -45,6 +45,7 @@ class SC_API sc_prim_channel
+ : public sc_object
+ {
+     friend class sc_prim_channel_registry;
++    friend class simContextProxyCheckpoint;
+ 
+ public:
+     enum { list_end = 0xdb };
+@@ -236,6 +237,7 @@ private:
+ class sc_prim_channel_registry
+ {
+     friend class sc_simcontext;
++    friend class simContextProxyCheckpoint;
+ 
+ public:
+ 
+diff --git a/src/sysc/communication/sc_semaphore.h b/src/sysc/communication/sc_semaphore.h
+index ae8e464..e99332e 100644
+--- a/src/sysc/communication/sc_semaphore.h
++++ b/src/sysc/communication/sc_semaphore.h
+@@ -46,6 +46,8 @@ class SC_API sc_semaphore
+ : public sc_semaphore_if,
+   public sc_object
+ {
++    friend class simContextProxyCheckpoint;
++
+ public:
+ 
+     // constructors
+diff --git a/src/sysc/communication/sc_signal.h b/src/sysc/communication/sc_signal.h
+index f69dbdb..5cfa92b 100644
+--- a/src/sysc/communication/sc_signal.h
++++ b/src/sysc/communication/sc_signal.h
+@@ -157,6 +157,8 @@ class sc_signal_t
+   , public    sc_signal_channel
+   , protected sc_writer_policy_check<POL>
+ {
++    friend class simContextProxyCheckpoint;
++
+ protected:
+     typedef sc_signal_inout_if<T>       if_type;
+     typedef sc_signal_channel           base_type;
+@@ -402,6 +404,8 @@ template< sc_writer_policy POL >
+ class SC_API sc_signal<bool,POL>
+   : public sc_signal_t<bool,POL>
+ {
++    friend class simContextProxyCheckpoint;
++
+ protected:
+     typedef sc_signal_t<bool,POL>       base_type;
+     typedef sc_signal<bool,POL>         this_type;
+@@ -490,6 +494,8 @@ template< sc_writer_policy POL >
+ class SC_API sc_signal<sc_dt::sc_logic,POL>
+   : public sc_signal_t<sc_dt::sc_logic,POL>
+ {
++    friend class simContextProxyCheckpoint;
++
+ protected:
+     typedef sc_signal_t<sc_dt::sc_logic,POL>    base_type;
+     typedef sc_signal<sc_dt::sc_logic,POL>      this_type;
+diff --git a/src/sysc/communication/sc_signal_resolved.h b/src/sysc/communication/sc_signal_resolved.h
+index 4bc45e7..45a870a 100644
+--- a/src/sysc/communication/sc_signal_resolved.h
++++ b/src/sysc/communication/sc_signal_resolved.h
+@@ -54,6 +54,8 @@ extern SC_API const sc_dt::sc_logic_value_t sc_logic_resolution_tbl[4][4];
+ class SC_API sc_signal_resolved
+ : public sc_signal<sc_dt::sc_logic,SC_MANY_WRITERS>
+ {
++    friend class simContextProxyCheckpoint;
++
+ public:
+ 
+     // typedefs
+diff --git a/src/sysc/communication/sc_signal_rv.h b/src/sysc/communication/sc_signal_rv.h
+index 3259656..980f921 100644
+--- a/src/sysc/communication/sc_signal_rv.h
++++ b/src/sysc/communication/sc_signal_rv.h
+@@ -94,6 +94,8 @@ template <int W>
+ class sc_signal_rv
+ : public sc_signal<sc_dt::sc_lv<W>, SC_MANY_WRITERS>
+ {
++    friend class simContextProxyCheckpoint;
++
+ public:
+ 
+     // typedefs
+diff --git a/src/sysc/kernel/sc_event.cpp b/src/sysc/kernel/sc_event.cpp
+index a5b6ed0..98cf510 100644
+--- a/src/sysc/kernel/sc_event.cpp
++++ b/src/sysc/kernel/sc_event.cpp
+@@ -208,7 +208,6 @@ sc_event::notify_delayed( const sc_time& t )
+     }
+ }
+ 
+-#define SC_KERNEL_EVENT_PREFIX "$$$$kernel_event$$$$_"
+ sc_event::kernel_tag sc_event::kernel_event;
+ 
+ // +----------------------------------------------------------------------------
+@@ -260,6 +259,10 @@ sc_event::register_event( const char* leaf_name, bool is_kernel_event /* = false
+ 	else
+ 	    m_simc->add_child_event( this );
+     }
++    else
++    {
++        m_simc->insert_kernel_event(m_name, this).swap(m_name);
++    }
+ }
+ 
+ void
+@@ -360,6 +363,10 @@ sc_event::~sc_event()
+     {
+ 	sc_object_manager* object_manager_p = m_simc->get_object_manager();
+ 	object_manager_p->remove_event( m_name );
++
++        // always try to remove the event, no need to check for
++        // SC_KERNEL_EVENT_PREFIX
++        m_simc->remove_kernel_event(m_name);
+     }
+ 
+     for(size_t i = 0; i < m_threads_dynamic.size(); ++i ) {
+diff --git a/src/sysc/kernel/sc_event.h b/src/sysc/kernel/sc_event.h
+index 8387b93..a0fa640 100644
+--- a/src/sysc/kernel/sc_event.h
++++ b/src/sysc/kernel/sc_event.h
+@@ -40,6 +40,8 @@
+ #pragma warning(disable: 4251) // DLL import for std::string
+ #endif
+ 
++#define SC_KERNEL_EVENT_PREFIX "$$$$kernel_event$$$$_"
++
+ namespace sc_core {
+ 
+ // forward declarations
+@@ -129,6 +131,7 @@ class SC_API sc_event_list
+     friend class sc_method_process;
+     friend class sc_thread_process;
+     friend void sc_thread_cor_fn( void* arg );
++    friend class simContextProxyCheckpoint;
+ 
+ public:
+     sc_event_list( const sc_event_list& );
+@@ -270,6 +273,7 @@ class SC_API sc_event
+     friend class sc_mutex;
+     friend class sc_join;
+     friend class sc_trace_file;
++    friend class simContextProxyCheckpoint;
+ 
+ public:
+ 
+@@ -359,6 +363,7 @@ class SC_API sc_event_timed
+ {
+     friend class sc_event;
+     friend class sc_simcontext;
++    friend class simContextProxyCheckpoint;
+ 
+     friend SC_API int sc_notify_time_compare( const void*, const void* );
+ 
+diff --git a/src/sysc/kernel/sc_method_process.h b/src/sysc/kernel/sc_method_process.h
+index 79adf32..489ac19 100644
+--- a/src/sysc/kernel/sc_method_process.h
++++ b/src/sysc/kernel/sc_method_process.h
+@@ -111,6 +111,7 @@ class sc_method_process : public sc_process_b {
+     friend class sc_process_handle;
+     friend class sc_simcontext;
+     friend class sc_runnable;
++    friend class simContextProxyCheckpoint;
+ 
+     friend void next_trigger( sc_simcontext* );
+     friend void next_trigger( const sc_event&,
+diff --git a/src/sysc/kernel/sc_process.cpp b/src/sysc/kernel/sc_process.cpp
+index bc3c12a..d50a9f1 100644
+--- a/src/sysc/kernel/sc_process.cpp
++++ b/src/sysc/kernel/sc_process.cpp
+@@ -174,6 +174,25 @@ void sc_process_b::delete_process()
+ 
+     if ( NULL == sc_get_current_process_b() )
+     {
++        // The thread objects are deleted in sc_simcontext::clean()
++        switch ( m_process_kind )
++        {
++          case SC_THREAD_PROC_:
++          case SC_CTHREAD_PROC_:
++            if (sc_get_curr_simcontext()->has_ended_process(
++                    static_cast<sc_thread_handle>( this ))) {
++                m_references_n = 1;
++                return;
++            }
++            break;
++          // The method objects are deleted in sc_simcontext::clean() in
++          // sc_process_table::~sc_process_table()
++          case SC_METHOD_PROC_:
++              m_references_n = 1;
++              return;
++          default:
++              break;
++        }
+         delete this;
+     }
+ 
+@@ -208,7 +227,7 @@ std::string sc_process_b::dump_state() const
+ {
+     std::string result;
+     result = "[";
+-    if ( m_state == ps_normal )
++    if ( m_state == ps_normal || m_state == ps_bit_initialized)
+     {
+         result += " normal";
+     }
+diff --git a/src/sysc/kernel/sc_process.h b/src/sysc/kernel/sc_process.h
+index aef0839..9ddb03a 100644
+--- a/src/sysc/kernel/sc_process.h
++++ b/src/sysc/kernel/sc_process.h
+@@ -295,6 +295,7 @@ class SC_API sc_process_b : public sc_object {
+     friend SC_API sc_process_handle sc_get_current_process_handle();
+     friend void sc_thread_cor_fn( void* arg );
+     friend SC_API bool timed_out( sc_simcontext* );
++    friend class simContextProxyCheckpoint;
+ 
+   public:
+     enum process_throw_type {
+@@ -310,6 +311,7 @@ class SC_API sc_process_b : public sc_object {
+ 	ps_bit_ready_to_run = 2,  // process is ready to run.
+         ps_bit_suspended = 4,     // process is suspended.
+ 	ps_bit_zombie = 8,        // process is a zombie.
++        ps_bit_initialized = 0x40000000,  // process has been run.
+         ps_normal = 0             // must be zero.
+     };
+ 
+diff --git a/src/sysc/kernel/sc_process_handle.h b/src/sysc/kernel/sc_process_handle.h
+index 71fb8d9..212ec04 100644
+--- a/src/sysc/kernel/sc_process_handle.h
++++ b/src/sysc/kernel/sc_process_handle.h
+@@ -82,6 +82,8 @@ class SC_API sc_process_handle {
+     friend class sc_sensitive_pos;
+     friend class sc_sensitive_neg;
+     friend class sc_thread_process;
++    friend class simContextProxyCheckpoint;
++    friend class sc_simcontext;
+ 
+   public:
+     inline sc_process_handle();
+diff --git a/src/sysc/kernel/sc_runnable.h b/src/sysc/kernel/sc_runnable.h
+index 905149f..cf914e3 100644
+--- a/src/sysc/kernel/sc_runnable.h
++++ b/src/sysc/kernel/sc_runnable.h
+@@ -43,6 +43,7 @@ namespace sc_core {
+ 
+ class SC_API sc_runnable
+ {
++    friend class simContextProxyCheckpoint;
+ 
+   public:
+     sc_runnable();
+diff --git a/src/sysc/kernel/sc_simcontext.cpp b/src/sysc/kernel/sc_simcontext.cpp
+index 7b33216..4d39d32 100644
+--- a/src/sysc/kernel/sc_simcontext.cpp
++++ b/src/sysc/kernel/sc_simcontext.cpp
+@@ -103,48 +103,6 @@ namespace sc_core {
+ 
+ sc_stop_mode stop_mode = SC_STOP_FINISH_DELTA;
+ 
+-// ----------------------------------------------------------------------------
+-//  CLASS : sc_process_table
+-//
+-//  Container class that keeps track of all method processes,
+-//  (c)thread processes.
+-// ----------------------------------------------------------------------------
+-
+-class sc_process_table
+-{
+-  public:
+-    template<typename ProcessHandle> struct queue
+-    {
+-      queue() : m_head() {}
+-      ~queue();
+-
+-      ProcessHandle head() const { return m_head; }
+-      void          push_front(ProcessHandle h);
+-      ProcessHandle remove(ProcessHandle h);
+-    private:
+-      ProcessHandle m_head;
+-    };
+-
+-    void push_front( sc_method_handle handle )
+-      { m_methods.push_front(handle); }
+-    void push_front( sc_thread_handle handle )
+-      { m_threads.push_front(handle); }
+-
+-    sc_method_handle method_q_head() const
+-      { return m_methods.head(); }
+-    sc_thread_handle thread_q_head() const
+-      { return m_threads.head(); }
+-
+-    sc_method_handle remove( sc_method_handle handle )
+-      { return m_methods.remove(handle); }
+-    sc_thread_handle remove( sc_thread_handle handle )
+-      { return m_threads.remove(handle); }
+-
+-  private:
+-    queue<sc_method_handle> m_methods; // Queue of existing method processes.
+-    queue<sc_thread_handle> m_threads; // Queue of existing thread processes.
+-};
+-
+ template<typename ProcessHandle>
+ sc_process_table::queue<ProcessHandle>::~queue()
+ {
+@@ -367,6 +325,11 @@ sc_simcontext::init()
+ void
+ sc_simcontext::clean()
+ {
++    // The erase of the iterator deletes the thread object indirectly via
++    // sc_process_b::delete_process()
++    while (m_ended_processes_.begin() != m_ended_processes_.end())
++        m_ended_processes_.erase(m_ended_processes_.begin());
++
+     // remove remaining zombie processes
+     do_collect_processes();
+ 
+@@ -397,6 +360,17 @@ sc_simcontext::clean()
+     }
+ }
+ 
++void sc_simcontext::insert_ended_process(sc_thread_process *p) {
++    m_ended_processes_[p->name()] = sc_process_handle(p);
++}
++
++void sc_simcontext::remove_ended_process(sc_thread_process *p) {
++    m_ended_processes_.erase(p->name());
++}
++
++bool sc_simcontext::has_ended_process(sc_thread_process *p) {
++    return m_ended_processes_.find(p->name()) != m_ended_processes_.end();
++}
+ 
+ sc_simcontext::sc_simcontext() :
+     m_object_manager(0), m_module_registry(0), m_port_registry(0),
+diff --git a/src/sysc/kernel/sc_simcontext.h b/src/sysc/kernel/sc_simcontext.h
+index 9fc12d2..02d08d8 100644
+--- a/src/sysc/kernel/sc_simcontext.h
++++ b/src/sysc/kernel/sc_simcontext.h
+@@ -42,6 +42,10 @@
+ #pragma warning(disable: 4251) // DLL import for std::vector
+ #endif
+ 
++#include <map>
++#include <sstream>
++#include <utility>
++
+ namespace sc_core {
+ 
+ // forward declarations
+@@ -158,6 +162,7 @@ class SC_API sc_simcontext
+     friend class sc_prim_channel;
+     friend class sc_cthread_process;
+     friend class sc_thread_process;
++    friend class simContextProxyCheckpoint;
+     friend SC_API sc_dt::uint64 sc_delta_count();
+     friend SC_API const std::vector<sc_event*>& sc_get_top_level_events(
+         const sc_simcontext* simc_p);
+@@ -399,11 +404,44 @@ private:
+ 
+     sc_reset_finder*            m_reset_finder_q; // Q of reset finders to reconcile.
+ 
++    std::map<std::string, std::pair<int, sc_event *> > m_kernel_event_table;
++    std::map<std::string, sc_process_handle> m_ended_processes_;
++
+ private:
+ 
+     // disabled
+     sc_simcontext( const sc_simcontext& );
+     sc_simcontext& operator = ( const sc_simcontext& );
++
++public:
++
++    std::string insert_kernel_event(const std::string &name, sc_event *obj) {
++        std::map<std::string, std::pair<int, sc_event *> >::iterator i;
++        i = m_kernel_event_table.find(name);
++        if (i == m_kernel_event_table.end()) {
++            m_kernel_event_table[name] = std::make_pair(0, obj);
++            return name;
++        }
++
++        std::stringstream ss;
++        ss << name << "_" << ++i->second.first;
++        return insert_kernel_event(ss.str(), obj);
++    }
++    sc_event *find_kernel_event(const std::string &name) {
++        std::map<std::string, std::pair<int, sc_event *> >::iterator i;
++        i = m_kernel_event_table.find(name);
++        if (i == m_kernel_event_table.end())
++            return NULL;
++
++        return i->second.second;
++    }
++    void remove_kernel_event(const std::string &name) {
++        m_kernel_event_table.erase(name);
++    }
++
++    void insert_ended_process(sc_thread_process *p);
++    void remove_ended_process(sc_thread_process *p);
++    bool has_ended_process(sc_thread_process *p);
+ };
+ 
+ // IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+diff --git a/src/sysc/kernel/sc_simcontext_int.h b/src/sysc/kernel/sc_simcontext_int.h
+index e77ded9..6e137d9 100644
+--- a/src/sysc/kernel/sc_simcontext_int.h
++++ b/src/sysc/kernel/sc_simcontext_int.h
+@@ -61,6 +61,51 @@
+ 
+ namespace sc_core {
+ 
++// ----------------------------------------------------------------------------
++//  CLASS : sc_process_table
++//
++//  Container class that keeps track of all method processes,
++//  (c)thread processes.
++// ----------------------------------------------------------------------------
++
++class sc_process_table
++{
++    friend class simContextProxyCheckpoint;
++  public:
++    template<typename ProcessHandle> struct queue
++    {
++      friend class simContextProxyCheckpoint;
++
++      queue() : m_head() {}
++      ~queue();
++
++      ProcessHandle head() const { return m_head; }
++      void          push_front(ProcessHandle h);
++      ProcessHandle remove(ProcessHandle h);
++    private:
++      ProcessHandle m_head;
++    };
++
++    void push_front( sc_method_handle handle )
++      { m_methods.push_front(handle); }
++    void push_front( sc_thread_handle handle )
++      { m_threads.push_front(handle); }
++
++    sc_method_handle method_q_head() const
++      { return m_methods.head(); }
++    sc_thread_handle thread_q_head() const
++      { return m_threads.head(); }
++
++    sc_method_handle remove( sc_method_handle handle )
++      { return m_methods.remove(handle); }
++    sc_thread_handle remove( sc_thread_handle handle )
++      { return m_threads.remove(handle); }
++
++  private:
++    queue<sc_method_handle> m_methods; // Queue of existing method processes.
++    queue<sc_thread_handle> m_threads; // Queue of existing thread processes.
++};
++
+ inline
+ const char*
+ sc_get_current_process_name( const char * if_empty = NULL )
+diff --git a/src/sysc/kernel/sc_thread_process.cpp b/src/sysc/kernel/sc_thread_process.cpp
+index f5cd6a2..4622580 100644
+--- a/src/sysc/kernel/sc_thread_process.cpp
++++ b/src/sysc/kernel/sc_thread_process.cpp
+@@ -111,6 +111,7 @@ void sc_thread_cor_fn( void* arg )
+ 
+     // PROCESS THE THREAD AND PROCESS ANY EXCEPTIONS THAT ARE THROWN:
+ 
++    thread_h->m_state |= sc_process_b::ps_bit_initialized;
+     while( true ) {
+ 
+         try {
+@@ -133,6 +134,9 @@ void sc_thread_cor_fn( void* arg )
+         }
+         break;
+     }
++    // Test for detached process
++    if (sc_find_object(thread_h->name()))
++        simc_p->insert_ended_process(thread_h);
+ 
+     sc_process_b*    active_p = sc_get_current_process_b();
+ 
+diff --git a/src/sysc/kernel/sc_thread_process.h b/src/sysc/kernel/sc_thread_process.h
+index 2155861..2c4f37d 100644
+--- a/src/sysc/kernel/sc_thread_process.h
++++ b/src/sysc/kernel/sc_thread_process.h
+@@ -115,6 +115,8 @@ class sc_thread_process : public sc_process_b {
+     friend void wait( const sc_time&, const sc_event&, sc_simcontext* );
+     friend void wait( const sc_time&, const sc_event_or_list&, sc_simcontext* );
+     friend void wait( const sc_time&, const sc_event_and_list&, sc_simcontext*);
++    friend class simContextProxyCheckpoint;
++
+   public:
+     sc_thread_process( const char* name_p, bool free_host,
+         SC_ENTRY_FUNC method_p, sc_process_host* host_p,
+diff --git a/src/sysc/kernel/sc_time.h b/src/sysc/kernel/sc_time.h
+index c4e331f..0efcae1 100644
+--- a/src/sysc/kernel/sc_time.h
++++ b/src/sysc/kernel/sc_time.h
+@@ -77,6 +77,8 @@ class SC_API sc_time_tuple;
+ 
+ class SC_API sc_time
+ {
++    friend class simContextProxyCheckpoint;
++
+ public:
+ 
+     typedef sc_dt::uint64 value_type;
+diff --git a/src/sysc/utils/sc_pq.h b/src/sysc/utils/sc_pq.h
+index 5499d1a..51f4e41 100644
+--- a/src/sysc/utils/sc_pq.h
++++ b/src/sysc/utils/sc_pq.h
+@@ -43,6 +43,8 @@ namespace sc_core {
+ 
+ class SC_API sc_ppq_base
+ {
++    friend class simContextProxyCheckpoint;
++
+ public:
+ 
+     typedef int (*compare_fn_t)( const void*, const void* );
+diff --git a/src/tlm_utils/peq_with_get.h b/src/tlm_utils/peq_with_get.h
+index 5c85f25..cc04929 100644
+--- a/src/tlm_utils/peq_with_get.h
++++ b/src/tlm_utils/peq_with_get.h
+@@ -33,6 +33,8 @@ namespace tlm_utils {
+ template <class PAYLOAD>
+ class peq_with_get : public sc_core::sc_object
+ {
++    friend class sc_core::simContextProxyCheckpoint;
++
+ public:
+   typedef PAYLOAD transaction_type;
+   typedef std::pair<const sc_core::sc_time, transaction_type*> pair_type;
+diff --git a/src/tlm_utils/tlm_quantumkeeper.h b/src/tlm_utils/tlm_quantumkeeper.h
+index ed21166..996d300 100644
+--- a/src/tlm_utils/tlm_quantumkeeper.h
++++ b/src/tlm_utils/tlm_quantumkeeper.h
+@@ -36,6 +36,8 @@ namespace tlm_utils {
+   //
+   class tlm_quantumkeeper
+   {
++      friend class sc_core::simContextProxyCheckpoint;
++
+   public:
+     //
+     // Static setters/getters for the global quantum value.

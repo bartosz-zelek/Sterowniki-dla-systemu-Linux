@@ -1,0 +1,28 @@
+<h1 class="jdocu"><a class="not-numbered" name="__rm_interface_simulator_cache">simulator_cache</a></h1>
+<p>
+
+<a name="simulator_cache"></a><a name="simulator_cache_interface_t"></a></p><dl class="jdocu_di">
+<dt class="jdocu_descitem">Description</dt><dd class="jdocu_descitem">The <code>simulator_cache</code> interface is optionally
+  implemented by processors. The interface can be used for
+  <code>translate</code> objects to force a flush of the internal
+  caches in a processor model, if a memory area that it previously
+  allowed for caching is not valid anymore.
+<p>
+  </p><pre class="jdocu_small">
+SIM_INTERFACE(simulator_cache) {
+        void (*flush)(conf_object_t *obj);
+};
+#define SIMULATOR_CACHE_INTERFACE "simulator_cache"
+</pre><p>
+</p><p>
+  
+</p></dd>
+<dt class="jdocu_descitem">Execution Context</dt><dd class="jdocu_descitem"><table>
+
+  <tbody><tr><td class="jdocu_noborder"><b><i>flush</i></b></td><td class="jdocu_noborder">Cell Context</td></tr>
+
+  </tbody></table>
+<p>
+  
+</p></dd>
+</dl><p></p>

@@ -1,0 +1,34 @@
+<h1 class="jdocu"><a name="configure-communications">2.3.1 Configure Communications</a></h1>
+<p>
+  
+</p><p>
+  In an elevated command prompt on the target system, issue the following
+  command to tell the Windows on-target debug agent how to connect
+  to the debugger outside of Simics:
+</p><p>
+  </p><pre class="jdocu_small">&gt; <b>BCDEDIT /DBGSETTINGS NET HOSTIP:&lt;DebugHostIP&gt; BUSPARAMS:&lt;B.D.F&gt;<img alt="Line break" src="nextline.png">
+PORT:&lt;Port&gt; KEY:1.2.3.4</b>
+  </pre><p>
+</p><p>
+  where:
+</p><p>
+  </p><ul>
+    <li><b><code>&lt;DebugHostIP&gt;</code></b> is the service node/gateway IP. It
+      is used to communicate with the the outside world.</li>
+    <li><b><code>&lt;B.D.F&gt;</code></b> is the BDF of the network card, as shown
+      in section <a class="reference" href="check-pcie-address.html">2.1.2</a>.</li>
+    <li><b><code>&lt;Port&gt;</code></b> is a port you need to choose for the
+      connection, typically somewhere above 50000. Say <b>50010</b> as a
+      default.</li>
+    <li>The Key is a value used to secure the connection. Make sure to use the
+      same value everywhere it is required. You can use <b>1.2.3.4</b> to keep
+      things simple.</li>
+  </ul>
+<p>
+  In the setup used for the example:
+</p><p>
+  </p><pre class="jdocu_small">&gt; <b>BCDEDIT /DBGSETTINGS NET HOSTIP:10.10.0.1 BUSPARAMS:0.25.0 PORT:50010<img alt="Line break" src="nextline.png">
+KEY:1.2.3.4</b>
+  </pre><p>
+</p><p>
+</p>

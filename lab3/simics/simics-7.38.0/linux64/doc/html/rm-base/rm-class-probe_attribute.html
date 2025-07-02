@@ -1,0 +1,62 @@
+<h1 id="probe_attribute"><a href="#probe_attribute">probe_attribute</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+Probe class for attribute encapsulation.
+<h2 id="interfaces-implemented">
+<a href="#interfaces-implemented">Interfaces Implemented</a>
+</h2>conf_object, log_object, probe
+<h2 id="notifiers">
+<a href="#notifiers">Notifiers</a>
+</h2>
+<dl>
+<dt id="dt:cell-change"><a href="#dt:cell-change">cell-change</a></dt>
+<dd>Notifier that is triggered after the object's cell was changed.</dd>
+<dt id="dt:object-delete"><a href="#dt:object-delete">object-delete</a></dt>
+<dd>Notifier that is triggered just before Simics object is deleted.</dd>
+<dt id="dt:queue-change"><a href="#dt:queue-change">queue-change</a></dt>
+<dd>Notifier that is triggered after the object's clock was changed. New clock can be obtained with the SIM_object_clock function.</dd>
+</dl>
+<h2 id="attributes">
+<a href="#attributes">Attributes</a>
+</h2>
+<dl>
+<dt id="dt:cprops"><a href="#dt:cprops">
+<i>cprops</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[[is|i|o|n|b|[s*]|[[is|i|o|n|b|[s*]]*]|[[[is|i|o|n|b|[s*]]*]*]]*]</code>
+<br>Probe properties</dd>
+<dt id="dt:owner"><a href="#dt:owner">
+<i>owner</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o</code>
+<br>The attribute object</dd>
+<dt id="dt:probe_type"><a href="#dt:probe_type">
+<i>probe_type</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>s</code>
+<br>The probe type</dd>
+<dt id="dt:attr_name"><a href="#dt:attr_name">
+<i>attr_name</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>s</code>
+<br>The attribute name</dd>
+</dl>
+<h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.simics.core.html">Simics Core</a>
+</section>

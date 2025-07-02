@@ -1,0 +1,38 @@
+<h1 class="jdocu"><a class="not-numbered" name="__rm_interface_xtensa_mpu_lookup">xtensa_mpu_lookup</a></h1>
+<p>
+
+<a name="xtensa_mpu_lookup"></a><a name="xtensa_mpu_lookup_interface_t"></a></p><dl class="jdocu_di">
+<dt class="jdocu_descitem">Description</dt><dd class="jdocu_descitem">This interface is implemented by the Xtensa core which is configured with an
+   MPU. The primary use of this interface, is the iDMA device which will need
+   to do various protection checks for the DMA transfers.
+<p>
+   The <code>mpu_region</code> returns region data that hits for
+   the specified address. If the address hits in a background
+   mapping, the end address will be when a foreground mapping
+   overrides the background mapping.
+   </p><pre class="jdocu_small">typedef struct xtensa_mpu_lookup {
+        bool background;                 /* If false, a foreground hit */
+        uint16 region;                   /* The foreground/background region */
+        uint32 start;
+        uint32 end;
+        /* Permissions */
+        bool sr;                             /* supervisor-read */
+        bool sw;                             /* supervisor-write */
+        bool sx;                             /* supervisor-execute */
+        bool ur;                             /* user-read */
+        bool uw;                             /* user-write */
+        bool ux;                             /* user-execute */
+} xtensa_mpu_lookup_t;
+
+SIM_INTERFACE(xtensa_mpu_lookup) {
+        xtensa_mpu_lookup_t (*mpu_region)(conf_object_t *obj, uint32 address);
+};
+#define XTENSA_MPU_LOOKUP_INTERFACE "xtensa_mpu_lookup"
+</pre><p>
+</p><p>
+   
+</p></dd>
+<dt class="jdocu_descitem">Execution Context</dt><dd class="jdocu_descitem">Cell Context for all methods.
+   
+</dd>
+</dl><p></p>

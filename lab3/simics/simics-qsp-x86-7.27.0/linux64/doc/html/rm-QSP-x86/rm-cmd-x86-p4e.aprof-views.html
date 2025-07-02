@@ -1,0 +1,22 @@
+<a name="x86-p4e.aprof-views"></a>
+<h1 id="x86-p4e.aprof-views"><a href="#x86-p4e.aprof-views">&lt;x86-p4e&gt;.aprof-views</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>&lt;x86-p4e&gt;.aprof-views</b> [<i>add</i>] [<i>remove</i>] [<i>view</i>] [-clear] <br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+ Determines which address profiler views are displayed alongside disassembled code.
+<p>
+The <i>add</i> and <i>view</i> arguments select an address profiler view to add to the list. Alternatively, the <i>remove</i> and <i>view</i> arguments specify an address profiler view to remove from the list. <i>view</i> defaults to 0 if not specified.
+</p><p>
+If called with the <tt>-clear</tt> flag, remove all address profiler views from the list.
+</p><p>
+If called without arguments, print a detailed list of the currently selected address profiler views for the processor. 
+</p><h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.x86-intel64.html">x86-intel64</a>
+</section>

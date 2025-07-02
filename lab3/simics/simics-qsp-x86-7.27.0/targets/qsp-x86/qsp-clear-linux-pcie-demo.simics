@@ -1,0 +1,94 @@
+decl {
+! Script to boot a Simics QSP target with Clear Linux
+! And the simple PCIe demo device with leds and buttons
+
+    # Borrow all parameters from the standard file, with some small
+    # changes to default parameters.
+    #
+    params from "qsp-clear-linux.simics"
+        default machine_name         = "machine"
+        default num_cores            = 2
+        default memory_megs          = 8Ki
+        default show_con0            = TRUE
+        default connect_real_network = "no"
+
+    group "Simulation"
+       param real_time_mode      : bool = TRUE
+       ! Prevents the simulation from running faster than real time.
+       ! Kick in once the target system has booted, since booting with
+       ! real time mode is a waste of time.
+
+    params from "demo-add-pcie-demo-led-device.include"
+        default device_type  = "systemc"
+
+    # Return value
+    result system : string
+}
+
+##
+## Set up the base machine
+## 
+run-script "%script%/qsp-clear-linux.simics"
+
+##
+## Create the PCIe card and attach it
+##
+(run-script "%script%/demo-add-pcie-demo-led-device.include"
+                  master_system = $system
+                  pcie_slot = $system.mb.nb.pcie_slot[1])
+
+##
+## Set system information 
+##
+$system->system_info = "QSP x86 with Linux - PCIe Device Demo"
+
+##
+## Smart real-time-mode: wait until the boot is over, then enable it
+## Allowing Simics to skip over the large amounts of idle time in the
+## UEFI boot, but then allow users to use the target interactively 
+## without login time-outs. 
+##
+if $real_time_mode {
+    script-branch "real_time_mode_enabler" {
+        bp.console_string.wait-for $system.serconsole.con "login: "
+        add-session-comment "Login prompt spotted, enabling real-time-mode"
+        enable-real-time-mode 200
+    }
+}
+
+##
+## Upload target software
+##
+script-branch "software_uploader" {
+    local $mgr  = (start-agent-manager)
+    local $hndl = ($mgr.connect-to-agent)
+    local $con = $system.serconsole.con
+    local $target_source = "%script%/target-source/"
+
+     # Set a short poll intervall as the script branch will otherwise stall
+     # while waiting to test the driver.
+    $hndl.agent-poll-interval 100
+    local $bin_driver = $target_source + "simics-pcie-demo-driver/simics-pcie-demo-driver.ko"
+    $hndl.upload -overwrite $bin_driver /root
+    local $bin_led_interactive = $target_source + "simics-pcie-demo-led-interactive/led-interactive"
+    $hndl.upload -overwrite -executable $bin_led_interactive /root
+    $hndl.wait-for-job   ## wait for all uploads
+    add-session-comment "Uploaded target software to system"
+
+    # Insert driver
+    $con.input "\n"
+    bp.console_string.wait-then-write console = $con "~ $" "sudo insmod /root/simics-pcie-demo-driver.ko\n"
+    add-session-comment "Inserting driver"
+
+    # Test driver
+    bp.console_string.wait-for $con "~ $"
+    $job = ($hndl.run ("sudo bash -c \"echo '01'"
+                       + "> /dev/simics_pcie_demo_driver\""))
+    $hndl.wait-for-job $job
+    if( $card.panel.red_out->bool_state == TRUE) {
+        add-session-comment "Test: operation code '01' turned on red LED - OK "
+    } else {
+        interrupt-script "Test: operation code '01' failed to turned on red LED - failed "
+    }
+    stop
+}

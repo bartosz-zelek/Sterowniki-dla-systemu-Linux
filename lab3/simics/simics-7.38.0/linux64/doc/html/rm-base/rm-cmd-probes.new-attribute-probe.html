@@ -1,0 +1,18 @@
+<a name="probes.new-attribute-probe"></a>
+<h1 id="probes.new-attribute-probe"><a href="#probes.new-attribute-probe">&lt;probes&gt;.new-attribute-probe</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>&lt;probes&gt;.new-attribute-probe</b> <i>"class"</i> <i>"attribute-name"</i> [<i>"name"</i>] [<i>"display-name"</i>] <br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+ Creates a new probe with a <i>name</i> that uses an attribute as the source of data. The <i>class</i> is the Simics class and the <i>attribute-name</i> is the attribute in the class to use. The <i>display-name</i> can be used when presenting the probe in a monitor tool or similar.
+<p>
+A new probe will be created for all object of the class that has the attribute. Only these attribute types are accepted: "i", "f", "b", "s".
+</p><h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.simics.core.html">Simics Core</a>
+</section>
