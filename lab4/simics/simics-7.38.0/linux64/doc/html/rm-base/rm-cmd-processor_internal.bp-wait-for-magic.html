@@ -1,0 +1,28 @@
+<a name="processor_internal.bp-wait-for-magic"></a>
+<h1 id="processor_internal.bp-wait-for-magic"><a href="#processor_internal.bp-wait-for-magic">&lt;processor_internal&gt;.bp-wait-for-magic</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>&lt;processor_internal&gt;.bp-wait-for-magic</b> [<i>number</i>|-all] [<i>timeout</i>] [<i>timeout-rt</i>] <br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+ Postpones execution of a script branch until the specified magic instruction occurs.
+<p>
+If the <i>number</i> parameter is specified, only magic instructions with that argument value are considered. The possible argument values depends on the processor type. To consider all magic instructions, the <tt>-all</tt> flag can be used. The default is to consider magic instructions with argument 0.
+</p><p>
+If no processor object is specified, magic instructions from all processors are considered.
+</p><p>
+See further about magic breakpoints in <cite>Simics User's Guide</cite>.
+</p><p>
+If <i>timeout</i> is a positive number, the command will run for at most that many seconds of virtual time.
+</p><p>
+If <i>timeout-rt</i> is a positive number, the command will run for at most that many seconds of real time.
+</p><p>
+A time-out will be signaled by throwing a CLI exception, which can be captured using try/except in order to take specific action, or to let it pass unhandled. 
+</p><h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.bp-manager.html">bp-manager</a>
+</section>

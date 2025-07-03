@@ -1,0 +1,33 @@
+// apic-inter-core-smi-handling-interface.dml - Extension for APIC SMI handling interface
+
+/*
+  © 2024 Intel Corporation
+
+  This software and the related documents are Intel copyrighted materials, and
+  your use of them is governed by the express license under which they were
+  provided to you ("License"). Unless the License provides otherwise, you may
+  not use, modify, copy, publish, distribute, disclose or transmit this software
+  or the related documents without Intel's prior written permission.
+
+  This software and the related documents are provided as is, with no express or
+  implied warranties, other than those that are expressly stated in the License.
+*/
+
+dml 1.4;
+
+header %{
+#include "apic-inter-core-smi-handling-interface.h"
+%}
+
+extern typedef struct {
+    int (*handling_needed)(conf_object_t *obj);
+    void (*stall_cpu)(conf_object_t *obj);
+    void (*unstall_cpu)(conf_object_t *obj);
+    void (*trigger_post_smi_send_action)(conf_object_t *obj,
+                                         conf_object_t *target_apic);
+    void (*trigger_smi_receive_action)(conf_object_t *obj,
+                                       conf_object_t *src_apic);
+} apic_inter_core_smi_handling_interface_t;
+
+extern const char *const APIC_INTER_CORE_SMI_HANDLING_INTERFACE;
+

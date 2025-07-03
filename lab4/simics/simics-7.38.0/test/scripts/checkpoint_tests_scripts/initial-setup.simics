@@ -1,0 +1,22 @@
+$auto_boot = FALSE
+
+echo "running " + $file
+run-script -local $file
+
+load-module state-assertion
+state-assertion-create-file `os.path.join(fileprefix, "assert.gz")` gz sa0 align = 16
+
+bp.step.break -absolute $start
+c
+
+echo $objlist
+foreach $obj in $objlist {
+    sa0.add $obj $assert_time
+}
+
+sa0.start
+
+bp.step.break $duration
+c
+sa0.stop
+quit

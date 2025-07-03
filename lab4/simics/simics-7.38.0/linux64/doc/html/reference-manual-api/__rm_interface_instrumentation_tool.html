@@ -1,0 +1,44 @@
+<h1 class="jdocu"><a class="not-numbered" name="__rm_interface_instrumentation_tool">instrumentation_tool</a></h1>
+<p>
+
+<a name="instrumentation_tool"></a><a name="instrumentation_tool_interface_t"></a></p><dl class="jdocu_di">
+<dt class="jdocu_descitem">Description</dt><dd class="jdocu_descitem">This interface is intended to be implemented by instrumentation tools using
+   the instrumentation framework. The instrumentation framework handles setting
+   up, controlling and removing the connection between providers and tools, but
+   the actual communication is handled by instrumentation specific interfaces.
+<p>
+   When a connection with a provider is being established, the
+   <b><i>connect</i></b> method is called. The <i>provider</i> argument
+   specifies the provider which should be connected. The <i>args</i>
+   are tool specific arguments that can be used allowing the connection
+   to be configured a certain way. The tool should create a new
+   dedicated connection object, which register itself with the provider
+   using the dedicated interface. The connection object created
+   is returned by the <b><i>connect</i></b> function.   
+   If, for any reason, the tool cannot successfully connect
+   to the provider, NULL should be returned to indicate failure.
+</p><p>
+   If a connection should be removed, the <b><i>disconnect</i></b> method
+   is called. The <i>conn_obj</i> argument is the connection object
+   returned earlier in <b><i>connect</i></b>.
+   It is up to the tool to delete the created object which should
+   unregister itself from the provider.
+</p><p>
+   </p><pre class="jdocu_small">SIM_INTERFACE(instrumentation_tool) {
+        conf_object_t *(*connect)(
+                conf_object_t *NOTNULL obj,
+                conf_object_t *NOTNULL provider,
+                attr_value_t args);
+        void  (*disconnect)(
+                conf_object_t *NOTNULL obj,
+                conf_object_t *NOTNULL conn_obj);
+};
+#define INSTRUMENTATION_TOOL_INTERFACE "instrumentation_tool"
+</pre><p>
+</p><p>
+   
+</p></dd>
+<dt class="jdocu_descitem">Execution Context</dt><dd class="jdocu_descitem">Global Context for all methods.
+   
+</dd>
+</dl><p></p>

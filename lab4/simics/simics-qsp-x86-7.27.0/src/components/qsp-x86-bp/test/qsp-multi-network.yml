@@ -1,0 +1,32 @@
+%YAML 1.2
+---
+params:
+  num_machines:
+    type: int
+    default: 2
+    required: true
+  qsp[num_machines]:
+    import: "%script%/qsp-clear-linux.yml"
+    # Remove defaults, set in pre-init
+    defaults:
+      hw:
+        board_name: null
+        net_name: null
+        net:
+          switch:
+            links: null
+        qsp:
+          mac_address: null
+  board_name: {type: 'str', default: board}
+  net:
+    blueprint: network_setup
+    module: simmod.qsp_x86_bp.tests.network_setup
+    defaults:
+      # Remove defaults, set in pre-init
+      switch:
+        links: null
+      sn:
+        enable_dhcp: true
+pre-init: "%script%/qsp-multi-network-pre.py" 
+script: "%script%/qsp-multi-network.py"
+...

@@ -1,0 +1,33 @@
+%YAML 1.2
+---
+description: >-
+  Intel Simics Internals Training, base target settings up a
+  RIBIT (RISC-V-Based Internals Training) system and defaulting
+  to a Hello World application.
+params:
+  system_info:
+    type: str
+    description: A short string describing what this system is.
+    default: >-
+      RIBIT (RISC-V-Based Internals Training) -- Hello World
+  system:
+    import: "%script%/ribit-system/hardware.yml"
+    defaults:
+      name: ribit
+      num_subsystems: 2      
+  software:
+    executable: 
+      type: file
+      description: Executable to load and run.
+      default: "%simics%/targets/simics-internals-training/images/helloworld.rv.baremetal.elf"
+code-type: simics
+cmd: |
+  run-script "%script%/ribit-system/hardware.yml" namespace = system
+  local $system  = (params.get system:output:system)
+  $system->system_info = (params.get system_info)
+  instantiate-components $system
+  foreach $cpu in ($system->cpu_list) {
+      $cpu.set-pc ($cpu.load-binary -pa (params.get software:executable))
+  }
+  output-radix 16
+...

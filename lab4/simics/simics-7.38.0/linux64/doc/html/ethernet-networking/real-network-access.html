@@ -1,0 +1,19 @@
+<h1 class="jdocu"><a name="real-network-access">3.3 Accessing Host Ethernet Interfaces</a></h1>
+<p>
+
+</p><p>
+When connecting to a real network using other connection types than
+port forwarding, Simics needs low-level access to the simulation
+host's Ethernet interfaces to send and receive packets. However,
+operating systems do not usually allow user programs low-level access
+to Ethernet interfaces: it requires specific configuration with
+administrative rights.
+</p><p>
+The access method used by Simics is called <em><a name="TAP">TAP</a></em>; it
+is a virtual Ethernet interface on the simulation host. Ethernet
+bridging and host connections require the use of TAP, but, as stated
+above, port forwarding connections do not.
+</p><p>
+
+</p><p>
+</p>

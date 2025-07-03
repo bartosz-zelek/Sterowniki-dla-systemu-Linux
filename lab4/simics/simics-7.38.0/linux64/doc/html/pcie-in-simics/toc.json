@@ -1,0 +1,1440 @@
+{
+  "is_book": false,
+  "anchor": "technology_guides",
+  "style": "unstyled",
+  "file": "index.html",
+  "name": "PCIe Modeling Library",
+  "headings": [
+    {
+      "level": 1,
+      "anchor": "supported-hardware-features",
+      "text": "Supported Hardware Features"
+    },
+    {
+      "level": 1,
+      "anchor": "simics-pcie-abstraction",
+      "text": "Simics PCIe Abstraction"
+    }
+  ],
+  "children": [
+    {
+      "file": "quickstart.html",
+      "name": "Quickstart",
+      "headings": [
+        {
+          "level": 1,
+          "anchor": "endpoint",
+          "text": "Endpoint"
+        },
+        {
+          "level": 1,
+          "anchor": "multi-function-endpoint",
+          "text": "Multi-Function Endpoint"
+        },
+        {
+          "level": 1,
+          "anchor": "switch",
+          "text": "Switch"
+        },
+        {
+          "level": 1,
+          "anchor": "root-complex",
+          "text": "Root Complex"
+        },
+        {
+          "level": 1,
+          "anchor": "sample-devices",
+          "text": "Sample Devices"
+        }
+      ],
+      "children": []
+    },
+    {
+      "file": "high-level-design.html",
+      "name": "High level design",
+      "headings": [],
+      "children": []
+    },
+    {
+      "file": "pcie-in-dml.html",
+      "name": "PCIe in DML",
+      "headings": [
+        {
+          "level": 1,
+          "anchor": "endpoints",
+          "text": "Endpoints"
+        },
+        {
+          "level": 2,
+          "anchor": "configuration-header",
+          "text": "Configuration Header"
+        },
+        {
+          "level": 2,
+          "anchor": "device-id-vendor-id-and-class-code",
+          "text": "Device ID, Vendor ID and Class Code"
+        },
+        {
+          "level": 2,
+          "anchor": "capabilities",
+          "text": "Capabilities"
+        },
+        {
+          "level": 2,
+          "anchor": "base-address-registers",
+          "text": "Base Address Registers"
+        },
+        {
+          "level": 2,
+          "anchor": "interrupts",
+          "text": "Interrupts"
+        },
+        {
+          "level": 3,
+          "anchor": "the-msi-x-capability",
+          "text": "The MSI-X Capability"
+        },
+        {
+          "level": 4,
+          "anchor": "example-1-bar-containing-msi-x-table-and-msi-x-pba",
+          "text": "Example: 1 BAR Containing MSI-X Table and MSI-X PBA"
+        },
+        {
+          "level": 2,
+          "anchor": "read-write-pcie-memory",
+          "text": "Read/Write PCIe Memory"
+        },
+        {
+          "level": 2,
+          "anchor": "send-receive-messages",
+          "text": "Send/Receive Messages"
+        },
+        {
+          "level": 1,
+          "anchor": "resets",
+          "text": "Resets"
+        },
+        {
+          "level": 2,
+          "anchor": "warm-reset",
+          "text": "Warm Reset"
+        },
+        {
+          "level": 2,
+          "anchor": "hot-reset",
+          "text": "Hot Reset"
+        },
+        {
+          "level": 2,
+          "anchor": "flr",
+          "text": "FLR"
+        },
+        {
+          "level": 2,
+          "anchor": "adding-shared-reset-logic",
+          "text": "Adding shared reset logic"
+        },
+        {
+          "level": 2,
+          "anchor": "hardware-initialized-registers-and-fields-hwinit",
+          "text": "Hardware initialized registers and fields (HwInit)"
+        },
+        {
+          "level": 1,
+          "anchor": "root-complexes-and-switches",
+          "text": "Root Complexes and Switches"
+        },
+        {
+          "level": 2,
+          "anchor": "handling-upstream-traffic",
+          "text": "Handling upstream traffic"
+        },
+        {
+          "level": 2,
+          "anchor": "handling-upstream-messages",
+          "text": "Handling upstream messages"
+        },
+        {
+          "level": 1,
+          "anchor": "other-bridges",
+          "text": "Other bridges"
+        },
+        {
+          "level": 1,
+          "anchor": "pcie-6-message-segment-routing",
+          "text": "PCIe 6 Message Segment Routing"
+        },
+        {
+          "level": 2,
+          "anchor": "data-object-exchange",
+          "text": "Data Object Exchange"
+        },
+        {
+          "level": 2,
+          "anchor": "physical-layer",
+          "text": "Physical layer"
+        },
+        {
+          "level": 3,
+          "anchor": "downstream-port-of-switch-supporting-link-training-and-hot-plug",
+          "text": "Downstream Port of Switch Supporting Link Training and Hot-Plug"
+        },
+        {
+          "level": 1,
+          "anchor": "error-signaling",
+          "text": "Error Signaling"
+        },
+        {
+          "level": 2,
+          "anchor": "completion-status",
+          "text": "Completion Status"
+        },
+        {
+          "level": 2,
+          "anchor": "error-messages",
+          "text": "Error messages"
+        },
+        {
+          "level": 3,
+          "anchor": "submitting-and-handling-errors",
+          "text": "Submitting and Handling Errors"
+        }
+      ],
+      "children": []
+    },
+    {
+      "file": "ats.html",
+      "name": "Address Translation Service (ATS)",
+      "headings": [
+        {
+          "level": 1,
+          "anchor": "ats-capability",
+          "text": "ATS capability"
+        },
+        {
+          "level": 2,
+          "anchor": "ats-translation",
+          "text": "ATS Translation"
+        },
+        {
+          "level": 2,
+          "anchor": "ats-invalidation",
+          "text": "ATS Invalidation"
+        },
+        {
+          "level": 1,
+          "anchor": "ats-translated-untranslated-requests",
+          "text": "ATS translated/untranslated requests"
+        },
+        {
+          "level": 1,
+          "anchor": "page-request-services-prs",
+          "text": "Page Request Services (PRS)"
+        },
+        {
+          "level": 1,
+          "anchor": "sample-multi-channel-dma-endpoint-utilizing-prs-pasid-and-ats",
+          "text": "Sample Multi Channel DMA Endpoint utilizing PRS, PASID and ATS"
+        },
+        {
+          "level": 1,
+          "anchor": "sample-pcie-ats-endpoint-implementing-an-address-translation-cache",
+          "text": "Sample PCIe ATS Endpoint implementing an Address Translation Cache"
+        },
+        {
+          "level": 1,
+          "anchor": "sample-pcie-root-complex-acting-as-an-ats-and-prs-translation-agent-ta",
+          "text": "Sample PCIe Root Complex acting as an ATS and PRS Translation Agent (TA)"
+        }
+      ],
+      "children": []
+    },
+    {
+      "file": "sriov.html",
+      "name": "Single Root I/O Virtualization and Sharing (SR-IOV)",
+      "headings": [
+        {
+          "level": 1,
+          "anchor": "physical-function-pf",
+          "text": "Physical Function (PF)"
+        },
+        {
+          "level": 1,
+          "anchor": "virtual-functions-vfs",
+          "text": "Virtual functions (VFs)"
+        },
+        {
+          "level": 1,
+          "anchor": "sample-sr-iov-endpoint",
+          "text": "Sample SR-IOV Endpoint"
+        }
+      ],
+      "children": []
+    },
+    {
+      "file": "dml-template-reference.html",
+      "name": "DML template reference",
+      "headings": [],
+      "children": [
+        {
+          "file": "common.html",
+          "name": "Common and Type 0 templates",
+          "headings": [
+            {
+              "level": 1,
+              "anchor": "pcie_endpoint",
+              "text": "pcie_endpoint"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_multifunction_endpoint",
+              "text": "pcie_multifunction_endpoint"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_device",
+              "text": "pcie_device"
+            },
+            {
+              "level": 1,
+              "anchor": "config_bank",
+              "text": "config_bank"
+            },
+            {
+              "level": 2,
+              "anchor": "common-methods",
+              "text": "Common methods"
+            },
+            {
+              "level": 3,
+              "anchor": "update_function-uint16-device_id",
+              "text": "update_function(uint16 device_id)"
+            },
+            {
+              "level": 3,
+              "anchor": "del_function",
+              "text": "del_function()"
+            },
+            {
+              "level": 3,
+              "anchor": "disable_function",
+              "text": "`disable_function()"
+            },
+            {
+              "level": 3,
+              "anchor": "enable_function",
+              "text": "`enable_function()"
+            },
+            {
+              "level": 3,
+              "anchor": "get_device_id-uint16",
+              "text": "get_device_id() -> (uint16)"
+            },
+            {
+              "level": 3,
+              "anchor": "verify_pasid-pcie_pasid_info_t-pasid-bool",
+              "text": "verify_pasid(pcie_pasid_info_t pasid) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "verify_pasid_with_at-pcie_pasid_info_t-pasid-pcie_at_t-at-bool",
+              "text": "verify_pasid_with_at(pcie_pasid_info_t pasid, pcie_at_t at) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "del_mappings-pcie_type_t-type",
+              "text": "del_mappings(pcie_type_t type)"
+            },
+            {
+              "level": 3,
+              "anchor": "update_mappings-pcie_type_t-type",
+              "text": "update_mappings(pcie_type_t type)"
+            },
+            {
+              "level": 3,
+              "anchor": "lock_hwinit_registers",
+              "text": "lock_hwinit_registers()"
+            },
+            {
+              "level": 3,
+              "anchor": "unlock_hwinit_registers",
+              "text": "unlock_hwinit_registers()"
+            },
+            {
+              "level": 3,
+              "anchor": "raise_legacy_interrupt",
+              "text": "raise_legacy_interrupt()"
+            },
+            {
+              "level": 3,
+              "anchor": "lower_legacy_interrupt",
+              "text": "lower_legacy_interrupt()"
+            },
+            {
+              "level": 3,
+              "anchor": "issue_transaction-transaction_t-t-uint64-addr-pcie_error_t",
+              "text": "issue_transaction(transaction_t *t, uint64 addr) -> (pcie_error_t)"
+            },
+            {
+              "level": 2,
+              "anchor": "memory-methods",
+              "text": "Memory methods"
+            },
+            {
+              "level": 3,
+              "anchor": "memory-read-uint64-addr-uint64-size-pcie_error_t-uint64",
+              "text": "memory.read(uint64 addr, uint64 size) -> (pcie_error_t, uint64)"
+            },
+            {
+              "level": 3,
+              "anchor": "memory-read_bytes-uint64-addr-buffer_t-buf-pcie_error_t",
+              "text": "memory.read_bytes(uint64 addr, buffer_t buf) -> (pcie_error_t)"
+            },
+            {
+              "level": 3,
+              "anchor": "memory-write-uint64-addr-uint64-value-uint64-size-pcie_error_t",
+              "text": "memory.write(uint64 addr, uint64 value, uint64 size) -> (pcie_error_t)"
+            },
+            {
+              "level": 3,
+              "anchor": "memory-write_bytes-uint64-addr-bytes_t-bytes-pcie_error_t",
+              "text": "memory.write_bytes(uint64 addr, bytes_t bytes) -> (pcie_error_t)"
+            },
+            {
+              "level": 2,
+              "anchor": "message-methods-receiving",
+              "text": "Message methods - receiving"
+            },
+            {
+              "level": 3,
+              "anchor": "message-operation-transaction_t-t-uint64-addr-bool",
+              "text": "message.operation(transaction_t *t, uint64 addr) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "message-ats_invalidate-transaction_t-t-uint64-addr-bool",
+              "text": "message.ats_invalidate(transaction_t *t, uint64 addr) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "message-prs_request-transaction_t-t-uint64-addr-bool",
+              "text": "message.prs_request(transaction_t *t, uint64 addr) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "message-prs_response-transaction_t-t-uint64-addr-bool",
+              "text": "message.prs_response(transaction_t *t, uint64 addr) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "message-vendor_defined_type_1-transaction_t-t-uint64-addr-bool",
+              "text": "message.vendor_defined_type_1(transaction_t *t, uint64 addr) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "message-pm_active_state_nak-transaction_t-t-uint64-addr-bool",
+              "text": "message.pm_active_state_nak(transaction_t *t, uint64 addr) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "message-pm_turn_off-transaction_t-t-uint64-addr-bool",
+              "text": "message.pm_turn_off(transaction_t *t, uint64 addr) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "message-unlock-transaction_t-t-uint64-addr-bool",
+              "text": "message.unlock(transaction_t *t, uint64 addr) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "message-set_slot_power_limit-transaction_t-t-uint64-addr-bool",
+              "text": "message.set_slot_power_limit(transaction_t *t, uint64 addr) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "message-vendor_defined_type_0-transaction_t-t-uint64-addr-bool",
+              "text": "message.vendor_defined_type_0(transaction_t *t, uint64 addr) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "message-hot_plug-transaction_t-t-uint64-addr-bool",
+              "text": "message.hot_plug(transaction_t *t, uint64 addr) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "message-unknown-transaction_t-t-uint64-addr-pcie_message_type_t-code-bool",
+              "text": "message.unknown(transaction_t *t, uint64 addr, pcie_message_type_t code) -> (bool)"
+            },
+            {
+              "level": 2,
+              "anchor": "message-methods-sending",
+              "text": "Message methods - sending"
+            },
+            {
+              "level": 3,
+              "anchor": "message-send-uint64-addr-pcie_message_type_t-type-pcie_msg_route_t-route-pcie_error_t",
+              "text": "message.send(uint64 addr, pcie_message_type_t type, pcie_msg_route_t route) -> (pcie_error_t)"
+            },
+            {
+              "level": 3,
+              "anchor": "message-send_bytes-uint64-addr-pcie_message_type_t-type-pcie_msg_route_t-route-bytes_t-bytes",
+              "text": "message.send_bytes(uint64 addr, pcie_message_type_t type, pcie_msg_route_t route, bytes_t bytes"
+            },
+            {
+              "level": 3,
+              "anchor": "message-send_custom-uint64-addr-pcie_message_type_t-type-pcie_msg_route_t-route-bytes_t-bytes-atom_t-extra_atoms",
+              "text": "message.send_custom(uint64 addr, pcie_message_type_t type, pcie_msg_route_t route, bytes_t bytes, atom_t extra_atoms[]"
+            },
+            {
+              "level": 3,
+              "anchor": "transaction_access-transaction_t-t-uint64-offset-void-aux-exception_type_t",
+              "text": "transaction_access(transaction_t *t, uint64 offset, void *aux) -> (exception_type_t)"
+            },
+            {
+              "level": 1,
+              "anchor": "physical_config_bank",
+              "text": "physical_config_bank"
+            },
+            {
+              "level": 1,
+              "anchor": "type_0_bank",
+              "text": "type_0_bank"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_no_function_level_reset",
+              "text": "pcie_no_function_level_reset"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_sticky",
+              "text": "pcie_sticky"
+            },
+            {
+              "level": 1,
+              "anchor": "hwinit",
+              "text": "hwinit"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_desc",
+              "text": "pcie_desc"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_write",
+              "text": "pcie_write"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_read",
+              "text": "pcie_read"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_register_write_action",
+              "text": "pcie_register_write_action"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_register_read_action",
+              "text": "pcie_register_read_action"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_write_1_clears",
+              "text": "pcie_write_1_clears"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_init",
+              "text": "pcie_init"
+            },
+            {
+              "level": 1,
+              "anchor": "abstract_base_address",
+              "text": "abstract_base_address"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_base_address",
+              "text": "pcie_base_address"
+            },
+            {
+              "level": 1,
+              "anchor": "memory_base_address",
+              "text": "memory_base_address"
+            },
+            {
+              "level": 1,
+              "anchor": "memory_base_address_32",
+              "text": "memory_base_address_32"
+            },
+            {
+              "level": 1,
+              "anchor": "memory_base_address_64",
+              "text": "memory_base_address_64"
+            },
+            {
+              "level": 1,
+              "anchor": "io_base_address",
+              "text": "io_base_address"
+            },
+            {
+              "level": 1,
+              "anchor": "defining_expansion_rom",
+              "text": "defining_expansion_rom"
+            },
+            {
+              "level": 1,
+              "anchor": "rom_subobj",
+              "text": "rom_subobj"
+            },
+            {
+              "level": 1,
+              "anchor": "upstream_target",
+              "text": "upstream_target"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_hreset",
+              "text": "pcie_hreset"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_hot_reset",
+              "text": "pcie_hot_reset"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_function_level_reset-function-level-reset",
+              "text": "pcie_function_level_reset (Function Level Reset)"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_phy",
+              "text": "pcie_phy"
+            }
+          ],
+          "children": []
+        },
+        {
+          "file": "bridge.html",
+          "name": "Bridge and Type 1 templates",
+          "headings": [
+            {
+              "level": 1,
+              "anchor": "pcie_bridge",
+              "text": "pcie_bridge"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_port",
+              "text": "pcie_port"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_downstream_port",
+              "text": "pcie_downstream_port"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_root_port",
+              "text": "pcie_root_port"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_upstream_port",
+              "text": "pcie_upstream_port"
+            },
+            {
+              "level": 1,
+              "anchor": "message_port",
+              "text": "message_port"
+            },
+            {
+              "level": 1,
+              "anchor": "message_translator",
+              "text": "message_translator"
+            },
+            {
+              "level": 1,
+              "anchor": "handling_messages",
+              "text": "handling_messages"
+            },
+            {
+              "level": 2,
+              "anchor": "methods",
+              "text": "Methods"
+            },
+            {
+              "level": 3,
+              "anchor": "message-transaction_t-t-uint64-addr-pcie_message_type_t-type-pcie_error_t",
+              "text": "message(transaction_t *t, uint64 addr, pcie_message_type_t type) -> (pcie_error_t)"
+            },
+            {
+              "level": 1,
+              "anchor": "handling_ats_messages",
+              "text": "handling_ats_messages"
+            },
+            {
+              "level": 3,
+              "anchor": "ats_invalidate_completion-transaction_t-t-uint64-addr-bool",
+              "text": "ats_invalidate_completion(transaction_t *t, uint64 addr) -> (bool)"
+            },
+            {
+              "level": 1,
+              "anchor": "handling_prs_messages",
+              "text": "handling_prs_messages"
+            },
+            {
+              "level": 3,
+              "anchor": "method-page_group_response-map_target_t-mt-uint16-target_id-uint16-prs_group_idx-pcie_prs_response_code_t-response_code-pcie_pasid_info_t-pasid-pcie_error_t",
+              "text": "method page_group_response(map_target_t *mt, uint16 target_id, uint16 prs_group_idx, pcie_prs_response_code_t response_code, pcie_pasid_info_t *pasid) -> (pcie_error_t)"
+            },
+            {
+              "level": 3,
+              "anchor": "page_request_received-transaction_t-t-uint64-addr-bool",
+              "text": "page_request_received(transaction_t *t, uint64 addr) -> (bool)"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_translator",
+              "text": "pcie_translator"
+            },
+            {
+              "level": 1,
+              "anchor": "ats_upstream_translator",
+              "text": "ats_upstream_translator"
+            },
+            {
+              "level": 3,
+              "anchor": "ats_invalidate-map_target_t-mt-uint16-target_id-const-pcie_pasid_info_t-pasid-uint64-untranslated_addr-uint64-size-bool-global-uint8-itag-pcie_error_t",
+              "text": "ats_invalidate(map_target_t *mt, uint16 target_id, const pcie_pasid_info_t *pasid, uint64 untranslated_addr, uint64 size, bool global, uint8 itag) -> (pcie_error_t)`"
+            },
+            {
+              "level": 1,
+              "anchor": "type_1_bank",
+              "text": "type_1_bank"
+            },
+            {
+              "level": 1,
+              "anchor": "type_1_base_address",
+              "text": "type_1_base_address"
+            },
+            {
+              "level": 1,
+              "anchor": "downstream_port",
+              "text": "downstream_port"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_hotplug_port",
+              "text": "pcie_hotplug_port"
+            },
+            {
+              "level": 1,
+              "anchor": "pcie_link_training",
+              "text": "pcie_link_training"
+            }
+          ],
+          "children": []
+        },
+        {
+          "file": "capabilities-list.html",
+          "name": "List of capability templates",
+          "headings": [],
+          "children": []
+        },
+        {
+          "file": "capabilities.html",
+          "name": "Capabilities templates",
+          "headings": [
+            {
+              "level": 1,
+              "anchor": "power-management-capability-registers",
+              "text": "Power Management Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "pci-express-capability-registers",
+              "text": "PCI Express Capability registers"
+            },
+            {
+              "level": 2,
+              "anchor": "parameters",
+              "text": "Parameters:"
+            },
+            {
+              "level": 3,
+              "anchor": "adds-groups",
+              "text": "Adds groups:"
+            },
+            {
+              "level": 3,
+              "anchor": "device-port-type-constants-for-field-exp-capability-dpt",
+              "text": "Device/port type constants for field exp.capability.dpt"
+            },
+            {
+              "level": 2,
+              "anchor": "pci-express-capability-device-registers",
+              "text": "PCI Express Capability Device registers"
+            },
+            {
+              "level": 3,
+              "anchor": "set_status_error-uint8-error_type-bool-is_ur-throws",
+              "text": "set_status_error(uint8 error_type, bool is_ur) throws"
+            },
+            {
+              "level": 2,
+              "anchor": "pci-express-capability-link-registers",
+              "text": "PCI Express Capability Link registers"
+            },
+            {
+              "level": 3,
+              "anchor": "parameters-2",
+              "text": "Parameters:"
+            },
+            {
+              "level": 3,
+              "anchor": "methods",
+              "text": "Methods"
+            },
+            {
+              "level": 3,
+              "anchor": "set_link_training_target-map_target_t-target",
+              "text": "set_link_training_target(map_target_t *target)"
+            },
+            {
+              "level": 3,
+              "anchor": "do_link_training-map_target_t-target",
+              "text": "do_link_training(map_target_t *target)"
+            },
+            {
+              "level": 3,
+              "anchor": "get_target_link_speed-pcie_link_speed_t",
+              "text": "get_target_link_speed() -> (pcie_link_speed_t)"
+            },
+            {
+              "level": 3,
+              "anchor": "get_max_link_width-pcie_link_width_t",
+              "text": "get_max_link_width() -> (pcie_link_width_t)"
+            },
+            {
+              "level": 3,
+              "anchor": "set_link_attributes-pcie_link_speed_t-speed-pcie_link_width_t-width",
+              "text": "set_link_attributes(pcie_link_speed_t speed, pcie_link_width_t width)"
+            },
+            {
+              "level": 2,
+              "anchor": "pci-express-capability-slot-registers",
+              "text": "PCI Express Capability Slot registers"
+            },
+            {
+              "level": 3,
+              "anchor": "parameters-3",
+              "text": "Parameters:"
+            },
+            {
+              "level": 3,
+              "anchor": "methods-2",
+              "text": "Methods"
+            },
+            {
+              "level": 3,
+              "anchor": "presence_change_event-pcie_hotplug_pd_t-state-bool",
+              "text": "presence_change_event(pcie_hotplug_pd_t state) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "mrl_sensor_event-pcie_hotplug_mrl_t-state-bool",
+              "text": "mrl_sensor_event(pcie_hotplug_mrl_t state) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "data_link_layer_event-bool-is_active-bool",
+              "text": "data_link_layer_event(bool is_active) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "power_fault_event-bool",
+              "text": "power_fault_event() -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "attention_button_event-bool",
+              "text": "attention_button_event() -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "hotplug_event_enabled-int-type-bool",
+              "text": "hotplug_event_enabled(int type) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "hotplug_capable-int-type",
+              "text": "hotplug_capable(int type)"
+            },
+            {
+              "level": 2,
+              "anchor": "pci-express-capability-root-registers",
+              "text": "PCI Express Capability Root registers"
+            },
+            {
+              "level": 1,
+              "anchor": "vpd-capability-registers",
+              "text": "VPD Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "message-signaled-interrupts-msi-capability-registers",
+              "text": "Message Signaled Interrupts (MSI) Capability registers"
+            },
+            {
+              "level": 2,
+              "anchor": "parameters-4",
+              "text": "Parameters:"
+            },
+            {
+              "level": 2,
+              "anchor": "methods-3",
+              "text": "Methods"
+            },
+            {
+              "level": 3,
+              "anchor": "signal_all_pending",
+              "text": "signal_all_pending()"
+            },
+            {
+              "level": 3,
+              "anchor": "raise-uint8-i",
+              "text": "raise(uint8 i)"
+            },
+            {
+              "level": 3,
+              "anchor": "lower-uint8-i",
+              "text": "lower(uint8 i)"
+            },
+            {
+              "level": 1,
+              "anchor": "message-signaled-interrupts-x-msi-x-capability-registers",
+              "text": "Message Signaled Interrupts X (MSI-X) Capability registers"
+            },
+            {
+              "level": 2,
+              "anchor": "parameters-5",
+              "text": "Parameters:"
+            },
+            {
+              "level": 2,
+              "anchor": "methods-4",
+              "text": "Methods"
+            },
+            {
+              "level": 3,
+              "anchor": "raise-uint16-i",
+              "text": "raise(uint16 i)"
+            },
+            {
+              "level": 3,
+              "anchor": "lower-uint16-i",
+              "text": "lower(uint16 i)"
+            },
+            {
+              "level": 2,
+              "anchor": "msix_table",
+              "text": "msix_table"
+            },
+            {
+              "level": 3,
+              "anchor": "parameters-6",
+              "text": "Parameters:"
+            },
+            {
+              "level": 1,
+              "anchor": "subsystem-id-and-subsystem-vendor-id-capability-registers",
+              "text": "Subsystem ID and Subsystem Vendor ID Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "conventional-pci-advanced-features-capability-af-registers",
+              "text": "Conventional PCI Advanced Features Capability (AF) registers"
+            },
+            {
+              "level": 1,
+              "anchor": "enhanced-allocation-ea-capability-registers",
+              "text": "Enhanced Allocation (EA) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "flattening-portal-bridge-fpb-capability-registers",
+              "text": "Flattening Portal Bridge (FPB) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "null-capability-registers",
+              "text": "Null Capability registers"
+            }
+          ],
+          "children": []
+        },
+        {
+          "file": "extended-capabilities.html",
+          "name": "Extended Capabilities templates",
+          "headings": [
+            {
+              "level": 1,
+              "anchor": "advanced-error-reporting-aer-capability-registers",
+              "text": "Advanced Error Reporting (AER) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "virtual-channel-vc-capability-registers",
+              "text": "Virtual Channel (VC) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "device-serial-number-dsn-capability-registers",
+              "text": "Device Serial Number (DSN) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "device-power-budgeting-dpb-capability-registers",
+              "text": "Device Power Budgeting (DPB) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "root-complex-link-declaration-rcld-capability-registers",
+              "text": "Root Complex Link Declaration (RCLD) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "root-complex-internal-link-control-rcilc-capability-registers",
+              "text": "Root Complex Internal Link Control (RCILC) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "root-complex-event-collector-endpoint-association-rcecea-capability-registers",
+              "text": "Root Complex Event Collector Endpoint Association (RCECEA) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "multi-function-virtual-channel-mfvc-capability-registers",
+              "text": "Multi-Function Virtual Channel (MFVC) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "rcrb-header-rcrb-capability-registers",
+              "text": "RCRB Header (RCRB) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "vendor-specific-extended-capability-vsec-registers",
+              "text": "Vendor-Specific Extended Capability (VSEC) registers"
+            },
+            {
+              "level": 1,
+              "anchor": "access-control-services-acs-capability-registers",
+              "text": "Access Control Services (ACS) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "alternate-routing-id-ari-capability-registers",
+              "text": "Alternate Routing ID (ARI) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "address-translation-service-ats-capability-registers",
+              "text": "Address Translation Service (ATS) Capability registers"
+            },
+            {
+              "level": 2,
+              "anchor": "methods",
+              "text": "Methods"
+            },
+            {
+              "level": 3,
+              "anchor": "invalidate_received-transaction_t-t-uint64-addr-bool",
+              "text": "invalidate_received(transaction_t *t, uint64 addr) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "translation_request-unint64-addr-pcie_ats_translation_completion_entry_t-entries-int-nbr_entries-const-pcie_pasid_info_t-pasid-bool-no_write-bool-cxl_src-pcie_error_t-int",
+              "text": "translation_request(unint64 addr, pcie_ats_translation_completion_entry_t *entries, int nbr_entries, const pcie_pasid_info_t *pasid, bool no_write, bool cxl_src)-> (pcie_error_t, int)"
+            },
+            {
+              "level": 3,
+              "anchor": "translation_size_to_entries-uint64-size-uint64",
+              "text": "translation_size_to_entries(uint64 size) -> (uint64)"
+            },
+            {
+              "level": 3,
+              "anchor": "get_translation_range-pcie_ats_translation_completion_entry_t-entry-uint64-uint64",
+              "text": "get_translation_range(pcie_ats_translation_completion_entry_t entry) -> (uint64, uint64)"
+            },
+            {
+              "level": 3,
+              "anchor": "get_invalidation_range-pcie_ats_invalidate_request_payload_t-payload-uint64-uint64",
+              "text": "get_invalidation_range(pcie_ats_invalidate_request_payload_t payload) -> (uint64, uint64)"
+            },
+            {
+              "level": 3,
+              "anchor": "invalidate_complete-uint64-destination_id-uint32-itag_vector-pcie_error_t",
+              "text": "invalidate_complete(uint64 destination_id, uint32 itag_vector) -> (pcie_error_t)"
+            },
+            {
+              "level": 3,
+              "anchor": "memory_read_buf-buffer_t-buf-uint64-addr-pcie_at_t-at-const-pcie_pasid_info_t-pasid-pcie_error_t",
+              "text": "memory_read_buf(buffer_t buf, uint64 addr, pcie_at_t at, const pcie_pasid_info_t *pasid) -> (pcie_error_t)"
+            },
+            {
+              "level": 3,
+              "anchor": "memory_write_bytes-bytes_t-bytes-uint64-addr-pcie_at_t-at-const-pcie_pasid_info_t-pasid-pcie_error_t",
+              "text": "memory_write_bytes(bytes_t bytes, uint64 addr, pcie_at_t at, const pcie_pasid_info_t *pasid) -> (pcie_error_t)"
+            },
+            {
+              "level": 1,
+              "anchor": "multicast-mc-capability-registers",
+              "text": "Multicast (MC) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "page-request-service-prs-capability-registers",
+              "text": "Page Request Service (PRS) Capability registers"
+            },
+            {
+              "level": 3,
+              "anchor": "page_request-pcie_prs_page_request_t-request-const-pcie_pasid_info_t-pasid-pcie_error_t",
+              "text": "page_request(pcie_prs_page_request_t request, const pcie_pasid_info_t *pasid) -> (pcie_error_t)"
+            },
+            {
+              "level": 3,
+              "anchor": "send_stop_marker-const-pcie_pasid_info_t-pasid-pcie_error_t",
+              "text": "send_stop_marker(const pcie_pasid_info_t *pasid) -> (pcie_error_t)"
+            },
+            {
+              "level": 3,
+              "anchor": "page_response_received-transaction_t-t-uint64-addr-bool",
+              "text": "page_response_received(transaction_t *t, uint64 addr) -> (bool)"
+            },
+            {
+              "level": 1,
+              "anchor": "resizable-bar-rbar-capability-registers",
+              "text": "Resizable BAR (RBAR) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "vf-resizable-bar-vfrbar-capability-registers",
+              "text": "VF Resizable BAR (VFRBAR) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "dynamic-power-allocation-dpa-capability-registers",
+              "text": "Dynamic Power Allocation (DPA) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "transaction-processing-hints-tph-requester-extended-capability-registers",
+              "text": "Transaction Processing Hints (TPH) Requester Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "latency-tolerance-reporting-ltr-capability-registers",
+              "text": "Latency Tolerance Reporting (LTR) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "secondary-pci-express-spe-capability-registers",
+              "text": "Secondary PCI Express (SPE) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "pasid-extended-capability-structure-registers",
+              "text": "PASID Extended Capability Structure registers"
+            },
+            {
+              "level": 3,
+              "anchor": "verify_pasid-pcie_pasid_info_t-pasid-bool",
+              "text": "verify_pasid(pcie_pasid_info_t pasid) -> (bool)"
+            },
+            {
+              "level": 3,
+              "anchor": "verify_pasid_with_at-pcie_pasid_info_t-pasid-pcie_at_t-at-bool",
+              "text": "verify_pasid_with_at(pcie_pasid_info_t pasid, pcie_at_t at) -> (bool)"
+            },
+            {
+              "level": 1,
+              "anchor": "ln-requester-extended-capability-registers",
+              "text": "LN Requester Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "downstream-port-containment-dpc-extended-capability-registers",
+              "text": "Downstream Port Containment (DPC) Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "l1-pm-substates-extended-capability-registers",
+              "text": "L1 PM Substates Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "precision-time-management-ptm-capability-registers",
+              "text": "Precision Time Management (PTM) Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "m-pcie-extended-capability-registers",
+              "text": "M-PCIe Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "frs-queueing-extended-capability-registers",
+              "text": "FRS Queueing Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "readiness-time-reporting-extended-capability-registers",
+              "text": "Readiness Time Reporting Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "data-link-feature-extended-capability-registers",
+              "text": "Data Link Feature Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "physical-layer-16-0-gt-s-extended-capability-registers",
+              "text": "Physical Layer 16.0 GT/s Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "lane-margining-at-the-receiver-extended-capability-registers",
+              "text": "Lane Margining at the Receiver Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "physical-layer-32-0-gt-s-extended-capability-registers",
+              "text": "Physical Layer 32.0 GT/s Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "physical-layer-64-0-gt-s-extended-capability-registers",
+              "text": "Physical Layer 64.0 GT/s Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "designated-vendor-specific-extended-capability-dvsec-registers",
+              "text": "Designated Vendor-Specific Extended Capability (DVSEC) registers"
+            },
+            {
+              "level": 1,
+              "anchor": "hierarchy-id-extended-capability-registers",
+              "text": "Hierarchy ID Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "native-pcie-enclosure-management-npem-extended-capability-registers",
+              "text": "Native PCIe Enclosure Management (NPEM) Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "alternate-protocol-extended-capability-registers",
+              "text": "Alternate Protocol Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "system-firmware-intermediary-sfi-extended-capability-registers",
+              "text": "System Firmware Intermediary (SFI) Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "single-root-i-o-virtualization-sr-iov-extended-capability-registers",
+              "text": "Single Root I/O Virtualization (SR-IOV) Extended Capability registers"
+            },
+            {
+              "level": 2,
+              "anchor": "methods-2",
+              "text": "Methods"
+            },
+            {
+              "level": 1,
+              "anchor": "device-3-extended-capability-registers",
+              "text": "Device 3 Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "flit-logging-extended-capability-registers",
+              "text": "Flit Logging Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "flit-performance-measurement-extended-capability-registers",
+              "text": "Flit Performance Measurement Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "flit-error-injection-extended-capability-registers",
+              "text": "Flit Error Injection Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "shadow-functions-extended-capability-registers",
+              "text": "Shadow Functions Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "data-object-exchange-extended-capability-registers",
+              "text": "Data Object Exchange Extended Capability registers"
+            },
+            {
+              "level": 2,
+              "anchor": "methods-3",
+              "text": "Methods"
+            },
+            {
+              "level": 2,
+              "anchor": "doe-templates",
+              "text": "DOE Templates"
+            },
+            {
+              "level": 3,
+              "anchor": "methods-4",
+              "text": "Methods"
+            },
+            {
+              "level": 1,
+              "anchor": "integrity-and-data-encryption-extended-capability-registers",
+              "text": "Integrity and Data Encryption Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "null-extended-capability-registers",
+              "text": "Null Extended Capability registers"
+            },
+            {
+              "level": 1,
+              "anchor": "virtual-function-type-0-bank",
+              "text": "Virtual Function Type 0 Bank"
+            },
+            {
+              "level": 1,
+              "anchor": "virtual-function-base-address",
+              "text": "Virtual Function Base Address"
+            }
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "file": "migration.html",
+      "name": "Migrating From the Legacy PCI Library",
+      "headings": [
+        {
+          "level": 1,
+          "anchor": "high-level-difference",
+          "text": "High-level Difference"
+        },
+        {
+          "level": 2,
+          "anchor": "pci-bus-and-pcie-downstream-port",
+          "text": "pci-bus and pcie-downstream-port"
+        },
+        {
+          "level": 2,
+          "anchor": "the-old-library-is-considered-legacy",
+          "text": "The Old Library is Considered Legacy"
+        },
+        {
+          "level": 1,
+          "anchor": "steps-for-migrating-devices",
+          "text": "Steps for Migrating Devices"
+        },
+        {
+          "level": 2,
+          "anchor": "single-function-endpoints",
+          "text": "Single Function Endpoints"
+        },
+        {
+          "level": 2,
+          "anchor": "multi-function-endpoints",
+          "text": "Multi-function Endpoints"
+        },
+        {
+          "level": 2,
+          "anchor": "functions-implementing-sr-iov",
+          "text": "Functions Implementing SR-IOV"
+        },
+        {
+          "level": 2,
+          "anchor": "root-complex-and-switches",
+          "text": "Root Complex and Switches"
+        },
+        {
+          "level": 3,
+          "anchor": "host-bridges",
+          "text": "Host Bridges"
+        },
+        {
+          "level": 3,
+          "anchor": "upstream-downstream-root-ports",
+          "text": "Upstream/Downstream/Root Ports"
+        },
+        {
+          "level": 2,
+          "anchor": "compatibility-with-legacy-devices",
+          "text": "Compatibility With Legacy Devices"
+        }
+      ],
+      "children": []
+    },
+    {
+      "file": "pcie-hybrid-systems.html",
+      "name": "Connecting external Simulators, Emulators or Hardware",
+      "headings": [
+        {
+          "level": 1,
+          "anchor": "shim-concept",
+          "text": "Shim Concept"
+        },
+        {
+          "level": 1,
+          "anchor": "integrating-a-non-simics-pcie-endpoint-to-simics",
+          "text": "Integrating a non-Simics PCIe Endpoint to Simics"
+        },
+        {
+          "level": 1,
+          "anchor": "integrating-a-non-simics-pcie-switch-to-simics",
+          "text": "Integrating a non-Simics PCIe Switch to Simics"
+        },
+        {
+          "level": 1,
+          "anchor": "shim-source-code",
+          "text": "Shim Source Code"
+        },
+        {
+          "level": 2,
+          "anchor": "shim-frontend-source-code",
+          "text": "Shim Frontend Source Code"
+        },
+        {
+          "level": 2,
+          "anchor": "pcie-shim-c-source-code",
+          "text": "PCIe Shim C++ Source Code"
+        },
+        {
+          "level": 3,
+          "anchor": "sample-pcie-traffic-over-ipc",
+          "text": "Sample PCIe Traffic over IPC"
+        },
+        {
+          "level": 2,
+          "anchor": "connecting-to-a-pcie-slot",
+          "text": "Connecting to a PCIe Slot"
+        }
+      ],
+      "children": []
+    }
+  ]
+}

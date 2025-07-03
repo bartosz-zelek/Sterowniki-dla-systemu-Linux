@@ -1,0 +1,101 @@
+# © 2023 Intel Corporation
+#
+# This software and the related documents are Intel copyrighted materials, and
+# your use of them is governed by the express license under which they were
+# provided to you ("License"). Unless the License provides otherwise, you may
+# not use, modify, copy, publish, distribute, disclose or transmit this software
+# or the related documents without Intel's prior written permission.
+#
+# This software and the related documents are provided as is, with no express or
+# implied warranties, other than those that are expressly stated in the License.
+
+#
+# Create the training machine, using a run-script operation to make the
+# filename argument consistent with the import in the .target.yml file
+#
+#   Making it possible to use load-target here requires a change to the 
+#   parameter system, tracked in JIRA SIMICS-21550 
+#
+run-script "%script%/001-qsp-training.target.yml" namespace = "training_setup"
+
+# Build a list of all hosts with names and MAC addresses to set up the service node
+# DHCP and DNS service
+local $hosts = [ [(params.get training_setup:platform:machine:hardware:name),
+                  (params.get training_setup:platform:machine:hardware:output:mac_address)] ]
+
+#
+# The standard user training script always creates a network, so we borrow
+# that for the overall setup.  Note that no service node is created yet, 
+# that is added later. 
+#
+local $ethernet_switch = (params.get training_setup:output:eth_link)
+
+#
+# Define neat names for the first few machines... 
+#
+@def neat_qsp_name(n):
+    if n==0: 
+      return "qsp"
+    if n==1: 
+      return "qsp_too"
+    if n==2:
+      return "qsp_three"  # yes it is off by one
+    if n==11:
+      return "qsp_dozen"
+    return f"qsp_{n+1}" 
+
+#
+# Create num_plain_qsps additional QSP machines
+# 
+foreach $i in (range `params['num_plain_qsps']`) {
+        local $ns = "qsp[%d]" % $i
+        local $machine_name = `neat_qsp_name(simenv.i)` 
+
+        # Make sure each machine has a unique name, as this is used to generate the
+        # object names in the simulator configuration.  And have to be unique. 
+        #
+        params.setdefault ($ns+":hardware:name") $machine_name
+        params.setdefault ($ns+":system_info") "QSP x86 with Yocto Linux- called %s" % [$machine_name]
+
+        # Run the underlying scripts from the QSP package, not one of the exposed
+        # target variants. This avoids the "network" parameters set from the targets. 
+        # In this case, we want just the QSP machine with no network parameters and no
+        # automatic network generation.  To do this, we have to open the hood a bit
+        # and peek at how the QSP setups are coded. 
+        #
+        # In principle, the QSP package could offer a "qsp-x86/clear-linux-with-no-network" target
+        # But that is likely to be confusing to most users, and only useful in a case like this
+        # 
+        run-script "%simics%/targets/qsp-x86/yocto-linux-setup.yml" namespace = $ns
+
+	# Connect the QSP to the network and pull out information to set up DHCP and DNS
+	# A good example of how to use output parameters to help an upper-level script
+        connect ($ethernet_switch.get-free-connector) (params.get $ns+":hardware:output:eth_slot")
+	$hosts += [ [(params.get $ns+":hardware:output:system"),
+                     (params.get $ns+":hardware:output:mac_address")] ]
+}
+
+#
+# Create a network with a service node, and make the service node 
+# "pop up" at top level
+#
+# We do not use the one from the training_setup, because
+# there is no parameter to force it to be top level
+#
+load-module service-node
+local $sn=(new-service-node-comp top = TRUE name=servicenode)
+$sn.dhcp-add-pool 100 "10.10.0.10" board simics.net       # IP addr to serve to targets
+
+# Connect the service node to the network
+$sn.connect-to-link $ethernet_switch "10.10.0.1"
+$sn.enable-real-dns
+
+foreach $host in $hosts {
+  ($sn.add-host
+     name = $host[0]
+     ip = ($sn.get-ip-address-from-pool)
+     domain = network.sim
+     mac = $host[1])
+}
+
+

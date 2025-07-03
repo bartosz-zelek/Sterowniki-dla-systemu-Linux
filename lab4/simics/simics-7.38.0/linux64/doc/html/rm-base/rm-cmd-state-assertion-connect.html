@@ -1,0 +1,23 @@
+<a name="state-assertion-connect"></a>
+<h1 id="state-assertion-connect"><a href="#state-assertion-connect">state-assertion-connect</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>state-assertion-connect</b> [<i>"server"</i>] [<i>port</i>] [<i>"compression"</i>] [<i>align</i>] [<i>post_events</i>] [<i>"name"</i>] <br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+ This command connects to a state-assertion receiver so that all data gathered during the state recording will be sent over to the receiver.
+<p>
+- <i>server</i> receiver host waiting for the connection, default is "localhost"<br>
+ - <i>port</i> port number on which the receiver is waiting for a connection, default is 6666<br>
+ - <i>compression</i> is the compression used (none, gz), default is "none"<br>
+ - <i>align</i> is the alignment of the structures inside the file, default is 8. It can be useful to set it so that objects saving their state are sure to get correctly aligned structures.<br>
+ - <i>post_events</i> tells state-assertion to post events by itself for recording and comparing, default is true.<br>
+ - <i>name</i> is the name of the object to be created, default is saX where X is a number. 
+</p><h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.state-assertion.html">state-assertion</a>
+</section>

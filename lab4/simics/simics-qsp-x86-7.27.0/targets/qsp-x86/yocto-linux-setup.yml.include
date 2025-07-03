@@ -1,0 +1,71 @@
+local $default_image_url = "https://downloads.yoctoproject.org/releases/yocto/yocto-5.1/machines/genericx86-64/core-image-sato-sdk-genericx86-64.rootfs-20240917113829.wic"
+local $default_image = ("%simics%/targets/qsp-x86/images/" +
+                       (split-string separator = "/" string = $default_image_url)[-1])
+
+if not (params.get software:linux:os_image) {
+    local $disk0_image = (lookup-file -query $default_image)
+    if not $disk0_image {
+        echo ( "------ NOTE --------\n"
+             + "'os_image' not set and could not find " + $default_image + ".\n"
+             + "If you wanted to use it, you can download it from\n"
+             + $default_image_url
+             + "\nand place it into <project>/targets/qsp-x86/images\n"
+             + "--------------------\n\n")
+        interrupt-script -error "Aborting target load now."
+    }
+    params.setdefault software:linux:os_image $disk0_image
+}
+
+params.setdefault hardware:storage:disk0:image (params.get software:linux:os_image)
+
+run-script "%script%/hardware.yml" namespace = hardware
+
+local $system = (params.get hardware:output:system)
+instantiate-components $system
+
+## Name system
+$system->system_info = (params.get system_info)
+
+## Set a time quantum that provides reasonable performance
+set-time-quantum cell = ((($system->cpu_list)[0])->cell) seconds = 0.0001
+
+if (params.get software:osa:create) {
+    ### process tracker
+    load-module os-awareness
+    create-os-awareness name = $system + ".software"
+    if (params.get software:osa:tracker_params) != NIL {
+        $system.software.load-parameters (params.get software:osa:tracker_params)
+    } else if (params.get software:osa:create_tracker) {
+       $system.software.insert-tracker tracker = "linux_tracker_comp"
+    }
+}
+
+if ((params.get software:linux:auto_login) or (params.get software:linux:auto_login_root)) {
+    local $enable_real_time_mode = (params.get simulation:enable_real_time_mode)
+    script-branch "autologin" {
+        local $login_con = $system.serconsole
+        local $auto_login_user = "simics"
+        local $prompt_string = "$ "
+        if (params.get software:linux:auto_login_root) {
+            # $auto_login_root wins over $auto_login
+            $auto_login_user = "root"
+            $prompt_string = "# "
+        }
+        bp.console_string.wait-then-write $login_con.con " login: " ("%s\n" % $auto_login_user)
+        bp.console_string.wait-for $login_con.con $prompt_string
+        local $msg = "Autologin as \"%s\"" % $auto_login_user
+        $msg += " was done on \"%s\"." % $login_con->title
+        echo $msg
+        if ($enable_real_time_mode) {
+            enable-real-time-mode
+        }
+    }
+}
+
+if (params.get software:linux:os_configuration_diff_image) {
+    if (params.get hardware:storage:disk0:interface) == nvme {
+        $system.disk0.namespaces.images[0].add-diff-file (params.get software:linux:os_configuration_diff_image)
+    } else {
+        $system.disk0.hd_image.add-diff-file (params.get software:linux:os_configuration_diff_image)
+    }
+}

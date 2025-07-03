@@ -1,0 +1,63 @@
+<a name="probe_system_perfmeter.html-report"></a>
+<h1 id="probe_system_perfmeter.html-report"><a href="#probe_system_perfmeter.html-report">&lt;probe_system_perfmeter&gt;.html-report</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>&lt;probe_system_perfmeter&gt;.html-report</b> [<i>html-dir</i>] [<i>probe-json-file</i>] [<i>graph-spec-json-file</i>] [-open-browser] <br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+
+        Produce a performance report in HTML. The graphs that are included
+        depend on the probes that have been monitored. The &lt;arg&gt;html-dir&lt;/arg&gt;
+        argument specifies the directory for the HTML report. If not specified,
+        a temporary directory will be created. The file "index.html" is the
+        start page.
+
+        The &lt;arg&gt;probe-json-file&lt;/arg&gt; can specify an already generated
+        json file containing the probe information, and a report of its
+        data will be presented (instead of the current session).
+
+        The &lt;arg&gt;graph-spec-json-file&lt;/arg&gt; argument points out an
+        json file used for selecting which graphs to produce. If not
+        specified, a default file will be used.
+
+        The &lt;tt&gt;-open-browser&lt;/tt&gt; switch starts a web-browser directly
+        on the generated file.
+
+        The graph specification (see &lt;arg&gt;graphs-spec-json-file&lt;/arg)
+        defines which graphs that should be generated. The top-level
+        &lt;tt&gt;"graphs"&lt;/tt&gt; key holds a value-list of all defined graphs.
+        In this list, each graph support the following key/value pairs:
+
+        &lt;br/&gt;Key:"&lt;b&gt;description&lt;/b&gt;" Type:&lt;i&gt;list or str&lt;/i&gt; Default:&lt;i&gt;No description&lt;/i&gt;&lt;br/&gt;Optional. A textual description of what a graph represents.&lt;br/&gt;&lt;br/&gt;Key:"&lt;b&gt;title&lt;/b&gt;" Type:&lt;i&gt;str&lt;/i&gt; Default:&lt;i&gt;None&lt;/i&gt;&lt;br/&gt;Mandatory. Specifies the main title of the graph. The title is also used to identification, if there is a problem in the json file.&lt;br/&gt;&lt;br/&gt;Key:"&lt;b&gt;x_axis_title&lt;/b&gt;" Type:&lt;i&gt;str&lt;/i&gt; Default:&lt;i&gt;None&lt;/i&gt;&lt;br/&gt;Optional. Specifies the title of the x-axis. If not supplied, the name will be taken from the x-probe's display-name. For histogram-probes' the key-value pairs are unnamed so here the name can represent the key type.&lt;br/&gt;&lt;br/&gt;Key:"&lt;b&gt;y_axis_title&lt;/b&gt;" Type:&lt;i&gt;str&lt;/i&gt; Default:&lt;i&gt;None&lt;/i&gt;&lt;br/&gt;Optional. Specifies the title of the y-axis. If not supplied, the name will be taken from the first y-probe's display-name. For histogram-probes' the key-value pairs are unnamed so here the name can represent value type.&lt;br/&gt;&lt;br/&gt;Key:"&lt;b&gt;type&lt;/b&gt;" Type:&lt;i&gt;str&lt;/i&gt; Default:&lt;i&gt;line&lt;/i&gt; Valid-values:&lt;i&gt; "bar", "line", "pie"&lt;/i&gt;&lt;br/&gt;Optional. The type of graph that should be generated.&lt;br/&gt;&lt;br/&gt;Key:"&lt;b&gt;x_probe&lt;/b&gt;" Type:&lt;i&gt;str&lt;/i&gt; Default:&lt;i&gt;None&lt;/i&gt;&lt;br/&gt;Optional. The probe data representing the X-axis values. This is typically sim:sim.time.wallclock-session or sim:sim.time.virtual-session.&lt;br/&gt;&lt;br/&gt;Key:"&lt;b&gt;y_probes&lt;/b&gt;" Type:&lt;i&gt;list or str&lt;/i&gt; Default:&lt;i&gt;None&lt;/i&gt;&lt;br/&gt;The probe(s) representing the data on the Y-axis, for the sampled X-values.It can be specified in multiple ways:&lt;br/&gt;&lt;br/&gt;- "sim:sim.mips"  - The global MIPS data&lt;br/&gt;- "cpu0:cpu.mips" - The MIPS data for cpu0 only&lt;br/&gt;- "*:cpu.mips"    - All objects MIPS data each as its own graph&lt;br/&gt;&lt;br/&gt;Note, that the wildcard (*) syntax is only used for the complete object, it is not possible to use it as a filter, with prefix or suffix characters. Multiple probes can also be specified as a single-list:&lt;br/&gt;&lt;br/&gt;- ["sim:sim.exec_mode.interpreter_percent",   "sim:sim.exec_mode.jit_percent",",   "sim:sim.exec_mode.vmp_percent"]&lt;br/&gt;&lt;br/&gt;Here three graphs would be shown, however if any prope is missing this is silently ignored. If no probes are found no chart will be generated. It is also possible to add annotations to each graph:&lt;br/&gt;&lt;br/&gt;- ["sim:sim.mips", ["sim:sim.module_profile"]]&lt;br/&gt;&lt;br/&gt; Annotation probes provides additional data shown when hovering over a specific point in the graph.In this example, the module profile information is shown when hovering over a data-point in the mips graph.&lt;br/&gt;Wildcard (*) is also handled in the annotation probes, however if the probe assigned with annotations, the *-annotation objects must match those in the original probe-object.&lt;br/&gt;&lt;br/&gt;Key:"&lt;b&gt;histogram_probe&lt;/b&gt;" Type:&lt;i&gt;str&lt;/i&gt; Default:&lt;i&gt;None&lt;/i&gt;&lt;br/&gt;If a probe is of histogram type, it holds two datapoints: key and value. Such a probe can be used to show a pie or bar chart from the gathered final value. It can also be used by looking at all samples and stack the bars on-top of each-other. In this case the "x-probe" must also be supplied.&lt;br/&gt;&lt;br/&gt;Key:"&lt;b&gt;histogram_data_set&lt;/b&gt;" Type:&lt;i&gt;str&lt;/i&gt; Default:&lt;i&gt;samples&lt;/i&gt; Valid-values:&lt;i&gt; "final", "samples"&lt;/i&gt;&lt;br/&gt;For histogram data, selects if the graph should be based on all the samples or just the final data in the end.&lt;br/&gt;&lt;br/&gt;Key:"&lt;b&gt;stacked&lt;/b&gt;" Type:&lt;i&gt;bool&lt;/i&gt; Default:&lt;i&gt;False&lt;/i&gt;&lt;br/&gt;If graph-data should be placed stacked on-top of each graph, instead as a separate line/bar.&lt;br/&gt;&lt;br/&gt;Key:"&lt;b&gt;arith_mean&lt;/b&gt;" Type:&lt;i&gt;bool&lt;/i&gt; Default:&lt;i&gt;False&lt;/i&gt;&lt;br/&gt;TODO re-implement&lt;br/&gt;&lt;br/&gt;Key:"&lt;b&gt;percent&lt;/b&gt;" Type:&lt;i&gt;bool&lt;/i&gt; Default:&lt;i&gt;False&lt;/i&gt;&lt;br/&gt;Show the Y-data in percent format.&lt;br/&gt;&lt;br/&gt;Key:"&lt;b&gt;multi_graph&lt;/b&gt;" Type:&lt;i&gt;bool&lt;/i&gt; Default:&lt;i&gt;False&lt;/i&gt;&lt;br/&gt;Generate a separate graph for each object.&lt;br/&gt;&lt;br/&gt;Key:"&lt;b&gt;y_range&lt;/b&gt;" Type:&lt;i&gt;list&lt;/i&gt; Default:&lt;i&gt;None&lt;/i&gt;&lt;br/&gt;The range shown on the y-axis by default. If not specified, this will be automatic from the actual y-values given.&lt;br/&gt;&lt;br/&gt;Key:"&lt;b&gt;min_data_series&lt;/b&gt;" Type:&lt;i&gt;int&lt;/i&gt; Default:&lt;i&gt;None&lt;/i&gt;&lt;br/&gt;The minimum number of data-series to draw, for the the graph be shown.&lt;br/&gt;&lt;br/&gt;Key:"&lt;b&gt;max_data_series&lt;/b&gt;" Type:&lt;i&gt;int&lt;/i&gt; Default:&lt;i&gt;None&lt;/i&gt;&lt;br/&gt;The minimum number of data-series to draw, for the the graph be shown.&lt;br/&gt;&lt;br/&gt;Key:"&lt;b&gt;min_graphs&lt;/b&gt;" Type:&lt;i&gt;int&lt;/i&gt; Default:&lt;i&gt;None&lt;/i&gt;&lt;br/&gt;With multi-graph, the minimum graphs that must be generated or all of these graphs are skipped.&lt;br/&gt;&lt;br/&gt;Key:"&lt;b&gt;max_graphs&lt;/b&gt;" Type:&lt;i&gt;int&lt;/i&gt; Default:&lt;i&gt;None&lt;/i&gt;&lt;br/&gt;With multi-graph, the maximum number of graphs that may generated or all of these graphs are skipped.&lt;br/&gt;&lt;br/&gt;Key:"&lt;b&gt;cutoff_percent&lt;/b&gt;" Type:&lt;i&gt;float&lt;/i&gt; Default:&lt;i&gt;0.0&lt;/i&gt;&lt;br/&gt;Reduce the number of data-series by putting all series that totals in less than the cutoff% value in a special cutoff-bucket&lt;br/&gt;
+
+        Please note that some key/value pairs only affect certain graphs. Future
+        improvements to the graph generation process may result in changes,
+        additions, or removals of the supported key/value pairs. Therefore,
+        backward compatibility of the JSON file is not guaranteed.
+<h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.probe-monitor.html">probe-monitor</a>
+<h2 id="see-also">
+<a href="#see-also">See Also</a>
+</h2>
+<a href="rm-cmd-probe_system_perfmeter.add-probe.html">&lt;probe_system_perfmeter&gt;.add-probe</a>, 
+<a href="rm-cmd-probe_system_perfmeter.clear-history.html">&lt;probe_system_perfmeter&gt;.clear-history</a>, 
+<a href="rm-cmd-probe_system_perfmeter.delete.html">&lt;probe_system_perfmeter&gt;.delete</a>, 
+<a href="rm-cmd-probe_system_perfmeter.export-json.html">&lt;probe_system_perfmeter&gt;.export-json</a>, 
+<a href="rm-cmd-probe_system_perfmeter.force-sample.html">&lt;probe_system_perfmeter&gt;.force-sample</a>, 
+<a href="rm-cmd-probe_system_perfmeter.merge-json.html">&lt;probe_system_perfmeter&gt;.merge-json</a>, 
+<a href="rm-cmd-probe_system_perfmeter.plot-graph.html">&lt;probe_system_perfmeter&gt;.plot-graph</a>, 
+<a href="rm-cmd-probe_system_perfmeter.print-history.html">&lt;probe_system_perfmeter&gt;.print-history</a>, 
+<a href="rm-cmd-probe_system_perfmeter.profile-probes.html">&lt;probe_system_perfmeter&gt;.profile-probes</a>, 
+<a href="rm-cmd-probe_system_perfmeter.remove-probe.html">&lt;probe_system_perfmeter&gt;.remove-probe</a>, 
+<a href="rm-cmd-probe_system_perfmeter.reset-session.html">&lt;probe_system_perfmeter&gt;.reset-session</a>, 
+<a href="rm-cmd-probe_system_perfmeter.sampling-settings.html">&lt;probe_system_perfmeter&gt;.sampling-settings</a>, 
+<a href="rm-cmd-probe_system_perfmeter.start.html">&lt;probe_system_perfmeter&gt;.start</a>, 
+<a href="rm-cmd-probe_system_perfmeter.stop.html">&lt;probe_system_perfmeter&gt;.stop</a>, 
+<a href="rm-cmd-probe_system_perfmeter.summary.html">&lt;probe_system_perfmeter&gt;.summary</a>, 
+<a href="rm-cmd-probe_system_perfmeter.table-settings.html">&lt;probe_system_perfmeter&gt;.table-settings</a>
+</section>

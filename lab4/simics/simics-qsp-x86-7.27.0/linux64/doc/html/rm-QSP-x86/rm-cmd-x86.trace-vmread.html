@@ -1,0 +1,32 @@
+<a name="x86.trace-vmread"></a>
+<a name="x86.untrace-vmread"></a>
+<a name="trace-vmread"></a>
+<a name="untrace-vmread"></a>
+<h1 id="x86.trace-vmread"><a href="#x86.trace-vmread">&lt;x86&gt;.trace-vmread</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>&lt;x86&gt;.trace-vmread</b> (<i>field</i>|-all|-list) <br><b>&lt;x86&gt;.untrace-vmread</b> (<i>field</i>|-all|-list) <br><b>trace-vmread</b> (<i>field</i>|-all|-list) <br><b>untrace-vmread</b> (<i>field</i>|-all|-list) <br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+ Enables and disables tracing of Intel® Virtual Machine Control Structure Shadowing (Intel® VMCS Shadowing) reads. When this is enabled, every time the specified VMCS field is read during simulation a message is printed. The message will name the VMCS field being read, and the value.
+<p>
+The <i>field</i> parameter specifies which VMCS field should be traced. The available VMCS fields depend on the simulated target.
+</p><p>
+Instead of a VMCS field number, the <tt>-all</tt> flag may be given. This will enable or disable tracing of all VMCS fields.
+</p><p>
+Using the <tt>-list</tt> argument will print out the VMCS fields accesses currently being traced.
+</p><p>
+The non-namespace variant of this command traces VMCS field reads on all processors that support the specified VMCS field. The namespace variant affects only the selected processor. 
+</p><h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.x86-intel64.html">x86-intel64</a>
+<h2 id="see-also">
+<a href="#see-also">See Also</a>
+</h2>
+<a href="rm-cmd-x86.break-vmread.html">break-vmread</a>, 
+<a href="rm-cmd-x86.trace-vmwrite.html">trace-vmwrite</a>
+</section>

@@ -1,0 +1,47 @@
+<h1 class="jdocu"><a class="not-numbered" name="__rm_interface_event_provider">event_provider</a></h1>
+<p>
+
+<a name="event_provider"></a><a name="event_provider_interface_t"></a></p><dl class="jdocu_di">
+<dt class="jdocu_descitem">Description</dt><dd class="jdocu_descitem">=============================================
+<p>
+                TECH-PREVIEW
+</p><p>
+    This interface may change without notice.
+</p><p>
+  =============================================
+</p><p>
+  The <code>event_provider</code> interface is used internally in between
+  ISIM modules.
+</p><p>
+  The method <b><i>event_name</i></b> returns name of event with index
+  <i>n</i> or <code>NULL</code> if there is no event with that index.
+</p><p>
+  The method <b><i>event_value</i></b> returns accumulated value for event
+  with index <i>n</i>. Output is undefined if there is no event with
+  that index.
+</p><p>
+  Events must de indexed from <code>0</code> to <code>last</code> without gaps.
+</p><p>
+  To use the <code>event-provider</code> add the following
+  EXTRA_MODULE_VPATH := event-provider-interface
+  to the modules Makefile.
+</p><p>
+  </p><pre class="jdocu_small">
+
+
+SIM_INTERFACE(event_provider) {
+        const char *(*event_name)(conf_object_t *obj, unsigned n);
+        uint64 (*event_value)(conf_object_t *obj, unsigned n);
+};
+
+#define EVENT_PROVIDER_INTERFACE "event_provider"
+
+</pre><p>
+</p><p>
+
+  
+</p></dd>
+<dt class="jdocu_descitem">Execution Context</dt><dd class="jdocu_descitem">Called from performance models.
+  
+</dd>
+</dl><p></p>

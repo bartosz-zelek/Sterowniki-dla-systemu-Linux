@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device name="x58-core" bitorder="le">
+  <bank name="f0" function="0">
+  </bank>
+  <bank name="f1" function="1">
+  </bank>
+  <bank name="f2" function="2">
+  </bank>
+  <bank name="f3" function="3">
+  </bank>
+</device>
