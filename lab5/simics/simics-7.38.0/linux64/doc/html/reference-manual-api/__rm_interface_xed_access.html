@@ -1,0 +1,26 @@
+<h1 class="jdocu"><a class="not-numbered" name="__rm_interface_xed_access">xed_access</a></h1>
+<p>
+
+<a name="xed_access"></a><a name="xed_access_interface_t"></a></p><dl class="jdocu_di">
+<dt class="jdocu_descitem">Description</dt><dd class="jdocu_descitem">The <code>xed_access</code> interface is implemented by a processor model.
+   The interface can be used to call Intel® X86 Encoder Decoder (Intel\reg;
+   XED) library built into the processor model.
+<p>
+   This interface is internal and may change at any time without notice.
+</p><p>
+   </p><pre class="jdocu_small">SIM_INTERFACE(xed_access) {
+        int (*get_last)(conf_object_t *obj, xed_data_type_t type);
+        int (*decode)(conf_object_t *obj, xed_data_type_t type, bytes_t bytes);
+        const char *(*to_string)(conf_object_t *obj, xed_data_type_t type,
+                                 int value);
+};
+
+#define XED_ACCESS_INTERFACE "xed_access"
+</pre><p>
+</p><p>
+   
+</p></dd>
+<dt class="jdocu_descitem">Execution Context</dt><dd class="jdocu_descitem">Cell Context for all methods.
+   
+</dd>
+</dl><p></p>

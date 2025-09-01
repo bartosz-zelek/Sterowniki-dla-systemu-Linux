@@ -1,0 +1,20 @@
+%YAML 1.2
+---
+description: A number of machines running Clear Linux.
+
+params:
+  num_machines:
+    type: int
+    default: 2
+    
+  qsp[num_machines]:
+    machine:
+      import: "%script%/clear-linux-setup.yml"
+      defaults:
+        hardware:
+          name: null
+      provides:
+        - hardware:name
+        
+script: "%script%/clear-linux-multi-no-network.target.yml.include"
+...

@@ -1,0 +1,27 @@
+<a name="x86-p4e.trace-segreg"></a>
+<a name="x86-p4e.untrace-segreg"></a>
+<h1 id="x86-p4e.trace-segreg"><a href="#x86-p4e.trace-segreg">&lt;x86-p4e&gt;.trace-segreg</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>&lt;x86-p4e&gt;.trace-segreg</b> (<i>"register"</i>|-all|-list) <br><b>&lt;x86-p4e&gt;.untrace-segreg</b> (<i>"register"</i>|-all|-list) <br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+ Enables and disables tracing of segment register updates. When this is enabled, every time the specified control <i>register</i> is updated during simulation a message is printed. The message will name the register being updated, and the new value. The new value will be printed even if it is identical to the previous value.
+<p>
+The <i>reg-name</i> parameter specifies which segment register should be traced.
+</p><p>
+Instead of a register name, the <tt>-all</tt> flag may be given. This will enable or disable tracing of all segment register.
+</p><p>
+Using the <tt>-list</tt> argument will print out the registers accesses currently being traced.
+</p><h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.x86-intel64.html">x86-intel64</a>
+<h2 id="see-also">
+<a href="#see-also">See Also</a>
+</h2>
+<a href="rm-cmd-x86-p4e.break-segreg.html">&lt;x86-p4e&gt;.break-segreg</a>
+</section>

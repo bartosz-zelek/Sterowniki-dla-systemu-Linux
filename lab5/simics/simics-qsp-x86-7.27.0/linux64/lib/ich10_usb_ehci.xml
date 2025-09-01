@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device name="ich10_usb_ehci" desc="model of Intel® ICH10 USB EHCI" documentation="USB EHCI host controller in Intel® ICH10." limitations="&lt;ul&gt;&lt;li&gt;Interrupt and Isochronous transfers not supported&lt;/li&gt;&lt;li&gt;Cannot handle when USB devices send NAK or STALL status during Control and Bulk transfers&lt;/li&gt;&lt;li&gt;Cannot handle USB devices with a latency (&lt;fun&gt;submit_transfer&lt;/fun&gt; must return &lt;const&gt;USB_Transfer_Completed&lt;/const&gt;)&lt;/li&gt;&lt;li&gt;Bulk and Control transfers will only be initiated while the attribute &lt;attr&gt;async_list_polling_enabled&lt;/attr&gt; is set.&lt;/li&gt;&lt;/ul&gt;" bitorder="le">
+  <bank name="pci_config" documentation="The PCI configuration space." byte_order="little-endian" function="255">
+    <register name="access_cntl" desc="Access Control Register" offset="128" size="1">
+    </register>
+    <register name="access_cntl_buf" desc="Dummy register" offset="129" size="3">
+    </register>
+    <register name="base_address_1" offset="20" size="4">
+      <field name="ignore" msb="31" lsb="0" />
+    </register>
+    <register name="base_address_2" offset="24" size="4">
+      <field name="ignore" msb="31" lsb="0" />
+    </register>
+    <register name="base_address_3" offset="28" size="4">
+      <field name="ignore" msb="31" lsb="0" />
+    </register>
+    <register name="base_address_4" offset="32" size="4">
+      <field name="ignore" msb="31" lsb="0" />
+    </register>
+    <register name="base_address_5" offset="36" size="4">
+      <field name="ignore" msb="31" lsb="0" />
+    </register>
+    <register name="bist" documentation="Build-in Self Test" offset="15" size="1">
+    </register>
+    <register name="cache_line_size" documentation="CacheLine Size" offset="12" size="1">
+    </register>
+    <register name="capabilities_ptr" documentation="Capabilities Pointer" offset="52" size="1">
+    </register>
+    <register name="cardbus_cis_ptr" documentation="Cardbus CIS Pointer" offset="40" size="4">
+    </register>
+    <register name="class_code" documentation="Class Code" offset="9" size="3">
+    </register>
+    <register name="command" documentation="Command Register" offset="4" size="2">
+      <field name="fb" desc="Fast Back-to-Back Transactions Enable" msb="9" lsb="9" />
+      <field name="id" desc="Interrupt Disable" msb="10" lsb="10" />
+      <field name="io" desc="I/O Space Enable" msb="0" lsb="0" />
+      <field name="m" desc="Bus Master Enable" msb="2" lsb="2" />
+      <field name="mem" desc="Memory Space Enable" msb="1" lsb="1" />
+      <field name="mwi" desc="Memory Write and Invalidate" msb="4" lsb="4" />
+      <field name="pe" desc="Parity Error Response" msb="6" lsb="6" />
+      <field name="sc" desc="Special Cycle Enable" msb="3" lsb="3" />
+      <field name="se" desc="SERR# Enable" msb="8" lsb="8" />
+      <field name="vga" desc="VGA Palette Snoop" msb="5" lsb="5" />
+      <field name="wc" desc="IDSEL Steppin/Wait Cycle Control" msb="7" lsb="7" />
+    </register>
+    <register name="dbg_base" desc="Debug Port Base Offset Register" offset="90" size="2">
+      <field name="bar_num" desc="Bar Number used by the Residing EHCI Bank" msb="15" lsb="13" />
+      <field name="port_off" desc="Debug Port Register Offset in the EHCI Bank" msb="12" lsb="0" />
+    </register>
+    <register name="dbg_capid" desc="Debug Port Capability ID Register" offset="88" size="1">
+    </register>
+    <register name="dbg_next_ptr" desc="Next Item Pointer #2 Register" offset="89" size="1">
+    </register>
+    <register name="device_id" documentation="Device ID" offset="2" size="2">
+    </register>
+    <register name="dummy_dc" offset="220" size="4">
+    </register>
+    <register name="ehciir1" desc="EHCI Initialization Register 1" offset="132" size="1">
+    </register>
+    <register name="ehciir2" desc="EHCI Initialization Register 2" offset="252" size="4">
+    </register>
+    <register name="expansion_rom_base" desc="Expansion ROM base address" offset="48" size="4">
+      <field name="base" documentation="The base address" msb="31" lsb="1" />
+      <field name="e" documentation="Address decode enable" msb="0" lsb="0" />
+    </register>
+    <register name="flrcid" desc="Function Level Reset Capability ID" offset="152" size="1">
+    </register>
+    <register name="flrclv" desc="Function Level Reset Capability Length and Version" offset="154" size="2">
+    </register>
+    <register name="flrctrl" desc="FLR Control Register" offset="156" size="1">
+    </register>
+    <register name="flrncp" desc="Function Level Reset Next Capability Pointer" offset="153" size="1">
+    </register>
+    <register name="flrstat" desc="FLR Status Register" offset="157" size="1">
+    </register>
+    <register name="frame_length_adjustment" offset="97" size="1">
+    </register>
+    <register name="header_type" documentation="Header Type" offset="14" size="1">
+      <field name="mf" desc="Multi-Function Device" msb="7" lsb="7" />
+      <field name="type" desc="Header Layout" msb="6" lsb="0" />
+    </register>
+    <register name="interrupt_line" documentation="Interrupt Line" offset="60" size="1">
+    </register>
+    <register name="interrupt_pin" documentation="Interrupt Pin" offset="61" size="1">
+    </register>
+    <register name="latency_timer" documentation="Latency Timer" offset="13" size="1">
+    </register>
+    <register name="legacy_support_control_status" offset="108" size="4">
+      <field name="SMI_on_Async_Adv_Enable" msb="5" lsb="5" />
+      <field name="SMI_on_Async_Advance" msb="21" lsb="21" />
+      <field name="SMI_on_BAR" msb="31" lsb="31" />
+      <field name="SMI_on_BAR_Enable" msb="15" lsb="15" />
+      <field name="SMI_on_FLR" msb="19" lsb="19" />
+      <field name="SMI_on_FLR_Enable" msb="3" lsb="3" />
+      <field name="SMI_on_HS_Error" msb="20" lsb="20" />
+      <field name="SMI_on_HS_Error_Enable" msb="4" lsb="4" />
+      <field name="SMI_on_OS_Owner_Change" msb="29" lsb="29" />
+      <field name="SMI_on_OS_Owner_Enable" msb="13" lsb="13" />
+      <field name="SMI_on_PCI_Cmd" msb="30" lsb="30" />
+      <field name="SMI_on_PCI_Cmd_Enable" msb="14" lsb="14" />
+      <field name="SMI_on_Port_Change_Detect" msb="18" lsb="18" />
+      <field name="SMI_on_Port_Change_Enable" msb="2" lsb="2" />
+      <field name="SMI_on_USB_Complete" msb="16" lsb="16" />
+      <field name="SMI_on_USB_Complete_Enable" msb="0" lsb="0" />
+      <field name="SMI_on_USB_Error" msb="17" lsb="17" />
+      <field name="SMI_on_USB_Error_Enable" msb="1" lsb="1" />
+      <field name="reserved1" msb="28" lsb="22" />
+      <field name="reserved2" msb="12" lsb="6" />
+    </register>
+    <register name="legacy_support_ext_cap" offset="104" size="4">
+    </register>
+    <register name="max_lat" documentation="MAX_LAT" offset="63" size="1">
+    </register>
+    <register name="min_gnt" documentation="MIN_GNT" offset="62" size="1">
+    </register>
+    <register name="pm_capabilities" documentation="Power Management Capabilities" offset="82" size="2">
+      <field name="auxc" desc="AUX Current" msb="8" lsb="6" />
+      <field name="d1s" desc="D1 Support" msb="9" lsb="9" />
+      <field name="d2s" desc="D2 Support" msb="10" lsb="10" />
+      <field name="dsi" desc="Device Specific Initialization" msb="5" lsb="5" />
+      <field name="irortd0" desc="Immediate Readiness on Return to D0" msb="4" lsb="4" />
+      <field name="pmec" desc="PME Clock" msb="3" lsb="3" />
+      <field name="pmes" desc="PME Support" msb="15" lsb="11" />
+      <field name="v" desc="Version" msb="2" lsb="0" />
+    </register>
+    <register name="pm_capability_header" documentation="Capability Header" offset="80" size="2">
+      <field name="id" desc="Capability ID" msb="7" lsb="0" />
+      <field name="next_ptr" desc="Next Capability Pointer" msb="15" lsb="8" />
+    </register>
+    <register name="pm_data" documentation="Power Management Data" offset="87" size="1">
+    </register>
+    <register name="pm_sc_bridge" documentation="Power Management Control/Status Bridge Extensions" offset="86" size="1">
+      <field name="bbs" desc="B2/B3 Support" msb="6" lsb="6" />
+      <field name="bpcce" desc="Bus Power/Clock Control Enable" msb="7" lsb="7" />
+    </register>
+    <register name="pm_status_control" documentation="Power Management Status and Control" offset="84" size="2">
+      <field name="dsc" desc="Data Scale" msb="14" lsb="13" />
+      <field name="dse" desc="Data Select" msb="12" lsb="9" />
+      <field name="nsr" desc="No Soft Reset" msb="3" lsb="3" />
+      <field name="pmee" desc="PME Enable" msb="8" lsb="8" />
+      <field name="pmes" desc="PME Status" msb="15" lsb="15" />
+      <field name="ps" desc="Power State" msb="1" lsb="0" />
+    </register>
+    <register name="port_wake_capability" offset="98" size="2">
+    </register>
+    <register name="revision_id" documentation="Revision ID" offset="8" size="1">
+    </register>
+    <register name="special_smi" desc="Intel Specific USB 2.0 SMI Register" offset="112" size="4">
+    </register>
+    <register name="status" documentation="Status Register" offset="6" size="2">
+      <field name="c" desc="Capabilities List" msb="4" lsb="4" />
+      <field name="dpe" desc="Detected Parity Error" msb="15" lsb="15" />
+      <field name="ds" desc="DEVSEL timing" msb="10" lsb="9" />
+      <field name="fbb" desc="Fast Back-to-Back Transactions Capable" msb="7" lsb="7" />
+      <field name="ins" desc="Interrupt Status" msb="3" lsb="3" />
+      <field name="ir" desc="Immediate Readiness" msb="0" lsb="0" />
+      <field name="mhz" desc="66 MHz Capable" msb="5" lsb="5" />
+      <field name="pe" desc="Master Data Parity Error" msb="8" lsb="8" />
+      <field name="rma" desc="Received Master Abort" msb="13" lsb="13" />
+      <field name="rta" desc="Received Target Abort" msb="12" lsb="12" />
+      <field name="ssa" desc="Signaled System Abort" msb="14" lsb="14" />
+      <field name="sta" desc="Signaled Target Abort" msb="11" lsb="11" />
+    </register>
+    <register name="subsystem_id" documentation="Subsystem ID" offset="46" size="2">
+    </register>
+    <register name="subsystem_vendor_id" documentation="Subsystem Vendor ID" offset="44" size="2">
+    </register>
+    <register name="usb_base_address" offset="16" size="4">
+      <field name="base" documentation="The base address" msb="31" lsb="4" />
+      <field name="p" documentation="Prefetchable" msb="3" lsb="3" />
+      <field name="s" documentation="Memory Space Indicator" msb="0" lsb="0" />
+      <field name="type" documentation="Type (00: anywhere in 32-bit space; 10: anywhere in 64-bit space)" msb="2" lsb="1" />
+    </register>
+    <register name="usb_release_number" offset="96" size="1">
+    </register>
+    <register name="vendor_id" documentation="Vendor ID" offset="0" size="2">
+    </register>
+  </bank>
+  <bank name="usb_ctrl" byte_order="little-endian">
+  </bank>
+  <bank name="usb_regs" byte_order="little-endian" function="1">
+    <register name="asynclistaddr" offset="56" size="4">
+    </register>
+    <register name="caplength" offset="0" size="1">
+    </register>
+    <register name="configflag" offset="96" size="4">
+      <field name="cf" msb="0" lsb="0" />
+    </register>
+    <register name="ctrl_status" desc="Control/Status Register" offset="160" size="4">
+      <field name="done" desc="Done" msb="16" lsb="16" />
+      <field name="enabled" desc="Enabled" msb="28" lsb="28" />
+      <field name="err" desc="Error/Good" msb="6" lsb="6" />
+      <field name="ex" desc="Exception" msb="9" lsb="7" />
+      <field name="go" desc="Go" msb="5" lsb="5" />
+      <field name="in_use" desc="In Use" msb="10" lsb="10" />
+      <field name="len" desc="Data Length" msb="3" lsb="0" />
+      <field name="owner" desc="Owner" msb="30" lsb="30" />
+      <field name="rw" desc="Read/Write" msb="4" lsb="4" />
+    </register>
+    <register name="ctrldssegment" offset="48" size="4">
+    </register>
+    <register name="data_buf" desc="Data Buffer Register" offset="168" size="8">
+    </register>
+    <register name="dev_addr" desc="Device Address Register" offset="176" size="4">
+      <field name="usb_addr" desc="USB Address" msb="14" lsb="8" />
+      <field name="usb_ep" desc="USB Endpoint" msb="3" lsb="0" />
+    </register>
+    <register name="dummy_1c" offset="60" size="4">
+    </register>
+    <register name="frindex" limitations="The controller may process frames in advance, i.e., before they have been referenced by frindex" offset="44" size="4">
+    </register>
+    <register name="hccparams" offset="8" size="4">
+      <field name="addr_64bit" msb="0" lsb="0" />
+      <field name="async_sched_park" msb="2" lsb="2" />
+      <field name="eecp" msb="15" lsb="8" />
+      <field name="iso_sched" msb="7" lsb="4" />
+      <field name="prog_frame_list" msb="1" lsb="1" />
+    </register>
+    <register name="hciversion" offset="2" size="2">
+    </register>
+    <register name="hcsp_portroute" offset="12" size="8">
+    </register>
+    <register name="hcsparams" offset="4" size="4">
+      <field name="debug_port_number" msb="23" lsb="20" />
+      <field name="n_cc" msb="15" lsb="12" />
+      <field name="n_pcc" msb="11" lsb="8" />
+      <field name="n_ports" msb="3" lsb="0" />
+      <field name="p_indicator" msb="16" lsb="16" />
+      <field name="port_routing_rules" msb="7" lsb="7" />
+      <field name="ppc" msb="4" lsb="4" />
+    </register>
+    <register name="periodiclistbase" offset="52" size="4">
+    </register>
+    <register name="prtsc" vsize="6" offset="100 104 108 112 116 120" size="4">
+      <field name="connect_status" msb="0" lsb="0" />
+      <field name="connect_status_change" msb="1" lsb="1" />
+      <field name="force_port_resume" limitations="Write-access not implemented." msb="6" lsb="6" />
+      <field name="line_status" msb="11" lsb="10" />
+      <field name="over_current" limitations="Read-access not implemented." msb="4" lsb="4" />
+      <field name="over_current_change" msb="5" lsb="5" />
+      <field name="port_enabled" msb="2" lsb="2" />
+      <field name="port_enabled_change" msb="3" lsb="3" />
+      <field name="port_indicator_ctrl" msb="15" lsb="14" />
+      <field name="port_owner" msb="13" lsb="13" />
+      <field name="port_power" msb="12" lsb="12" />
+      <field name="port_reset" msb="8" lsb="8" />
+      <field name="port_test_ctrl" limitations="Write-access not implemented." msb="19" lsb="16" />
+      <field name="suspend" limitations="Write-access not implemented." msb="7" lsb="7" />
+      <field name="wake_on_connect_en" limitations="Not implemented." msb="20" lsb="20" />
+      <field name="wake_on_disconnect_en" limitations="Not implemented." msb="21" lsb="21" />
+      <field name="wake_on_over_current_en" limitations="Not implemented." msb="22" lsb="22" />
+    </register>
+    <register name="reserved" offset="1" size="1">
+    </register>
+    <register name="usb_pids" desc="USB PIDs Register" offset="164" size="4">
+      <field name="r_pid" desc="Received PID" msb="23" lsb="16" />
+      <field name="s_pid" desc="Send PID" msb="15" lsb="8" />
+      <field name="t_pid" desc="Token PID" msb="7" lsb="0" />
+    </register>
+    <register name="usbcmd" offset="32" size="4">
+      <field name="async_doorbell" msb="6" lsb="6" />
+      <field name="async_pm_count" limitations="Not implemented (design limitation). This field is a dummy field with no side effects." msb="9" lsb="8" />
+      <field name="async_pm_en" limitations="Not implemented (design limitation). This field is a dummy field with no side effects." msb="11" lsb="11" />
+      <field name="async_sched_en" msb="5" lsb="5" />
+      <field name="frame_list_size" msb="3" lsb="2" />
+      <field name="hcreset" msb="1" lsb="1" />
+      <field name="int_thres_ctrl" limitations="Not implemented (design limitation). This field is a dummy field with no side effects." msb="23" lsb="16" />
+      <field name="light_hcreset" limitations="Write-access not implemented." msb="7" lsb="7" />
+      <field name="periodic_sched_en" msb="4" lsb="4" />
+      <field name="rc" msb="0" lsb="0" />
+    </register>
+    <register name="usbintr" offset="40" size="4">
+      <field name="mask" msb="5" lsb="0" />
+    </register>
+    <register name="usbsts" offset="36" size="4">
+      <field name="async_sched_status" limitations="Read-access not implemented." msb="15" lsb="15" />
+      <field name="hchalted" msb="12" lsb="12" />
+      <field name="interrupt" msb="5" lsb="0" />
+      <field name="periodic_sched_status" msb="14" lsb="14" />
+      <field name="reclamation" limitations="Read-access not implemented." msb="13" lsb="13" />
+    </register>
+  </bank>
+</device>

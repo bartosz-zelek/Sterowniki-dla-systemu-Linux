@@ -1,0 +1,13 @@
+%YAML 1.2
+---
+params:
+  description: >-
+    'vacuum' is an empty machine with no real processor in it, only a 'clock'
+    object that provides a time base so that execution can progress in clock
+    cycles.
+  vacuum:
+    blueprint: vacuum
+    module: simmod.vacuum_bp.vacuum
+    namespace: vacuum
+script: "%script%/vacuum.yml.include"
+...

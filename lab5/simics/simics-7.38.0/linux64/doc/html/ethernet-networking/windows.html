@@ -1,0 +1,40 @@
+<h1 class="jdocu"><a name="Windows">3.4.2 Windows</a></h1>
+<p>
+
+</p><p>
+The interface name expected by the <i>interface</i> argument is the
+ordinary interface name used by the host operating system. All interfaces of
+the host are listed in the <em>Network Connections</em> folder in
+the <em>Control Panel</em>; alternatively, <code>ipconfig</code> can be used in a
+command prompt on the simulation host:
+</p><p>
+</p><pre class="jdocu_small">C:\&gt;ipconfig
+
+Windows IP Configuration
+
+
+Ethernet adapter Local Area Connection:
+
+   Connection-specific DNS Suffix  . :
+   IP Address. . . . . . . . . . . . : 10.0.0.191
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 10.0.0.3
+
+Ethernet adapter LAB:
+
+   Connection-specific DNS Suffix  . :
+   IP Address. . . . . . . . . . . . : 10.10.0.1
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . :
+
+Ethernet adapter TAP:
+
+   Media State . . . . . . . . . . . : Media disconnected
+</pre><p>
+</p><p>
+For example, to use the first interface listed above, specify
+<i>"Local Area Connection"</i> as the <i>interface</i> argument. There is
+no need to specify the entire interface name: it is enough to specify a unique
+substring.
+</p><p>
+</p>

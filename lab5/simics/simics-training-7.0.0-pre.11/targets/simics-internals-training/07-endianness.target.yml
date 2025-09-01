@@ -1,0 +1,12 @@
+%YAML 1.2
+---
+description: >-
+  Intel Simics Internals Training, target for the
+  endianness lab. Sets up a very small system. 
+params:
+  name:
+    type: str
+    description: Name of top-level namespace in the system.
+    default: sys
+script: "%script%/07-endianness.target.yml.py"
+...

@@ -1,0 +1,6 @@
+owner: intel-innersource
+repo: applications.simulators.simics.ispm.simics-package-manager
+provider: github
+vPrefixedTagName: false
+publishAutoUpdate: false
+updaterCacheDirName: ispm-updater

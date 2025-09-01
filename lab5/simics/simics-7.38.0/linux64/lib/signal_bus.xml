@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device name="signal-bus" desc="signal bus" documentation="The &lt;class&gt;signal-bus&lt;/class&gt; class implements a signal bus that distributes a signal from one or more initiators to a configured list of targets. Both the signal bus itself and all targets implement the &lt;iface&gt;signal&lt;/iface&gt; interface. The initiator must also comply to the &lt;iface&gt;signal&lt;/iface&gt; interface, with the exception that multiple initiators are allowed for &lt;class&gt;signal-bus&lt;/class&gt; class." bitorder="le">
+</device>

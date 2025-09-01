@@ -1,0 +1,24 @@
+#
+# 'vacuum' is an empty machine with no real processor in it, only a 'clock'
+# object that provides a time base so that execution can progress in clock
+# cycles.
+#
+# Vacuum is intended to be used for testing a device from the command line.
+#
+# To test a device, replace the sample-device-python device in the add-map
+# call, or add more devices using add-map.
+#
+# To read from or write to a device, use the phys_mem.set and phys_mem.get
+# commands.  Examples for the sample-device-python device:
+#
+# Write a value '1' to address '1':  phys_mem.set 1 1 -l
+#    Read a value from address '0':  phys_mem.get 0 -l
+#
+
+# Read the setup functions -- this line is mandatory!
+run-script "%script%/vacuum_setup.py"
+
+# Add the python sample device to the code
+#   Mapped at address 0x0000, size 16 bytes (0x10)
+@SIM_create_object("sample_device_python", "sdp", [["queue", conf.timer]])
+phys_mem.add-map sdp 0x0000 0x10

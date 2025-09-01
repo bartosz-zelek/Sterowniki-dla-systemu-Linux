@@ -1,0 +1,25 @@
+<a name="print-blueprint-state"></a>
+<a name="pbs"></a>
+<h1 id="print-blueprint-state"><a href="#print-blueprint-state">print-blueprint-state</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>print-blueprint-state</b> [<i>"iface"</i>] [<i>"field"</i>] [<i>"pat"</i>] [-b] [-i] <br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+ Inspect blueprint state. If <i>iface</i> is specified, limit output to blueprint state of the specified type. The <i>field</i> argument can be used to restrict the output to just include the specified field.
+<p>
+As an alternative/complement to <i>iface</i>, it is possible to specify <i>pat</i> which selects all state that match the specified substring. This is for instance useful to select state defined in a specific node.
+</p><p>
+If the <tt>-b</tt> flag is specified, then all state bound to a specific namespace node are listed. Conversely, the <tt>-i</tt> flag lists all state subscription points. 
+</p><h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.blueprints.html">blueprints</a>
+<h2 id="see-also">
+<a href="#see-also">See Also</a>
+</h2>
+<a href="rm-cmd-list-blueprint-params.html">list-blueprint-params</a>
+</section>

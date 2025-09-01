@@ -1,0 +1,39 @@
+version 7016
+file 355400 1739172539 docea-obs-interface.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172537;MOD:docea-obs-interface;ABI:7016;API:6;PY_VERSION:3;PY_MINOR_VERSION:9;HOSTTYPE:linux64;PYIFACE:docea_obs;PYIFACE:docea_model_obs;PYIFACE:docea_obs2;THREADSAFE;
+file 215352 1739172541 docea-perf-interface.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172540;MOD:docea-perf-interface;ABI:7016;API:6;PY_VERSION:3;PY_MINOR_VERSION:9;HOSTTYPE:linux64;PYIFACE:docea_perf;PYIFACE:docea_perf2;PYIFACE:docea_perf3;THREADSAFE;
+file 109104 1739172544 docea-probe-array.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172543;MOD:docea-probe-array;ABI:7016;API:6;PY_VERSION:0;PY_MINOR_VERSION:0;HOSTTYPE:linux64;CLS:docea_probe_array;MODULE_LOAD;THREADSAFE;
+file 135528 1739172543 docea-probe.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172542;MOD:docea-probe;ABI:7016;API:6;PY_VERSION:0;PY_MINOR_VERSION:0;HOSTTYPE:linux64;CLS:docea_simulation_probe;CLS:docea_event_based_probe;MODULE_LOAD;THREADSAFE;
+file 209368 1739172546 docea-ptm-interface.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172545;MOD:docea-ptm-interface;ABI:7016;API:6;PY_VERSION:3;PY_MINOR_VERSION:9;HOSTTYPE:linux64;PYIFACE:docea_ptm;PYIFACE:docea_ptm2;THREADSAFE;
+file 211120 1739172548 docea-rw-interfaces.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172547;MOD:docea-rw-interfaces;ABI:7016;API:6;PY_VERSION:3;PY_MINOR_VERSION:9;HOSTTYPE:linux64;PYIFACE:readable_float;PYIFACE:writable_float;PYIFACE:writable_string;THREADSAFE;
+file 106432 1739172549 docea-session-interface.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172549;MOD:docea-session-interface;ABI:7016;API:6;PY_VERSION:3;PY_MINOR_VERSION:9;HOSTTYPE:linux64;PYIFACE:docea_session;THREADSAFE;
+file 9400 1739172550 docea-streamer.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172549;MOD:docea-streamer;ABI:7016;API:6;PY_VERSION:0;PY_MINOR_VERSION:0;HOSTTYPE:linux64;CLS:docea_streamer;MODULE_LOAD;SIMICS_START;THREADSAFE;
+file 118496 1739172551 float-aggregator.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172550;MOD:float-aggregator;ABI:7016;API:6;PY_VERSION:0;PY_MINOR_VERSION:0;HOSTTYPE:linux64;CLS:float_aggregator;MODULE_LOAD;THREADSAFE;
+file 106328 1739172552 float-forwarder.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172551;MOD:float-forwarder;ABI:7016;API:6;PY_VERSION:0;PY_MINOR_VERSION:0;HOSTTYPE:linux64;CLS:float_forwarder;MODULE_LOAD;THREADSAFE;
+file 9384 1739172553 isim-ptm.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172552;MOD:isim-ptm;ABI:7016;API:6;PY_VERSION:0;PY_MINOR_VERSION:0;HOSTTYPE:linux64;CLS:ptm_wrapper;MODULE_LOAD;THREADSAFE;
+file 9400 1739172556 periodic-ticker.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172556;MOD:periodic-ticker;ABI:7016;API:6;PY_VERSION:0;PY_MINOR_VERSION:0;HOSTTYPE:linux64;CLS:periodic_ticker;MODULE_LOAD;THREADSAFE;
+file 53239968 1739172562 physical-connector-v3.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172560;MOD:physical-connector-v3;ABI:7016;API:6;PY_VERSION:0;PY_MINOR_VERSION:0;HOSTTYPE:linux64;CLS:physical_connector_v3;MODULE_LOAD;THREADSAFE;
+file 9400 1739172564 physical-tracer-v2.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172563;MOD:physical-tracer-v2;ABI:7016;API:6;PY_VERSION:0;PY_MINOR_VERSION:0;HOSTTYPE:linux64;CLS:physical_tracer_v2;MODULE_LOAD;THREADSAFE;
+file 9400 1739172564 power-thermal.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172564;MOD:power-thermal;ABI:7016;API:6;PY_VERSION:0;PY_MINOR_VERSION:0;HOSTTYPE:linux64;MODULE_LOAD;THREADSAFE;
+file 77504 1739172565 read-float.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172565;MOD:read-float;ABI:7016;API:6;PY_VERSION:0;PY_MINOR_VERSION:0;HOSTTYPE:linux64;CLS:read_float;MODULE_LOAD;THREADSAFE;
+file 68544 1739172567 sample-telemetry.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172567;MOD:sample-telemetry;ABI:7016;API:6;PY_VERSION:0;PY_MINOR_VERSION:0;HOSTTYPE:linux64;CLS:sample_telemetry_provider_py;CLS:sample_notifier_py;CLS:sample_notifier_c;CLS:sample_telemetry_provider_c;CLS:sample_telemetry_consumer_py;CLS:sample_telemetry_consumer_c;MODULE_LOAD;THREADSAFE;
+file 102352 1739172570 written-float.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172569;MOD:written-float;ABI:7016;API:6;PY_VERSION:0;PY_MINOR_VERSION:0;HOSTTYPE:linux64;CLS:written_float;MODULE_LOAD;THREADSAFE;
+file 91760 1739172570 written-string.so
+cap VER:6250;BLD:0;BLD_NS:__simics_project__;BUILDDATE:1739172570;MOD:written-string;ABI:7016;API:6;PY_VERSION:0;PY_MINOR_VERSION:0;HOSTTYPE:linux64;CLS:written_string;MODULE_LOAD;THREADSAFE;

@@ -1,0 +1,15 @@
+%YAML 1.2
+---
+description: >-
+  Preset for the clear-linux target. Makes the simulation
+  deterministic by turning off VMP and setting the BIOS clock to an
+  explicit time.
+
+args:
+  machine:
+    hardware:
+      rtc:
+        time: '2023-04-20 04:17:56' # UTC of max solar eclipes
+      simulation:
+        use_vmp: false
+...

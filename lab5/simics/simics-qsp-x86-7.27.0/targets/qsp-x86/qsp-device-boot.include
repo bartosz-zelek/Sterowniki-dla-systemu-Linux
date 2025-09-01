@@ -1,0 +1,50 @@
+decl {
+ group "Simulation"
+
+ param real_time_mode : bool = TRUE
+ ! Prevents the simulation from running faster than real time.
+
+ param system_info : string
+ ! A description of the target.
+
+ params from "rw-state.include"
+
+ group "Networking"
+
+ param machine_name : string
+ ! Name of the machine. Used for DNS.
+
+ param ip_address : string = "auto"
+ ! The board IP address.
+
+ param mac_address : string
+ ! MAC address of the primary Ethernet adapter. Used for DNS.
+
+ params from "%simics%/targets/common/ethernet-setup.include"
+  except eth_connector
+
+ result eth_link : string or nil
+ result service_node : string or nil
+}
+
+# set a time quantum that provides a reasonable boot time
+set-time-quantum cell = ((($system->cpu_list)[0])->cell) seconds = 0.0001
+
+$system->system_info = $system_info
+
+if $real_time_mode {
+        script-branch "set-real-time-mode" {
+                # The UEFI BIOS requires about 60 seconds to boot
+                bp.time.wait-for 60
+                enable-real-time-mode
+        }
+}
+
+if $create_network {
+    $eth_connector = $system.mb.sb.eth_slot
+    run-script "%simics%/targets/common/ethernet-setup.include"
+}
+
+run-script "%simics%/targets/common/sn-setup.include"
+
+run-script "%simics%/targets/qsp-x86/rw-state.include"

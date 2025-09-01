@@ -1,0 +1,2 @@
+desc: Sample TLM2 DMA device connecting to Simics through IO_MEMORY interface
+name: Sample TLM2 DMA device

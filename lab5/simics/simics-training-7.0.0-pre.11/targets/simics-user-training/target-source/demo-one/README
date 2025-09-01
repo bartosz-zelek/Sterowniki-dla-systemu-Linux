@@ -1,0 +1,5 @@
+Demo program one for use in Simics training.  It activates the panel via
+mmap-IO. It maps both the internal RAM and device register bank. 
+
+The -one is used to differentiate this from the training-two program.  
+Each program will have a -num name to make sure they are really easy to tell apart. 

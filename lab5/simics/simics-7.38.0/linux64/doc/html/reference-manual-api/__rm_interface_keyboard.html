@@ -1,0 +1,33 @@
+<h1 class="jdocu"><a class="not-numbered" name="__rm_interface_keyboard">keyboard</a></h1>
+<p>
+
+<a name="keyboard"></a><a name="keyboard_interface_t"></a></p><dl class="jdocu_di">
+<dt class="jdocu_descitem">Description</dt><dd class="jdocu_descitem">Interface implemented by keyboard controllers. Used by consoles to send
+   keyboard events to the controller.
+<p>
+   The function <b><i>keyboard_event()</i></b> takes the keyboard controller as
+   its first argument <i>obj</i>. The <i>key_up</i> argument specifies
+   whether the event is a key release (1) or a key press (0). The
+   <i>key</i> argument is the Simics internal keycode, as defined in
+   the <code>sim_key_t</code> enum.
+</p><p>
+   If the return value is 1 the keyboard controller accepted the event. If
+   return value is 0 the keyboard controller did not accept the event, and the
+   console should buffer the event until it gets a <b><i>keyboard_ready()</i></b>
+   call from the keyboard controller.
+</p><p>
+   </p><pre class="jdocu_small">
+SIM_INTERFACE(keyboard) {
+        int (*keyboard_event)(conf_object_t *obj, int key_up, uint8 key);
+};
+
+#define KEYBOARD_INTERFACE "keyboard"
+</pre><p>
+</p><p>
+
+   
+</p></dd>
+<dt class="jdocu_descitem">Execution Context</dt><dd class="jdocu_descitem">Cell Context for all methods.
+   
+</dd>
+</dl><p></p>

@@ -1,0 +1,14 @@
+{
+  "is_book": false,
+  "anchor": "release_notes",
+  "file": "QSP-ISIM-release_notes.html",
+  "name": "Quick Start Platform for ISIM",
+  "headings": [
+    {
+      "level": 1,
+      "anchor": "list-of-changes",
+      "text": "List of changes"
+    }
+  ],
+  "children": []
+}

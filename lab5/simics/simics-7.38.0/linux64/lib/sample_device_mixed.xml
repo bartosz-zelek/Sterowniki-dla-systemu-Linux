@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device name="sample_device_mixed" desc="sample device using both DML and C/C++ code" documentation="This is a very simple device which shows how you can use C/C++ code from DML." bitorder="le">
+  <bank name="regs" byte_order="little-endian">
+    <register name="r1" offset="0" size="4">
+    </register>
+    <register name="r2" offset="16" size="4">
+    </register>
+  </bank>
+</device>

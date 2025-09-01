@@ -1,0 +1,18 @@
+<a name="agent_handle.agent-restart"></a>
+<h1 id="agent_handle.agent-restart"><a href="#agent_handle.agent-restart">&lt;agent_handle&gt;.agent-restart</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>&lt;agent_handle&gt;.agent-restart</b><br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+ Restart the Simics Agent for this <tt>agent_handle</tt> object, using the same command line arguments it was initially started with. This command affects any other handles for the same agent running on the target machine. Any <i>active</i> jobs will be lost, no matter which handles they were posted at.
+<p>
+Once the restarted agent has announced itself, the agent manager will reconnect all affected agent handles. Then, the manager will resume scheduling jobs from those handles.
+</p><h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.matic.html">matic</a>
+</section>

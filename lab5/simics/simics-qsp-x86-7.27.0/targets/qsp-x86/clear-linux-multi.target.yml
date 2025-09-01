@@ -1,0 +1,27 @@
+%YAML 1.2
+---
+description: A network of machines running Clear Linux.
+
+params:
+  num_machines:
+    type: int
+    default: 2
+    
+  qsp[num_machines]:
+    machine:
+      import: "%script%/clear-linux-setup.yml"
+      defaults:
+        hardware:
+          name: null
+      provides:
+        - hardware:name
+        
+  network:
+    switch:
+      import: "%simics%/targets/common/ethernet-setup.yml"
+    service_node:
+      import: "%simics%/targets/common/sn-setup.yml"
+      defaults:
+        ethernet_switch: ^network:switch:ethernet_switch:name
+script: "%script%/clear-linux-multi.target.yml.include"
+...

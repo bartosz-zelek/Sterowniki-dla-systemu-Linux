@@ -1,0 +1,25 @@
+<h1 class="jdocu"><a class="not-numbered" name="__rm_interface_cxl_non_device_decoder_handling">cxl_non_device_decoder_handling</a></h1>
+<p>
+
+<a name="cxl_non_device_decoder_handling"></a><a name="cxl_non_device_decoder_handling_interface_t"></a></p><dl class="jdocu_di">
+<dt class="jdocu_descitem">Description</dt><dd class="jdocu_descitem">Functions <b><i>enable_decoder</i></b> and <b><i>disable_decoder</i></b> are used
+   to enable and disable HDM decoders on a cxl-hdm-port device.
+<p>
+   </p><pre class="jdocu_small">
+SIM_INTERFACE(cxl_non_device_decoder_handling)
+{
+        int (*enable_decoder)(conf_object_t *obj, uint8 index, uint8 ig,
+                              uint8 iw, uint64 base, uint64 size,
+                              uint64 target_list);
+        int (*disable_decoder)(conf_object_t *obj, uint8 decoder_index);
+};
+
+#define CXL_NON_DEVICE_DECODER_HANDLING_INTERFACE "cxl_non_device_decoder_handling"
+</pre><p>
+</p><p>
+   
+</p></dd>
+<dt class="jdocu_descitem">Execution Context</dt><dd class="jdocu_descitem">Cell Context for all methods.
+   
+</dd>
+</dl><p></p>

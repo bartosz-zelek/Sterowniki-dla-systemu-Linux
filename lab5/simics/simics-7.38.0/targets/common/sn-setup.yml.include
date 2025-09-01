@@ -1,0 +1,32 @@
+if (params.get create) {
+
+    load-module service-node
+
+    # Create a service-node if not supplied in service_node_name parameter
+    local $service_node = (create-service-node-comp name = (params.get name))
+    local $cnt = ($service_node.add-connector (params.get ip_address))
+    local $ethernet_switch = (params.get ethernet_switch)
+    if (object-exists $ethernet_switch) {
+            connect $service_node. + $cnt ($ethernet_switch.get-free-connector)
+    }
+    if (params.get clock) {
+            $service_node.sn->queue = (params.get clock)
+    }
+
+    instantiate-components $service_node
+    # Add a pool of IP addresses for targets booting using DHCP
+    if (params.get dhcp:setup) {
+            ($service_node.dhcp-add-pool
+             (params.get dhcp:pool:size)
+             (params.get dhcp:pool:starting_ip_address)
+             dhcp (params.get dhcp:domain))
+    }
+    # Connect using NAPT to the real network (unless already connected)
+    if ((params.get connect_real_network) == "napt"
+        and $service_node.sn->napt_enable == FALSE
+        and (object-exists $ethernet_switch)) {
+                $ethernet_switch.connect-real-network-napt
+                $service_node.enable-real-dns
+    }
+
+}

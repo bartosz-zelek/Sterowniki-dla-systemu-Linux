@@ -1,0 +1,37 @@
+%YAML 1.2
+---
+description: RISC-V Simple board running Linux.
+params:
+  machine:
+    import: "%script%/linux-setup.yml"
+    defaults:
+      hardware:
+        entropy:
+          seed: 0x1234
+    provides:
+      - hardware:entropy:seed
+  network:
+    switch:
+      import: "%simics%/targets/common/ethernet-setup.yml"
+    service_node:
+      import: "%simics%/targets/common/sn-setup.yml"
+      defaults:
+        ethernet_switch: ^network:switch:ethernet_switch:name
+    ip_address:
+      type: str
+      default: auto
+      description: The IP address to assign to the given MAC over DHCP.
+  persistent_state:
+    import: "%simics%/targets/common/rw-state.yml"
+    defaults:
+      system: ^machine:hardware:output:system
+  output:
+    system:
+      type: str
+      output: yes
+      default: ^machine:hardware:output:system
+    ip_address:
+      type: str
+      output: yes
+script: "%script%/linux.target.yml.include"
+...

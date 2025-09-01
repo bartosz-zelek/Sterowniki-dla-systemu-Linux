@@ -1,0 +1,16 @@
+%YAML 1.2
+---
+description: >-
+ Intel Simics Internals Training, target for the lab about 
+ probing model activity. 
+args:
+  system_info: >-
+    RIBIT with test software
+  system:
+    num_subsystems: 2
+  software:
+    executable: 
+      "%simics%/targets/simics-internals-training/images/probes_demo.rv.baremetal.elf"
+    
+target: "%script%/ribit-hello-world.target.yml" 
+...

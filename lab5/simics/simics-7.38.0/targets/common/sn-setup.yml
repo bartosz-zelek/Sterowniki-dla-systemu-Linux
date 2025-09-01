@@ -1,0 +1,58 @@
+%YAML 1.2
+---
+params:
+  create:
+    type: bool
+    default: true
+    advanced: 2
+    description: Create a service node.
+  name:
+    type: str
+    default: service_node
+    advanced: 2
+    description: Name of the created service node
+  ethernet_switch:
+    type: str
+    advanced: 2
+  ip_address:
+    type: str
+    default: 10.10.0.1
+    advanced: 2
+    description: IP address of the service node
+  clock:
+    type: str
+    advanced: 2
+    required: false
+    description: Name of clock to use for service node
+  connect_real_network:
+    type: str
+    values: ["napt"]
+    advanced: 2
+    required: false
+    description: >-
+      Connects the simulated Ethernet switch to the host network using NAPT
+      (Network Address and Port Translation)
+  dhcp:
+    advanced: 2
+    setup:
+      type: bool
+      default: true
+      description: Setup service node DHCP service
+    domain:
+      type: str
+      default: network.sim
+      description: >-
+        Domain name to use for the DHCP server in the service node
+    pool:
+      starting_ip_address:
+        type: str
+        default: 10.10.0.100
+        description: >-
+          First IP address to serve from the DHCP server in the service node
+      size:
+        type: int
+        default: 100
+        description: >-
+          Size of the IP address pool for the DHCP server in the service node
+script: "%script%/sn-setup.yml.include"
+...

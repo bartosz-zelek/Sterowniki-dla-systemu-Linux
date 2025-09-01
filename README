@@ -1,0 +1,2 @@
+deprecated: ./ispm projects /home/debian/simics-projects/proj1 --create
+new: ~/Sterowniki-dla-systemu-Linux/lab5/intel-simics-package-manager-1.14.0$ ./ispm projects ../simics-projects/proj1 --create --install-dir ../simics/

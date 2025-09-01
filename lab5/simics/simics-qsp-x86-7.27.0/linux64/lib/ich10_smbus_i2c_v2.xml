@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device name="ich10_smbus_i2c_v2" bitorder="le">
+  <bank name="pcie_config" function="0">
+  </bank>
+  <bank name="smbus_func">
+  </bank>
+</device>

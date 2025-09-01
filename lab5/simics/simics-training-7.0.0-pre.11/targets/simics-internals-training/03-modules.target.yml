@@ -1,0 +1,8 @@
+%YAML 1.2
+---
+description: >-
+ Intel Simics Internals Training, target for the lab about modules,
+ packages, and classes. 
+    
+target: "%script%/ribit-hello-world.target.yml" 
+...

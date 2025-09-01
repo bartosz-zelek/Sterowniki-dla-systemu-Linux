@@ -1,0 +1,62 @@
+local $name = NIL
+local $card = NIL
+local $master_system = (params.get master_system)
+local $subsystem_name = (params.get subsystem_name)
+local $device_type = (params.get device_type)
+local $pcie_slot = (params.get pcie_slot)
+local $con = (params.get serconsole)
+
+# Generate name - inside master system if given, otherwise on the top level.
+if ($master_system != NIL) {
+        $name = $master_system + "." + $subsystem_name
+} else {
+        $name = $subsystem_name
+}
+
+# Add a card to the system.
+if( $device_type == "systemc" ) {
+        load-module sc-leds-and-button-pcie-dev
+        $card = ( create-sc-leds-and-button-pcie-comp $name )
+} else {
+        expect $device_type "dml"
+        load-module leds_and_button_pcie_comp
+        $card = ( create-leds-and-button-pcie-comp $name )
+}
+
+# Connect to master system.
+if ($pcie_slot != NIL) {
+        connect $pcie_slot $card.pci
+}
+instantiate-components
+
+# Upload PCIE Demo driver and install it.
+script-branch "pcie-demo-led-device-uploader" {
+    local $mgr  = (start-agent-manager)
+    local $hndl = ($mgr.connect-to-agent)
+    local $target_source = "%script%/target-source/"
+
+     # Set a short poll intervall as the script branch will otherwise stall
+     # while waiting to test the driver.
+    $hndl.agent-poll-interval 100
+    local $bin_driver = $target_source + "simics-pcie-demo-driver/simics-pcie-demo-driver.ko"
+    $hndl.upload -overwrite $bin_driver /root
+    $hndl.wait-for-job   ## wait for all uploads
+    add-session-comment "Uploaded target software to system"
+
+    # Insert driver
+    $con.input "\n"
+    bp.console_string.wait-then-write $con "~ $" "sudo insmod /root/simics-pcie-demo-driver.ko\n"
+    add-session-comment "Inserting driver"
+
+    # Test driver
+    bp.console_string.wait-for $con "~ $"
+    $job = ($hndl.run ("sudo bash -c \"echo '01'"
+                       + "> /dev/simics_pcie_demo_driver\""))
+    $hndl.wait-for-job $job
+    if( $card.panel.red_out->bool_state == TRUE) {
+        add-session-comment "Test: operation code '01' turned on red LED - OK "
+    } else {
+        interrupt-script "Test: operation code '01' failed to turned on red LED - failed "
+    }
+    stop
+}

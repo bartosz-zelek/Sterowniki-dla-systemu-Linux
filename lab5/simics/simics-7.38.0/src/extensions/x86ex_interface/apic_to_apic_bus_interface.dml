@@ -1,0 +1,41 @@
+// apic_to_apic_bus_interface.dml - Extension of APIC_BUS_INTERFACE
+
+/*
+  © 2014 Intel Corporation
+
+  This software and the related documents are Intel copyrighted materials, and
+  your use of them is governed by the express license under which they were
+  provided to you ("License"). Unless the License provides otherwise, you may
+  not use, modify, copy, publish, distribute, disclose or transmit this software
+  or the related documents without Intel's prior written permission.
+
+  This software and the related documents are provided as is, with no express or
+  implied warranties, other than those that are expressly stated in the License.
+*/
+
+dml 1.4;
+
+import "simics/devs/interrupt-ack.dml";
+import "simics/devs/apic.dml";
+
+header %{
+#include "apic_to_apic_bus_interface.h"
+%}
+
+extern typedef struct {
+        void (*ioapic_eoi)(conf_object_t *obj, int id);
+        apic_bus_status_t   (*interrupt)(conf_object_t *obj,
+                                         apic_destination_mode_t dest_mode,
+                                         apic_delivery_mode_t delivery_mode,
+                                         bool level_assert,
+                                         apic_trigger_mode_t trigger_mode,
+                                         uint8 vector,
+                                         uint32 destination,
+                                         bool exclude,
+                                         uint32 exclude_id,
+                                         interrupt_ack_fn_t ack_func,
+                                         conf_object_t *ack_func_arg,
+                                         conf_object_t *source);
+} apic_to_apic_bus_interface_t;
+
+extern const char *const APIC_TO_APIC_BUS_INTERFACE;

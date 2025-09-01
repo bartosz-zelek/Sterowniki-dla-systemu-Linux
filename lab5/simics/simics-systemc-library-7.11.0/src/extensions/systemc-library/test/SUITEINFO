@@ -1,0 +1,2 @@
+disabled_on_hosts: win64
+tags: systemc
