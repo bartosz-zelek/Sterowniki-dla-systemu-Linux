@@ -1,0 +1,12 @@
+=========================================================================
+==  NOTICE file corresponding to section 4 d of the Apache License,    ==
+==  Version 2.0, in this case for the SystemC Checkpoint Library       ==
+==  Proof of Concept implementation                                    ==
+=========================================================================
+ 
+This product includes software developed by Intel Corp.
+2200 Mission College Blvd., Santa Clara, CA 95054-1549, USA
+Copyright 2016-2021 Intel Corp.
+All rights reserved. 
+
+This product includes Boost. See serialization/LICENSE

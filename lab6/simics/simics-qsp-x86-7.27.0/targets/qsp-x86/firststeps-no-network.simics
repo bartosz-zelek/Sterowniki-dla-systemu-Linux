@@ -1,0 +1,1 @@
+run-script "%script%/firststeps.simics" create_network = FALSE

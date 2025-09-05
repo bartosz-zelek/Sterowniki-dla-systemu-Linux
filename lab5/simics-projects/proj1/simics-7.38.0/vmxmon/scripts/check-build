@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# © 2012 Intel Corporation
+#
+# This software and the related documents are Intel copyrighted materials, and
+# your use of them is governed by the express license under which they were
+# provided to you ("License"). Unless the License provides otherwise, you may
+# not use, modify, copy, publish, distribute, disclose or transmit this software
+# or the related documents without Intel's prior written permission.
+#
+# This software and the related documents are provided as is, with no express or
+# implied warranties, other than those that are expressly stated in the License.
+
+
+# The script checks that VMXMON's build succeed. The script is executed
+# by respective installation scripts from Simics repository.
+# Please follow this style guide when updating the script:
+# https://google.github.io/styleguide/shellguide.html
+
+set -u  # To catch errors early let's treat unset variables as errors.
+
+
+# Assume that scripts are "installed" as part of the build,
+# so that the kernel module is always found relative to the
+# build directory.
+SCRIPTDIR=$(dirname "$0")
+readonly SCRIPTDIR
+
+readonly VMXMON="${SCRIPTDIR}/../module/vmxmon.ko"
+
+function check() {
+    if [[ -f "$1" ]]; then
+        return 0
+    fi
+    echo "File $(basename "$1") is missing"
+    exit 1
+}
+
+check "${VMXMON}"
+check "${SCRIPTDIR}/../util/check-hw-util"
+
+echo "All targets have been built successfully"
+exit 0

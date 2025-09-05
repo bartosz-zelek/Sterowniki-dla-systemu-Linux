@@ -1,0 +1,70 @@
+// apic_bus_to_apic_interface.dml - Extension for APIC CPU interface
+
+/*
+  © 2014 Intel Corporation
+
+  This software and the related documents are Intel copyrighted materials, and
+  your use of them is governed by the express license under which they were
+  provided to you ("License"). Unless the License provides otherwise, you may
+  not use, modify, copy, publish, distribute, disclose or transmit this software
+  or the related documents without Intel's prior written permission.
+
+  This software and the related documents are provided as is, with no express or
+  implied warranties, other than those that are expressly stated in the License.
+*/
+
+dml 1.4;
+
+header %{
+#include "apic_bus_to_apic_interface.h"
+%}
+
+import "simics/devs/apic.dml";
+import "simics/arch/x86.dml";
+
+extern typedef int apic_type_t;
+param Apic_P6 = 0;
+param Apic_P4 = 1;
+param Apic_X2 = 2;
+
+// Define the new interface type
+extern typedef struct {
+        uint32      (*get_arbitration_id)(conf_object_t *obj);
+        void        (*set_arbitration_id)(conf_object_t *obj, uint32 val);
+
+        uint32      (*get_arbitration_priority)(conf_object_t *obj);
+        uint32      (*get_processor_priority)(conf_object_t *obj);
+
+        uint32      (*get_apr)(conf_object_t *obj);
+        uint32      (*get_lvt_lint0)(conf_object_t *obj);
+
+        apic_type_t (*get_apic_type)(conf_object_t *obj);
+        uint32      (*get_apic_id)(conf_object_t *obj);
+
+        bool        (*get_ack_in_progress)(conf_object_t *obj);
+
+        void        (*set_pin_status)(conf_object_t *obj, x86_pin_t pin, int status);
+
+        bool        (*has_physical_destination)(conf_object_t *obj,
+                                                uint32 destination,
+                                                bool exclude,
+                                                uint32 exclude_id);
+        bool        (*has_logical_destination)(conf_object_t *obj, uint32 destination);
+
+        bool        (*is_focus)(conf_object_t *obj, uint8 vector);
+        bool        (*is_interrupt_slot_available)(conf_object_t *obj, uint8 vector);
+        void        (*remote_read)(conf_object_t *obj, uint8 vector);
+        void        (*do_lower_ext_int)(conf_object_t *obj);
+        void        (*start_up)(conf_object_t *obj, uint32 start_address);
+
+        void        (*interrupt)(conf_object_t *obj,
+                                 apic_delivery_mode_t delivery_mode,
+                                 bool level_assert,
+                                 apic_trigger_mode_t trigger_mode,
+                                 uint8 vector,
+                                 interrupt_ack_fn_t ack_func,
+                                 conf_object_t *ack_func_arg);
+} apic_bus_to_apic_interface_t;
+
+extern const char *const APIC_BUS_TO_APIC_INTERFACE;
+

@@ -1,0 +1,26 @@
+<a name="create-simics-nvme-comp"></a>
+<h1 id="create-simics-nvme-comp"><a href="#create-simics-nvme-comp">create-simics-nvme-comp</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>create-simics-nvme-comp</b> [<i>"name"</i>] [<i>bandwidth</i>] <i>disk_size</i> [<i>dynamic_size</i>] <br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+This command creates a non-instantiated component of the class <tt>simics_nvme_comp</tt>.
+<p>
+The class description for the <tt>simics_nvme_comp</tt> class: A generic NVMe device over PCIe with support for multiple namespaces. Namespaces can be added with the add_namespace command, before instantiating the component.
+</p><p>
+</p><dl><dt id="dt:name-is-optional"><a href="#dt:name-is-optional"><i>name</i> is Optional</a></dt><dd>If not specified, the component will get a class-specific default name.</dd>
+<p>
+</p><dt id="dt:bandwidth-is-optional"><a href="#dt:bandwidth-is-optional"><i>bandwidth</i> is Optional</a></dt><dd>The read/write speed of the NVMe disk, provided in MB/s. 0 means instant read/write:s, which is the default value</dd>
+<p>
+</p><dt id="dt:disk_size-is-required"><a href="#dt:disk_size-is-required"><i>disk_size</i> is Required</a></dt><dd>The size of the underlying storage for the NVMe drive. The combined size of the namespaces added with the add_namespace command must not exceed this value.</dd>
+<p>
+</p><dt id="dt:dynamic_size-is-optional"><a href="#dt:dynamic_size-is-optional"><i>dynamic_size</i> is Optional</a></dt><dd>If set to True, adding a namespace will increase the disk size if needed.</dd></dl>
+<h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.simics-nvme-comp.html">simics-nvme-comp</a>
+</section>

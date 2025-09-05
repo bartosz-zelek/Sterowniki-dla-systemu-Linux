@@ -1,0 +1,42 @@
+%YAML 1.2
+---
+manifest_format: 2
+name: Public Intel® Simics® Quick Start Platform (QSP-x86) - 7
+group: qsp-x86-public-7
+version: 2025ww16.1
+date: 2025-04-14
+description: |-
+  Intel® Simics® Public Release
+  =============================
+
+  This is the Intel® Simics® public release. It includes the full Simics base
+  product, the Simics Quick-Start Platform (QSP), an Intel Clear Linux[^1]
+  standard setup, a set of Intel processor core models (including modern
+  server, Intel Atom®, and client cores), and Simics training materials.
+
+  [^1]: Other names and brands may be claimed as the property of others.
+packages:
+  1000:
+    version: 7.38.0
+  1013:
+    version: 7.11.0
+  1030:
+    version: 7.13.0
+  1031:
+    version: 7.7.0
+  1033:
+    version: 7.10.0
+  2050:
+    version: 7.17.0
+  2053:
+    version: 7.10.0
+  2096:
+    version: 7.27.0
+  6010:
+    version: 7.0.0-pre.11
+  7801:
+    version: 7.0.0-pre.5
+  8112:
+    version: 7.11.0
+  8144:
+    version: 7.0.0-pre.2

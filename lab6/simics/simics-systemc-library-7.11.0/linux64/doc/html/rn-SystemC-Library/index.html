@@ -1,0 +1,72 @@
+<h1 id="systemc-library-release-notes"><a href="#systemc-library-release-notes">SystemC™ Library Release Notes</a></h1>
+<p>This document identifies important information for the SystemC™ Library package
+for Simics 7.
+All users of this specific package should review this document carefully.</p>
+<h2 id="changes-since-version-7-0-0"><a href="#changes-since-version-7-0-0">Changes Since Version 7.0.0</a></h2>
+<p>The following is a list of changes since the initial 7.0.0 release.</p>
+<h2 id="7-11-0-build-7079"><a href="#7-11-0-build-7079">7.11.0 (build 7079)</a></h2>
+<h3 id="systemc-library"><a href="#systemc-library">SystemC Library</a></h3>
+<ul>
+<li>Adjust SC verbosity level according to Simics log level (fixes SIMICS-23083).</li>
+</ul>
+<h2 id="7-10-0-build-7075"><a href="#7-10-0-build-7075">7.10.0 (build 7075)</a></h2>
+<h2 id="7-9-0-build-7071"><a href="#7-9-0-build-7071">7.9.0 (build 7071)</a></h2>
+<h3 id="systemc-library-2"><a href="#systemc-library-2">SystemC Library</a></h3>
+<ul>
+<li>Replaced offending words/phrases with inclusive language (fixes SIMICS-23059).</li>
+</ul>
+<h2 id="7-8-0-build-7069"><a href="#7-8-0-build-7069">7.8.0 (build 7069)</a></h2>
+<h3 id="systemc-library-3"><a href="#systemc-library-3">SystemC Library</a></h3>
+<ul>
+<li>Enhanced the logic for determining <code>AS_VERSION</code> and <code>LD_VERSION</code>. The updated logic now identifies version patterns in the format <code>X.Y</code>.</li>
+</ul>
+<h2 id="7-7-0-build-7064"><a href="#7-7-0-build-7064">7.7.0 (build 7064)</a></h2>
+<h3 id="systemc-library-4"><a href="#systemc-library-4">SystemC Library</a></h3>
+<ul>
+<li>Removed unused <code>simics::iface::PciBusInterface</code> class.</li>
+</ul>
+<h2 id="7-6-0-build-7063"><a href="#7-6-0-build-7063">7.6.0 (build 7063)</a></h2>
+<h3 id="systemc-kernel"><a href="#systemc-kernel">SystemC Kernel</a></h3>
+<ul>
+<li>Resolved MSVC 2022 warning C4530 by adding <code>/EHsc</code> flag.</li>
+</ul>
+<h2 id="7-5-0-build-7061"><a href="#7-5-0-build-7061">7.5.0 (build 7061)</a></h2>
+<h3 id="systemc-checkpoint-documentation"><a href="#systemc-checkpoint-documentation">SystemC Checkpoint Documentation</a></h3>
+<ul>
+<li>Added back the PDF documentation (fixes SIMICS-22949).</li>
+</ul>
+<h2 id="7-4-0-build-7055"><a href="#7-4-0-build-7055">7.4.0 (build 7055)</a></h2>
+<h3 id="systemc-library-5"><a href="#systemc-library-5">SystemC Library</a></h3>
+<ul>
+<li>Added optional <code>'-std'</code>/<code>'--cxx-standard'</code> option to the <code>build-systemc-libraries</code> build script to enable building libs with a different C++ language standard. Current supported options are <code>14</code> and <code>17</code>.</li>
+</ul>
+<h2 id="7-3-0-build-7053"><a href="#7-3-0-build-7053">7.3.0 (build 7053)</a></h2>
+<h3 id="systemc-library-6"><a href="#systemc-library-6">SystemC Library</a></h3>
+<ul>
+<li>A clear error message is now printed when <code>SYSTEMC_KERNEL_VERSION</code> is not set.</li>
+<li>Added support for SystemC kernel version 3.0.0. Current build options for <code>SYSTEMC_KERNEL_VERSION</code> are <code>2.3.3</code>, <code>2.3.4</code> and '3.0.0'.</li>
+</ul>
+<h2 id="7-2-0-build-7046"><a href="#7-2-0-build-7046">7.2.0 (build 7046)</a></h2>
+<h3 id="systemc-kernel-2"><a href="#systemc-kernel-2">SystemC Kernel</a></h3>
+<ul>
+<li>Added kernel 2.3.4.1_20240904-Intel. Use build option <code>SYSTEMC_KERNEL_VERSION</code> to select the kernel version.</li>
+</ul>
+<h3 id="systemc-library-7"><a href="#systemc-library-7">SystemC Library</a></h3>
+<ul>
+<li>Moved some GNU Make definitions from Base into SystemC add-on package. SystemC users using Simics Base 6.0.209 or newer must upgrade 1013 add-on package to version 7.2.0.</li>
+<li>The SystemC libraries have been reorganized and are now located in separate subdirectories based on their respective kernel versions. Specifically, you can find them under: <code>&lt;host&gt;/lib/systemc/2.3.3</code> and <code>&lt;host&gt;/lib/systemc/2.3.4</code></li>
+<li>Added <code>'--version'</code> option to the <code>build-systemc-libraries</code> build script to enable building libs with a different version of SystemC kernel. The default version used is <code>2.3.3</code>.</li>
+<li>Updated the version check logic. The <code>SCL_VERSION</code> variable now uses the build-id of package 1013 (<em>SystemC-Library</em>).</li>
+<li>All variables ending in <code>_not_set</code> in the class <code>PcieTlmExtension</code> have been renamed to end with <code>_set</code> to improve clarity and consistency. They now default to <code>false</code>, indicating that the corresponding variable is not set.</li>
+<li>Extended the class <code>PcieTlmExtension</code> with <code>ide_secured</code> ATOM support.</li>
+<li>Added support for selecting SystemC kernel versions. Current build options for <code>SYSTEMC_KERNEL_VERSION</code> are <code>2.3.3</code> and <code>2.3.4</code>. Users of add-on package #7213 must upgrade to the latest version.</li>
+<li>The C++ language standard C++14 (<code>-std=c++14</code>) is no longer used by default. Now the default C++ language standard is determined by the compiler, i.e, C++17 for GCC 12.</li>
+</ul>
+<h2 id="7-1-0-build-7039"><a href="#7-1-0-build-7039">7.1.0 (build 7039)</a></h2>
+<h3 id="systemc-library-8"><a href="#systemc-library-8">SystemC Library</a></h3>
+<ul>
+<li>Extended <code>get_device_id</code> method of <code>tlm2simics::pcie_map</code> class with parameter <code>dev_obj</code>. This makes it easier to support PCIe ports.</li>
+</ul>
+<h2 id="7-0-0-build-7037"><a href="#7-0-0-build-7037">7.0.0 (build 7037)</a></h2>
+<h2 id="changes-since-previous-major-in-initial-release"><a href="#changes-since-previous-major-in-initial-release">Changes Since Previous Major in Initial Release</a></h2>
+<p>The following is a list of changes in 7.0.0 since the previous major.</p>

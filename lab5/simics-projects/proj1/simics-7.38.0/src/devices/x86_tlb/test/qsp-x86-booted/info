@@ -1,0 +1,12 @@
+#SIMICS-CONF-1
+OBJECT checkpoint_info TYPE checkpoint_info {
+	comment: NIL
+	prioritized_packages: ()
+	kind: "checkpoint"
+	machines: (("Clear Linux with UEFI","a QSP x86 chassis",0x1.cd8eef0c56945p+6))
+	date: "Wed Jan 11 15:38:41 2023"
+	host_name: "jhbaarnh-lab-desk.stc.isk.intel.com"
+	user: "jhbaarnh"
+	host_type: "linux64"
+	packages: (("Simics_CPU","6.0.fake"),("Simics-Core","7.0.0"),("Simics-Core","7.0.0"),("Training","7.0.fake20"))
+}

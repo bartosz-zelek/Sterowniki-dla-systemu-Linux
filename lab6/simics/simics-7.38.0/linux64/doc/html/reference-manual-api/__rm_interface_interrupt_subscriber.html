@@ -1,0 +1,30 @@
+<h1 class="jdocu"><a class="not-numbered" name="__rm_interface_interrupt_subscriber">interrupt_subscriber</a></h1>
+<p>
+
+<a name="interrupt_subscriber"></a><a name="interrupt_subscriber_interface_t"></a></p><dl class="jdocu_di">
+<dt class="jdocu_descitem">Description</dt><dd class="jdocu_descitem">The target is typically a CPU that reacts to the interrupt.
+<p>
+   The function <b><i>notify</i></b> notifies when an interrupt has occurred.
+</p><p>
+   The function <b><i>reset</i></b> is run when the interrupt notifier source is
+   reset.
+</p><p>
+   </p><pre class="jdocu_small">#define INTERRUPT_SUBSCRIBER_INTERFACE "interrupt_subscriber"
+SIM_INTERFACE(interrupt_subscriber) {
+        void (*notify)(
+                conf_object_t *NOTNULL obj,
+                apic_delivery_mode_t delivery_mode,
+                bool level_assert,
+                apic_trigger_mode_t trigger_mode,
+                uint8 vector,
+                interrupt_source_t source);
+        void (*reset)(conf_object_t *NOTNULL obj);
+};
+</pre><p>
+</p><p>
+   
+</p></dd>
+<dt class="jdocu_descitem">Execution Context</dt><dd class="jdocu_descitem">Threaded Context for all methods.
+   
+</dd>
+</dl><p></p>

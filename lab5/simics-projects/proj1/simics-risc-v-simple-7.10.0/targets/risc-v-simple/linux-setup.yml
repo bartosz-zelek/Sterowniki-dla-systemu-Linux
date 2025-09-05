@@ -1,0 +1,52 @@
+%YAML 1.2
+---
+params:
+  system_info:
+    type: str
+    description: A short string describing what this system is.
+    default: "Simple RISC-V board - Linux"
+  hardware:
+    import: "%script%/hardware.yml"
+    defaults:
+      name: board
+      consoles:
+        con0:
+          fg_color: "#80ff80"
+      storage:
+        disk0:
+          image: ^software:linux:rootfs_disk_image
+          size: 0
+  software:
+    firmware:
+      bl_image:
+        type: file
+        default: "%simics%/targets/risc-v-simple/images/linux/fw_dynamic.elf"
+        description: Boot Loader image.
+      dtb_image:
+        type: file
+        default: "%simics%/targets/risc-v-simple/risc-v-simple.dtb"
+        description: Device Tree Binary image.
+      dtb_address:
+        type: int
+        default: 0x2000
+        description: Address to which dtb_image is loaded.
+    linux:
+      kernel_image:
+        type: file
+        default: "%simics%/targets/risc-v-simple/images/linux/Image"
+        description: Kernel image.
+      kernel_address:
+        type: int
+        default: 0x80200000
+        description: Address to which kernel_image is loaded.
+      rootfs_disk_image:
+        type: file
+        default: "%simics%/targets/risc-v-simple/images/linux/rootfs.ext2"
+        description: The disk image for the root file system.
+      auto_login:
+        advanced: 2
+        type: bool
+        default: true
+        description: Automatically log in as the "root" user on the serial console.
+script: "%script%/linux-setup.yml.include"
+...

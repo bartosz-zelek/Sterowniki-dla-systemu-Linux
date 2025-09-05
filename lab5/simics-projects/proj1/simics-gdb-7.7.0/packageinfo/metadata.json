@@ -1,0 +1,1 @@
+{"name":"Simics GDB","package-name":"GDB","package-number":1031,"version":"7.7.0","kind":"addon","host":"linux64","build-id":"7080","build-id-namespace":"simics","confidentiality":"Public","description":"Simics GNU Debugger (GDB)","uncompressed-size":300179085}

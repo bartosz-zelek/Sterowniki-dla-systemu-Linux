@@ -1,0 +1,27 @@
+%YAML 1.2
+---
+description: QSP-X86 firststeps target with UEFI and GRML.
+params:
+  machine:
+    system:
+      name:
+        type: str
+        default: board
+        output: true
+        description: Name of the machine. Used for the top-level component.
+      info:
+        type: str
+        default: "QSP ISIM Tutorial"
+        description: A short string describing what this system is.
+  qsp:
+    import: "%simics%/targets/qsp-x86/firststeps.target.yml"
+    defaults:
+      machine:
+        hardware:
+          processor:
+            num_cores: 3
+
+
+code-type: simics
+cmd: run-script "%script%/qsp-isim-grml.include"
+...

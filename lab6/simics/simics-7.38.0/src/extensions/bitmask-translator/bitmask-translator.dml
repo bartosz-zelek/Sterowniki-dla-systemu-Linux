@@ -1,0 +1,43 @@
+/*
+  bitmask-translator.dml
+
+  © 2010 Intel Corporation
+
+  This software and the related documents are Intel copyrighted materials, and
+  your use of them is governed by the express license under which they were
+  provided to you ("License"). Unless the License provides otherwise, you may
+  not use, modify, copy, publish, distribute, disclose or transmit this software
+  or the related documents without Intel's prior written permission.
+
+  This software and the related documents are provided as is, with no express or
+  implied warranties, other than those that are expressly stated in the License.
+*/
+
+dml 1.2;
+
+device bitmask_translator;
+parameter classname = "bitmask-translator";
+parameter desc = "bitmask translator";
+
+parameter documentation = "This translator object will apply a bitmask "
+    + "(specified by the user) to all accesses. The target memory-space is "
+    + "responsible for actually having something mapped at the resulting "
+    + "address.";
+
+import "simics/devs/memory-space.dml";
+
+attribute address_mask {
+    parameter documentation = "This mask will be applied to all accesses";
+    parameter configuration = "required";
+    parameter allocate_type = "uint64";
+}
+
+implement translate {
+    method translate(generic_transaction_t *memop, map_info_t mapinfo)
+        -> (conf_object_t *ret) {
+
+        SIM_set_mem_op_physical_address(
+            memop, SIM_get_mem_op_physical_address(memop) & $address_mask);
+        ret = NULL;
+    }
+}

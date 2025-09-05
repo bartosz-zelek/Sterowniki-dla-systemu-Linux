@@ -1,0 +1,460 @@
+[
+  {
+    "build_id": 7037,
+    "version": "7.0.0",
+    "notes": {}
+  },
+  {
+    "build_id": 7039,
+    "version": "7.1.0",
+    "notes": {
+      "SystemC Library": [
+        [
+          {
+            "items": [
+              [
+                "Extended ",
+                {
+                  "code": "get_device_id",
+                  "tag": "code"
+                },
+                " method of ",
+                {
+                  "code": "tlm2simics::pcie_map",
+                  "tag": "code"
+                },
+                " class with parameter ",
+                {
+                  "code": "dev_obj",
+                  "tag": "code"
+                },
+                ". This makes it easier to support PCIe ports."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7046,
+    "version": "7.2.0",
+    "notes": {
+      "SystemC Kernel": [
+        [
+          {
+            "items": [
+              [
+                "Added kernel 2.3.4.1_20240904-Intel. Use build option ",
+                {
+                  "code": "SYSTEMC_KERNEL_VERSION",
+                  "tag": "code"
+                },
+                " to select the kernel version."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ],
+      "SystemC Library": [
+        [
+          {
+            "items": [
+              [
+                "Moved some GNU Make definitions from Base into SystemC add-on package. SystemC users using Simics Base 6.0.209 or newer must upgrade 1013 add-on package to version 7.2.0."
+              ]
+            ],
+            "tag": "list"
+          }
+        ],
+        [
+          {
+            "items": [
+              [
+                "The SystemC libraries have been reorganized and are now located in separate subdirectories based on their respective kernel versions. Specifically, you can find them under: ",
+                {
+                  "code": "<host>/lib/systemc/2.3.3",
+                  "tag": "code"
+                },
+                " and ",
+                {
+                  "code": "<host>/lib/systemc/2.3.4",
+                  "tag": "code"
+                }
+              ]
+            ],
+            "tag": "list"
+          }
+        ],
+        [
+          {
+            "items": [
+              [
+                "Added ",
+                {
+                  "code": "'--version'",
+                  "tag": "code"
+                },
+                " option to the ",
+                {
+                  "code": "build-systemc-libraries",
+                  "tag": "code"
+                },
+                " build script to enable building libs with a different version of SystemC kernel. The default version used is ",
+                {
+                  "code": "2.3.3",
+                  "tag": "code"
+                },
+                "."
+              ]
+            ],
+            "tag": "list"
+          }
+        ],
+        [
+          {
+            "items": [
+              [
+                "Updated the version check logic. The ",
+                {
+                  "code": "SCL_VERSION",
+                  "tag": "code"
+                },
+                " variable now uses the build-id of package 1013 (",
+                {
+                  "children": [
+                    "SystemC-Library"
+                  ],
+                  "tag": "em"
+                },
+                ")."
+              ]
+            ],
+            "tag": "list"
+          }
+        ],
+        [
+          {
+            "items": [
+              [
+                "All variables ending in ",
+                {
+                  "code": "_not_set",
+                  "tag": "code"
+                },
+                " in the class ",
+                {
+                  "code": "PcieTlmExtension",
+                  "tag": "code"
+                },
+                " have been renamed to end with ",
+                {
+                  "code": "_set",
+                  "tag": "code"
+                },
+                " to improve clarity and consistency. They now default to ",
+                {
+                  "code": "false",
+                  "tag": "code"
+                },
+                ", indicating that the corresponding variable is not set."
+              ]
+            ],
+            "tag": "list"
+          }
+        ],
+        [
+          {
+            "items": [
+              [
+                "Extended the class ",
+                {
+                  "code": "PcieTlmExtension",
+                  "tag": "code"
+                },
+                " with ",
+                {
+                  "code": "ide_secured",
+                  "tag": "code"
+                },
+                " ATOM support."
+              ]
+            ],
+            "tag": "list"
+          }
+        ],
+        [
+          {
+            "items": [
+              [
+                "Added support for selecting SystemC kernel versions. Current build options for ",
+                {
+                  "code": "SYSTEMC_KERNEL_VERSION",
+                  "tag": "code"
+                },
+                " are ",
+                {
+                  "code": "2.3.3",
+                  "tag": "code"
+                },
+                " and ",
+                {
+                  "code": "2.3.4",
+                  "tag": "code"
+                },
+                ". Users of add-on package #7213 must upgrade to the latest version."
+              ]
+            ],
+            "tag": "list"
+          }
+        ],
+        [
+          {
+            "items": [
+              [
+                "The C++ language standard C++14 (",
+                {
+                  "code": "-std=c++14",
+                  "tag": "code"
+                },
+                ") is no longer used by default. Now the default C++ language standard is determined by the compiler, i.e, C++17 for GCC 12."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7053,
+    "version": "7.3.0",
+    "notes": {
+      "SystemC Library": [
+        [
+          {
+            "items": [
+              [
+                "A clear error message is now printed when ",
+                {
+                  "code": "SYSTEMC_KERNEL_VERSION",
+                  "tag": "code"
+                },
+                " is not set."
+              ]
+            ],
+            "tag": "list"
+          }
+        ],
+        [
+          {
+            "items": [
+              [
+                "Added support for SystemC kernel version 3.0.0. Current build options for ",
+                {
+                  "code": "SYSTEMC_KERNEL_VERSION",
+                  "tag": "code"
+                },
+                " are ",
+                {
+                  "code": "2.3.3",
+                  "tag": "code"
+                },
+                ", ",
+                {
+                  "code": "2.3.4",
+                  "tag": "code"
+                },
+                " and '3.0.0'."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7055,
+    "version": "7.4.0",
+    "notes": {
+      "SystemC Library": [
+        [
+          {
+            "items": [
+              [
+                "Added optional ",
+                {
+                  "code": "'-std'",
+                  "tag": "code"
+                },
+                "/",
+                {
+                  "code": "'--cxx-standard'",
+                  "tag": "code"
+                },
+                " option to the ",
+                {
+                  "code": "build-systemc-libraries",
+                  "tag": "code"
+                },
+                " build script to enable building libs with a different C++ language standard. Current supported options are ",
+                {
+                  "code": "14",
+                  "tag": "code"
+                },
+                " and ",
+                {
+                  "code": "17",
+                  "tag": "code"
+                },
+                "."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7061,
+    "version": "7.5.0",
+    "notes": {
+      "SystemC Checkpoint Documentation": [
+        [
+          {
+            "items": [
+              [
+                "Added back the PDF documentation (fixes SIMICS-22949)."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7063,
+    "version": "7.6.0",
+    "notes": {
+      "SystemC Kernel": [
+        [
+          {
+            "items": [
+              [
+                "Resolved MSVC 2022 warning C4530 by adding ",
+                {
+                  "code": "/EHsc",
+                  "tag": "code"
+                },
+                " flag."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7064,
+    "version": "7.7.0",
+    "notes": {
+      "SystemC Library": [
+        [
+          {
+            "items": [
+              [
+                "Removed unused ",
+                {
+                  "code": "simics::iface::PciBusInterface",
+                  "tag": "code"
+                },
+                " class."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7069,
+    "version": "7.8.0",
+    "notes": {
+      "SystemC Library": [
+        [
+          {
+            "items": [
+              [
+                "Enhanced the logic for determining ",
+                {
+                  "code": "AS_VERSION",
+                  "tag": "code"
+                },
+                " and ",
+                {
+                  "code": "LD_VERSION",
+                  "tag": "code"
+                },
+                ". The updated logic now identifies version patterns in the format ",
+                {
+                  "code": "X.Y",
+                  "tag": "code"
+                },
+                "."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7071,
+    "version": "7.9.0",
+    "notes": {
+      "SystemC Library": [
+        [
+          {
+            "items": [
+              [
+                "Replaced offending words/phrases with inclusive language (fixes SIMICS-23059)."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7075,
+    "version": "7.10.0",
+    "notes": {}
+  },
+  {
+    "build_id": 7079,
+    "version": "7.11.0",
+    "notes": {
+      "SystemC Library": [
+        [
+          {
+            "items": [
+              [
+                "Adjust SC verbosity level according to Simics log level (fixes SIMICS-23083)."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  }
+]

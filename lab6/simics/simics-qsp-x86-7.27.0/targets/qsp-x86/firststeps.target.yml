@@ -1,0 +1,92 @@
+%YAML 1.2
+---
+description: QSP-X86 firststeps target with UEFI and GRML.
+
+params:
+  machine:
+    system:
+      name:
+        type: str
+        default: board
+        output: true
+        description: Name of the machine. Used for the top-level component.
+      info:
+        type: str
+        default: Simics QPS X86 Firststeps       
+        description: A short string describing what this system is.
+    hardware:
+      import: "%script%/firststeps-hardware.yml"
+      defaults:
+        system:
+          name: ^machine:system:name
+        storage:
+          disk0:
+            image: ^machine:software:linux:empty_image
+            size: 
+          disk1:
+            image: ^machine:software:linux:auxiliary_image
+            size: 
+          usb_disk:
+            image: ^machine:software:linux:os_image
+        firmware:
+          bios: ^machine:software:firmware:uefi:image
+          lan_bios: ^machine:software:firmware:lan_bios
+          spi_flash: ^machine:software:firmware:spi_flash
+    network:
+      import: "%script%/firststeps-network.yml"
+      defaults:
+        host_name: ^machine:system:name
+        mac_address: ^machine:hardware:output:mac_address
+        eth_slot: ^machine:hardware:output:eth_slot
+    software:
+      import: "%script%/firststeps-software.yml"
+      defaults:
+        system:
+          name: ^machine:system:name
+        graphics_console: ^machine:hardware:output:graphics_console
+        serial_console: ^machine:hardware:output:serial_console
+    simulation:
+      advanced: 2
+      use_vmp:
+        type: bool
+        default: true
+        description: >-
+          Enables host virtualization (VMP) for better simulation performance.
+          This option affects simulated time. See the performance chapter in the
+          Simics User's Guide for more information about VMP.
+      enable_real_time_mode:
+        type: bool
+        default: false
+        description: >-
+          Enables real-time mode after having logged in to Linux. See command
+          'enable-real-time-mode'.
+      enable_break_on_reboot:
+        type: bool
+        default: false
+        description: Interrupts the simulation if the machine is rebooted.
+      system_clock:
+        enable:
+          type: bool
+          default: false
+          description: >-
+            Enables a configuration with a separate clock to which devices are
+            bound instead of to the first CPU.
+        class:
+          type: str
+          default: clock
+          description: >-
+            The class used for the system clock if the
+            enable_system_clock parameter is true.     
+  persistent_state:
+    import: "%simics%/targets/common/rw-state.yml"
+    defaults:
+      system: ^machine:system:name
+  output:
+    mac_address:
+      type: str
+      output: yes
+    ip_address:
+      type: str
+      output: yes
+script: "%script%/firststeps.target.yml.include"
+...

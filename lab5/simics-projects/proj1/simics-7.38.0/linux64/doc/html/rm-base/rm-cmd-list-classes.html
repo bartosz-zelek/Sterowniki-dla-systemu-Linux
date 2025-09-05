@@ -1,0 +1,22 @@
+<a name="list-classes"></a>
+<h1 id="list-classes"><a href="#list-classes">list-classes</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>list-classes</b> [<i>"substr"</i>] [<i>"module"</i>] [-l] [-m] [-show-port-classes] <br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+ Lists all available configuration classes. It is possible to only include classes whose name matches a certain sub-string, specified by the <i>substr</i> argument. The <tt>-l</tt> flag will reduce the list to classes that has been registered by loaded modules. The <tt>-m</tt> flag extends the output with the name of the module that registered each class.
+<p>
+The <i>module</i> argument can be used to only list classes from the specified module.
+</p><p>
+Port classes are not included in the list, unless <tt>-show-port-classes</tt> is specified. Note that this only includes port classes for classes from loaded modules.
+</p><p>
+When used in an expression, a list of class names is returned, or a list of [&lt;class name&gt;, &lt;module name&gt;] pairs, depending on the <tt>-m</tt> flag. 
+</p><h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.simics.core.html">Simics Core</a>
+</section>

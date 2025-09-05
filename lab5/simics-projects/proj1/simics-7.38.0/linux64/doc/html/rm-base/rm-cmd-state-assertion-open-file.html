@@ -1,0 +1,21 @@
+<a name="state-assertion-open-file"></a>
+<h1 id="state-assertion-open-file"><a href="#state-assertion-open-file">state-assertion-open-file</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>state-assertion-open-file</b> <i>file</i> [<i>"compression"</i>] [<i>"name"</i>] [<i>post_events</i>] <br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+ Open a state assertion file to compare with the current execution.
+<p>
+- <i>file</i> is the name of the file to be created, default is <tt>/tmp/state-assertion-$USER.gz</tt><br>
+ - <i>compression</i> is the compression used (none, gz), default is a guess based on file name<br>
+ - <i>name</i> is the name of the object to be created, default is saX where X is a number.<br>
+ - <i>post_events</i> tells state-assertion to post events by itself for recording and comparing, default is true. 
+</p><h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.state-assertion.html">state-assertion</a>
+</section>

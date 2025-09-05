@@ -1,0 +1,23 @@
+%YAML 1.2
+---
+params:
+  name:
+    type: str
+    advanced: 2
+    description: The name of the USB disk component.
+  create:
+    type: bool
+    advanced: 2
+    default: true
+    description: Set to true if a USB disk should be created.
+  slot:
+    type: str
+    advanced: 2
+    description: USB connector slot to connect to.
+  image:
+    type: file
+    advanced: 2
+    description: The image to use for the USB disk.
+
+script: "%script%/usb-disk.yml.include"
+...

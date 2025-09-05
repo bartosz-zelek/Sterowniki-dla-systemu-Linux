@@ -1,0 +1,435 @@
+[
+  {
+    "build_id": 7006,
+    "version": "7.0.0",
+    "notes": {
+      "Common": [
+        [
+          {
+            "items": [
+              [
+                "Simics, when launched on Linux, no longer sources the file ",
+                {
+                  "code": "$HOME/.simics-5.sh",
+                  "tag": "code"
+                },
+                " (fixes SIMICS-21148)"
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7007,
+    "version": "7.1.0",
+    "notes": {
+      "Common": [
+        [
+          {
+            "items": [
+              [
+                "Updated the batch (",
+                {
+                  "code": ".bat",
+                  "tag": "code"
+                },
+                ") files in the ",
+                {
+                  "code": "bin",
+                  "tag": "code"
+                },
+                " folder so that they do not leak environment variables to the current ",
+                {
+                  "code": "cmd.exe",
+                  "tag": "code"
+                },
+                " command shell on Windows (fixes SIMICS-21906)."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ],
+      "Cryptographic and secure hash library": [
+        [
+          {
+            "items": [
+              [
+                "OpenSSL has been updated to version 3.2.0."
+              ]
+            ],
+            "tag": "list"
+          }
+        ],
+        [
+          {
+            "items": [
+              [
+                "Added method for CRT key generation on the ",
+                {
+                  "code": "rsa_v2",
+                  "tag": "code"
+                },
+                " interface (fixes HSD-22019127853)."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7009,
+    "version": "7.2.0",
+    "notes": {
+      "Cryptographic and secure hash library": [
+        [
+          {
+            "items": [
+              [
+                "OpenSSL has been updated to version 3.2.1."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7019,
+    "version": "7.3.0",
+    "notes": {
+      "Cryptographic and secure hash library": [
+        [
+          {
+            "items": [
+              [
+                "Add missing ",
+                {
+                  "code": " INTERFACES",
+                  "tag": "code"
+                },
+                " CMake mark-up for the ",
+                {
+                  "code": "crypto-engine",
+                  "tag": "code"
+                },
+                " module"
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7023,
+    "version": "7.4.0",
+    "notes": {
+      "Common": [
+        [
+          {
+            "items": [
+              [
+                "The signing certificate on Simics packages has been updated."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ],
+      "Cryptographic and secure hash library": [
+        [
+          {
+            "items": [
+              [
+                "Accurate license files are now included."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7027,
+    "version": "7.5.0",
+    "notes": {
+      "Cryptographic and secure hash library": [
+        [
+          {
+            "items": [
+              [
+                "Added LMS cryptographic algorithm based on Cisco open source implementation."
+              ]
+            ],
+            "tag": "list"
+          }
+        ],
+        [
+          {
+            "items": [
+              [
+                "Interfaces compiled against DML 1.4"
+              ]
+            ],
+            "tag": "list"
+          }
+        ],
+        [
+          {
+            "items": [
+              [
+                "Added methods to generate r, s signs and prime number p for ",
+                {
+                  "code": "dsa_v2",
+                  "tag": "code"
+                },
+                " interface."
+              ]
+            ],
+            "tag": "list"
+          }
+        ],
+        [
+          {
+            "items": [
+              [
+                "The ",
+                {
+                  "code": "dsa",
+                  "tag": "code"
+                },
+                " interface is deprecated, use the ",
+                {
+                  "code": "dsa_v2",
+                  "tag": "code"
+                },
+                " interface instead."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7029,
+    "version": "7.6.0",
+    "notes": {
+      "Cryptographic and secure hash library": [
+        [
+          {
+            "items": [
+              [
+                "Added RSA method ",
+                {
+                  "code": "encrypt_ex",
+                  "tag": "code"
+                },
+                " to support exponents bigger than 64 bits."
+              ]
+            ],
+            "tag": "list"
+          }
+        ],
+        [
+          {
+            "items": [
+              [
+                "Added method for RSA key pair generation first form with reduced lambda."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7031,
+    "version": "7.7.0",
+    "notes": {
+      "Cryptographic and secure hash library": [
+        [
+          {
+            "items": [
+              [
+                "Fixed bug in pka-lib.c VT_Pka_Bn_Mod_Reduction."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7035,
+    "version": "7.8.0",
+    "notes": {
+      "Cryptographic and secure hash library": [
+        [
+          {
+            "items": [
+              [
+                "Added ECDSA Sign RS method for P256/P384 ECC (fixes HSD-18039635070)."
+              ]
+            ],
+            "tag": "list"
+          }
+        ],
+        [
+          {
+            "items": [
+              [
+                "Added ECDSA Sign GF2 methods (sign_r_gf2, sign_s_gf2, sign_rs_gf2) on the ",
+                {
+                  "code": "ecdsa_v2",
+                  "tag": "code"
+                },
+                " interface (HSD-18039479103)."
+              ]
+            ],
+            "tag": "list"
+          }
+        ],
+        [
+          {
+            "items": [
+              [
+                "The ",
+                {
+                  "code": "ecdsa",
+                  "tag": "code"
+                },
+                " interface is deprecated, use the ",
+                {
+                  "code": "ecdsa_v2",
+                  "tag": "code"
+                },
+                " interface instead."
+              ]
+            ],
+            "tag": "list"
+          }
+        ],
+        [
+          {
+            "items": [
+              [
+                "Added method for generate RSA private key with reduced lambda on the ",
+                {
+                  "code": "rsa_v2",
+                  "tag": "code"
+                },
+                " interface (fixes HSD-16025000866)."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7040,
+    "version": "7.9.0",
+    "notes": {
+      "Cryptographic and secure hash library": [
+        [
+          {
+            "items": [
+              [
+                "Added ECDSA Verify GF2 method (ecdsa_verify_gf2) on the ",
+                {
+                  "code": "ecdsa_v2",
+                  "tag": "code"
+                },
+                " interface (fixes HSD-18039479212)."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7050,
+    "version": "7.10.0",
+    "notes": {
+      "Cryptographic and secure hash library": [
+        [
+          {
+            "items": [
+              [
+                "OpenSSL has been updated to version 3.3.2."
+              ]
+            ],
+            "tag": "list"
+          }
+        ],
+        [
+          {
+            "items": [
+              [
+                "Fixed a problem where the SHA-160 HMAC could give incorrect results (fixes HSD-14023621597)."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7057,
+    "version": "7.11.0",
+    "notes": {
+      "Cryptographic and secure hash library": [
+        [
+          {
+            "items": [
+              [
+                "OpenSSL has been updated to version 3.4.0."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7064,
+    "version": "7.12.0",
+    "notes": {
+      "Cryptographic and secure hash library": [
+        [
+          {
+            "items": [
+              [
+                "Crypto-Engine converted to DML 1.4."
+              ]
+            ],
+            "tag": "list"
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "build_id": 7076,
+    "version": "7.13.0",
+    "notes": {}
+  }
+]

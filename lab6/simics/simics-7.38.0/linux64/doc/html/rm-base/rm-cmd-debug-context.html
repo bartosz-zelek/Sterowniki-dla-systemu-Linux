@@ -1,0 +1,22 @@
+<a name="debug-context"></a>
+<h1 id="debug-context"><a href="#debug-context">debug-context</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>debug-context</b> [<i>object</i>|<i>"context-query"</i>] [<i>"name"</i>] <br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+ Optionally change the current debug context and return it, naming the debug object <i>name</i> unless a object for the debug context already exists.
+<p>
+The current debug context can be specified either using the <i>object</i> argument to select a <em>processor</em> object, or the <i>context-query</i> argument to match any kind of <em>debug context</em> with state. The context query should match one unique processor or OS awareness leaf node.
+</p><p>
+The current debug context is the debug context global stepping and debugger inspection commands will affect.
+</p><p>
+Setting the current debug context also enables the debugger. 
+</p><h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.tcf-agent.html">tcf-agent</a>
+</section>

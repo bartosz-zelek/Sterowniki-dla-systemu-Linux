@@ -1,0 +1,27 @@
+<h1 class="jdocu"><a class="not-numbered" name="__rm_interface_nios_custom">nios_custom</a></h1>
+<p>
+
+<a name="nios_custom"></a><a name="nios_custom_interface_t"></a></p><dl class="jdocu_di">
+<dt class="jdocu_descitem">Description</dt><dd class="jdocu_descitem">This <code>nios_custom</code> interface is used when
+   the custom instruction needs to be used.
+<p>
+   The <b><i>custom</i></b> function is called whenever the
+   custom instruction is executed.
+</p><p>
+   See Nios® II processor reference guide page 8-35 for further
+   information about the parameters.
+</p><p>
+   </p><pre class="jdocu_small">SIM_INTERFACE(nios_custom) {
+        uint32 (*custom)(conf_object_t *NOTNULL self, uint32 n,
+                         uint32 a, uint32 b, uint32 c, uint32 rA, uint32 rB,
+                         bool readra, bool readrb, bool writerc);
+};
+#define NIOS_CUSTOM_INTERFACE "nios_custom"
+</pre><p>
+</p><p>
+   
+</p></dd>
+<dt class="jdocu_descitem">Execution Context</dt><dd class="jdocu_descitem">Cell Context
+   
+</dd>
+</dl><p></p>

@@ -1,0 +1,13 @@
+if not defined expected_end { $expected_end = ($start + $duration) }
+if ((ptime -s) == $expected_end) {
+    if ($check_cycles_and_steps_in_sync & ((ptime -s) != (ptime -c))) {
+        echo "Cycle count != step count"
+        quit 1
+    }
+    quit 0
+}
+
+echo "Expected step count: " + $expected_end
+echo "Step  count: " + (ptime -s)
+echo "Cycle count: " + (ptime -c)
+quit 1

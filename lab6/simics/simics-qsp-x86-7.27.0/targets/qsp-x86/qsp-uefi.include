@@ -1,0 +1,6 @@
+decl {
+ params from "qsp-images.include"
+  default bios_image =
+   "%simics%/targets/qsp-x86/images/SIMICSX58IA32X64_1_1_0_r.fd"
+  default enable_efi = TRUE
+}

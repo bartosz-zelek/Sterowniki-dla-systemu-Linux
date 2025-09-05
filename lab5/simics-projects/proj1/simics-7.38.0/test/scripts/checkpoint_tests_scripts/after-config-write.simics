@@ -1,0 +1,17 @@
+# Avoid target scripts trying to use old console commands
+$auto_boot = FALSE
+
+run-script -local $file
+
+load-module state-assertion
+state-assertion-open-file `os.path.join(fileprefix, "assert.gz")`
+
+bp.step.break -absolute $start
+c
+
+write-configuration `os.path.join(fileprefix, "conf01.config")`
+sa0.start
+bp.step.break $duration
+c
+
+run-script ($test_script_dir + "/check-step-and-cycle-counts.simics")

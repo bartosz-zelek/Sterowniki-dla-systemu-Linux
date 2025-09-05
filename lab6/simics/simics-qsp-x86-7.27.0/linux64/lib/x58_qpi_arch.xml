@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device name="x58-qpi-arch" bitorder="le">
+  <bank name="f0" function="0">
+  </bank>
+  <bank name="f1" function="1">
+  </bank>
+</device>

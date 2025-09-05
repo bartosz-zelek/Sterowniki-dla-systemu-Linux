@@ -1,0 +1,34 @@
+%YAML 1.2
+---
+description: Firststeps network setup (hardware and software)
+params:
+  host_name:
+    type: str
+    description: The hostname in DHCP
+  mac_address:
+    advanced: 2
+    type: str
+    default: auto
+    description: >-
+      MAC address of the built-in Ethernet adapter in the ICH10 chipset.
+      The format is "XX:XX:XX:XX:XX:XX". Can also be set to "auto" to obtain an
+      auto-generated unique MAC address.
+  ip_address:
+    type: str
+    default: auto
+    description: The IP address to assign to the given MAC over DHCP
+  eth_slot:
+    type: str
+    description: "Board ethernet connector"
+  switch:
+    import: "%simics%/targets/common/ethernet-setup.yml"
+  service_node:
+    import: "%simics%/targets/common/sn-setup.yml"
+    defaults:
+      ethernet_switch: ^switch:ethernet_switch:name
+  output:
+    ip_address:
+      type: str
+      output: yes
+script: "%script%/firststeps-network.yml.include"
+...

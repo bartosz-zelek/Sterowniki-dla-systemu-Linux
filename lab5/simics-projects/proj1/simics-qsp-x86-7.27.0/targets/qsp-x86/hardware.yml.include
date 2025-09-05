@@ -1,0 +1,334 @@
+if sim->build_id < 7035 {
+        interrupt-script -error (
+                "*** The QSP-x86 package requires Simics-Base"
+                + " version 7.19.0 or newer.")
+}
+
+load-module pci-comp
+load-module std-comp
+
+local $cpu_class_arg = "processor-" + (params.get processor:class)
+
+# Load correct component to create the processor component
+load-module class = $cpu_class_arg
+
+load-module x58-ich10-comp
+load-module memory-comp
+load-module textcon
+load-module graphcon
+load-module console-components
+
+local $machine_name = (params.get name)
+if object-exists $machine_name {
+        interrupt-script -error (
+                ("*** It looks like the machine '%s' already exists. Please"
+                 + " specify a different machine name with"
+                 + " the 'machine:hardware:name parameter.")
+                % [$machine_name])
+}
+local $system = (create-chassis-qsp-x86 name = $machine_name)
+params.setdefault output:system $system
+
+local $lan_bios_image = (params.get firmware:lan_bios)
+if not $lan_bios_image {
+    $lan_bios_image = ""
+}
+
+local $mac_address = (params.get nic:mac_address)
+if $mac_address == "auto" {
+    $mac_address = (get-auto-mac-address)
+}
+params.setdefault output:mac_address $mac_address
+
+@import time
+
+## Use current host time: bad for repeatability, good for usability
+local $rtc_time = (params.get rtc:time)
+if $rtc_time == "auto" {
+    $rtc_time = `time.strftime("%Y-%m-%d %H:%M:%S")`
+}
+
+run-script "%script%/apic_bus_helper.py"
+
+# SIMICS-21732
+local $lvl = sim->deprecation_level
+sim->deprecation_level = 0
+
+local $firmware_bios = (params.get firmware:bios)
+if (not $firmware_bios) {
+    # The create-motherboard-x58-ich10 command wants a string, not NIL.
+    $firmware_bios=""
+}
+local $firmware_spi_flash = (params.get firmware:spi_flash)
+if (not $firmware_spi_flash) {
+    # The create-motherboard-x58-ich10 command wants a string, not NIL.
+    $firmware_spi_flash=""
+}
+
+@def required_bits(n):
+    if n <= 1:
+        return 0
+    else:
+        return n.bit_length() if (n & (n - 1)) else n.bit_length() - 1
+
+local $create_processor_base = "create-" + $cpu_class_arg
+local $create_processor = $create_processor_base
+local $heterogenous = (in-list "n_cores_big"
+                       (get-command-args $create_processor_base))
+local $has_package = (in-list "package_number"
+                       (get-command-args $create_processor_base))
+local $has_die = (in-list "die_number"
+                       (get-command-args $create_processor_base))
+local $has_module = (in-list "module_number"
+                       (get-command-args $create_processor_base))
+local $num_dies = (params.get processor:num_dies)
+local $num_modules = (params.get processor:num_modules)
+
+if $has_package {
+    $create_processor += " package_number = $count"
+}
+if $has_die {
+    $create_processor += " die_number = $dcount"
+    if (in-list "die_num" (get-command-args $create_processor_base)){
+        $create_processor += " die_num = " + (python "required_bits(simenv.num_dies)")
+    }
+} else {
+    $num_dies = 1  # if we do not have dies, we ignore the param and ensure we run the die loop once
+}
+if $has_module {
+    $create_processor += " module_number = $mcount"
+    if (in-list "core_num" (get-command-args $create_processor_base)){
+        $create_processor += " core_num = " + (python "required_bits(simenv.num_modules)")
+    }
+} else {
+    $num_modules = 1  # if we do not have modules, we ignore the param and ensure we run the module loop once
+}
+
+### motherboard
+local $mb = (create-motherboard-x58-ich10
+             $system.mb
+             rtc_time = $rtc_time
+             acpi = TRUE
+             break_on_reboot = (params.get simulation:enable_break_on_reboot)
+             bios = $firmware_bios
+             lan_bios = $lan_bios_image
+             mac_address = $mac_address
+             spi_flash = $firmware_spi_flash
+             system_clock = (params.get simulation:system_clock:enable)
+             system_clock_class = (params.get simulation:system_clock:class)
+             apic_bus_class = (params.get apic_bus:class)
+             uefi_device_name = (params.get simulation:uefi_dev_name)
+             root_port_class = (params.get root_ports:class)
+             smbus_use_i2c_v2 = (params.get smbus_ctrl:use_i2c_v2)
+             do_not_initialize_mtrr = (params.get processor:do_not_initialize_mtrr)
+             num_sockets = ((params.get processor:num_slots) * $num_dies * $num_modules))
+sim->deprecation_level = $lvl
+local $southbridge = $mb.sb
+local $northbridge = $mb.nb
+params.setdefault output:eth_slot $southbridge.eth_slot
+
+### processors
+local $num_threads_small = (params.get processor:num_threads_small)
+local $num_cores_small = (params.get processor:num_cores_small)
+local $use_vmp = (params.get simulation:use_vmp)
+local $detected_apic_bus_class = NIL
+local $cpu = NIL
+
+if (in-list "lpid_num" (get-command-args $create_processor_base)) {
+    local $core_count = 0
+    if $heterogenous {
+        $core_count = (
+            (params.get processor:num_cores) * (params.get processor:num_threads) +
+            $num_cores_small * $num_threads_small)
+    } else {
+        $core_count = (
+            (params.get processor:num_cores) * (params.get processor:num_threads))
+    }
+    $create_processor += (" lpid_num = " + (python "required_bits(simenv.core_count) + 1"))
+}
+
+local $socket_count = 0
+foreach $count in (range (params.get processor:num_slots)) {
+    local $slot_name = $mb.cpu + $count
+    foreach $dcount in (range $num_dies) {
+        if $has_die {
+            if not (object-exists $slot_name) {
+                python "SIM_create_object('namespace', simenv.slot_name)"
+            }
+            $die_name = $slot_name + ".die" + $dcount
+        } else {
+            $die_name = $slot_name
+        }
+        foreach $mcount in (range $num_modules) {
+            if $has_module {
+                if not (object-exists $die_name) {
+                    python "SIM_create_object('namespace', simenv.die_name)"
+                }
+                $cpu_name = $die_name + ".module" + $mcount
+            } else {
+                $cpu_name = $die_name
+            }
+            if $heterogenous  {
+                if $num_threads_small == 0 {
+                        $num_threads_small = 1
+                }
+                $cpu = (exec $create_processor
+                    + " name = $cpu_name"
+                    + " freq_mhz = " + (params.get processor:freq_mhz)
+                    + " apic_freq_mhz = " + (params.get processor:apic_freq_mhz)
+                    + " use_vmp = $use_vmp"
+                    + " cpi = " + (params.get processor:cpi)
+                    + " n_cores_big = " + (params.get processor:num_cores)
+                    + " n_cores_small = $num_cores_small"
+                    + " n_threads_big = (params.get processor:num_threads)"
+                    + " n_threads_small = $num_threads_small")
+            } else {
+                if $num_cores_small > 0 or $num_threads_small > 0 {
+                        interrupt-script -error (
+                                ("*** The cpu component class %s is not"
+                                 + " heterogenous and hence does not support"
+                                 + " positive values for the num_cores_small"
+                                 + " (%d) and num_threads_small (%d)"
+                                 + " parameters.") % [$cpu_comp_class,
+                                                      $num_cores_small,
+                                                      $num_threads_small])
+                }
+                $cpu = (exec $create_processor
+                    + " name = $cpu_name"
+                    + " freq_mhz = " + (params.get processor:freq_mhz)
+                    + " apic_freq_mhz = " + (params.get processor:apic_freq_mhz)
+                    + " use_vmp = $use_vmp"
+                    + " cpi = " + (params.get processor:cpi)
+                    + " n_cores = " + (params.get processor:num_cores)
+                    + " n_threads = " + (params.get processor:num_threads))
+            }
+
+            if (params.get apic_bus:class) == "auto_apic_bus" {
+                @import cli
+                local $next_detected_apic_bus_class = `extract_needed_apic_bus_class(cli.simenv.cpu)`
+                if $detected_apic_bus_class {
+                    if $next_detected_apic_bus_class != $detected_apic_bus_class {
+                        echo ("Error: Processors in '" + $mb
+                              + "' require different apic bus classes.")
+                        echo ("       Previously detected bus class is "
+                              + $detected_apic_bus_class)
+                        echo ("       bus class detected on " + $cpu + " is "
+                              + $next_detected_apic_bus_class)
+                        interrupt-script
+                    }
+                } else {
+                    # set apic bus class to what the first apic told us
+                    @simics.SIM_get_object(cli.simenv.mb).iface.component.get_slot_value('apic_bus').__class_name__ = cli.simenv.next_detected_apic_bus_class
+                }
+                $detected_apic_bus_class = $next_detected_apic_bus_class
+            }
+            connect $mb.socket[$socket_count] $cpu.socket
+            $socket_count += 1
+        }
+    }
+}
+
+### memory
+local $dimm = (create-simple-memory-module $mb.memory
+               memory_megs = (params.get memory_megs))
+connect $mb.dimm[0] $dimm.mem_bus
+
+### GPU
+local $vga = (create-pci-accel-vga-v2-comp name = $mb.gpu bios = "")
+connect $mb.nb.gpu $vga.pci_bus
+
+### consoles
+local $console = NIL
+if (params.get consoles:gfx_con:create) {
+    $console = (create-gfx-console-comp $system.console
+                      visible = (params.get consoles:gfx_con:show))
+    connect $console.mouse $southbridge.mse_console
+    connect $console.keyboard $southbridge.kbd_console
+    connect $console.device $vga.console
+    params.setdefault output:console $console
+}
+
+if (params.get consoles:con0:create) {
+  (create-txt-console-comp $system.serconsole
+                           visible = (params.get consoles:con0:show)
+                           bg_color = (params.get consoles:con0:bg_color)
+                           fg_color = (params.get consoles:con0:fg_color))
+  connect $system.serconsole.serial $southbridge.serial[0]
+}
+
+if (params.get consoles:con1:create) {
+    (create-txt-console-comp $system.serconsole1
+                             visible = (params.get consoles:con1:show)
+                             bg_color = (params.get consoles:con1:bg_color)
+                             fg_color = (params.get consoles:con1:fg_color))
+    connect $system.serconsole1.serial $southbridge.serial[1]
+}
+
+### Primary disk
+params.setdefault storage:disk0:name $system.disk0
+if (params.get storage:disk0:interface) == "ide" {
+        params.setdefault storage:disk0:slot $southbridge.ide_slot[0]
+} else if (params.get storage:disk0:interface) == "sata" {
+        params.setdefault storage:disk0:slot $southbridge.sata_slot[0]
+} else {
+        params.setdefault storage:disk0:slot $northbridge.pcie_slot[0]
+}
+
+run-script "%simics%/targets/common/disk-ide-sata-nvme.yml" namespace = storage:disk0
+
+### Second disk
+if (params.get storage:disk1:interface) == "ide" {
+        params.setdefault storage:disk1:name $system.disk1
+        params.setdefault storage:disk1:slot $southbridge.ide_slot[2]
+} else if (params.get storage:disk1:interface) == "sata" {
+        params.setdefault storage:disk1:name $system.disk1
+        params.setdefault storage:disk1:slot $southbridge.sata_slot[2]
+} else {
+        # if first disk is already NVMe, we will add this disk
+        # as a second namespace, hence the disk1 component name is the same
+        if (params.get storage:disk0:interface) == "nvme" {
+            params.setdefault storage:disk1:name $system.disk0
+        } else {
+            params.setdefault storage:disk1:name $system.disk1
+        }
+        params.setdefault storage:disk1:slot $northbridge.pcie_slot[0]
+}
+
+run-script "%simics%/targets/common/disk-ide-sata-nvme.yml" namespace = storage:disk1
+
+### CD-ROM
+if (params.get storage:cdrom:create) {
+    local $cdrom_name = ($system + ".cdrom")
+    if (params.get storage:cdrom:interface) == "ide" {
+            $cdrom = (create-ide-cdrom-comp $cdrom_name)
+            connect $southbridge.ide_slot[1] $cdrom.sata_slot
+    } else if (params.get storage:cdrom:interface) == "sata" {
+            $cdrom = (create-sata-cdrom-comp $cdrom_name)
+            connect $southbridge.sata_slot[1] $cdrom.sata_slot
+    }
+}
+
+### USB Tablet
+if (params.get usb_tablet:create) {
+    load-module usb-comp
+    $tablet = (create-usb-tablet-component $system.tablet)
+    $tablet.connect-to $system.mb.sb
+    if $console != NIL { $tablet.connect-to $console }
+}
+
+### PCI Led Demo
+if (params.get pcie_demo_led_device:enabled) {
+    local $ns = "pcie_demo_led_device"
+    local $script = (lookup-file "%script%/pcie-demo-led-device.yml")
+    run-script script = $script namespace = $ns 
+}
+
+if (params.get external_remap_unit:class) != "NIL" {
+    local $remap_class = (params.get external_remap_unit:class)
+
+    @rmu0=SIM_create_object(simenv.remap_class, simenv.mb + '.nb.ext_rmu[0]')
+
+    @rmu1=SIM_create_object(simenv.remap_class, simenv.mb + '.nb.ext_rmu[1]')
+
+    @SIM_get_object(simenv.mb).nb.iface.component.get_slot_value('core').external_remap_unit = [rmu0, rmu1]
+}

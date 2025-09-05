@@ -1,0 +1,62 @@
+<h1 id="time-server"><a href="#time-server">time-server</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+The time-server class provides virtual time services to programs running outside of Simics. It provides those services through a text protocol on a user defined TCP port.
+<h2 id="interfaces-implemented">
+<a href="#interfaces-implemented">Interfaces Implemented</a>
+</h2>conf_object, log_object
+<h2 id="notifiers">
+<a href="#notifiers">Notifiers</a>
+</h2>
+<dl>
+<dt id="dt:cell-change"><a href="#dt:cell-change">cell-change</a></dt>
+<dd>Notifier that is triggered after the object's cell was changed.</dd>
+<dt id="dt:object-delete"><a href="#dt:object-delete">object-delete</a></dt>
+<dd>Notifier that is triggered just before Simics object is deleted.</dd>
+<dt id="dt:queue-change"><a href="#dt:queue-change">queue-change</a></dt>
+<dd>Notifier that is triggered after the object's clock was changed. New clock can be obtained with the SIM_object_clock function.</dd>
+</dl>
+<h2 id="attributes">
+<a href="#attributes">Attributes</a>
+</h2>
+<dl>
+<dt id="dt:port"><a href="#dt:port">
+<i>port</i>
+</a></dt>
+<dd>
+<b>Required</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i|n</code>
+<br>TCP port for server. Use 0 for any port (the actual port can be read back from this attribute). Set to Nil to disable the server.</dd>
+<dt id="dt:poll_interval"><a href="#dt:poll_interval">
+<i>poll_interval</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>f</code>
+<br>Time server resolution in simulated seconds. Only valid in poll mode.</dd>
+<dt id="dt:virtual_time_delta"><a href="#dt:virtual_time_delta">
+<i>virtual_time_delta</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>f</code>
+<br>The value in this attribute is added to the queue time to get the time that is returned in virtualtime queries. Only used in poll mode.</dd>
+<dt id="dt:poll_mode_enabled"><a href="#dt:poll_mode_enabled">
+<i>poll_mode_enabled</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>When set, the time-server will operate in poll mode, meaning it will periodically poll the time and return the polled value in queries. If not set, the time server will always return the current time in queries. Polled mode offers better performance when the time server is queried at a high frequency, but does not support events</dd>
+</dl>
+<h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.time-server-c.html">time-server-c</a>
+</section>

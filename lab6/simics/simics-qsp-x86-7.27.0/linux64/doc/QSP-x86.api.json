@@ -1,0 +1,174 @@
+{
+  "pages": [
+    {
+      "id": "serial_interrupt_slave_interface_t",
+      "name": "serial_interrupt_slave, serial_interrupt_master",
+      "text": [
+        {
+          "tag": "section",
+          "classes": [
+            "doc-item",
+            "not-numbered",
+            "not-in-toc"
+          ],
+          "children": [
+            {
+              "tag": "h2",
+              "children": [
+                "Name"
+              ]
+            },
+            {
+              "tag": "p",
+              "children": [
+                "serial_interrupt_slave, serial_interrupt_master — interfaces for serial interrupt"
+              ]
+            },
+            {
+              "tag": "h2",
+              "children": [
+                "Synopsis"
+              ]
+            },
+            {
+              "tag": "h3",
+              "children": [
+                "C and DML"
+              ]
+            },
+            {
+              "tag": "pre",
+              "language": "",
+              "code": "\nSIM_INTERFACE(serial_interrupt_slave) {\n        void (*start)(conf_object_t *obj);\n        int (*fetch)(conf_object_t *obj);\n        void (*stop)(conf_object_t *obj, int mode);\n};\n\n#define SERIAL_INTERRUPT_SLAVE_INTERFACE \"serial_interrupt_slave\"\nSIM_INTERFACE(serial_interrupt_master) {\n        void (*start_request)(conf_object_t *obj);\n};\n\n#define SERIAL_INTERRUPT_MASTER_INTERFACE \"serial_interrupt_master\"\n"
+            },
+            {
+              "tag": "h2",
+              "children": [
+                "Description"
+              ]
+            },
+            {
+              "tag": "p",
+              "children": [
+                "The interfaces ",
+                {
+                  "tag": "code",
+                  "code": "serial_interrupt_master"
+                },
+                " and ",
+                {
+                  "tag": "code",
+                  "code": "serial_interrupt_slave"
+                },
+                " are used to model serial interrupt communications between a serial interrupt controller and a serial interrupt device. The controller implements ",
+                {
+                  "tag": "code",
+                  "code": "serial_interrupt_master"
+                },
+                " and the device implements ",
+                {
+                  "tag": "code",
+                  "code": "serial_interrupt_slave"
+                },
+                "."
+              ]
+            },
+            {
+              "tag": "p",
+              "children": [
+                "The device calls ",
+                {
+                  "tag": "code",
+                  "code": "start_request"
+                },
+                " in the controller to request serial interrupt transfer cycles start frame."
+              ]
+            },
+            {
+              "tag": "p",
+              "children": [
+                "The controller calls ",
+                {
+                  "tag": "code",
+                  "code": "start"
+                },
+                " to start the serial interrupt communications, detects interrupt states one by one by calling ",
+                {
+                  "tag": "code",
+                  "code": "fetch"
+                },
+                ", and finishes the serial interrupt sequence by ",
+                {
+                  "tag": "code",
+                  "code": "stop"
+                },
+                "."
+              ]
+            },
+            {
+              "tag": "p",
+              "children": [
+                "The returned value of ",
+                {
+                  "tag": "code",
+                  "code": "fetch"
+                },
+                " is the level of the current data frame. It is either 0 (low) or 1 (high)."
+              ]
+            },
+            {
+              "tag": "p",
+              "children": [
+                "The ",
+                {
+                  "tag": "code",
+                  "code": "mode"
+                },
+                " is used to specifies the SERIRQ transfer cycles mode. It is 1 for ",
+                {
+                  "tag": "em",
+                  "children": [
+                    "Quiet"
+                  ]
+                },
+                " and 0 for ",
+                {
+                  "tag": "em",
+                  "children": [
+                    "Continuous"
+                  ]
+                },
+                " mode."
+              ]
+            },
+            {
+              "tag": "h2",
+              "children": [
+                "Execution Context"
+              ]
+            },
+            {
+              "tag": "p",
+              "children": [
+                "Cell Context for all methods."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "index": {
+    "serial_interrupt_master_interface_t": 0,
+    "serial_interrupt_slave_interface_t": 0
+  },
+  "sections": {
+    "add-on-interfaces": {
+      "page": null,
+      "members": [
+        0
+      ],
+      "subsections": {}
+    }
+  }
+}

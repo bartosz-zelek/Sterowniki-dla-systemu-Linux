@@ -1,0 +1,36 @@
+# © 2023 Intel Corporation
+#
+# This software and the related documents are Intel copyrighted materials, and
+# your use of them is governed by the express license under which they were
+# provided to you ("License"). Unless the License provides otherwise, you may
+# not use, modify, copy, publish, distribute, disclose or transmit this software
+# or the related documents without Intel's prior written permission.
+#
+# This software and the related documents are provided as is, with no express or
+# implied warranties, other than those that are expressly stated in the License.
+
+##
+## Really old-style script that wraps the new-style target for the training
+## 
+## Used to demonstrate old-style launches without replicating the whole
+## target setup using old-style scripts. 
+##
+## Note that this style of target goes back to the very early days of the
+## Intel Simics Simulator. 
+##
+
+if not defined num_cores     {$num_cores    = 3    }
+if not defined memory_megs   {$memory_megs  = 9216 }
+if not defined freq_mhz      {$freq_mhz     = 3333 }
+if not defined system_info   {$system_info  = "Old-fashioned setup with a theme of three"}
+
+(load-target simics-user-training/001-qsp-training 
+    namespace = "qsp"
+    platform:machine:hardware:memory_megs = $memory_megs 
+    platform:machine:hardware:processor:num_cores = $num_cores
+    platform:machine:hardware:processor:freq_mhz = $freq_mhz
+    platform:machine:system_info = $system_info
+)
+
+$system = (params.get "qsp:platform:output:system")
+

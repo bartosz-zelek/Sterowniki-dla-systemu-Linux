@@ -1,0 +1,1 @@
+{"name":"QSP CPU","package-name":"QSP-CPU","package-number":8112,"version":"7.11.0","kind":"addon","host":"linux64","build-id":"7077","build-id-namespace":"simics","confidentiality":"Public","description":"Additional x86 processors for the QSP platform","uncompressed-size":273893011}

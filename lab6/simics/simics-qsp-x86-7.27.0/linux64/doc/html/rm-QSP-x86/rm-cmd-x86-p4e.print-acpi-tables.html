@@ -1,0 +1,20 @@
+<a name="x86-p4e.print-acpi-tables"></a>
+<h1 id="x86-p4e.print-acpi-tables"><a href="#x86-p4e.print-acpi-tables">&lt;x86-p4e&gt;.print-acpi-tables</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>&lt;x86-p4e&gt;.print-acpi-tables</b> [<i>dsdt_file</i>] [<i>ssdt_file</i>] <br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+ Print all Advanced Configuration and Power Interface (ACPI) tables. Typical x86 firmware (BIOS) sets up such tables during boot, meaning that the command will not be able to find anything useful if run too early.
+<p>
+This command relies on locating the RSDP using the IA-PC method from the ACPI specification. If the system BIOS puts the RSDP outside of the areas defined by the IA-PC method, then the command will fail due to the RSDP not being found.
+</p><p>
+Raw data from the DSDT and/or the SSDT tables are written to the given file name using <i>dsdt_file</i> and <i>ssdt_file</i> respectively. 
+</p><h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.x86-intel64.html">x86-intel64</a>
+</section>

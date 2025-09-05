@@ -1,0 +1,20 @@
+<h1 class="jdocu"><a name="configure-debug">2.3.2 Configure Debug</a></h1>
+<p>
+  
+</p><p>
+  There are several possible debug targets in a Windows set up. To cover them
+  all, open an elevated command prompt window on the target system, and enter
+  the following commands:
+</p><p>
+  </p><pre class="jdocu_small">&gt; <b>BCDEDIT /SET '{BOOTMGR}' BOOTDEBUG ON</b>
+&gt; <b>BCDEDIT /SET BOOTDEBUG ON</b>
+&gt; <b>BCDEDIT /SET DEBUG ON</b>
+  </pre><p>
+</p><p>
+  </p><div class="note">
+<b>Note:</b>
+When boot debug is enabled, Windows will wait for a while during the boot
+    to see if a WinDbg is connecting, and then proceed with the boot. Thus,
+    enabling boot debug will make the boot take a little longer (a few
+    virtual minutes of wait time).
+  </div>

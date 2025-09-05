@@ -1,0 +1,22 @@
+%YAML 1.2
+---
+params:
+  hw:
+    blueprint: qsp_platform
+    module: simmod.qsp_x86_bp.tests.qsp_platform
+    defaults:
+      qsp:
+        memory_size_mb: 8192
+        mac_address: "00:19:A0:E1:1C:9F"
+        disk_bp: clear_linux
+      net:
+        sn:
+          enable_dhcp: true
+  sw:
+    import: "%script%/sn-setup.yml"
+    provides:
+      - machine_name
+      - mac_address
+  system: {type: 'str', output: true}
+script: "%script%/qsp-clear-linux.include"
+...

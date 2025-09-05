@@ -1,0 +1,2013 @@
+[dut info] 0 s - toggle_dmi_method
+      Target: 201 invalidate_direct_ptr (0, 4096); @ 0 s of lt_dmi_target.cpp in lt_dmi_target.cpp:181
+[dut info] 0 s - invalidate_dmi_ptr
+      Initiator:101 DMI Pointer not invalidated for (0, 4096) @ 0 s of dmi_memory.cpp in dmi_memory.cpp:162
+[dut info] 0 s - invalidate_dmi_ptr
+      Initiator:102 DMI Pointer not invalidated for (0, 4096) @ 0 s of dmi_memory.cpp in dmi_memory.cpp:162
+[dut info] 0 s - toggle_dmi_method
+      Target: 202 invalidate_direct_ptr (0, 4096); @ 0 s of lt_dmi_target.cpp in lt_dmi_target.cpp:181
+[dut info] 0 s - invalidate_dmi_ptr
+      Initiator:101 DMI Pointer not invalidated for (268435456, 268439552) @ 0 s of dmi_memory.cpp in dmi_memory.cpp:162
+[dut info] 0 s - invalidate_dmi_ptr
+      Initiator:102 DMI Pointer not invalidated for (268435456, 268439552) @ 0 s of dmi_memory.cpp in dmi_memory.cpp:162
+[dut info] 0 s - traffic_generator_thread
+      Initiator: 101 Starting Traffic @ 0 s of traffic_generator.cpp in traffic_generator.cpp:92
+[dut info] 0 s - traffic_generator_thread
+      Initiator: 102 Starting Traffic @ 0 s of traffic_generator.cpp in traffic_generator.cpp:92
+[dut info] 0 s - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 0 s of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 0 s - is_address_dmi
+      Initiator:101 address is not a dmi address @ 0 s of dmi_memory.cpp in dmi_memory.cpp:211
+[dut info] 0 s - print
+      ID: 201 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000000 Data: 0x00000000 @ 0 s of memory.cpp in report.cpp:134
+[dut info] 0 s - custom_b_transport
+      Target: 201 returned delay of 0 s + 20 ns + 15 ns = 35 ns @ 0 s of lt_dmi_target.cpp in lt_dmi_target.cpp:114
+[dut info] 0 s - initiator_thread
+      Initiator: 101 b_transport returned a delay of 35 ns @ 0 s of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:118
+[dut info] 0 s - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 0 s of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 0 s - is_address_dmi
+      Initiator:102 address is not a dmi address @ 0 s of dmi_memory.cpp in dmi_memory.cpp:211
+[dut info] 0 s - print
+      ID: 201 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000000 Data: 0x00000000 @ 0 s of memory.cpp in report.cpp:134
+[dut info] 0 s - custom_b_transport
+      Target: 201 returned delay of 0 s + 20 ns + 15 ns = 35 ns @ 0 s of lt_dmi_target.cpp in lt_dmi_target.cpp:114
+[dut info] 0 s - initiator_thread
+      Initiator: 102 b_transport returned a delay of 35 ns @ 0 s of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:118
+[dut info] 35 ns - initiator_thread
+      Initiator: 101 gp_tpr was returned with dmi_allowed set to 0 @ 35 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:125
+[dut info] 35 ns - initiator_thread
+      Initiator: 101 End of processing @ 35 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 35 ns - initiator_thread
+      Initiator: 102 gp_tpr was returned with dmi_allowed set to 0 @ 35 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:125
+[dut info] 35 ns - initiator_thread
+      Initiator: 102 End of processing @ 35 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 35 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 35 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 35 ns - is_address_dmi
+      Initiator:101 address is not a dmi address @ 35 ns of dmi_memory.cpp in dmi_memory.cpp:211
+[dut info] 35 ns - print
+      ID: 201 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000004 Data: 0x00000004 @ 35 ns of memory.cpp in report.cpp:134
+[dut info] 35 ns - custom_b_transport
+      Target: 201 returned delay of 0 s + 20 ns + 15 ns = 35 ns @ 35 ns of lt_dmi_target.cpp in lt_dmi_target.cpp:114
+[dut info] 35 ns - initiator_thread
+      Initiator: 101 b_transport returned a delay of 35 ns @ 35 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:118
+[dut info] 35 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 35 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 35 ns - is_address_dmi
+      Initiator:102 address is not a dmi address @ 35 ns of dmi_memory.cpp in dmi_memory.cpp:211
+[dut info] 35 ns - print
+      ID: 201 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000004 Data: 0x00000004 @ 35 ns of memory.cpp in report.cpp:134
+[dut info] 35 ns - custom_b_transport
+      Target: 201 returned delay of 0 s + 20 ns + 15 ns = 35 ns @ 35 ns of lt_dmi_target.cpp in lt_dmi_target.cpp:114
+[dut info] 35 ns - initiator_thread
+      Initiator: 102 b_transport returned a delay of 35 ns @ 35 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:118
+[dut info] 70 ns - initiator_thread
+      Initiator: 101 gp_tpr was returned with dmi_allowed set to 0 @ 70 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:125
+[dut info] 70 ns - initiator_thread
+      Initiator: 101 End of processing @ 70 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 70 ns - initiator_thread
+      Initiator: 102 gp_tpr was returned with dmi_allowed set to 0 @ 70 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:125
+[dut info] 70 ns - initiator_thread
+      Initiator: 102 End of processing @ 70 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 70 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 70 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 70 ns - is_address_dmi
+      Initiator:101 address is not a dmi address @ 70 ns of dmi_memory.cpp in dmi_memory.cpp:211
+[dut info] 70 ns - print
+      ID: 201 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000008 Data: 0x00000008 @ 70 ns of memory.cpp in report.cpp:134
+[dut info] 70 ns - custom_b_transport
+      Target: 201 returned delay of 0 s + 20 ns + 15 ns = 35 ns @ 70 ns of lt_dmi_target.cpp in lt_dmi_target.cpp:114
+[dut info] 70 ns - initiator_thread
+      Initiator: 101 b_transport returned a delay of 35 ns @ 70 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:118
+[dut info] 70 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 70 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 70 ns - is_address_dmi
+      Initiator:102 address is not a dmi address @ 70 ns of dmi_memory.cpp in dmi_memory.cpp:211
+[dut info] 70 ns - print
+      ID: 201 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000008 Data: 0x00000008 @ 70 ns of memory.cpp in report.cpp:134
+[dut info] 70 ns - custom_b_transport
+      Target: 201 returned delay of 0 s + 20 ns + 15 ns = 35 ns @ 70 ns of lt_dmi_target.cpp in lt_dmi_target.cpp:114
+[dut info] 70 ns - initiator_thread
+      Initiator: 102 b_transport returned a delay of 35 ns @ 70 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:118
+[dut info] 100 ns - toggle_dmi_method
+      Target: 202 DMI has been enabled in this target @ 100 ns of lt_dmi_target.cpp in lt_dmi_target.cpp:193
+[dut info] 100 ns - toggle_dmi_method
+      Target: 201 DMI has been enabled in this target @ 100 ns of lt_dmi_target.cpp in lt_dmi_target.cpp:193
+[dut info] 105 ns - initiator_thread
+      Initiator: 101 gp_tpr was returned with dmi_allowed set to 0 @ 105 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:125
+[dut info] 105 ns - initiator_thread
+      Initiator: 101 End of processing @ 105 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 105 ns - initiator_thread
+      Initiator: 102 gp_tpr was returned with dmi_allowed set to 0 @ 105 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:125
+[dut info] 105 ns - initiator_thread
+      Initiator: 102 End of processing @ 105 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 105 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 105 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 105 ns - is_address_dmi
+      Initiator:101 address is not a dmi address @ 105 ns of dmi_memory.cpp in dmi_memory.cpp:211
+[dut info] 105 ns - print
+      ID: 201 COMMAND: WRITE Length: 04
+      Addr: 0x000000000000000C Data: 0x0000000C @ 105 ns of memory.cpp in report.cpp:134
+[dut info] 105 ns - custom_b_transport
+      Target: 201 has set dmi_allowed 
+      Target: 201 returned delay of 0 s + 20 ns + 15 ns = 35 ns @ 105 ns of lt_dmi_target.cpp in lt_dmi_target.cpp:114
+[dut info] 105 ns - initiator_thread
+      Initiator: 101 b_transport returned a delay of 35 ns @ 105 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:118
+[dut info] 105 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 105 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 105 ns - is_address_dmi
+      Initiator:102 address is not a dmi address @ 105 ns of dmi_memory.cpp in dmi_memory.cpp:211
+[dut info] 105 ns - print
+      ID: 201 COMMAND: WRITE Length: 04
+      Addr: 0x000000000000000C Data: 0x0000000C @ 105 ns of memory.cpp in report.cpp:134
+[dut info] 105 ns - custom_b_transport
+      Target: 201 has set dmi_allowed 
+      Target: 201 returned delay of 0 s + 20 ns + 15 ns = 35 ns @ 105 ns of lt_dmi_target.cpp in lt_dmi_target.cpp:114
+[dut info] 105 ns - initiator_thread
+      Initiator: 102 b_transport returned a delay of 35 ns @ 105 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:118
+[dut info] 140 ns - initiator_thread
+      Initiator: 101 gp_tpr was returned with dmi_allowed set to 1 @ 140 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:125
+[dut info] 140 ns - initiator_thread
+      Initiator: 101 set up dmi for next access to this target
+      Initiator: 101 requesting DMI pointer @ 140 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:146
+[dut info] 140 ns - get_direct_mem_ptr
+      Target: 201 passing DMI pointer back to initiator @ 140 ns of lt_dmi_target.cpp in lt_dmi_target.cpp:150
+[dut info] 140 ns - print
+      Initiator: 101
+      start addr     = 0
+      end addr       = 4096
+      read latency   = 20 ns
+      write latency  = 15 ns
+      granted access = 3 @ 140 ns of dmi_memory.cpp in report.cpp:205
+[dut info] 140 ns - initiator_thread
+      Initiator: 101 End of processing @ 140 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 140 ns - initiator_thread
+      Initiator: 102 gp_tpr was returned with dmi_allowed set to 1 @ 140 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:125
+[dut info] 140 ns - initiator_thread
+      Initiator: 102 set up dmi for next access to this target
+      Initiator: 102 requesting DMI pointer @ 140 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:146
+[dut info] 140 ns - get_direct_mem_ptr
+      Target: 201 passing DMI pointer back to initiator @ 140 ns of lt_dmi_target.cpp in lt_dmi_target.cpp:150
+[dut info] 140 ns - print
+      Initiator: 102
+      start addr     = 0
+      end addr       = 4096
+      read latency   = 20 ns
+      write latency  = 15 ns
+      granted access = 3 @ 140 ns of dmi_memory.cpp in report.cpp:205
+[dut info] 140 ns - initiator_thread
+      Initiator: 102 End of processing @ 140 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 140 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 140 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 140 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 140 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 140 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 140 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 140 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000010 Data: 0x00000010 @ 140 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 140 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 15 ns @ 140 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 140 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 140 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 140 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 140 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 140 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 140 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 140 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000010 Data: 0x00000010 @ 140 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 140 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 15 ns @ 140 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 155 ns - initiator_thread
+      Initiator: 101 End of processing @ 155 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 155 ns - initiator_thread
+      Initiator: 102 End of processing @ 155 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 155 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 155 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 155 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 155 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 155 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 155 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 155 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000014 Data: 0x00000014 @ 155 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 155 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 15 ns @ 155 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 155 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 155 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 155 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 155 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 155 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 155 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 155 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000014 Data: 0x00000014 @ 155 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 155 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 15 ns @ 155 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 170 ns - initiator_thread
+      Initiator: 101 End of processing @ 170 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 170 ns - initiator_thread
+      Initiator: 102 End of processing @ 170 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 170 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 170 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 170 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 170 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 170 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 170 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 170 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000018 Data: 0x00000018 @ 170 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 170 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 15 ns @ 170 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 170 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 170 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 170 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 170 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 170 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 170 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 170 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000018 Data: 0x00000018 @ 170 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 170 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 15 ns @ 170 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 185 ns - initiator_thread
+      Initiator: 101 End of processing @ 185 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 185 ns - initiator_thread
+      Initiator: 102 End of processing @ 185 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 185 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 185 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 185 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 185 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 185 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 185 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 185 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x000000000000001C Data: 0x0000001C @ 185 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 185 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 15 ns @ 185 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 185 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 185 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 185 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 185 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 185 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 185 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 185 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x000000000000001C Data: 0x0000001C @ 185 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 185 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 15 ns @ 185 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 200 ns - initiator_thread
+      Initiator: 101 End of processing @ 200 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 200 ns - initiator_thread
+      Initiator: 102 End of processing @ 200 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 200 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 200 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 200 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 200 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 200 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 200 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 200 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000020 Data: 0x00000020 @ 200 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 200 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 15 ns @ 200 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 200 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 200 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 200 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 200 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 200 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 200 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 200 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000020 Data: 0x00000020 @ 200 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 200 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 15 ns @ 200 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 215 ns - initiator_thread
+      Initiator: 101 End of processing @ 215 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 215 ns - initiator_thread
+      Initiator: 102 End of processing @ 215 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 215 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 215 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 215 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 215 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 215 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 215 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 215 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000024 Data: 0x00000024 @ 215 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 215 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 15 ns @ 215 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 215 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 215 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 215 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 215 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 215 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 215 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 215 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000024 Data: 0x00000024 @ 215 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 215 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 15 ns @ 215 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 230 ns - initiator_thread
+      Initiator: 101 End of processing @ 230 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 230 ns - initiator_thread
+      Initiator: 102 End of processing @ 230 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 230 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 230 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 230 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 230 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 230 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 230 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 230 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000028 Data: 0x00000028 @ 230 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 230 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 15 ns @ 230 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 230 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 230 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 230 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 230 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 230 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 230 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 230 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000028 Data: 0x00000028 @ 230 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 230 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 15 ns @ 230 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 245 ns - initiator_thread
+      Initiator: 101 End of processing @ 245 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 245 ns - initiator_thread
+      Initiator: 102 End of processing @ 245 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 245 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 245 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 245 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 245 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 245 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 245 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 245 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x000000000000002C Data: 0x0000002C @ 245 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 245 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 15 ns @ 245 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 245 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 245 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 245 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 245 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 245 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 245 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 245 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x000000000000002C Data: 0x0000002C @ 245 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 245 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 15 ns @ 245 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 260 ns - initiator_thread
+      Initiator: 101 End of processing @ 260 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 260 ns - initiator_thread
+      Initiator: 102 End of processing @ 260 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 260 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 260 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 260 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 260 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 260 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 260 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 260 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000030 Data: 0x00000030 @ 260 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 260 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 15 ns @ 260 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 260 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 260 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 260 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 260 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 260 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 260 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 260 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000030 Data: 0x00000030 @ 260 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 260 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 15 ns @ 260 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 275 ns - initiator_thread
+      Initiator: 101 End of processing @ 275 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 275 ns - initiator_thread
+      Initiator: 102 End of processing @ 275 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 275 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 275 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 275 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 275 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 275 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 275 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 275 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000034 Data: 0x00000034 @ 275 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 275 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 15 ns @ 275 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 275 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 275 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 275 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 275 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 275 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 275 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 275 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000034 Data: 0x00000034 @ 275 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 275 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 15 ns @ 275 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 290 ns - initiator_thread
+      Initiator: 101 End of processing @ 290 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 290 ns - initiator_thread
+      Initiator: 102 End of processing @ 290 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 290 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 290 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 290 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 290 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 290 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 290 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 290 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000038 Data: 0x00000038 @ 290 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 290 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 15 ns @ 290 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 290 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 290 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 290 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 290 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 290 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 290 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 290 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000038 Data: 0x00000038 @ 290 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 290 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 15 ns @ 290 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 305 ns - initiator_thread
+      Initiator: 101 End of processing @ 305 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 305 ns - initiator_thread
+      Initiator: 102 End of processing @ 305 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 305 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 305 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 305 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 305 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 305 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 305 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 305 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x000000000000003C Data: 0x0000003C @ 305 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 305 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 15 ns @ 305 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 305 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 305 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 305 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 305 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 305 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 305 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 305 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x000000000000003C Data: 0x0000003C @ 305 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 305 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 15 ns @ 305 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 320 ns - initiator_thread
+      Initiator: 101 End of processing @ 320 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 320 ns - initiator_thread
+      Initiator: 102 End of processing @ 320 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 320 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 320 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 320 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 320 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 320 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 320 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 320 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000000000000 Data: 0x00000000 @ 320 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 320 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 20 ns @ 320 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 320 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 320 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 320 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 320 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 320 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 320 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 320 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000000000000 Data: 0x00000000 @ 320 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 320 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 20 ns @ 320 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 340 ns - initiator_thread
+      Initiator: 101 End of processing @ 340 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 340 ns - initiator_thread
+      Initiator: 102 End of processing @ 340 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 340 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 340 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 340 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 340 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 340 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 340 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 340 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000000000004 Data: 0x00000004 @ 340 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 340 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 20 ns @ 340 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 340 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 340 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 340 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 340 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 340 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 340 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 340 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000000000004 Data: 0x00000004 @ 340 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 340 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 20 ns @ 340 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 360 ns - initiator_thread
+      Initiator: 101 End of processing @ 360 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 360 ns - initiator_thread
+      Initiator: 102 End of processing @ 360 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 360 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 360 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 360 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 360 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 360 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 360 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 360 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000000000008 Data: 0x00000008 @ 360 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 360 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 20 ns @ 360 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 360 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 360 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 360 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 360 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 360 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 360 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 360 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000000000008 Data: 0x00000008 @ 360 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 360 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 20 ns @ 360 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 380 ns - initiator_thread
+      Initiator: 101 End of processing @ 380 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 380 ns - initiator_thread
+      Initiator: 102 End of processing @ 380 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 380 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 380 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 380 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 380 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 380 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 380 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 380 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x000000000000000C Data: 0x0000000C @ 380 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 380 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 20 ns @ 380 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 380 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 380 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 380 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 380 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 380 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 380 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 380 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x000000000000000C Data: 0x0000000C @ 380 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 380 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 20 ns @ 380 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 400 ns - initiator_thread
+      Initiator: 101 End of processing @ 400 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 400 ns - initiator_thread
+      Initiator: 102 End of processing @ 400 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 400 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 400 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 400 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 400 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 400 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 400 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 400 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000000000010 Data: 0x00000010 @ 400 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 400 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 20 ns @ 400 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 400 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 400 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 400 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 400 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 400 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 400 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 400 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000000000010 Data: 0x00000010 @ 400 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 400 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 20 ns @ 400 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 420 ns - initiator_thread
+      Initiator: 101 End of processing @ 420 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 420 ns - initiator_thread
+      Initiator: 102 End of processing @ 420 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 420 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 420 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 420 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 420 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 420 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 420 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 420 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000000000014 Data: 0x00000014 @ 420 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 420 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 20 ns @ 420 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 420 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 420 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 420 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 420 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 420 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 420 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 420 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000000000014 Data: 0x00000014 @ 420 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 420 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 20 ns @ 420 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 440 ns - initiator_thread
+      Initiator: 101 End of processing @ 440 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 440 ns - initiator_thread
+      Initiator: 102 End of processing @ 440 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 440 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 440 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 440 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 440 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 440 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 440 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 440 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000000000018 Data: 0x00000018 @ 440 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 440 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 20 ns @ 440 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 440 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 440 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 440 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 440 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 440 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 440 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 440 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000000000018 Data: 0x00000018 @ 440 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 440 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 20 ns @ 440 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 460 ns - initiator_thread
+      Initiator: 101 End of processing @ 460 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 460 ns - initiator_thread
+      Initiator: 102 End of processing @ 460 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 460 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 460 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 460 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 460 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 460 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 460 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 460 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x000000000000001C Data: 0x0000001C @ 460 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 460 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 20 ns @ 460 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 460 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 460 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 460 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 460 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 460 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 460 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 460 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x000000000000001C Data: 0x0000001C @ 460 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 460 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 20 ns @ 460 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 480 ns - initiator_thread
+      Initiator: 101 End of processing @ 480 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 480 ns - initiator_thread
+      Initiator: 102 End of processing @ 480 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 480 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 480 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 480 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 480 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 480 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 480 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 480 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000000000020 Data: 0x00000020 @ 480 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 480 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 20 ns @ 480 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 480 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 480 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 480 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 480 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 480 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 480 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 480 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000000000020 Data: 0x00000020 @ 480 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 480 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 20 ns @ 480 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 500 ns - initiator_thread
+      Initiator: 101 End of processing @ 500 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 500 ns - initiator_thread
+      Initiator: 102 End of processing @ 500 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 500 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 500 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 500 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 500 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 500 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 500 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 500 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000000000024 Data: 0x00000024 @ 500 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 500 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 20 ns @ 500 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 500 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 500 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 500 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 500 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 500 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 500 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 500 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000000000024 Data: 0x00000024 @ 500 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 500 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 20 ns @ 500 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 520 ns - initiator_thread
+      Initiator: 101 End of processing @ 520 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 520 ns - initiator_thread
+      Initiator: 102 End of processing @ 520 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 520 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 520 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 520 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 520 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 520 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 520 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 520 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000000000028 Data: 0x00000028 @ 520 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 520 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 20 ns @ 520 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 520 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 520 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 520 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 520 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 520 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 520 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 520 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000000000028 Data: 0x00000028 @ 520 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 520 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 20 ns @ 520 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 540 ns - initiator_thread
+      Initiator: 101 End of processing @ 540 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 540 ns - initiator_thread
+      Initiator: 102 End of processing @ 540 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 540 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 540 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 540 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 540 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 540 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 540 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 540 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x000000000000002C Data: 0x0000002C @ 540 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 540 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 20 ns @ 540 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 540 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 540 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 540 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 540 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 540 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 540 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 540 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x000000000000002C Data: 0x0000002C @ 540 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 540 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 20 ns @ 540 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 560 ns - initiator_thread
+      Initiator: 101 End of processing @ 560 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 560 ns - initiator_thread
+      Initiator: 102 End of processing @ 560 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 560 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 560 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 560 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 560 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 560 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 560 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 560 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000000000030 Data: 0x00000030 @ 560 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 560 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 20 ns @ 560 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 560 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 560 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 560 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 560 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 560 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 560 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 560 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000000000030 Data: 0x00000030 @ 560 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 560 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 20 ns @ 560 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 580 ns - initiator_thread
+      Initiator: 101 End of processing @ 580 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 580 ns - initiator_thread
+      Initiator: 102 End of processing @ 580 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 580 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 580 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 580 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 580 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 580 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 580 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 580 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000000000034 Data: 0x00000034 @ 580 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 580 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 20 ns @ 580 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 580 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 580 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 580 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 580 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 580 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 580 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 580 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000000000034 Data: 0x00000034 @ 580 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 580 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 20 ns @ 580 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 600 ns - initiator_thread
+      Initiator: 101 End of processing @ 600 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 600 ns - initiator_thread
+      Initiator: 102 End of processing @ 600 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 600 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 600 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 600 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 600 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 600 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 600 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 600 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000000000038 Data: 0x00000038 @ 600 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 600 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 20 ns @ 600 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 600 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 600 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 600 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 600 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 600 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 600 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 600 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000000000038 Data: 0x00000038 @ 600 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 600 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 20 ns @ 600 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 620 ns - initiator_thread
+      Initiator: 101 End of processing @ 620 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 620 ns - initiator_thread
+      Initiator: 102 End of processing @ 620 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 620 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 620 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 620 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 620 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 620 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 620 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 620 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x000000000000003C Data: 0x0000003C @ 620 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 620 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 20 ns @ 620 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 620 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 620 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 620 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 620 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 620 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 620 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 620 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x000000000000003C Data: 0x0000003C @ 620 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 620 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 20 ns @ 620 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 640 ns - initiator_thread
+      Initiator: 101 End of processing @ 640 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 640 ns - initiator_thread
+      Initiator: 102 End of processing @ 640 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 640 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 640 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 640 ns - is_address_dmi
+      Initiator:101 address is not a dmi address @ 640 ns of dmi_memory.cpp in dmi_memory.cpp:211
+[dut info] 640 ns - print
+      ID: 202 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000000 Data: 0xEFFFFFFF @ 640 ns of memory.cpp in report.cpp:134
+[dut info] 640 ns - custom_b_transport
+      Target: 202 has set dmi_allowed 
+      Target: 202 returned delay of 0 s + 20 ns + 30 ns = 50 ns @ 640 ns of lt_dmi_target.cpp in lt_dmi_target.cpp:114
+[dut info] 640 ns - initiator_thread
+      Initiator: 101 b_transport returned a delay of 50 ns @ 640 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:118
+[dut info] 640 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 640 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 640 ns - is_address_dmi
+      Initiator:102 address is not a dmi address @ 640 ns of dmi_memory.cpp in dmi_memory.cpp:211
+[dut info] 640 ns - print
+      ID: 202 COMMAND: WRITE Length: 04
+      Addr: 0x0000000000000000 Data: 0xEFFFFFFF @ 640 ns of memory.cpp in report.cpp:134
+[dut info] 640 ns - custom_b_transport
+      Target: 202 has set dmi_allowed 
+      Target: 202 returned delay of 0 s + 20 ns + 30 ns = 50 ns @ 640 ns of lt_dmi_target.cpp in lt_dmi_target.cpp:114
+[dut info] 640 ns - initiator_thread
+      Initiator: 102 b_transport returned a delay of 50 ns @ 640 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:118
+[dut info] 690 ns - initiator_thread
+      Initiator: 101 gp_tpr was returned with dmi_allowed set to 1 @ 690 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:125
+[dut info] 690 ns - initiator_thread
+      Initiator: 101 set up dmi for next access to this target
+      Initiator: 101 requesting DMI pointer @ 690 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:146
+[dut info] 690 ns - get_direct_mem_ptr
+      Target: 202 passing DMI pointer back to initiator @ 690 ns of lt_dmi_target.cpp in lt_dmi_target.cpp:150
+[dut info] 690 ns - print
+      Initiator: 101
+      start addr     = 268435456
+      end addr       = 268439552
+      read latency   = 50 ns
+      write latency  = 30 ns
+      granted access = 3 @ 690 ns of dmi_memory.cpp in report.cpp:205
+[dut info] 690 ns - initiator_thread
+      Initiator: 101 End of processing @ 690 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 690 ns - initiator_thread
+      Initiator: 102 gp_tpr was returned with dmi_allowed set to 1 @ 690 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:125
+[dut info] 690 ns - initiator_thread
+      Initiator: 102 set up dmi for next access to this target
+      Initiator: 102 requesting DMI pointer @ 690 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:146
+[dut info] 690 ns - get_direct_mem_ptr
+      Target: 202 passing DMI pointer back to initiator @ 690 ns of lt_dmi_target.cpp in lt_dmi_target.cpp:150
+[dut info] 690 ns - print
+      Initiator: 102
+      start addr     = 268435456
+      end addr       = 268439552
+      read latency   = 50 ns
+      write latency  = 30 ns
+      granted access = 3 @ 690 ns of dmi_memory.cpp in report.cpp:205
+[dut info] 690 ns - initiator_thread
+      Initiator: 102 End of processing @ 690 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 690 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 690 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 690 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 690 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 690 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 690 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 690 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000004 Data: 0xEFFFFFFB @ 690 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 690 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 30 ns @ 690 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 690 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 690 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 690 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 690 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 690 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 690 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 690 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000004 Data: 0xEFFFFFFB @ 690 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 690 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 30 ns @ 690 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 720 ns - initiator_thread
+      Initiator: 101 End of processing @ 720 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 720 ns - initiator_thread
+      Initiator: 102 End of processing @ 720 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 720 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 720 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 720 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 720 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 720 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 720 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 720 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000008 Data: 0xEFFFFFF7 @ 720 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 720 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 30 ns @ 720 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 720 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 720 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 720 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 720 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 720 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 720 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 720 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000008 Data: 0xEFFFFFF7 @ 720 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 720 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 30 ns @ 720 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 750 ns - initiator_thread
+      Initiator: 101 End of processing @ 750 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 750 ns - initiator_thread
+      Initiator: 102 End of processing @ 750 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 750 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 750 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 750 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 750 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 750 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 750 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 750 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x000000001000000C Data: 0xEFFFFFF3 @ 750 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 750 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 30 ns @ 750 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 750 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 750 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 750 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 750 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 750 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 750 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 750 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x000000001000000C Data: 0xEFFFFFF3 @ 750 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 750 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 30 ns @ 750 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 780 ns - initiator_thread
+      Initiator: 101 End of processing @ 780 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 780 ns - initiator_thread
+      Initiator: 102 End of processing @ 780 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 780 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 780 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 780 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 780 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 780 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 780 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 780 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000010 Data: 0xEFFFFFEF @ 780 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 780 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 30 ns @ 780 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 780 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 780 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 780 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 780 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 780 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 780 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 780 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000010 Data: 0xEFFFFFEF @ 780 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 780 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 30 ns @ 780 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 810 ns - initiator_thread
+      Initiator: 101 End of processing @ 810 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 810 ns - initiator_thread
+      Initiator: 102 End of processing @ 810 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 810 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 810 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 810 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 810 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 810 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 810 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 810 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000014 Data: 0xEFFFFFEB @ 810 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 810 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 30 ns @ 810 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 810 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 810 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 810 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 810 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 810 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 810 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 810 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000014 Data: 0xEFFFFFEB @ 810 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 810 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 30 ns @ 810 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 840 ns - initiator_thread
+      Initiator: 101 End of processing @ 840 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 840 ns - initiator_thread
+      Initiator: 102 End of processing @ 840 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 840 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 840 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 840 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 840 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 840 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 840 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 840 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000018 Data: 0xEFFFFFE7 @ 840 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 840 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 30 ns @ 840 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 840 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 840 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 840 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 840 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 840 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 840 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 840 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000018 Data: 0xEFFFFFE7 @ 840 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 840 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 30 ns @ 840 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 870 ns - initiator_thread
+      Initiator: 101 End of processing @ 870 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 870 ns - initiator_thread
+      Initiator: 102 End of processing @ 870 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 870 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 870 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 870 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 870 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 870 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 870 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 870 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x000000001000001C Data: 0xEFFFFFE3 @ 870 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 870 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 30 ns @ 870 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 870 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 870 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 870 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 870 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 870 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 870 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 870 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x000000001000001C Data: 0xEFFFFFE3 @ 870 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 870 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 30 ns @ 870 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 900 ns - initiator_thread
+      Initiator: 101 End of processing @ 900 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 900 ns - initiator_thread
+      Initiator: 102 End of processing @ 900 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 900 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 900 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 900 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 900 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 900 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 900 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 900 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000020 Data: 0xEFFFFFDF @ 900 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 900 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 30 ns @ 900 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 900 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 900 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 900 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 900 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 900 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 900 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 900 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000020 Data: 0xEFFFFFDF @ 900 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 900 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 30 ns @ 900 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 930 ns - initiator_thread
+      Initiator: 101 End of processing @ 930 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 930 ns - initiator_thread
+      Initiator: 102 End of processing @ 930 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 930 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 930 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 930 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 930 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 930 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 930 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 930 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000024 Data: 0xEFFFFFDB @ 930 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 930 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 30 ns @ 930 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 930 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 930 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 930 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 930 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 930 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 930 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 930 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000024 Data: 0xEFFFFFDB @ 930 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 930 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 30 ns @ 930 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 960 ns - initiator_thread
+      Initiator: 101 End of processing @ 960 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 960 ns - initiator_thread
+      Initiator: 102 End of processing @ 960 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 960 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 960 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 960 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 960 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 960 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 960 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 960 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000028 Data: 0xEFFFFFD7 @ 960 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 960 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 30 ns @ 960 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 960 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 960 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 960 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 960 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 960 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 960 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 960 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000028 Data: 0xEFFFFFD7 @ 960 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 960 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 30 ns @ 960 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 990 ns - initiator_thread
+      Initiator: 101 End of processing @ 990 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 990 ns - initiator_thread
+      Initiator: 102 End of processing @ 990 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 990 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 990 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 990 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 990 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 990 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 990 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 990 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x000000001000002C Data: 0xEFFFFFD3 @ 990 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 990 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 30 ns @ 990 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 990 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 990 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 990 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 990 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 990 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 990 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 990 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x000000001000002C Data: 0xEFFFFFD3 @ 990 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 990 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 30 ns @ 990 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1020 ns - initiator_thread
+      Initiator: 101 End of processing @ 1020 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1020 ns - initiator_thread
+      Initiator: 102 End of processing @ 1020 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1020 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1020 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1020 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 1020 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 1020 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 1020 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 1020 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000030 Data: 0xEFFFFFCF @ 1020 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1020 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 30 ns @ 1020 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1020 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1020 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1020 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 1020 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 1020 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 1020 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 1020 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000030 Data: 0xEFFFFFCF @ 1020 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1020 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 30 ns @ 1020 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1050 ns - initiator_thread
+      Initiator: 101 End of processing @ 1050 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1050 ns - initiator_thread
+      Initiator: 102 End of processing @ 1050 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1050 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1050 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1050 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 1050 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 1050 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 1050 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 1050 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000034 Data: 0xEFFFFFCB @ 1050 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1050 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 30 ns @ 1050 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1050 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1050 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1050 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 1050 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 1050 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 1050 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 1050 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000034 Data: 0xEFFFFFCB @ 1050 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1050 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 30 ns @ 1050 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1080 ns - initiator_thread
+      Initiator: 101 End of processing @ 1080 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1080 ns - initiator_thread
+      Initiator: 102 End of processing @ 1080 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1080 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1080 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1080 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 1080 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 1080 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 1080 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 1080 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000038 Data: 0xEFFFFFC7 @ 1080 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1080 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 30 ns @ 1080 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1080 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1080 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1080 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 1080 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 1080 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 1080 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 1080 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x0000000010000038 Data: 0xEFFFFFC7 @ 1080 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1080 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 30 ns @ 1080 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1100 ns - toggle_dmi_method
+      Target: 202 invalidate_direct_ptr (0, 4096); @ 1100 ns of lt_dmi_target.cpp in lt_dmi_target.cpp:181
+[dut info] 1100 ns - invalidate_dmi_ptr
+      Initiator:101 DMI Pointer not invalidated for (268435456, 268439552) @ 1100 ns of dmi_memory.cpp in dmi_memory.cpp:162
+[dut info] 1100 ns - invalidate_dmi_ptr
+      Initiator:102 DMI Pointer not invalidated for (268435456, 268439552) @ 1100 ns of dmi_memory.cpp in dmi_memory.cpp:162
+[dut info] 1100 ns - toggle_dmi_method
+      Target: 201 invalidate_direct_ptr (0, 4096); @ 1100 ns of lt_dmi_target.cpp in lt_dmi_target.cpp:181
+[dut info] 1100 ns - invalidate_dmi_ptr
+      Initiator:101 DMI Pointer not invalidated for (0, 4096) @ 1100 ns of dmi_memory.cpp in dmi_memory.cpp:162
+[dut info] 1100 ns - invalidate_dmi_ptr
+      Initiator:102 DMI Pointer not invalidated for (0, 4096) @ 1100 ns of dmi_memory.cpp in dmi_memory.cpp:162
+[dut info] 1110 ns - initiator_thread
+      Initiator: 101 End of processing @ 1110 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1110 ns - initiator_thread
+      Initiator: 102 End of processing @ 1110 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1110 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1110 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1110 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 1110 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 1110 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Write Command 
+       @ 1110 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 1110 ns - print
+      ID: 101 COMMAND: WRITE Length: 04
+      Addr: 0x000000001000003C Data: 0xEFFFFFC3 @ 1110 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1110 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 30 ns @ 1110 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1110 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1110 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1110 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 1110 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 1110 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Write Command 
+       @ 1110 ns of dmi_memory.cpp in dmi_memory.cpp:219
+[dut info] 1110 ns - print
+      ID: 102 COMMAND: WRITE Length: 04
+      Addr: 0x000000001000003C Data: 0xEFFFFFC3 @ 1110 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1110 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 30 ns @ 1110 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1140 ns - initiator_thread
+      Initiator: 101 End of processing @ 1140 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1140 ns - initiator_thread
+      Initiator: 102 End of processing @ 1140 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1140 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1140 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1140 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1140 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1140 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1140 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1140 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000010000000 Data: 0xEFFFFFFF @ 1140 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1140 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 50 ns @ 1140 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1140 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1140 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1140 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1140 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1140 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1140 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1140 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000010000000 Data: 0xEFFFFFFF @ 1140 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1140 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 50 ns @ 1140 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1190 ns - initiator_thread
+      Initiator: 101 End of processing @ 1190 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1190 ns - initiator_thread
+      Initiator: 102 End of processing @ 1190 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1190 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1190 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1190 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1190 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1190 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1190 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1190 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000010000004 Data: 0xEFFFFFFB @ 1190 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1190 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 50 ns @ 1190 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1190 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1190 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1190 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1190 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1190 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1190 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1190 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000010000004 Data: 0xEFFFFFFB @ 1190 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1190 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 50 ns @ 1190 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1240 ns - initiator_thread
+      Initiator: 101 End of processing @ 1240 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1240 ns - initiator_thread
+      Initiator: 102 End of processing @ 1240 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1240 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1240 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1240 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1240 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1240 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1240 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1240 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000010000008 Data: 0xEFFFFFF7 @ 1240 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1240 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 50 ns @ 1240 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1240 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1240 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1240 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1240 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1240 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1240 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1240 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000010000008 Data: 0xEFFFFFF7 @ 1240 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1240 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 50 ns @ 1240 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1290 ns - initiator_thread
+      Initiator: 101 End of processing @ 1290 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1290 ns - initiator_thread
+      Initiator: 102 End of processing @ 1290 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1290 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1290 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1290 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1290 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1290 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1290 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1290 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x000000001000000C Data: 0xEFFFFFF3 @ 1290 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1290 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 50 ns @ 1290 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1290 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1290 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1290 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1290 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1290 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1290 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1290 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x000000001000000C Data: 0xEFFFFFF3 @ 1290 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1290 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 50 ns @ 1290 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1340 ns - initiator_thread
+      Initiator: 101 End of processing @ 1340 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1340 ns - initiator_thread
+      Initiator: 102 End of processing @ 1340 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1340 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1340 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1340 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1340 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1340 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1340 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1340 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000010000010 Data: 0xEFFFFFEF @ 1340 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1340 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 50 ns @ 1340 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1340 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1340 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1340 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1340 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1340 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1340 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1340 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000010000010 Data: 0xEFFFFFEF @ 1340 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1340 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 50 ns @ 1340 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1390 ns - initiator_thread
+      Initiator: 101 End of processing @ 1390 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1390 ns - initiator_thread
+      Initiator: 102 End of processing @ 1390 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1390 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1390 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1390 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1390 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1390 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1390 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1390 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000010000014 Data: 0xEFFFFFEB @ 1390 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1390 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 50 ns @ 1390 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1390 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1390 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1390 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1390 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1390 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1390 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1390 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000010000014 Data: 0xEFFFFFEB @ 1390 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1390 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 50 ns @ 1390 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1440 ns - initiator_thread
+      Initiator: 101 End of processing @ 1440 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1440 ns - initiator_thread
+      Initiator: 102 End of processing @ 1440 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1440 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1440 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1440 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1440 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1440 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1440 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1440 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000010000018 Data: 0xEFFFFFE7 @ 1440 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1440 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 50 ns @ 1440 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1440 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1440 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1440 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1440 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1440 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1440 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1440 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000010000018 Data: 0xEFFFFFE7 @ 1440 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1440 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 50 ns @ 1440 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1490 ns - initiator_thread
+      Initiator: 101 End of processing @ 1490 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1490 ns - initiator_thread
+      Initiator: 102 End of processing @ 1490 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1490 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1490 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1490 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1490 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1490 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1490 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1490 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x000000001000001C Data: 0xEFFFFFE3 @ 1490 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1490 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 50 ns @ 1490 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1490 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1490 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1490 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1490 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1490 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1490 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1490 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x000000001000001C Data: 0xEFFFFFE3 @ 1490 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1490 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 50 ns @ 1490 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1540 ns - initiator_thread
+      Initiator: 101 End of processing @ 1540 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1540 ns - initiator_thread
+      Initiator: 102 End of processing @ 1540 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1540 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1540 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1540 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1540 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1540 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1540 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1540 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000010000020 Data: 0xEFFFFFDF @ 1540 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1540 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 50 ns @ 1540 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1540 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1540 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1540 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1540 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1540 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1540 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1540 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000010000020 Data: 0xEFFFFFDF @ 1540 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1540 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 50 ns @ 1540 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1590 ns - initiator_thread
+      Initiator: 101 End of processing @ 1590 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1590 ns - initiator_thread
+      Initiator: 102 End of processing @ 1590 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1590 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1590 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1590 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1590 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1590 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1590 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1590 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000010000024 Data: 0xEFFFFFDB @ 1590 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1590 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 50 ns @ 1590 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1590 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1590 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1590 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1590 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1590 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1590 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1590 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000010000024 Data: 0xEFFFFFDB @ 1590 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1590 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 50 ns @ 1590 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1640 ns - initiator_thread
+      Initiator: 101 End of processing @ 1640 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1640 ns - initiator_thread
+      Initiator: 102 End of processing @ 1640 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1640 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1640 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1640 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1640 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1640 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1640 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1640 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000010000028 Data: 0xEFFFFFD7 @ 1640 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1640 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 50 ns @ 1640 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1640 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1640 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1640 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1640 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1640 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1640 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1640 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000010000028 Data: 0xEFFFFFD7 @ 1640 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1640 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 50 ns @ 1640 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1690 ns - initiator_thread
+      Initiator: 101 End of processing @ 1690 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1690 ns - initiator_thread
+      Initiator: 102 End of processing @ 1690 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1690 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1690 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1690 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1690 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1690 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1690 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1690 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x000000001000002C Data: 0xEFFFFFD3 @ 1690 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1690 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 50 ns @ 1690 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1690 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1690 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1690 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1690 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1690 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1690 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1690 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x000000001000002C Data: 0xEFFFFFD3 @ 1690 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1690 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 50 ns @ 1690 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1740 ns - initiator_thread
+      Initiator: 101 End of processing @ 1740 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1740 ns - initiator_thread
+      Initiator: 102 End of processing @ 1740 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1740 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1740 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1740 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1740 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1740 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1740 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1740 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000010000030 Data: 0xEFFFFFCF @ 1740 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1740 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 50 ns @ 1740 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1740 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1740 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1740 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1740 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1740 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1740 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1740 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000010000030 Data: 0xEFFFFFCF @ 1740 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1740 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 50 ns @ 1740 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1790 ns - initiator_thread
+      Initiator: 101 End of processing @ 1790 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1790 ns - initiator_thread
+      Initiator: 102 End of processing @ 1790 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1790 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1790 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1790 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1790 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1790 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1790 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1790 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000010000034 Data: 0xEFFFFFCB @ 1790 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1790 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 50 ns @ 1790 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1790 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1790 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1790 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1790 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1790 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1790 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1790 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000010000034 Data: 0xEFFFFFCB @ 1790 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1790 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 50 ns @ 1790 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1840 ns - initiator_thread
+      Initiator: 101 End of processing @ 1840 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1840 ns - initiator_thread
+      Initiator: 102 End of processing @ 1840 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1840 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1840 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1840 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1840 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1840 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1840 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1840 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x0000000010000038 Data: 0xEFFFFFC7 @ 1840 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1840 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 50 ns @ 1840 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1840 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1840 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1840 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1840 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1840 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1840 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1840 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x0000000010000038 Data: 0xEFFFFFC7 @ 1840 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1840 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 50 ns @ 1840 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1890 ns - initiator_thread
+      Initiator: 101 End of processing @ 1890 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1890 ns - initiator_thread
+      Initiator: 102 End of processing @ 1890 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1890 ns - initiator_thread
+      Initiator: 101 b_transport with delay of 0 s); @ 1890 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1890 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1890 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1890 ns - is_address_dmi
+      Initiator:101 correct address and appropriate access for a GP Read Command 
+       @ 1890 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1890 ns - print
+      ID: 101 COMMAND: READ Length: 04
+      Addr: 0x000000001000003C Data: 0xEFFFFFC3 @ 1890 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1890 ns - initiator_thread
+      Initiator: 101 dmi based transaction returned a delay of 50 ns @ 1890 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1890 ns - initiator_thread
+      Initiator: 102 b_transport with delay of 0 s); @ 1890 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:99
+[dut info] 1890 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1890 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1890 ns - is_address_dmi
+      Initiator:102 correct address and appropriate access for a GP Read Command 
+       @ 1890 ns of dmi_memory.cpp in dmi_memory.cpp:229
+[dut info] 1890 ns - print
+      ID: 102 COMMAND: READ Length: 04
+      Addr: 0x000000001000003C Data: 0xEFFFFFC3 @ 1890 ns of dmi_memory.cpp in report.cpp:134
+[dut info] 1890 ns - initiator_thread
+      Initiator: 102 dmi based transaction returned a delay of 50 ns @ 1890 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:173
+[dut info] 1940 ns - initiator_thread
+      Initiator: 101 End of processing @ 1940 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1940 ns - initiator_thread
+      Initiator: 102 End of processing @ 1940 ns of lt_dmi_initiator.cpp in lt_dmi_initiator.cpp:189
+[dut info] 1940 ns - traffic_generator_thread
+      Traffic Generator : 101
+=========================================================
+            ####  Traffic Generator Complete  ####  @ 1940 ns of traffic_generator.cpp in traffic_generator.cpp:217
+[dut info] 1940 ns - traffic_generator_thread
+      Traffic Generator : 102
+=========================================================
+            ####  Traffic Generator Complete  ####  @ 1940 ns of traffic_generator.cpp in traffic_generator.cpp:217
+[dut info] Simulation stopped by user. @ 1 ms of /OSCI/SystemC in sc_simcontext.cpp:961

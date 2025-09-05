@@ -1,0 +1,22 @@
+Entering directory '/home/debian/Sterowniki-dla-systemu-Linux/lab6/simics-projects/proj1/modules/first_device/test'
+=BEGIN s-first_device
+Intel® Simics® Simulator 7 (build 7080 linux64) © 2025 Intel Corporation
+
+=END s-first_device 0.4 s
+=BEGIN s-info-status
+Intel® Simics® Simulator 7 (build 7080 linux64) © 2025 Intel Corporation
+
+first_device True True
+Information about obj_0000001ae4e4d432 [class first_device]
+===========================================================
+No information available
+Status of obj_0000001ae4e4d432 [class first_device]
+===================================================
+
+Registers:
+         arg1 : 0
+         arg2 : 0
+    operation : 0
+       result : 0
+=END s-info-status 0.4 s
+Leaving directory '/home/debian/Sterowniki-dla-systemu-Linux/lab6/simics-projects/proj1/modules/first_device/test'

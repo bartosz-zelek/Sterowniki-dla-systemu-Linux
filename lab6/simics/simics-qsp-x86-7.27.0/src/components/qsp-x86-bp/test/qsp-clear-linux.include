@@ -1,0 +1,7 @@
+params.setdefault "sw:machine_name" (params.get "hw:board_name")
+params.setdefault "sw:mac_address"  (params.get "hw:qsp:mac_address")
+params.setdefault "sw:sn_name" (params.get "hw:net:sn_name")
+
+# Run software setup
+run-script "%script%/sn-setup.yml" namespace = "sw"
+params.setdefault "system" (params.get "hw:board_name")

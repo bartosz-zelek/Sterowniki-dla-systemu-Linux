@@ -1,0 +1,754 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device name="ich10_lpc" desc="model of Intel® ICH10 LPC bridge" documentation="LPC bridge contains interrupt controllers, timers, RTC,  Serial ports and Firmware hub for Intel® ICH10." limitations="&lt;ul&gt;&lt;li&gt;SIRQ routing is unimplemented.&lt;/li&gt;&lt;li&gt;Chipset configuration registers are mostly dummy.&lt;/li&gt;&lt;li&gt;General Purpose I/O is dummy.&lt;/li&gt;&lt;/ul&gt;" bitorder="le">
+  <bank name="acpi_io_regs" byte_order="little-endian" function="1">
+    <register name="alt_gp_smi_en" offset="56" size="2">
+    </register>
+    <register name="alt_gp_smi_sts" offset="58" size="2">
+    </register>
+    <register name="c3_res" limitations="Not implemented." offset="84" size="4">
+    </register>
+    <register name="devact_sts" offset="68" size="2">
+    </register>
+    <register name="gpe0_en" offset="40" size="8">
+      <field name="GPIn_EN" msb="31" lsb="16" />
+      <field name="HOT_PLUG_EN" msb="1" lsb="1" />
+      <field name="PCI_EXP_EN" msb="9" lsb="9" />
+      <field name="PME_B0_EN" msb="13" lsb="13" />
+      <field name="PME_EN" msb="11" lsb="11" />
+      <field name="RI_EN" msb="8" lsb="8" />
+      <field name="SWGPE_EN" msb="2" lsb="2" />
+      <field name="TCOSCI_EN" msb="6" lsb="6" />
+      <field name="THRM_EN" msb="0" lsb="0" />
+      <field name="USB1_EN" msb="3" lsb="3" />
+      <field name="USB2_EN" msb="4" lsb="4" />
+      <field name="USB3_EN" msb="12" lsb="12" />
+      <field name="USB4_EN" msb="14" lsb="14" />
+      <field name="USB5_EN" msb="5" lsb="5" />
+      <field name="USB6_EN" msb="32" lsb="32" />
+    </register>
+    <register name="gpe0_sts" offset="32" size="8">
+      <field name="GPIn_STS" msb="31" lsb="16" />
+      <field name="HOT_PLUG_STS" msb="1" lsb="1" />
+      <field name="PCI_EXP_STS" msb="9" lsb="9" />
+      <field name="PME_B0_STS" msb="13" lsb="13" />
+      <field name="PME_STS" msb="11" lsb="11" />
+      <field name="RI_STS" msb="8" lsb="8" />
+      <field name="SMB_WAK_STS" msb="7" lsb="7" />
+      <field name="SWGPE_STS" msb="2" lsb="2" />
+      <field name="TCOSCI_STS" msb="6" lsb="6" />
+      <field name="THRM_STS" msb="0" lsb="0" />
+      <field name="USB1_STS" msb="3" lsb="3" />
+      <field name="USB2_STS" msb="4" lsb="4" />
+      <field name="USB3_STS" msb="12" lsb="12" />
+      <field name="USB4_STS" msb="14" lsb="14" />
+      <field name="USB5_STS" msb="5" lsb="5" />
+      <field name="USB6_STS" msb="32" lsb="32" />
+    </register>
+    <register name="gpe_cntl" limitations="Not implemented." offset="66" size="1">
+    </register>
+    <register name="lv2" limitations="Not implemented." offset="20" size="1">
+    </register>
+    <register name="lv3" limitations="Not implemented." offset="21" size="1">
+    </register>
+    <register name="lv4" limitations="Not implemented." offset="22" size="1">
+    </register>
+    <register name="pm1_cnt" offset="4" size="4">
+      <field name="GBL_RLS" msb="2" lsb="2" />
+      <field name="SCI_EN" msb="0" lsb="0" />
+      <field name="SLP_EN" msb="13" lsb="13" />
+      <field name="SLP_TYP" msb="12" lsb="10" />
+    </register>
+    <register name="pm1_en" offset="2" size="2">
+      <field name="GBL_EN" msb="5" lsb="5" />
+      <field name="PCEXPWAK_DIS" limitations="Not implemented." msb="14" lsb="14" />
+      <field name="PWRBTN_EN" limitations="Not implemented." msb="8" lsb="8" />
+      <field name="RTC_EN" limitations="Not implemented." msb="10" lsb="10" />
+      <field name="TMROF_EN" msb="0" lsb="0" />
+    </register>
+    <register name="pm1_sts" offset="0" size="2">
+      <field name="BM_STS" msb="4" lsb="4" />
+      <field name="GBL_STS" msb="5" lsb="5" />
+      <field name="ME_STS" msb="9" lsb="9" />
+      <field name="PCIEXPWAK_STS" msb="14" lsb="14" />
+      <field name="PRBNOR_STS" msb="11" lsb="11" />
+      <field name="PWRBTN_STS" msb="8" lsb="8" />
+      <field name="RTC_STS" msb="10" lsb="10" />
+      <field name="TMROF_STS" msb="0" lsb="0" />
+      <field name="WAK_STS" msb="15" lsb="15" />
+    </register>
+    <register name="pm1_tmr" offset="8" size="4">
+      <field name="TMR_VAL" msb="23" lsb="0" />
+    </register>
+    <register name="pm2_cnt" limitations="Not implemented." offset="80" size="1">
+    </register>
+    <register name="proc_cnt" offset="16" size="4">
+      <field name="FORCE_THTL" limitations="Not implemented." msb="8" lsb="8" />
+      <field name="THRM_DTY" msb="7" lsb="5" />
+      <field name="THTL_DTY" msb="3" lsb="1" />
+      <field name="THTL_EN" limitations="Not implemented." msb="4" lsb="4" />
+      <field name="THTL_STS" msb="17" lsb="17" />
+    </register>
+    <register name="smi_en" offset="48" size="4">
+      <field name="APMC_EN" msb="5" lsb="5" />
+      <field name="BIOS_EN" msb="2" lsb="2" />
+      <field name="BIOS_RLS" msb="7" lsb="7" />
+      <field name="EOS" limitations="Not implemented." msb="1" lsb="1" />
+      <field name="GBL_SMI_EN" msb="0" lsb="0" />
+      <field name="GPIO_UNLOCK_SMI_EN" msb="27" lsb="27" />
+      <field name="INTEL_USB2_EN" msb="18" lsb="18" />
+      <field name="LEGACY_USB2_EN" msb="17" lsb="17" />
+      <field name="LEGACY_USB_EN" msb="3" lsb="3" />
+      <field name="MCSMI_EN" limitations="Not implemented." msb="11" lsb="11" />
+      <field name="PERIODIC_EN" msb="14" lsb="14" />
+      <field name="SLP_SMI_EN" msb="4" lsb="4" />
+      <field name="SWISMI_TMR_EN" limitations="Not implemented." msb="6" lsb="6" />
+      <field name="TCO_EN" msb="13" lsb="13" />
+    </register>
+    <register name="smi_sts" offset="52" size="4">
+      <field name="APM_STS" msb="5" lsb="5" />
+      <field name="BIOS_STS" msb="2" lsb="2" />
+      <field name="DEVMON_STS" msb="12" lsb="12" />
+      <field name="GPE0_STS" msb="9" lsb="9" />
+      <field name="GPE1_STS" msb="10" lsb="10" />
+      <field name="GPIO_UNLOCK_SMI_STS" msb="27" lsb="27" />
+      <field name="INTEL_USB2_STS" msb="18" lsb="18" />
+      <field name="LEGACY_USB2_STS" msb="17" lsb="17" />
+      <field name="LEGACY_USB_STS" msb="3" lsb="3" />
+      <field name="MCSMI_STS" msb="11" lsb="11" />
+      <field name="MONITOR_STS" msb="21" lsb="21" />
+      <field name="PCI_EXP_SMI_STS" msb="20" lsb="20" />
+      <field name="PERIODIC_STS" msb="14" lsb="14" />
+      <field name="PM1_STS_REG" msb="8" lsb="8" />
+      <field name="SERRIRQ_SMI_STS" msb="15" lsb="15" />
+      <field name="SLP_SMI_STS" msb="4" lsb="4" />
+      <field name="SMBUS_SMI_STS" msb="16" lsb="16" />
+      <field name="SPI_STS" msb="26" lsb="26" />
+      <field name="SWISMI_TMR_STS" msb="6" lsb="6" />
+      <field name="TCO_STS" msb="13" lsb="13" />
+    </register>
+    <register name="sw_irq_gen" limitations="Not implemented." offset="112" size="1">
+    </register>
+    <register name="tco1_cnt" offset="104" size="2">
+      <field name="NMI2SMI_EN" msb="9" lsb="9" />
+      <field name="NMI_NOW" msb="8" lsb="8" />
+      <field name="SEND_NOW" limitations="Not implemented." msb="10" lsb="10" />
+      <field name="TCO_LOCK" msb="12" lsb="12" />
+      <field name="TCO_TMR_HLT" msb="11" lsb="11" />
+    </register>
+    <register name="tco1_sts" offset="100" size="2">
+      <field name="BIOSWR_STS" msb="8" lsb="8" />
+      <field name="DMISCI_STS" msb="9" lsb="9" />
+      <field name="DMISERR_STS" msb="12" lsb="12" />
+      <field name="DMISMI_STS" msb="10" lsb="10" />
+      <field name="NEW_CENTURY_STS" msb="7" lsb="7" />
+      <field name="NMI2SMI_STS" msb="0" lsb="0" />
+      <field name="SW_TCO_SMI" msb="1" lsb="1" />
+      <field name="TCO_INT_STS" msb="2" lsb="2" />
+      <field name="TCO_SLVSEL" msb="13" lsb="13" />
+      <field name="TIMEOUT" msb="3" lsb="3" />
+    </register>
+    <register name="tco2_cnt" offset="106" size="2">
+      <field name="GPIO11_ALERT_DISABLE" limitations="Not implemented." msb="3" lsb="3" />
+      <field name="INTRD_SE" msb="2" lsb="1" />
+    </register>
+    <register name="tco2_sts" offset="102" size="2">
+      <field name="BAD_BIOS" msb="3" lsb="3" />
+      <field name="BOOT_STS" msb="2" lsb="2" />
+      <field name="INTRD_DET" msb="0" lsb="0" />
+      <field name="ME_HRST_COLD_STS" msb="6" lsb="6" />
+      <field name="ME_HRST_WARM_STS" msb="7" lsb="7" />
+      <field name="ME_WAKE_STS" msb="5" lsb="5" />
+      <field name="SECOND_TO_STS" msb="1" lsb="1" />
+      <field name="SMLINK_SLV_SMI_STS" msb="4" lsb="4" />
+    </register>
+    <register name="tco_dat_in" offset="98" size="1">
+    </register>
+    <register name="tco_dat_out" offset="99" size="1">
+    </register>
+    <register name="tco_message1" limitations="Not implemented." offset="108" size="1">
+    </register>
+    <register name="tco_message2" limitations="Not implemented." offset="109" size="1">
+    </register>
+    <register name="tco_rld" limitations="Not implemented." offset="96" size="2">
+    </register>
+    <register name="tco_tmr" offset="114" size="2">
+      <field name="timer" msb="9" lsb="0" />
+    </register>
+    <register name="tco_wdcnt" limitations="Not implemented." offset="110" size="1">
+    </register>
+    <register name="uprwc" limitations="Not implemented." offset="60" size="2">
+    </register>
+  </bank>
+  <bank name="apm_io_regs" byte_order="little-endian" function="2">
+    <register name="apm_cnt" offset="0" size="1">
+    </register>
+    <register name="apm_sts" offset="1" size="1">
+    </register>
+  </bank>
+  <bank name="cs_conf" documentation="Chipset configuration registers" limitations="This is a dummy implementation" byte_order="little-endian" function="10">
+    <register name="bac" desc="Bandwidth Allocation Configuration" offset="552" size="4">
+    </register>
+    <register name="bcr" desc="Backbone Configuration" offset="544" size="4">
+    </register>
+    <register name="buc" desc="Backed Up Control" offset="13332" size="1">
+      <field name="cbe" limitations="Not implemented." msb="2" lsb="2" />
+      <field name="lan_dis" limitations="Not implemented." msb="5" lsb="5" />
+      <field name="sdo" limitations="Not implemented." msb="4" lsb="4" />
+      <field name="ts" limitations="Not implemented." msb="0" lsb="0" />
+    </register>
+    <register name="buc_p" desc="Dummy padding register" offset="13333" size="3">
+    </register>
+    <register name="cg" desc="Clock Gating" offset="13340" size="4">
+      <field name="audiod" limitations="Not implemented." msb="22" lsb="22" />
+      <field name="audios" limitations="Not implemented." msb="21" lsb="21" />
+      <field name="dmirx" limitations="Not implemented." msb="3" lsb="3" />
+      <field name="dmitx" limitations="Not implemented." msb="1" lsb="1" />
+      <field name="ehcid" limitations="Not implemented." msb="20" lsb="20" />
+      <field name="ehcis" limitations="Not implemented." msb="19" lsb="19" />
+      <field name="lan" limitations="Not implemented." msb="23" lsb="23" />
+      <field name="lpc" limitations="Not implemented." msb="31" lsb="31" />
+      <field name="pci" limitations="Not implemented." msb="16" lsb="16" />
+      <field name="pciers" limitations="Not implemented." msb="0" lsb="0" />
+      <field name="pcitx" limitations="Not implemented." msb="2" lsb="2" />
+      <field name="prxgen" limitations="Not implemented." msb="4" lsb="4" />
+      <field name="sata1" limitations="Not implemented." msb="25" lsb="25" />
+      <field name="sata2" limitations="Not implemented." msb="26" lsb="26" />
+      <field name="sata3" limitations="Not implemented." msb="27" lsb="27" />
+      <field name="sata4" limitations="Not implemented." msb="17" lsb="17" />
+      <field name="sata5" limitations="Not implemented." msb="18" lsb="18" />
+      <field name="smbcgen" limitations="Not implemented." msb="5" lsb="5" />
+      <field name="uhci" limitations="Not implemented." msb="29" lsb="28" />
+    </register>
+    <register name="cir1" desc="Chipset Initialization Register 1" offset="136" size="4">
+    </register>
+    <register name="cir10" desc="Chipset Initialization Register 10" offset="13612" size="4">
+      <field name="f1" msb="17" lsb="16" />
+    </register>
+    <register name="cir13" desc="Chipset Initialization Register 13" offset="3872" size="4">
+      <field name="f1" msb="19" lsb="16" />
+      <field name="r1" msb="31" lsb="20" />
+      <field name="r2" msb="15" lsb="0" />
+    </register>
+    <register name="cir2" desc="Chipset Initialization Register 2" offset="500" size="4">
+    </register>
+    <register name="cir3" desc="Chipset Initialization Register 3" offset="508" size="4">
+    </register>
+    <register name="cir5" desc="Chipset Initialization Register 5" offset="7488" size="4">
+    </register>
+    <register name="cir6" desc="Chipset Initialization Register 6" offset="8228" size="4">
+      <field name="f1" msb="7" lsb="7" />
+      <field name="r1" msb="31" lsb="8" />
+      <field name="r2" msb="6" lsb="0" />
+    </register>
+    <register name="cir7" desc="Chipset Initialization Register 7" limitations="Not implemented." offset="8244" size="4">
+      <field name="f1" msb="19" lsb="16" />
+      <field name="r1" msb="31" lsb="20" />
+      <field name="r2" msb="15" lsb="0" />
+    </register>
+    <register name="cir8" desc="Chipset Initialization Register 8" offset="13360" size="4">
+    </register>
+    <register name="cir9" desc="Chipset Initialization Register 9" offset="13580" size="4">
+    </register>
+    <register name="d25p" desc="Device 25 Interrupt Pin" offset="12568" size="4">
+      <field name="lip" msb="3" lsb="0" />
+    </register>
+    <register name="d25r" desc="Device 25 Interrupt Route" offset="12624" size="2">
+    </register>
+    <register name="d25r_p" desc="Dummy padding register" offset="12626" size="2">
+    </register>
+    <register name="d26p" desc="Device 26 Interrupt Pin" offset="12564" size="4">
+      <field name="e2ip" msb="31" lsb="28" />
+      <field name="u0p" msb="3" lsb="0" />
+      <field name="u1p" msb="7" lsb="4" />
+      <field name="u2p" msb="11" lsb="8" />
+    </register>
+    <register name="d26r" desc="Device 26 Interrupt Route" offset="12620" size="2">
+    </register>
+    <register name="d26r_p" desc="Dummy padding register" offset="12622" size="2">
+    </register>
+    <register name="d27p" desc="Device 27 Interrupt Pin" offset="12560" size="4">
+      <field name="zip" msb="3" lsb="0" />
+    </register>
+    <register name="d27r" desc="Device 27 Interrupt Route" offset="12616" size="2">
+    </register>
+    <register name="d27r_p" desc="Dummy padding register" offset="12618" size="2">
+    </register>
+    <register name="d28p" desc="Device 28 Interrupt Pin" offset="12556" size="4">
+      <field name="p1ip" msb="3" lsb="0" />
+      <field name="p2ip" msb="7" lsb="4" />
+      <field name="p3ip" msb="11" lsb="8" />
+      <field name="p4ip" msb="15" lsb="12" />
+      <field name="p5ip" msb="19" lsb="16" />
+      <field name="p6ip" msb="23" lsb="20" />
+    </register>
+    <register name="d28r" desc="Device 28 Interrupt Route" offset="12614" size="2">
+    </register>
+    <register name="d29p" desc="Device 29 Interrupt Pin" offset="12552" size="4">
+      <field name="eip" msb="31" lsb="28" />
+      <field name="u0p" msb="3" lsb="0" />
+      <field name="u1p" msb="7" lsb="4" />
+      <field name="u2p" msb="11" lsb="8" />
+      <field name="u3p" msb="15" lsb="12" />
+    </register>
+    <register name="d29r" desc="Device 29 Interrupt Route" offset="12612" size="2">
+    </register>
+    <register name="d30p" desc="Device 30 Interrupt Pin" offset="12548" size="4">
+    </register>
+    <register name="d30r" desc="Device 30 Interrupt Route" offset="12610" size="2">
+    </register>
+    <register name="d31p" desc="Device 31 Interrupt Pin" offset="12544" size="4">
+      <field name="sip" msb="11" lsb="8" />
+      <field name="sip2" msb="23" lsb="20" />
+      <field name="smip" msb="15" lsb="12" />
+      <field name="ttip" msb="27" lsb="24" />
+    </register>
+    <register name="d31r" desc="Device 31 Interrupt Route" offset="12608" size="2">
+    </register>
+    <register name="dmc" desc="DMI Miscellaneous Control" limitations="Not implemented." offset="8208" size="4">
+    </register>
+    <register name="dmic" desc="DMI Control" limitations="Not implemented." offset="564" size="4">
+    </register>
+    <register name="esd" desc="Element Self Description" limitations="Not implemented." offset="260" size="4">
+    </register>
+    <register name="fd" desc="Function Disable" offset="13336" size="4">
+      <field name="audio" msb="4" lsb="4" />
+      <field name="ehci1" msb="15" lsb="15" />
+      <field name="ehci2" msb="13" lsb="13" />
+      <field name="f1" msb="0" lsb="0" />
+      <field name="lpc" limitations="Not implemented." msb="14" lsb="14" />
+      <field name="pcie1" msb="16" lsb="16" />
+      <field name="pcie2" msb="17" lsb="17" />
+      <field name="pcie3" msb="18" lsb="18" />
+      <field name="pcie4" msb="19" lsb="19" />
+      <field name="pcie5" msb="20" lsb="20" />
+      <field name="pcie6" msb="21" lsb="21" />
+      <field name="sata1" msb="2" lsb="2" />
+      <field name="sata2" msb="25" lsb="25" />
+      <field name="smbus" limitations="Not implemented." msb="3" lsb="3" />
+      <field name="throt" limitations="Not implemented." msb="24" lsb="24" />
+      <field name="uhci1" msb="8" lsb="8" />
+      <field name="uhci2" msb="9" lsb="9" />
+      <field name="uhci3" msb="10" lsb="10" />
+      <field name="uhci4" msb="11" lsb="11" />
+      <field name="uhci5" msb="12" lsb="12" />
+      <field name="uhci6" msb="7" lsb="7" />
+    </register>
+    <register name="fpss" desc="Function Level Reset Pending Status Summary" limitations="Not implemented." offset="572" size="4">
+    </register>
+    <register name="gcs" desc="General Control and Status" offset="13328" size="4">
+    </register>
+    <register name="hdba" desc="High Definition Audio Base Address" limitations="Not implemented." offset="360" size="8">
+    </register>
+    <register name="hdd" desc="High Definition Audio Descriptor" limitations="Not implemented." offset="352" size="4">
+    </register>
+    <register name="hptc" desc="High Precision Timer Configuration" offset="13316" size="4">
+      <field name="ae" msb="7" lsb="7" />
+      <field name="as" msb="1" lsb="0" />
+    </register>
+    <register name="ilcl" desc="Internal Link Capability List" limitations="Not implemented." offset="416" size="4">
+    </register>
+    <register name="iotr0" desc="I/O Trap Register 0" limitations="Not implemented." offset="7808" size="8">
+    </register>
+    <register name="iotr1" desc="I/O Trap Register 1" limitations="Not implemented." offset="7816" size="8">
+    </register>
+    <register name="iotr2" desc="I/O Trap Register 2" limitations="Not implemented." offset="7824" size="8">
+    </register>
+    <register name="iotr3" desc="I/O Trap Register 3" limitations="Not implemented." offset="7832" size="8">
+    </register>
+    <register name="l1ac" desc="Level 1 Backbone Arbiter Config" offset="524" size="4">
+    </register>
+    <register name="l3ac" desc="Level 3 Backbone Arbiter Config" offset="512" size="4">
+    </register>
+    <register name="lcap" desc="Link Capability" offset="420" size="4">
+      <field name="apms" limitations="Not implemented." msb="11" lsb="10" />
+      <field name="el0" limitations="Not implemented." msb="14" lsb="12" />
+      <field name="mls" msb="3" lsb="0" />
+      <field name="mlw" msb="9" lsb="4" />
+    </register>
+    <register name="lctl" desc="Link Control" limitations="Not implemented." offset="424" size="2">
+    </register>
+    <register name="lsts" desc="Link Status" limitations="Not implemented." offset="426" size="2">
+    </register>
+    <register name="map" desc="USB Remap Control" offset="13808" size="4">
+      <field name="uhci6" limitations="Not implemented." msb="0" lsb="0" />
+    </register>
+    <register name="oic" desc="Other Interrupt Control" offset="12799" size="1">
+      <field name="aen" limitations="Not implemented." msb="0" lsb="0" />
+      <field name="asel" limitations="Not implemented." msb="7" lsb="4" />
+      <field name="cen" limitations="Not implemented." msb="1" lsb="1" />
+    </register>
+    <register name="oic_p" desc="Dummy padding register" offset="12800" size="3">
+    </register>
+    <register name="olctl" desc="Other Link Control" offset="428" size="2">
+    </register>
+    <register name="olctl_p" desc="Dummy padding register" offset="430" size="2">
+    </register>
+    <register name="pat" vsize="64" desc="Port Arbitration Table" limitations="Not implemented." offset="48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111" size="1">
+    </register>
+    <register name="pdsw" desc="Function Disable SUS Well" limitations="Not implemented." offset="13344" size="1">
+    </register>
+    <register name="ppo" desc="USB Port Power Off" limitations="Not implemented." offset="13604" size="2">
+    </register>
+    <register name="pvc" desc="Port VC Control" limitations="Not implemented." offset="12" size="2">
+    </register>
+    <register name="pvs" desc="Port VC Status" limitations="Not implemented." offset="14" size="2">
+    </register>
+    <register name="rc" desc="RTC Configuration" offset="13312" size="4">
+      <field name="ll" limitations="Not implemented." msb="3" lsb="3" />
+      <field name="ue" limitations="Not implemented." msb="2" lsb="2" />
+      <field name="ul" limitations="Not implemented." msb="4" lsb="4" />
+    </register>
+    <register name="rctcl" desc="Root Complex Topology Capability List" limitations="Not implemented." offset="256" size="4">
+    </register>
+    <register name="rec" desc="Root Error Command" limitations="Not implemented." offset="172" size="4">
+    </register>
+    <register name="rp1ba" desc="Root Port 1 Base Address" limitations="Not implemented." offset="296" size="8">
+    </register>
+    <register name="rp1d" desc="Root Port 1 Descriptor" limitations="Not implemented." offset="288" size="4">
+    </register>
+    <register name="rp2ba" desc="Root Port 2 Base Address" limitations="Not implemented." offset="312" size="8">
+    </register>
+    <register name="rp2d" desc="Root Port 2 Descriptor" limitations="Not implemented." offset="304" size="4">
+    </register>
+    <register name="rp3ba" desc="Root Port 3 Base Address" limitations="Not implemented." offset="328" size="8">
+    </register>
+    <register name="rp3d" desc="Root Port 3 Descriptor" limitations="Not implemented." offset="320" size="4">
+    </register>
+    <register name="rp4ba" desc="Root Port 4 Base Address" limitations="Not implemented." offset="344" size="8">
+    </register>
+    <register name="rp4d" desc="Root Port 4 Descriptor" limitations="Not implemented." offset="336" size="4">
+    </register>
+    <register name="rp5ba" desc="Root Port 5 Base Address" limitations="Not implemented." offset="376" size="8">
+    </register>
+    <register name="rp5d" desc="Root Port 5 Descriptor" limitations="Not implemented." offset="368" size="4">
+    </register>
+    <register name="rp6ba" desc="Root Port 6 Base Address" limitations="Not implemented." offset="392" size="8">
+    </register>
+    <register name="rp6d" desc="Root Port 6 Descriptor" limitations="Not implemented." offset="384" size="4">
+    </register>
+    <register name="rpc" desc="Root Port Configuration" limitations="Not implemented." offset="548" size="4">
+    </register>
+    <register name="rpfn" desc="Root Port FN for PCIe Root Port" limitations="Not implemented." offset="568" size="4">
+    </register>
+    <register name="tctl" desc="TCO Control" limitations="Not implemented." offset="12288" size="1">
+    </register>
+    <register name="trcr" desc="Trapped Cycle Register" limitations="Not implemented." offset="7696" size="8">
+    </register>
+    <register name="trsr" desc="Trap Status Register" limitations="Not implemented." offset="7680" size="4">
+    </register>
+    <register name="twdr" desc="Trapped Write Data Register" limitations="Not implemented." offset="7704" size="8">
+    </register>
+    <register name="ulba" desc="Upstream Link Base Address" limitations="Not implemented." offset="280" size="8">
+    </register>
+    <register name="uld" desc="Upstream Link Descriptor" limitations="Not implemented." offset="272" size="4">
+    </register>
+    <register name="umr" desc="Upstream Minimum Reserved" offset="536" size="4">
+    </register>
+    <register name="unrl" desc="Upstream Non-posted Request Limits" offset="532" size="4">
+    </register>
+    <register name="v0cap" desc="VC 0 Resource Capability" limitations="Not implemented." offset="16" size="4">
+    </register>
+    <register name="v0ctl" desc="VC 0 Resource Control" offset="20" size="4">
+      <field name="en" msb="31" lsb="31" />
+      <field name="id" msb="26" lsb="24" />
+      <field name="lat" msb="16" lsb="16" />
+      <field name="pas" msb="19" lsb="17" />
+      <field name="tvm" limitations="Not implemented." msb="7" lsb="1" />
+    </register>
+    <register name="v0sts" desc="VC 0 Resource Status" limitations="Not implemented." offset="26" size="2">
+    </register>
+    <register name="v1cap" desc="VC 1 Resource Capability" offset="28" size="4">
+      <field name="aps" msb="14" lsb="14" />
+      <field name="at" msb="31" lsb="24" />
+      <field name="mts" limitations="Not implemented." msb="22" lsb="16" />
+      <field name="pac" msb="7" lsb="0" />
+      <field name="rts" msb="15" lsb="15" />
+    </register>
+    <register name="v1ctl" desc="VC 1 Resource Control" limitations="Not implemented." offset="32" size="4">
+    </register>
+    <register name="v1sts" desc="VC 1 Resource Status" limitations="Not implemented." offset="38" size="2">
+    </register>
+    <register name="vcap1" desc="Virtual Channel Capability #1" limitations="Not implemented." offset="4" size="4">
+    </register>
+    <register name="vcap2" desc="Virtual Channel Capability #2" limitations="Not implemented." offset="8" size="4">
+    </register>
+    <register name="vch" desc="Virtual Channel Capability Header" limitations="Not implemented." offset="0" size="4">
+    </register>
+    <register name="x38b0" desc="Undocumented register" offset="14512" size="4">
+    </register>
+    <register name="x38b4" desc="Undocumented register" offset="14516" size="4">
+    </register>
+    <register name="x38c4" desc="Undocumented register" offset="14532" size="1">
+    </register>
+    <register name="x38c5" desc="Undocumented register" offset="14533" size="1">
+    </register>
+    <register name="x38c8" desc="Undocumented register" offset="14536" size="2">
+    </register>
+  </bank>
+  <bank name="fixed_io" byte_order="little-endian" function="0">
+    <register name="coproc_err" limitations="Not implemented." offset="240" size="1">
+    </register>
+    <register name="nmi_sc" desc="NMI Status and Control Register" offset="97" size="1">
+      <field name="iochk_nmi_en" limitations="Not implemented." msb="3" lsb="3" />
+      <field name="iochk_nmi_sts" msb="6" lsb="6" />
+      <field name="pci_serr_en" limitations="Not implemented." msb="2" lsb="2" />
+      <field name="ref_toggle" msb="4" lsb="4" />
+      <field name="serr_nmi_sts" msb="7" lsb="7" />
+      <field name="tmr2_out_sts" msb="5" lsb="5" />
+    </register>
+    <register name="port92" limitations="Not implemented." offset="146" size="1">
+    </register>
+    <register name="rst_cnt" desc="System Reset Control" offset="3321" size="1">
+      <field name="full_rst" desc="Full Reset" limitations="Not implemented." msb="3" lsb="3" />
+      <field name="rst_cpu" desc="Trigger reset" msb="2" lsb="2" />
+      <field name="sys_rst" desc="Hard(1) or Soft(0) reset" limitations="Not implemented." msb="1" lsb="1" />
+    </register>
+  </bank>
+  <bank name="gpio_conf" documentation="GPIO Configuration registers" limitations="This is a dummy implementation" byte_order="little-endian" function="11">
+    <register name="gp_inv" desc="GPIO Signal Invert" offset="44" size="4">
+    </register>
+    <register name="gp_io_sel" desc="GPIO Input/Output Select" offset="4" size="4">
+    </register>
+    <register name="gp_lvl" desc="GPIO Lvl for Input/Output" offset="12" size="4">
+    </register>
+    <register name="gp_lvl_2" desc="GPIO Lvl for Input/Output 2" offset="56" size="4">
+    </register>
+    <register name="gp_sb_cmdsts" desc="GP Serial Blink Cmd Status" offset="32" size="4">
+    </register>
+    <register name="gp_sb_data" desc="GP Serial Blink Data" offset="36" size="4">
+    </register>
+    <register name="gp_ser_blink" desc="GP Serial Blink" offset="28" size="4">
+    </register>
+    <register name="gpio_sel2" desc="GPIO Input/Output Select 2" offset="52" size="4">
+    </register>
+    <register name="gpio_use_sel" desc="GPIO Use Select" offset="0" size="4">
+    </register>
+    <register name="gpio_use_sel2" desc="GPIO Use Select 2" offset="48" size="4">
+    </register>
+    <register name="gpo_blink" desc="GPIO Blink Enable" offset="24" size="4">
+    </register>
+  </bank>
+  <bank name="pci_config" documentation="The PCI configuration space." byte_order="little-endian" function="255">
+    <register name="acpi_base" offset="64" size="4">
+      <field name="base" documentation="The base address" msb="31" lsb="2" />
+      <field name="p" desc="Reserved" msb="1" lsb="1" />
+      <field name="s" documentation="I/O Space Indicator" msb="0" lsb="0" />
+    </register>
+    <register name="acpi_control" offset="68" size="1">
+      <field name="acpi_en" msb="7" lsb="7" />
+      <field name="sci_irq_sel" msb="2" lsb="0" />
+    </register>
+    <register name="base_address_0" offset="16" size="4">
+      <field name="ignore" msb="31" lsb="0" />
+    </register>
+    <register name="base_address_1" offset="20" size="4">
+      <field name="ignore" msb="31" lsb="0" />
+    </register>
+    <register name="base_address_2" offset="24" size="4">
+      <field name="ignore" msb="31" lsb="0" />
+    </register>
+    <register name="base_address_3" offset="28" size="4">
+      <field name="ignore" msb="31" lsb="0" />
+    </register>
+    <register name="base_address_4" offset="32" size="4">
+      <field name="ignore" msb="31" lsb="0" />
+    </register>
+    <register name="base_address_5" offset="36" size="4">
+      <field name="ignore" msb="31" lsb="0" />
+    </register>
+    <register name="bios_cntl" offset="220" size="1">
+      <field name="bioswe" limitations="Not implemented." msb="0" lsb="0" />
+      <field name="ble" limitations="Not implemented." msb="1" lsb="1" />
+      <field name="src" msb="3" lsb="2" />
+      <field name="tss" msb="4" lsb="4" />
+    </register>
+    <register name="bist" documentation="Build-in Self Test" offset="15" size="1">
+    </register>
+    <register name="bm_break_en" limitations="Not implemented." offset="171" size="1">
+    </register>
+    <register name="c4_timing_cnt" limitations="Not implemented." offset="170" size="1">
+    </register>
+    <register name="c5_exit_timing_cnt" limitations="Not implemented." offset="168" size="1">
+    </register>
+    <register name="cache_line_size" documentation="CacheLine Size" offset="12" size="1">
+    </register>
+    <register name="capabilities_ptr" documentation="Capabilities Pointer" offset="52" size="1">
+    </register>
+    <register name="cardbus_cis_ptr" documentation="Cardbus CIS Pointer" offset="40" size="4">
+    </register>
+    <register name="class_code" documentation="Class Code" offset="9" size="3">
+    </register>
+    <register name="command" documentation="Command Register" offset="4" size="2">
+      <field name="fb" desc="Fast Back-to-Back Transactions Enable" msb="9" lsb="9" />
+      <field name="id" desc="Interrupt Disable" msb="10" lsb="10" />
+      <field name="io" desc="I/O Space Enable" msb="0" lsb="0" />
+      <field name="m" desc="Bus Master Enable" msb="2" lsb="2" />
+      <field name="mem" desc="Memory Space Enable" msb="1" lsb="1" />
+      <field name="mwi" desc="Memory Write and Invalidate" msb="4" lsb="4" />
+      <field name="pe" desc="Parity Error Response" msb="6" lsb="6" />
+      <field name="sc" desc="Special Cycle Enable" msb="3" lsb="3" />
+      <field name="se" desc="SERR# Enable" msb="8" lsb="8" />
+      <field name="vga" desc="VGA Palette Snoop" msb="5" lsb="5" />
+      <field name="wc" desc="IDSEL Steppin/Wait Cycle Control" msb="7" lsb="7" />
+    </register>
+    <register name="cx_state_cnf" limitations="Not implemented." offset="169" size="1">
+    </register>
+    <register name="device_id" documentation="Device ID" offset="2" size="2">
+    </register>
+    <register name="dummy" offset="179" size="1">
+    </register>
+    <register name="expansion_rom_base" desc="Expansion ROM base address" offset="48" size="4">
+      <field name="base" documentation="The base address" msb="31" lsb="1" />
+      <field name="e" documentation="Address decode enable" msb="0" lsb="0" />
+    </register>
+    <register name="feat_det_capability_id" desc="Capability ID" offset="224" size="1">
+    </register>
+    <register name="feat_det_length" desc="Capability length" offset="226" size="1">
+    </register>
+    <register name="feat_det_next_ptr_r" desc="Next PTR" offset="225" size="1">
+    </register>
+    <register name="feat_det_version" desc="Capability version" offset="227" size="1">
+    </register>
+    <register name="feature_vector" desc="Feature vector" limitations="Not implemented." offset="228" size="8">
+    </register>
+    <register name="fwh_dev_en" desc="Firmware Hub Decode Enable Register" offset="216" size="2">
+    </register>
+    <register name="fwh_sel1" desc="Firmware Hub Select 1 Register" offset="208" size="4">
+    </register>
+    <register name="fwh_sel2" desc="Firmware Hub Select 2 Register" offset="212" size="2">
+    </register>
+    <register name="gc" desc="GPIO Control Register" offset="76" size="1">
+      <field name="en" desc="GPIO Enable" msb="4" lsb="4" />
+      <field name="gle" desc="GPIO Lockdown Enable" msb="0" lsb="0" />
+    </register>
+    <register name="gen_dec" vsize="4" desc="Generic Decode Range for External LPC device" offset="132 136 140 144" size="4">
+      <field name="base" desc="Generic Decode Range Base Address" msb="15" lsb="2" />
+      <field name="en" desc="Generic Decode Range Enable" msb="0" lsb="0" />
+      <field name="mask" desc="Generic Decode Range Address Mask" msb="23" lsb="18" />
+    </register>
+    <register name="gen_pmcon1" offset="160" size="2">
+      <field name="bios_pcie_en" limitations="Not implemented." msb="10" lsb="10" />
+      <field name="c4_disable" limitations="Not implemented." msb="12" lsb="12" />
+      <field name="c4onc3_en" limitations="Not implemented." msb="7" lsb="7" />
+      <field name="c5_enable" limitations="Not implemented." msb="11" lsb="11" />
+      <field name="clk_run_en" limitations="Not implemented." msb="2" lsb="2" />
+      <field name="cpuslp_en" limitations="Not implemented." msb="5" lsb="5" />
+      <field name="i64en" limitations="Not implemented." msb="6" lsb="6" />
+      <field name="per_smi_sel" limitations="Not implemented." msb="1" lsb="0" />
+      <field name="pwr_btn_lvl" limitations="Not implemented." msb="9" lsb="9" />
+      <field name="smi_lock" msb="4" lsb="4" />
+      <field name="ss_en" limitations="Not implemented." msb="3" lsb="3" />
+    </register>
+    <register name="gen_pmcon2" limitations="Not implemented." offset="162" size="1">
+    </register>
+    <register name="gen_pmcon3" offset="164" size="2">
+      <field name="afterg3_en" limitations="Not implemented." msb="0" lsb="0" />
+      <field name="pwr_flr" msb="1" lsb="1" />
+      <field name="rst_sts" limitations="Not implemented." msb="9" lsb="9" />
+      <field name="rtc_pwr_sts" msb="2" lsb="2" />
+      <field name="s4_state_dis" limitations="Not implemented." msb="8" lsb="8" />
+      <field name="slps4_width" limitations="Not implemented." msb="5" lsb="4" />
+      <field name="slps4_width_en" limitations="Not implemented." msb="3" lsb="3" />
+      <field name="sw_smi_rate" limitations="Not implemented." msb="7" lsb="6" />
+    </register>
+    <register name="gen_pmcon_lock" offset="166" size="1">
+      <field name="acpi_base_lock" msb="1" lsb="1" />
+      <field name="c_state_cfg_lk" limitations="Not implemented." msb="0" lsb="0" />
+      <field name="slp_s4_lock" limitations="Not implemented." msb="2" lsb="2" />
+      <field name="unlock_c_trans" limitations="Not implemented." msb="7" lsb="7" />
+    </register>
+    <register name="gpi_rout" limitations="Not implemented." offset="184" size="4">
+    </register>
+    <register name="gpiobase" desc="GPIO Base Address Register" offset="72" size="4">
+      <field name="base" documentation="The base address" msb="31" lsb="2" />
+      <field name="p" desc="Reserved" msb="1" lsb="1" />
+      <field name="s" documentation="I/O Space Indicator" msb="0" lsb="0" />
+    </register>
+    <register name="header_type" documentation="Header Type" offset="14" size="1">
+      <field name="mf" desc="Multi-Function Device" msb="7" lsb="7" />
+      <field name="type" desc="Header Layout" msb="6" lsb="0" />
+    </register>
+    <register name="hpet_bdf" vsize="8" desc="HPET n Bus Device Function." offset="112 114 116 118 120 122 124 126" size="2">
+    </register>
+    <register name="interrupt_line" documentation="Interrupt Line" offset="60" size="1">
+    </register>
+    <register name="interrupt_pin" documentation="Interrupt Pin" offset="61" size="1">
+    </register>
+    <register name="io_dec" desc="I/O Decode Range Register" offset="128" size="2">
+      <field name="COMA" desc="COMA Decode Range" msb="2" lsb="0" />
+      <field name="COMB" desc="COMB Decode Range" msb="6" lsb="4" />
+      <field name="FDD" desc="FDD Decode Range" limitations="Not implemented." msb="12" lsb="12" />
+      <field name="LPT" desc="LPT Decode Range" limitations="Not implemented." msb="9" lsb="8" />
+    </register>
+    <register name="latency_timer" documentation="Latency Timer" offset="13" size="1">
+    </register>
+    <register name="lgmr" desc="LPC Generic Memory Range" offset="152" size="4">
+      <field name="en" desc="LPC Memory Range Decode Enable" msb="0" lsb="0" />
+      <field name="ma" desc="Memory Address" msb="31" lsb="16" />
+    </register>
+    <register name="lpc_en" desc="LPC I/F Enables" offset="130" size="2">
+      <field name="cnf1_en" limitations="Not implemented." msb="12" lsb="12" />
+      <field name="cnf2_en" limitations="Not implemented." msb="13" lsb="13" />
+      <field name="coma_en" msb="0" lsb="0" />
+      <field name="comb_en" msb="1" lsb="1" />
+      <field name="fdd_en" limitations="Not implemented." msb="3" lsb="3" />
+      <field name="gameh_en" limitations="Not implemented." msb="9" lsb="9" />
+      <field name="gamel_en" limitations="Not implemented." msb="8" lsb="8" />
+      <field name="kbc_en" limitations="Not implemented." msb="10" lsb="10" />
+      <field name="lpt_en" limitations="Not implemented." msb="2" lsb="2" />
+      <field name="mc_en" limitations="Not implemented." msb="11" lsb="11" />
+    </register>
+    <register name="lpc_ibdf" limitations="Not implemented." offset="108" size="2">
+    </register>
+    <register name="max_lat" documentation="MAX_LAT" offset="63" size="1">
+    </register>
+    <register name="min_gnt" documentation="MIN_GNT" offset="62" size="1">
+    </register>
+    <register name="pic_b1h" desc="ICW[2:4]/OCW1" limitations="Not implemented." offset="177" size="1">
+    </register>
+    <register name="pirq_rout" vsize="8" desc="PIRQ Routing Control Registers" offset="96 97 98 99 104 105 106 107" size="1">
+      <field name="irqen" desc="Interrupt Routing Enable" msb="7" lsb="7" />
+      <field name="routing" desc="IRQ Routing" msb="3" lsb="0" />
+    </register>
+    <register name="pmir" offset="172" size="4">
+      <field name="cf9_gr" limitations="Not implemented." msb="20" lsb="20" />
+      <field name="cf9_lock" limitations="Not implemented." msb="31" lsb="31" />
+      <field name="f0" msb="9" lsb="8" />
+      <field name="f2" msb="30" lsb="30" />
+    </register>
+    <register name="rcba" desc="Root Complex Base Address" offset="240" size="4">
+      <field name="base" documentation="The base address" msb="31" lsb="4" />
+      <field name="p" documentation="Prefetchable" msb="3" lsb="3" />
+      <field name="s" documentation="Memory Space Indicator" msb="0" lsb="0" />
+      <field name="type" documentation="Type (00: anywhere in 32-bit space; 10: anywhere in 64-bit space)" msb="2" lsb="1" />
+    </register>
+    <register name="revision_id" documentation="Revision ID" offset="8" size="1">
+    </register>
+    <register name="sirq_cntl" desc="Serial IRQ Control Register" offset="100" size="1">
+      <field name="sfpw" desc="Start Frame Pulse Width" msb="1" lsb="0" />
+      <field name="sirqen" desc="Serial IRQ Enable" msb="7" lsb="7" />
+      <field name="sirqmd" desc="Serial IRQ Mode Select" msb="6" lsb="6" />
+      <field name="sirqsz" desc="Serial IRQ Frame Size" msb="5" lsb="2" />
+    </register>
+    <register name="status" documentation="Status Register" offset="6" size="2">
+      <field name="c" desc="Capabilities List" msb="4" lsb="4" />
+      <field name="dpe" desc="Detected Parity Error" msb="15" lsb="15" />
+      <field name="ds" desc="DEVSEL timing" msb="10" lsb="9" />
+      <field name="fbb" desc="Fast Back-to-Back Transactions Capable" msb="7" lsb="7" />
+      <field name="ins" desc="Interrupt Status" msb="3" lsb="3" />
+      <field name="ir" desc="Immediate Readiness" msb="0" lsb="0" />
+      <field name="mhz" desc="66 MHz Capable" msb="5" lsb="5" />
+      <field name="pe" desc="Master Data Parity Error" msb="8" lsb="8" />
+      <field name="rma" desc="Received Master Abort" msb="13" lsb="13" />
+      <field name="rta" desc="Received Target Abort" msb="12" lsb="12" />
+      <field name="ssa" desc="Signaled System Abort" msb="14" lsb="14" />
+      <field name="sta" desc="Signaled Target Abort" msb="11" lsb="11" />
+    </register>
+    <register name="subsystem_id" documentation="Subsystem ID" offset="46" size="2">
+    </register>
+    <register name="subsystem_vendor_id" documentation="Subsystem Vendor ID" offset="44" size="2">
+    </register>
+    <register name="vendor_id" documentation="Vendor ID" offset="0" size="2">
+    </register>
+  </bank>
+</device>

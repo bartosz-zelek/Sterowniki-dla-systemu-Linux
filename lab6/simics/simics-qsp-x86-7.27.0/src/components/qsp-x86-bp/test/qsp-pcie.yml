@@ -1,0 +1,13 @@
+%YAML 1.2
+---
+params:
+  pcie:
+    blueprint: my_pcie
+    module: simmod.qsp_x86_bp.tests.pcie
+    namespace: board
+  qsp:
+    import: "%script%/qsp-clear-linux.yml"
+code-type: simics
+cmd: run-script "%script%/qsp-clear-linux.yml" namespace = qsp
+...
+

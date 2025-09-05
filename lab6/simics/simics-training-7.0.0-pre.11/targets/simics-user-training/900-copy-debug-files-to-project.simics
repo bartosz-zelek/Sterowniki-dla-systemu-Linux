@@ -1,0 +1,77 @@
+# © 2018 Intel Corporation
+#
+# This software and the related documents are Intel copyrighted materials, and
+# your use of them is governed by the express license under which they were
+# provided to you ("License"). Unless the License provides otherwise, you may
+# not use, modify, copy, publish, distribute, disclose or transmit this software
+# or the related documents without Intel's prior written permission.
+#
+# This software and the related documents are provided as is, with no express or
+# implied warranties, other than those that are expressly stated in the License.
+
+
+# Debug where things get run:
+#get-simics-search-path
+#list-packages
+
+##
+## Preparatory script to make going through the Simics debug labs a bit easier.
+## It copies the relevant directories from the installation to the Simics project,
+## to avoid the need to go looking through the Simics installation to find the 
+## code. 
+##
+
+#
+# Underlying logic:
+#   %simics%/targets/simics-user-training/ will resolve to the user's project
+#   since it exists after project-setup has done its job. 
+#
+
+$uproj = (lookup-file "%simics%/targets/simics-user-training/")
+#echo $uproj
+
+#
+# Check if we already have the directories
+# - Also avoids this script wreaking havoc in the development branch
+# 
+if (file-exists ($uproj + "/target-code")) {
+    echo ""
+    echo "  Files already exist in the user project, no need to do anything more"
+    echo ""
+    interrupt-script "Nothing to do for this script, since the files are already in place in the user's project"
+}
+
+#
+# Copy executable target code directory
+#  - This lookup-file command should resolve to the installed package, since it does not
+#    exist in the project.  
+# 
+@import shutil
+$tc = "target-code"
+$tcode = (lookup-file "%simics%/targets/simics-user-training/%s" % [$tc] )
+#echo $tcode
+@shutil.copytree(simenv.tcode, ("%s/%s/" % (simenv.uproj, simenv.tc) ), copy_function=shutil.copy)
+
+#
+# Copy files directory
+#
+$f = "files"
+$fs = (lookup-file "%simics%/targets/simics-user-training/%s" % [$f] )
+#echo $fs
+@shutil.copytree(simenv.fs, ("%s/%s/" % (simenv.uproj, simenv.f) ))
+
+#
+# Copy target-source directory
+# - So that the target software source code is available for debug labs
+#
+$f = "target-source"
+$fs = (lookup-file "%simics%/targets/simics-user-training/%s" % [$f] )
+#echo $fs
+@shutil.copytree(simenv.fs, ("%s/%s/" % (simenv.uproj, simenv.f) ))
+
+##
+## Done!
+##
+echo ""
+echo "Copy of files needed for debug labs to project completed!"
+echo ""

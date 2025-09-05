@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device name="ich10_cf9" desc="model of Intel® ICH10 reset register" documentation="Intel® ICH10 Reset Register." bitorder="le">
+  <bank name="regs" byte_order="little-endian" function="0">
+    <register name="cf9" offset="0" size="1">
+    </register>
+  </bank>
+</device>

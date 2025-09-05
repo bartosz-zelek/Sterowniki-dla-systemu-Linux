@@ -1,0 +1,4299 @@
+<h1 id="x86-nehalem"><a href="#x86-nehalem">x86-nehalem</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+The <tt>x86-nehalem</tt> class implements an x86 processor.
+<h2 id="interfaces-implemented">
+<a href="#interfaces-implemented">Interfaces Implemented</a>
+</h2>conf_object, log_object, jit_control, instruction_fetch, step_info, stc, exec_trace, simulator_cache, context_handler, virtual_data_breakpoint, virtual_instruction_breakpoint, processor_info, processor_info_v2, execute, icode, execute_control, concurrency_mode, concurrency_group, cycle, freerun, step, event_delta, step_cycle_ratio, stall, frequency_listener, frequency, decoder, direct_memory_update, cpu_instrumentation_subscribe, cpu_instruction_query, cpu_cached_instruction, cpu_cached_instruction_once, cpu_cached_stream, internal_cached_instruction, cpu_memory_query, cpu_instruction_decoder, cpu_exception_query, callback_info, instrumentation_order, cpu_instrumentation_stream, step_event_instrumentation, pre_decoder, x86_instruction_query, x86_exception_query, x86_memory_query, x86_address_query, x86_instrumentation_subscribe, x86_instrumentation_subscribe_v2, vmx_instrumentation_subscribe, smm_instrumentation_subscribe, register_breakpoint, telemetry, processor_internal, describe_registers, exception, save_state, int_register, x86_smm_state, interrupt_ack, a20, x86, x86_msr, x86_reg_access, x86_exception, x86_memory_access, x86_memory_operation, x86_access_type, x86_vmp_control, x86_cpuid_query, x86_cstate, vmp_internal, vmp, class_disassembly, processor_cli, processor_gui, opcode_info
+<h2 id="notifiers">
+<a href="#notifiers">Notifiers</a>
+</h2>
+<dl>
+<dt id="dt:cell-change"><a href="#dt:cell-change">cell-change</a></dt>
+<dd>Notifier that is triggered after the object's cell was changed.</dd>
+<dt id="dt:freerunning-mode-change"><a href="#dt:freerunning-mode-change">freerunning-mode-change</a></dt>
+<dd>Notifier that is triggered when freerunning mode is enabled or disabled. The new enabled/disabled state is available through the freerun interface.</dd>
+<dt id="dt:frequency-change"><a href="#dt:frequency-change">frequency-change</a></dt>
+<dd>Notifier that is triggered when frequency changes. New frequency can be read via the frequency interface of the object.</dd>
+<dt id="dt:object-delete"><a href="#dt:object-delete">object-delete</a></dt>
+<dd>Notifier that is triggered just before Simics object is deleted.</dd>
+<dt id="dt:queue-change"><a href="#dt:queue-change">queue-change</a></dt>
+<dd>Notifier that is triggered after the object's clock was changed. New clock can be obtained with the SIM_object_clock function.</dd>
+</dl>
+<h2 id="port-objects">
+<a href="#port-objects">Port Objects</a>
+</h2>
+<dl>
+<dt id="dt:probes-uncore"><a href="#dt:probes-uncore">probes.uncore</a></dt>
+<dd>
+<a href="rm-class-x86-nehalem.html#x86-nehalem.uncore">x86-nehalem.uncore</a>
+ – Uncore probe port</dd>
+<dt id="dt:vtime"><a href="#dt:vtime">vtime</a></dt>
+<dd>vtime – event handler</dd>
+<dt id="dt:vtime-cycles"><a href="#dt:vtime-cycles">vtime.cycles</a></dt>
+<dd>cycle-counter – cycle queue</dd>
+<dt id="dt:vtime-ps"><a href="#dt:vtime-ps">vtime.ps</a></dt>
+<dd>ps-clock – event queue (ps)</dd>
+</dl>
+<h2 id="commands-for-this-class">
+<a href="#commands-for-this-class">Commands for this class</a>
+</h2>
+<ul>
+<li>
+<a href="rm-cmd-x86-nehalem.aprof-views.html">aprof-views</a>
+ – manipulate list of selected address profiling views</li>
+<li>
+<a href="rm-cmd-x86-nehalem.break-processor-reset.html">break-processor-reset</a>
+ – break on processor reset</li>
+<li>
+<a href="rm-cmd-x86-nehalem.break-segreg.html">break-segreg</a>
+ – break on control register updates</li>
+<li>
+<a href="rm-cmd-x86-nehalem.info.html">info</a>
+ – print information about the object</li>
+<li>
+<a href="rm-cmd-x86-nehalem.memory-configuration.html">memory-configuration</a>
+ – print memory configuration</li>
+<li>
+<a href="rm-cmd-x86-nehalem.msrs.html">msrs</a>
+ – print MSRs</li>
+<li>
+<a href="rm-cmd-x86-nehalem.pregs-fpu.html">pregs-fpu</a>
+ – print the x87 registers</li>
+<li>
+<a href="rm-cmd-x86-nehalem.pregs-sse.html">pregs-sse</a>
+ – print the sse registers</li>
+<li>
+<a href="rm-cmd-x86-nehalem.print-acpi-tables.html">print-acpi-tables</a>
+ – print ACPI tables</li>
+<li>
+<a href="rm-cmd-x86-nehalem.print-gdt.html">print-gdt</a>
+ – print GDT</li>
+<li>
+<a href="rm-cmd-x86-nehalem.print-idt.html">print-idt</a>
+ – print IDT</li>
+<li>
+<a href="rm-cmd-x86-nehalem.print-mp-tables.html">print-mp-tables</a>
+ – print MP tables</li>
+<li>
+<a href="rm-cmd-x86-nehalem.print-tss.html">print-tss</a>
+ – print TSS</li>
+<li>
+<a href="rm-cmd-x86-nehalem.print-vmcs.html">print-vmcs</a>
+ – print VMCS</li>
+<li>
+<a href="rm-cmd-x86-nehalem.print-vmx-cap.html">print-vmx-cap</a>
+ – print VMX capabilities of CPU</li>
+<li>
+<a href="rm-cmd-x86-nehalem.status.html">status</a>
+ – print status of the object</li>
+<li>
+<a href="rm-cmd-x86-nehalem.tablewalk.html">tablewalk</a>
+ – address translation tablewalk</li>
+<li>
+<a href="rm-cmd-x86-nehalem.trace-segreg.html">trace-segreg</a>
+ – trace segment register updates</li>
+<li>
+<a href="rm-cmd-x86-nehalem.unbreak-processor-reset.html">unbreak-processor-reset</a>
+ – stop breaking on processor reset</li>
+<li>
+<a href="rm-cmd-x86-nehalem.break-segreg.html">unbreak-segreg</a>
+ – break on control register updates</li>
+<li>
+<a href="rm-cmd-x86-nehalem.trace-segreg.html">untrace-segreg</a>
+ – trace segment register updates</li>
+<li>
+<a href="rm-cmd-x86-nehalem.wait-for-processor-reset.html">wait-for-processor-reset</a>
+ – wait for a processor reset</li>
+</ul>
+<h2 id="commands-for-interface-x86">
+<a href="#commands-for-interface-x86">Commands for interface x86</a>
+</h2>
+<ul>
+<li>
+<a href="rm-cmd-x86.break-vmread.html">break-vmread</a>
+ – break on VMCS reads</li>
+<li>
+<a href="rm-cmd-x86.break-vmwrite.html">break-vmwrite</a>
+ – break on VMCS field updates</li>
+<li>
+<a href="rm-cmd-x86.trace-vmread.html">trace-vmread</a>
+ – trace VMCS reads</li>
+<li>
+<a href="rm-cmd-x86.trace-vmwrite.html">trace-vmwrite</a>
+ – trace VMCS updates</li>
+<li>
+<a href="rm-cmd-x86.break-vmread.html">unbreak-vmread</a>
+ – break on VMCS reads</li>
+<li>
+<a href="rm-cmd-x86.break-vmwrite.html">unbreak-vmwrite</a>
+ – break on VMCS field updates</li>
+<li>
+<a href="rm-cmd-x86.trace-vmread.html">untrace-vmread</a>
+ – trace VMCS reads</li>
+<li>
+<a href="rm-cmd-x86.trace-vmwrite.html">untrace-vmwrite</a>
+ – trace VMCS updates</li>
+</ul>
+<h2 id="attributes">
+<a href="#attributes">Attributes</a>
+</h2>
+<dl>
+<dt id="dt:auto_hyper_enabled"><a href="#dt:auto_hyper_enabled">
+<i>auto_hyper_enabled</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>Enables automatic detection of loops which can be hypersimulated.</dd>
+<dt id="dt:auto_hyper_loops"><a href="#dt:auto_hyper_loops">
+<i>auto_hyper_loops</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>[[iis]*]</code>
+<br>{ffwd_steps, addr, precond} Information on automatically found hypersim loops.</dd>
+<dt id="dt:physical_memory"><a href="#dt:physical_memory">
+<i>physical_memory</i>
+</a></dt>
+<dd>
+<b>Required</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o</code>
+<br>Physical memory space. Must implement memory-space, breakpoint and breakpoint_query_v2 interfaces.</dd>
+<dt id="dt:ma_prot"><a href="#dt:ma_prot">
+<i>ma_prot</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>s</code>
+<br>MP protocol. One of {'msi', 'ww', 'wwp'}</dd>
+<dt id="dt:multicore_accelerator_enabled"><a href="#dt:multicore_accelerator_enabled">
+<i>multicore_accelerator_enabled</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>Multicore Accelerator enabled for processor.</dd>
+<dt id="dt:mca_concurrency_mode"><a href="#dt:mca_concurrency_mode">
+<i>mca_concurrency_mode</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Multicore Accelerator mode used by processor. One of Sim_Concurrency_Mode_Serialized (1), Sim_Concurrency_Mode_Serialized_Memory (2), or Sim_Concurrency_Mode_Full (4)</dd>
+<dt id="dt:min_cacheline_size"><a href="#dt:min_cacheline_size">
+<i>min_cacheline_size</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>i</code>
+<br>The minimum size (in bytes) of a cache line that can be represented by Simics (when connecting a cache memhier).</dd>
+<dt id="dt:is_stalling"><a href="#dt:is_stalling">
+<i>is_stalling</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>TRUE if the processor is currently stalling by request of a timing-model.</dd>
+<dt id="dt:stalling_info"><a href="#dt:stalling_info">
+<i>stalling_info</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[iii]</code>
+<br>If is_stalling is set, this contains information about the current memory operation.</dd>
+<dt id="dt:simulation_mode"><a href="#dt:simulation_mode">
+<i>simulation_mode</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>i</code>
+<br>The simulation mechanism used for the processor. One of the values of the simulation_mode_t enum.</dd>
+<dt id="dt:enabled_flag"><a href="#dt:enabled_flag">
+<i>enabled_flag</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>TRUE if the processor is enabled. If FALSE, it will see time (cycles) pass but not execute steps.</dd>
+<dt id="dt:non_architecturally_disabled"><a href="#dt:non_architecturally_disabled">
+<i>non_architecturally_disabled</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If true, the processor is disabled by explicit user action and will not execute instructions until re-enabled by user. No architectural transitions, such as resets, will re-enable it on their own.</dd>
+<dt id="dt:outside_memory_whitelist"><a href="#dt:outside_memory_whitelist">
+<i>outside_memory_whitelist</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[i|[ii]|[iii]*]</code>
+<br>((<i>address</i>, <i>length</i>, <i>hits</i>)*).<br>
+<br>
+List of physical address ranges that do not map to anything. <i>length</i> is the length of each interval in bytes. An interval with both <i>address</i> and <i>length</i> being 0 denotes the entire address space. <i>hits</i> is the number of times that particular interval has been accessed, and can be omitted when set.<br>
+<br>
+ Accesses to physical addresses with no targets will trigger a specific hap whose default action is to break the simulation. However, if the address falls into one of the ranges specified in this whitelist, the hap will <em>not</em> be triggered (but still being counted). The behavior in this scenario is architecture dependent. It may or may not trigger an architecture specific exception, and the simulation may or may not be interrupted.<br>
+<br>
+ See also the <tt>Core_Address_Not_Mapped</tt> hap.</dd>
+<dt id="dt:ignore_page_failed_before"><a href="#dt:ignore_page_failed_before">
+<i>ignore_page_failed_before</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If TRUE, the model will keep trying to cache memory through direct memory even if it fails.</dd>
+<dt id="dt:current_context"><a href="#dt:current_context">
+<i>current_context</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o|n</code>
+<br>Current context object</dd>
+<dt id="dt:processor_number"><a href="#dt:processor_number">
+<i>processor_number</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Simics internal number for an instance of the 'processor_info' interface. Each instance must have a unique number. This attribute can only be set as part of an initial configuration.</dd>
+<dt id="dt:do_not_schedule"><a href="#dt:do_not_schedule">
+<i>do_not_schedule</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>Set to TRUE to prevent this object from being scheduled by the cell.</dd>
+<dt id="dt:cell"><a href="#dt:cell">
+<i>cell</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o|n</code>
+<br>The cell this object clock/cpu belongs to</dd>
+<dt id="dt:freerun_speed"><a href="#dt:freerun_speed">
+<i>freerun_speed</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>f</code>
+<br>Freerun speed. A value of 1.0 means realtime.</dd>
+<dt id="dt:freerun_min_ips"><a href="#dt:freerun_min_ips">
+<i>freerun_min_ips</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>f</code>
+<br>Minimum allowed value for the number of instructions executed per virtual second, expressed as a fraction of the current CPU frequency.</dd>
+<dt id="dt:freerun_max_ips"><a href="#dt:freerun_max_ips">
+<i>freerun_max_ips</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>f</code>
+<br>Maximum allowed value for the number of instructions executed per virtual second, expressed as a fraction of the current CPU frequency.</dd>
+<dt id="dt:freerun_enabled"><a href="#dt:freerun_enabled">
+<i>freerun_enabled</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>Freerun mode enabled</dd>
+<dt id="dt:frequency"><a href="#dt:frequency">
+<i>frequency</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[ii]|o|[os]</code>
+<br>Processor clock frequency in Hz, as a rational number [numerator, denominator], or as a frequency provider implementing the <tt>frequency</tt>. The legacy <tt>simple_dispatcher</tt> is also supported.</dd>
+<dt id="dt:freq_mhz"><a href="#dt:freq_mhz">
+<i>freq_mhz</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i|f</code>
+<br>Processor clock frequency in MHz.</dd>
+<dt id="dt:step_queue"><a href="#dt:step_queue">
+<i>step_queue</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[[o|n,s,a,s,i]*]</code>
+<br>((<i>object</i>, <i>evclass</i>, <i>value</i>, <i>slot</i>, <i>step</i>)*). Pending step queue events.</dd>
+<dt id="dt:time_queue"><a href="#dt:time_queue">
+<i>time_queue</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[[o|n,s,a,s|n,i]*]</code>
+<br>((<i>object</i>, <i>evclass</i>, <i>value</i>, <i>slot</i>, <i>cycle</i>)*). Pending time queue events.</dd>
+<dt id="dt:event_desc"><a href="#dt:event_desc">
+<i>event_desc</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>Unknown</code>
+<br> ((<i>object</i>, <i>description</i>, <i>time</i>)*). All events in queue with a human-readable description. The attribute is indexed by queue (Sim_Queue_Step/Time).</dd>
+<dt id="dt:steps"><a href="#dt:steps">
+<i>steps</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Number steps executed since machine start.</dd>
+<dt id="dt:cycles"><a href="#dt:cycles">
+<i>cycles</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Time measured in cycles from machine start.</dd>
+<dt id="dt:step_per_cycle_mode"><a href="#dt:step_per_cycle_mode">
+<i>step_per_cycle_mode</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>s</code>
+<br>"constant" indicates a constant finite step/cycle factor; "infinite" means that steps are run without advancing time.</dd>
+<dt id="dt:stall_time"><a href="#dt:stall_time">
+<i>stall_time</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>The number of cycles the processor will stall</dd>
+<dt id="dt:telemetry_providers"><a href="#dt:telemetry_providers">
+<i>telemetry_providers</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[o*]</code>
+<br>List of objects that provides telemetry for this core</dd>
+<dt id="dt:shared_physical_memory"><a href="#dt:shared_physical_memory">
+<i>shared_physical_memory</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>n|o</code>
+<br>Points to the object representing the memory space shared between threads/cores. This is used to set up the monitoring to emulate MONITOR/MWAIT. If this is set to Nil, then MONITOR/MWAIT will time-out at the end of each time-quantum which is likely to result in non-optimal performance especially when the quantum is rather short.</dd>
+<dt id="dt:rax"><a href="#dt:rax">
+<i>rax</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>General purpose register.</dd>
+<dt id="dt:rcx"><a href="#dt:rcx">
+<i>rcx</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>General purpose register.</dd>
+<dt id="dt:rdx"><a href="#dt:rdx">
+<i>rdx</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>General purpose register.</dd>
+<dt id="dt:rbx"><a href="#dt:rbx">
+<i>rbx</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>General purpose register.</dd>
+<dt id="dt:rsp"><a href="#dt:rsp">
+<i>rsp</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>General purpose register.</dd>
+<dt id="dt:rbp"><a href="#dt:rbp">
+<i>rbp</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>General purpose register.</dd>
+<dt id="dt:rsi"><a href="#dt:rsi">
+<i>rsi</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>General purpose register.</dd>
+<dt id="dt:rdi"><a href="#dt:rdi">
+<i>rdi</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>General purpose register.</dd>
+<dt id="dt:r8"><a href="#dt:r8">
+<i>r8</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>General purpose register.</dd>
+<dt id="dt:r9"><a href="#dt:r9">
+<i>r9</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>General purpose register.</dd>
+<dt id="dt:r10"><a href="#dt:r10">
+<i>r10</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>General purpose register.</dd>
+<dt id="dt:r11"><a href="#dt:r11">
+<i>r11</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>General purpose register.</dd>
+<dt id="dt:r12"><a href="#dt:r12">
+<i>r12</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>General purpose register.</dd>
+<dt id="dt:r13"><a href="#dt:r13">
+<i>r13</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>General purpose register.</dd>
+<dt id="dt:r14"><a href="#dt:r14">
+<i>r14</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>General purpose register.</dd>
+<dt id="dt:r15"><a href="#dt:r15">
+<i>r15</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>General purpose register.</dd>
+<dt id="dt:rip"><a href="#dt:rip">
+<i>rip</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Instruction pointer.</dd>
+<dt id="dt:activity_state"><a href="#dt:activity_state">
+<i>activity_state</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Processor activity state.</dd>
+<dt id="dt:cr0"><a href="#dt:cr0">
+<i>cr0</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Control register 0.</dd>
+<dt id="dt:cr2"><a href="#dt:cr2">
+<i>cr2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Control register 2.</dd>
+<dt id="dt:cr4"><a href="#dt:cr4">
+<i>cr4</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Control register 4.</dd>
+<dt id="dt:cr3"><a href="#dt:cr3">
+<i>cr3</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Control register 3.</dd>
+<dt id="dt:xcr0"><a href="#dt:xcr0">
+<i>xcr0</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Extended control register 0 (XCR0).</dd>
+<dt id="dt:cs"><a href="#dt:cs">
+<i>cs</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[i{11}]</code>
+<br>X86 segment register. All fields are stored in a list of integers as follows: <tt>(<i>selector</i>, <i>d</i>, <i>dpl</i>, <i>g</i>, <i>p</i>, <i>s</i>, <i>type</i>, <i>base</i>, <i>limit</i>, <i>valid</i>, <i>l</i>)</tt> The limit field always specifies the limit in bytes.</dd>
+<dt id="dt:ds"><a href="#dt:ds">
+<i>ds</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[i{11}]</code>
+<br>X86 segment register. All fields are stored in a list of integers as follows: <tt>(<i>selector</i>, <i>d</i>, <i>dpl</i>, <i>g</i>, <i>p</i>, <i>s</i>, <i>type</i>, <i>base</i>, <i>limit</i>, <i>valid</i>, <i>l</i>)</tt> The limit field always specifies the limit in bytes.</dd>
+<dt id="dt:ss"><a href="#dt:ss">
+<i>ss</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[i{11}]</code>
+<br>Segment register. All fields are stored in a list of integers as follows: <tt>(<i>selector</i>, <i>b</i>, <i>dpl</i>, <i>g</i>, <i>p</i>, <i>s</i>, <i>type</i>, <i>base</i>, <i>limit</i>, <i>valid</i>, <i>l</i>)</tt> The limit field always specifies the limit in bytes.</dd>
+<dt id="dt:cpl"><a href="#dt:cpl">
+<i>cpl</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Current privilege level.</dd>
+<dt id="dt:es"><a href="#dt:es">
+<i>es</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[i{11}]</code>
+<br>X86 segment register. All fields are stored in a list of integers as follows: <tt>(<i>selector</i>, <i>d</i>, <i>dpl</i>, <i>g</i>, <i>p</i>, <i>s</i>, <i>type</i>, <i>base</i>, <i>limit</i>, <i>valid</i>, <i>l</i>)</tt> The limit field always specifies the limit in bytes.</dd>
+<dt id="dt:fs"><a href="#dt:fs">
+<i>fs</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[i{11}]</code>
+<br>X86 segment register. All fields are stored in a list of integers as follows: <tt>(<i>selector</i>, <i>d</i>, <i>dpl</i>, <i>g</i>, <i>p</i>, <i>s</i>, <i>type</i>, <i>base</i>, <i>limit</i>, <i>valid</i>, <i>l</i>)</tt> The limit field always specifies the limit in bytes.</dd>
+<dt id="dt:gs"><a href="#dt:gs">
+<i>gs</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[i{11}]</code>
+<br>X86 segment register. All fields are stored in a list of integers as follows: <tt>(<i>selector</i>, <i>d</i>, <i>dpl</i>, <i>g</i>, <i>p</i>, <i>s</i>, <i>type</i>, <i>base</i>, <i>limit</i>, <i>valid</i>, <i>l</i>)</tt> The limit field always specifies the limit in bytes.</dd>
+<dt id="dt:dr0"><a href="#dt:dr0">
+<i>dr0</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Debug register 0.</dd>
+<dt id="dt:dr1"><a href="#dt:dr1">
+<i>dr1</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Debug register 1.</dd>
+<dt id="dt:dr2"><a href="#dt:dr2">
+<i>dr2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Debug register 2.</dd>
+<dt id="dt:dr3"><a href="#dt:dr3">
+<i>dr3</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Debug register 3.</dd>
+<dt id="dt:dr6"><a href="#dt:dr6">
+<i>dr6</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Debug register 6.</dd>
+<dt id="dt:dr7"><a href="#dt:dr7">
+<i>dr7</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Debug register 7.</dd>
+<dt id="dt:pending_debug_exception"><a href="#dt:pending_debug_exception">
+<i>pending_debug_exception</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>A debug exception is pending. Additional information about the exception is stored in pending_debug_exception_dr6.</dd>
+<dt id="dt:pending_debug_exception_dr6"><a href="#dt:pending_debug_exception_dr6">
+<i>pending_debug_exception_dr6</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Valid if pending_debug_exception is non-zero. Attribute has the same format as the DR6 register.</dd>
+<dt id="dt:pdpte"><a href="#dt:pdpte">
+<i>pdpte</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[i{4}]</code>
+<br>PDPTE registers.</dd>
+<dt id="dt:idtr_base"><a href="#dt:idtr_base">
+<i>idtr_base</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Interrupt descriptor table base.</dd>
+<dt id="dt:idtr_limit"><a href="#dt:idtr_limit">
+<i>idtr_limit</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Interrupt descriptor table limit.</dd>
+<dt id="dt:gdtr_base"><a href="#dt:gdtr_base">
+<i>gdtr_base</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Global descriptor table base.</dd>
+<dt id="dt:gdtr_limit"><a href="#dt:gdtr_limit">
+<i>gdtr_limit</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Global descriptor table limit.</dd>
+<dt id="dt:tr"><a href="#dt:tr">
+<i>tr</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[i{11}]</code>
+<br>X86 segment register. All fields are stored in a list of integers as follows: <tt>(<i>selector</i>, <i>d</i>, <i>dpl</i>, <i>g</i>, <i>p</i>, <i>s</i>, <i>type</i>, <i>base</i>, <i>limit</i>, <i>valid</i>, <i>l</i>)</tt> The limit field always specifies the limit in bytes.</dd>
+<dt id="dt:ldtr"><a href="#dt:ldtr">
+<i>ldtr</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[i{11}]</code>
+<br>X86 segment register. All fields are stored in a list of integers as follows: <tt>(<i>selector</i>, <i>d</i>, <i>dpl</i>, <i>g</i>, <i>p</i>, <i>s</i>, <i>type</i>, <i>base</i>, <i>limit</i>, <i>valid</i>, <i>l</i>)</tt> The limit field always specifies the limit in bytes.</dd>
+<dt id="dt:eflags"><a href="#dt:eflags">
+<i>eflags</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Flag register.</dd>
+<dt id="dt:mxcsr"><a href="#dt:mxcsr">
+<i>mxcsr</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>XMM control register.</dd>
+<dt id="dt:xmm"><a href="#dt:xmm">
+<i>xmm</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[[ii]*]</code>
+<br>((<i>xmm_0_low</i>, <i>xmm_0_high</i>), ..., (<i>xmm_n_low</i>, <i>xmm_n_high</i>)). Each list represents one xmm register. The high quad word (bits 64-127) is in <i>xmmi_high</i> and the low quad word (bits 0-63) is in <i>xmmi_low</i>.</dd>
+<dt id="dt:ymmu"><a href="#dt:ymmu">
+<i>ymmu</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[[ii]*]</code>
+<br>((<i>ymmu0_low</i>, <i>ymm0_high</i>), ..., (<i>ymmu15_low</i>, <i>ymmu15_high</i>)). Each list represents the two upper quad words of an ymm register. register. The high quad word (bits 192-255) is in <i>ymmi_high</i> and the low quad word (bits 128-191) is in <i>ymmi_low</i>.</dd>
+<dt id="dt:fpu_regs"><a href="#dt:fpu_regs">
+<i>fpu_regs</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[[i{11}]{8}]</code>
+<br>((empty, b0, b1, b2, b3, b4, b5, b6, b7, b8, b9){8}). X86 floating point registers. The 8 80-bits registers is stored as a list of 11 bytes. The first byte tells if the register is empty (1) or not (0). The other bytes contain the register value with the lowest (least significant) bits in b0 and the highest (most significant bits in b9.</dd>
+<dt id="dt:fpu_control"><a href="#dt:fpu_control">
+<i>fpu_control</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x87 FPU control register.</dd>
+<dt id="dt:fpu_status"><a href="#dt:fpu_status">
+<i>fpu_status</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x87 FPU status register.</dd>
+<dt id="dt:fpu_tag"><a href="#dt:fpu_tag">
+<i>fpu_tag</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x87 FPU tag word.</dd>
+<dt id="dt:fpu_last_instr_selector"><a href="#dt:fpu_last_instr_selector">
+<i>fpu_last_instr_selector</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>FPU instruction pointer selector.</dd>
+<dt id="dt:fpu_last_instr_pointer"><a href="#dt:fpu_last_instr_pointer">
+<i>fpu_last_instr_pointer</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>FPU instruction pointer offset.</dd>
+<dt id="dt:fpu_last_opcode"><a href="#dt:fpu_last_opcode">
+<i>fpu_last_opcode</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>FPU instruction opcode.</dd>
+<dt id="dt:fpu_last_operand_selector"><a href="#dt:fpu_last_operand_selector">
+<i>fpu_last_operand_selector</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>FPU operand pointer selector.</dd>
+<dt id="dt:fpu_last_operand_pointer"><a href="#dt:fpu_last_operand_pointer">
+<i>fpu_last_operand_pointer</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>FPU operand pointer offset.</dd>
+<dt id="dt:temporary_interrupt_mask"><a href="#dt:temporary_interrupt_mask">
+<i>temporary_interrupt_mask</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>If non-zero, interrupts are temporarily disabled even though EFLAGS.IF may be set.</dd>
+<dt id="dt:block_init"><a href="#dt:block_init">
+<i>block_init</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>INIT will be blocked if this flag is set.</dd>
+<dt id="dt:block_smi"><a href="#dt:block_smi">
+<i>block_smi</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>SMI will be blocked if this flag is set.</dd>
+<dt id="dt:block_nmi"><a href="#dt:block_nmi">
+<i>block_nmi</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>NMI will be blocked if this flag is set.</dd>
+<dt id="dt:smm_base"><a href="#dt:smm_base">
+<i>smm_base</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>SMM base.</dd>
+<dt id="dt:in_smm"><a href="#dt:in_smm">
+<i>in_smm</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Set iff the processor is in system management mode.</dd>
+<dt id="dt:monitor_info"><a href="#dt:monitor_info">
+<i>monitor_info</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[bbi]</code>
+<br>(armed, fired, address). Information about MONITOR. The MONITOR is armed if the first element in the list is true. The last element in the list contains the monitored physical address, and the second element indicates if the monitor has fired which means that the CPU should wake up.</dd>
+<dt id="dt:mwait_extensions"><a href="#dt:mwait_extensions">
+<i>mwait_extensions</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Extensions passed to the MWAIT instruction through ECX.</dd>
+<dt id="dt:mwait_hints"><a href="#dt:mwait_hints">
+<i>mwait_hints</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Hints passed to the MWAIT instruction through EAX.</dd>
+<dt id="dt:ext"><a href="#dt:ext">
+<i>ext</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>A bit indicating if the current exception is external.</dd>
+<dt id="dt:cr4_extension_mask"><a href="#dt:cr4_extension_mask">
+<i>cr4_extension_mask</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Externally implemented cr4 bits.</dd>
+<dt id="dt:disabled_breakpoints_update_dr6"><a href="#dt:disabled_breakpoints_update_dr6">
+<i>disabled_breakpoints_update_dr6</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Set to non-zero if you want debug breakpoints that are not enabled either through DR7.L nor DR7.G to still set the B bits in DR6.</dd>
+<dt id="dt:mxcsr_mask"><a href="#dt:mxcsr_mask">
+<i>mxcsr_mask</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MXCSR mask (0 means 0xffbf).</dd>
+<dt id="dt:pending_init"><a href="#dt:pending_init">
+<i>pending_init</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>Pending INIT</dd>
+<dt id="dt:pending_reset"><a href="#dt:pending_reset">
+<i>pending_reset</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>Pending RESET</dd>
+<dt id="dt:pending_exception"><a href="#dt:pending_exception">
+<i>pending_exception</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If this attribute is TRUE, then an exception or interrupt is pending and will be delivered before the next instruction.</dd>
+<dt id="dt:pending_exception_error_code_valid"><a href="#dt:pending_exception_error_code_valid">
+<i>pending_exception_error_code_valid</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If this attribute is TRUE, then the pending exception has an error code.</dd>
+<dt id="dt:pending_exception_set_rf"><a href="#dt:pending_exception_set_rf">
+<i>pending_exception_set_rf</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If this attribute is TRUE, then the resume flag bit will be set in the pushed image of the flag register.</dd>
+<dt id="dt:pending_exception_error_code"><a href="#dt:pending_exception_error_code">
+<i>pending_exception_error_code</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Error code to be delivered on the next pending exception if pending_exception_error_code_valid is set.</dd>
+<dt id="dt:pending_exception_instruction_length"><a href="#dt:pending_exception_instruction_length">
+<i>pending_exception_instruction_length</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Length of pending trap instruction.</dd>
+<dt id="dt:pending_exception_vector"><a href="#dt:pending_exception_vector">
+<i>pending_exception_vector</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Pending interrupt or exception vector. Only valid if pending_exception is set.</dd>
+<dt id="dt:pending_exception_type"><a href="#dt:pending_exception_type">
+<i>pending_exception_type</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Type of pending exception. </dd>
+<dt id="dt:waiting_interrupt"><a href="#dt:waiting_interrupt">
+<i>waiting_interrupt</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>If an interrupt is requested, but it cannot be immediately handled because interrupts are masked.</dd>
+<dt id="dt:waiting_device"><a href="#dt:waiting_device">
+<i>waiting_device</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o|n</code>
+<br>The device that requested the waiting interrupt. Only valid when waiting_interrupt is non-zero.</dd>
+<dt id="dt:fpu_fopcode_compatibility_mode"><a href="#dt:fpu_fopcode_compatibility_mode">
+<i>fpu_fopcode_compatibility_mode</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>Fopcode compatibility sub-mode.</dd>
+<dt id="dt:a20mask"><a href="#dt:a20mask">
+<i>a20mask</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>The a20mask.</dd>
+<dt id="dt:disable_block_merge"><a href="#dt:disable_block_merge">
+<i>disable_block_merge</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Internal.</dd>
+<dt id="dt:port_space"><a href="#dt:port_space">
+<i>port_space</i>
+</a></dt>
+<dd>
+<b>Required</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o</code>
+<br>I/O space of the cpu targeted by the IN, INS, OUT, and OUTS instructions. Must implement either the <tt>port</tt> interface (typically an instance of the <tt>port-space</tt> class), or the <tt>lookup</tt> interface (typically an instance of the <tt>memory-space</tt> class).</dd>
+<dt id="dt:apic"><a href="#dt:apic">
+<i>apic</i>
+</a></dt>
+<dd>
+<b>Required</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o</code>
+<br>Local APIC this cpu is connected to.</dd>
+<dt id="dt:cpuid_lahf64"><a href="#dt:cpuid_lahf64">
+<i>cpuid_lahf64</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>b</code>
+<br>LAHF/SAHF support in 64-bit mode. Reported through CPUID function 80000001 in ECX bit 0.</dd>
+<dt id="dt:load_far_ptr_64"><a href="#dt:load_far_ptr_64">
+<i>load_far_ptr_64</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If TRUE, the load far pointer instructions are extended to 64-bit when executed with a 64-bit operand size. The default is FALSE, which treats 64-bit and 32-bit operand size the same.</dd>
+<dt id="dt:near_branches_64"><a href="#dt:near_branches_64">
+<i>near_branches_64</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>Determines how near branches are handled in 64-bit mode. If the attribute is TRUE, then the operand size is fixed at 64-bits, while the default value of FALSE allows an override to 16 bits.</dd>
+<dt id="dt:one_step_per_string_instruction"><a href="#dt:one_step_per_string_instruction">
+<i>one_step_per_string_instruction</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If TRUE, each un-interrupted run of a repeated string instruction (CMPS, LODS, MOVS, SCAS, STOS) will be counted as a single step as compared to each iteration being a step in the default model. Due to how instruction counting works in the hardware performance counters, this attribute must be set to TRUE for VMP to work. Setting this attribute to FALSE will disable VMP.</dd>
+<dt id="dt:null_clear_base_and_limit"><a href="#dt:null_clear_base_and_limit">
+<i>null_clear_base_and_limit</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If TRUE, a load of a NULL selector to a segment register will clear the base and limit values.</dd>
+<dt id="dt:mov_default32"><a href="#dt:mov_default32">
+<i>mov_default32</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If TRUE, movs to or from control and debug registers will default to 32-bits in 64-bit mode. If FALSE (which is the default value), such moves will be fixed at 64-bits.</dd>
+<dt id="dt:skip_canonical_logical_check"><a href="#dt:skip_canonical_logical_check">
+<i>skip_canonical_logical_check</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If TRUE, no canonical check is performed on the logical address during address translation. A canonical check is always performed on the linear address, regardless of the setting of this attribute. The default value is FALSE, performing canonical checks on both the logical and linear addresses.</dd>
+<dt id="dt:debug_len_10b_8_bytes"><a href="#dt:debug_len_10b_8_bytes">
+<i>debug_len_10b_8_bytes</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If this attribute is set to TRUE (FALSE is the default), then the 10b length encoding in DR7 is taken to mean 8 bytes. If it is false, then 10b means 8 bytes in long mode, but only one byte in legacy mode.</dd>
+<dt id="dt:seg_push_zero_pad"><a href="#dt:seg_push_zero_pad">
+<i>seg_push_zero_pad</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If this attribute is set to TRUE (which is the default), then segment register push instructions will pad the push with zero bytes up to the width of the push. If false, then that memory will be kept untouched.</dd>
+<dt id="dt:allow_tss_bios_workaround"><a href="#dt:allow_tss_bios_workaround">
+<i>allow_tss_bios_workaround</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If this attribute is set to TRUE, which is the default, then VMP is allowed to modify the initial CPU state slightly in order to work around a BIOS problem causing hard host crashes. The workaround consist of using a 32-bit TSS instead of a 16-bit TSS after CPU reset. If this attribute is set to FALSE, then VMP will be disabled whenever a 16-bit TSS is loaded.</dd>
+<dt id="dt:sp_mask_non64"><a href="#dt:sp_mask_non64">
+<i>sp_mask_non64</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If this attribute is set to TRUE (FALSE is the default), then the stack pointer will be masked to 32-bits after the 16-byte alignment when an exception is taken from a mode other than 64-bit mode while operating in long mode.</dd>
+<dt id="dt:lar_ldt_lm_invalid"><a href="#dt:lar_ldt_lm_invalid">
+<i>lar_ldt_lm_invalid</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If this attribute is set to TRUE (FALSE is the default), then the LDT segment type will not be considered valid for the LAR instruction while operating in long mode.</dd>
+<dt id="dt:far_call_jmp_64"><a href="#dt:far_call_jmp_64">
+<i>far_call_jmp_64</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If this attribute is set to TRUE, far call and jmp instructions will have a 64-bit offset when the operand size is 64-bits. If FALSE, then the offset will be 32-bits with both 32-bit and 64-bit operand size.</dd>
+<dt id="dt:pause_slow_cycles"><a href="#dt:pause_slow_cycles">
+<i>pause_slow_cycles</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Stall cycles for the PAUSE instruction. This additional stall is there to allow execution of spin-locks to consume more virtual time per iteration, leading to faster simulation performance. The default for VMP is to stall for 10 micro-seconds.</dd>
+<dt id="dt:rdtsc_slow_cycles"><a href="#dt:rdtsc_slow_cycles">
+<i>rdtsc_slow_cycles</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Stall cycles for the RDTSC and RDTSCP instructions. This additional stall is there to allow time expiration loops to consume more virtual time per iteration, leading to faster simulation performance. The default for VMP is to stall for 10 micro-seconds.</dd>
+<dt id="dt:port_io_slow_cycles"><a href="#dt:port_io_slow_cycles">
+<i>port_io_slow_cycles</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Stall cycles for port-mapped I/O. This additional stall is there to allow I/O poll loops to consume more virtual time per iteration, leading to faster simulation performance. The default for VMP is to stall for 10 micro-seconds.</dd>
+<dt id="dt:inject_vmexit"><a href="#dt:inject_vmexit">
+<i>inject_vmexit</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>write-only</b> access; type: 
+<code>i</code>
+<br>Force a VMEXIT from VMX mode.</dd>
+<dt id="dt:cpuid_vmx"><a href="#dt:cpuid_vmx">
+<i>cpuid_vmx</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>i</code>
+<br>VMX feature as reported through CPUID function 1 ECX bit 5.</dd>
+<dt id="dt:vmx_mode"><a href="#dt:vmx_mode">
+<i>vmx_mode</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>VMX mode. 0: Not in VMX operation. 1: In VMX root operation. 2: In VMX non-root operation.</dd>
+<dt id="dt:current_vmcs_ptr"><a href="#dt:current_vmcs_ptr">
+<i>current_vmcs_ptr</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>VMX mode current VMCS pointer.</dd>
+<dt id="dt:vmxon_ptr"><a href="#dt:vmxon_ptr">
+<i>vmxon_ptr</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>VMXON pointer.</dd>
+<dt id="dt:vmx_pending_exit"><a href="#dt:vmx_pending_exit">
+<i>vmx_pending_exit</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>n|i</code>
+<br>Pending VMX exit reason. See appendix A of the VMX specification for encoding. Nil if no VMX exit is pending.</dd>
+<dt id="dt:vmcs_layout"><a href="#dt:vmcs_layout">
+<i>vmcs_layout</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[[isiii]*]</code>
+<br>Exports the implementation specific layout of the Intel® Virtual Machine Control Structure Shadowing (Intel® VMCS Shadowing) area. This information can be used to display the current VMCS status, as well as to track changes in the VMCS. Sublist format (<i>index</i>, <i>name</i>, <i>size</i>, <i>offset</i>, <i>attr</i>). A field is stored as a <i>size</i> byte integer at <i>offset</i> in the VMCS.</dd>
+<dt id="dt:vmcs_content"><a href="#dt:vmcs_content">
+<i>vmcs_content</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[[ii]*]</code>
+<br>The register content of the currently loaded Intel® Virtual Machine Control Structure Shadowing (Intel® VMCS Shadowing). Not valid if current_vmcs_ptr is not valid. Not all VMCS fields are necessarily present in this attribute since they are not kept in CPU registers. Remaining fields will be in the VMCS memory area.</dd>
+<dt id="dt:vmcs_launch_state"><a href="#dt:vmcs_launch_state">
+<i>vmcs_launch_state</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>s|n</code>
+<br>VMCS launch state.</dd>
+<dt id="dt:block_virtual_nmi"><a href="#dt:block_virtual_nmi">
+<i>block_virtual_nmi</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>Virtual NMIs blocking.</dd>
+<dt id="dt:cpuid_sse3"><a href="#dt:cpuid_sse3">
+<i>cpuid_sse3</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>i</code>
+<br>Support for SSE3. Reported through CPUID function 1 ECX bit 0.</dd>
+<dt id="dt:cpuid_monitor"><a href="#dt:cpuid_monitor">
+<i>cpuid_monitor</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>i</code>
+<br>Support for MONITOR. Reported through CPUID function 1 ECX bit 3.</dd>
+<dt id="dt:cpuid_ssse3"><a href="#dt:cpuid_ssse3">
+<i>cpuid_ssse3</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>i</code>
+<br>Support for SSSE3. Reported through CPUID function 1 ECX bit 9.</dd>
+<dt id="dt:cpuid_sse4_1"><a href="#dt:cpuid_sse4_1">
+<i>cpuid_sse4_1</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>i</code>
+<br>Support for SSE4.1. Reported through CPUID function 1 ECX bit 19.</dd>
+<dt id="dt:cpuid_sse4_2"><a href="#dt:cpuid_sse4_2">
+<i>cpuid_sse4_2</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>i</code>
+<br>Support for SSE4.2. Reported through CPUID function 1 ECX bit 20.</dd>
+<dt id="dt:cpuid_vendor_id"><a href="#dt:cpuid_vendor_id">
+<i>cpuid_vendor_id</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>s</code>
+<br>Vendor ID string for CPUID.</dd>
+<dt id="dt:cpuid_extended_family"><a href="#dt:cpuid_extended_family">
+<i>cpuid_extended_family</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Extended family for CPUID.</dd>
+<dt id="dt:cpuid_extended_model"><a href="#dt:cpuid_extended_model">
+<i>cpuid_extended_model</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Extended model for CPUID.</dd>
+<dt id="dt:cpuid_family"><a href="#dt:cpuid_family">
+<i>cpuid_family</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Family for CPUID.</dd>
+<dt id="dt:cpuid_model"><a href="#dt:cpuid_model">
+<i>cpuid_model</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Model for CPUID.</dd>
+<dt id="dt:cpuid_stepping"><a href="#dt:cpuid_stepping">
+<i>cpuid_stepping</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Stepping for CPUID.</dd>
+<dt id="dt:cpuid_brand_id"><a href="#dt:cpuid_brand_id">
+<i>cpuid_brand_id</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Brand ID for CPUID.</dd>
+<dt id="dt:cpuid_clflush_size"><a href="#dt:cpuid_clflush_size">
+<i>cpuid_clflush_size</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Size of CLFLUSH as reported by CPUID.</dd>
+<dt id="dt:cpuid_logical_processor_count"><a href="#dt:cpuid_logical_processor_count">
+<i>cpuid_logical_processor_count</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Count of logical processors for CPUID. Setting this to non-zero will enable the HTT feature bit (bit 28).</dd>
+<dt id="dt:cpuid_thread_level_apic_id_shift_count"><a href="#dt:cpuid_thread_level_apic_id_shift_count">
+<i>cpuid_thread_level_apic_id_shift_count</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Number of bits for APIC ID shift at the thread level in CPUID. If left at the default value of 0, a count just large enough to represent the threads in the core will be used.</dd>
+<dt id="dt:cpuid_core_level_apic_id_shift_count"><a href="#dt:cpuid_core_level_apic_id_shift_count">
+<i>cpuid_core_level_apic_id_shift_count</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Number of bits for APIC ID shift at the core level in CPUID. The shift count at the thread level will be added to calculate the second 0xB sub-leaf shift count. If left at the default value of 0, a count just large enough to represent the cores in the package.</dd>
+<dt id="dt:cpuid_physical_apic_id"><a href="#dt:cpuid_physical_apic_id">
+<i>cpuid_physical_apic_id</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Physical local APIC ID for CPUID.</dd>
+<dt id="dt:cpuid_2_eax"><a href="#dt:cpuid_2_eax">
+<i>cpuid_2_eax</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Value returned in EAX for CPUID when input EAX == 2.</dd>
+<dt id="dt:cpuid_2_ebx"><a href="#dt:cpuid_2_ebx">
+<i>cpuid_2_ebx</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Value returned in EBX for CPUID when input EAX == 2.</dd>
+<dt id="dt:cpuid_2_ecx"><a href="#dt:cpuid_2_ecx">
+<i>cpuid_2_ecx</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Value returned in ECX for CPUID when input EAX == 2.</dd>
+<dt id="dt:cpuid_2_edx"><a href="#dt:cpuid_2_edx">
+<i>cpuid_2_edx</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Value returned in EDX for CPUID when input EAX == 2.</dd>
+<dt id="dt:cpuid_processor_name"><a href="#dt:cpuid_processor_name">
+<i>cpuid_processor_name</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>s</code>
+<br>Processor name for CPUID.</dd>
+<dt id="dt:cpuid_l2_cache_size_kb"><a href="#dt:cpuid_l2_cache_size_kb">
+<i>cpuid_l2_cache_size_kb</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Level 2 cache information returned by CPUID function 8000.0006.</dd>
+<dt id="dt:cpuid_l2_cache_assoc"><a href="#dt:cpuid_l2_cache_assoc">
+<i>cpuid_l2_cache_assoc</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Level 2 cache information returned by CPUID function 8000.0006.</dd>
+<dt id="dt:cpuid_l2_cache_lines_per_tag"><a href="#dt:cpuid_l2_cache_lines_per_tag">
+<i>cpuid_l2_cache_lines_per_tag</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Level 2 cache information returned by CPUID function 8000.0006.</dd>
+<dt id="dt:cpuid_l2_cache_line_size"><a href="#dt:cpuid_l2_cache_line_size">
+<i>cpuid_l2_cache_line_size</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Level 2 cache information returned by CPUID function 8000.0006.</dd>
+<dt id="dt:cpuid_monitor_min_size"><a href="#dt:cpuid_monitor_min_size">
+<i>cpuid_monitor_min_size</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Smallest monitor granularity. This is the size used in the monitor implementation.</dd>
+<dt id="dt:cpuid_monitor_max_size"><a href="#dt:cpuid_monitor_max_size">
+<i>cpuid_monitor_max_size</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Largest monitor granularity. This is reported through CPUID, but not used in the implementation.</dd>
+<dt id="dt:cpuid_mwait_int_break_support"><a href="#dt:cpuid_mwait_int_break_support">
+<i>cpuid_mwait_int_break_support</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>Support for MWAIT break on interrupts even if disabled.</dd>
+<dt id="dt:smi_count"><a href="#dt:smi_count">
+<i>smi_count</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Counts the number of occurrences of the SMM.</dd>
+<dt id="dt:smm_handler"><a href="#dt:smm_handler">
+<i>smm_handler</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>n|o|[os]</code>
+<br>Object implementing the x86_smm interface.</dd>
+<dt id="dt:last_io"><a href="#dt:last_io">
+<i>last_io</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[iiii]</code>
+<br>Information about last IO instruction (pc, lin_addr, iinfo, step_count).</dd>
+<dt id="dt:a20_inhibited"><a href="#dt:a20_inhibited">
+<i>a20_inhibited</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>A20 will be always lowered if this flag is set.</dd>
+<dt id="dt:latch_init"><a href="#dt:latch_init">
+<i>latch_init</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>INIT is currently latched.</dd>
+<dt id="dt:latch_smi"><a href="#dt:latch_smi">
+<i>latch_smi</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>SMI is currently latched.</dd>
+<dt id="dt:latch_nmi"><a href="#dt:latch_nmi">
+<i>latch_nmi</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>NMI is currently latched.</dd>
+<dt id="dt:use_halt_steps"><a href="#dt:use_halt_steps">
+<i>use_halt_steps</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>Advance the step counter as well as the cycle counter when the CPU is idle. Defaults to FALSE.</dd>
+<dt id="dt:threads"><a href="#dt:threads">
+<i>threads</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[o{1}]|[o{2}]|[o{3}]|[o{4}]|n</code>
+<br>List of Simics processors representing threads in the physical processor core. Needs to point to objects of the same class as for the object where the attribute is being set.</dd>
+<dt id="dt:package_group"><a href="#dt:package_group">
+<i>package_group</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o|n</code>
+<br>The first Simics processor contained in the same multicore package. Used for shared MSR:s. Needs to point to a processor of the same class.</dd>
+<dt id="dt:access_type_name"><a href="#dt:access_type_name">
+<i>access_type_name</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>Unknown</code>
+<br>Get string describing the specified access type (x86_access_type_t).</dd>
+<dt id="dt:ferr_target"><a href="#dt:ferr_target">
+<i>ferr_target</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>n|o</code>
+<br>Object to which the FERR pin (used for external x87 exception emulation) is connected.</dd>
+<dt id="dt:ferr_status"><a href="#dt:ferr_status">
+<i>ferr_status</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Status for the ferr output pin.</dd>
+<dt id="dt:ignne_status"><a href="#dt:ignne_status">
+<i>ignne_status</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Status for the ignne input pin.</dd>
+<dt id="dt:cstate_listeners"><a href="#dt:cstate_listeners">
+<i>cstate_listeners</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[o*]</code>
+<br>List of all devices to be notified on C-state change. Must implement the x86_cstate_notification interface.</dd>
+<dt id="dt:cstate"><a href="#dt:cstate">
+<i>cstate</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[ii]</code>
+<br>C-state</dd>
+<dt id="dt:smm_listeners"><a href="#dt:smm_listeners">
+<i>smm_listeners</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[o*]</code>
+<br>List of all devices to be notified on transitions in or out of system management mode (SMM). Must implement the x86_smm_notification interface.</dd>
+<dt id="dt:tlb"><a href="#dt:tlb">
+<i>tlb</i>
+</a></dt>
+<dd>
+<b>Required</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o</code>
+<br>Object handling the TLBs for this CPU.</dd>
+<dt id="dt:exception_error_code"><a href="#dt:exception_error_code">
+<i>exception_error_code</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>i</code>
+<br>Error code for the current exception. Only valid when read from the <tt>Core_Exception</tt> hap. This attribute is undefined for exceptions that do not have an error code.</dd>
+<dt id="dt:exception_description"><a href="#dt:exception_description">
+<i>exception_description</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>s|n</code>
+<br>Description of current exception. Only valid when read from the <tt>Core_Exception</tt> hap. The value can be <tt>Nil</tt> in which case the exception number, source, and optional error code can be used to gain an understanding of why the exception triggered.</dd>
+<dt id="dt:vm_compatible_config"><a href="#dt:vm_compatible_config">
+<i>vm_compatible_config</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>This attribute should be set to TRUE if the machine configuration is VMP compatible.</dd>
+<dt id="dt:vm_block_cnt"><a href="#dt:vm_block_cnt">
+<i>vm_block_cnt</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Execution with VMP will be prevented if this attribute is non-zero. This attribute should normally be modified using the x86_vmp_control interface.</dd>
+<dt id="dt:vm_break_step"><a href="#dt:vm_break_step">
+<i>vm_break_step</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>If set to non-zero, the VM-monitor will silently break execution as soon as possible after the specified step without impacting the normal execution flow.</dd>
+<dt id="dt:vm_stepi_dbg"><a href="#dt:vm_stepi_dbg">
+<i>vm_stepi_dbg</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If set, VMP kernel module will use Monitor Trap Flag to single-step (for debugging purposes).</dd>
+<dt id="dt:vm_debug_trace"><a href="#dt:vm_debug_trace">
+<i>vm_debug_trace</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>If 1, the VMP kernel module will collect VMX traces. If 2, logging will occur to the console or to a file.</dd>
+<dt id="dt:vm_step_threshold"><a href="#dt:vm_step_threshold">
+<i>vm_step_threshold</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Threshold below which the monitor is not used.</dd>
+<dt id="dt:vm_autohyper_step_threshold"><a href="#dt:vm_autohyper_step_threshold">
+<i>vm_autohyper_step_threshold</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Do not enter VMP if fewer steps has been executed since last time autohyper triggered (since the execution is likely handled by autohyper again). Default 30 steps.</dd>
+<dt id="dt:system"><a href="#dt:system">
+<i>system</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>n|o</code>
+<br>System object.</dd>
+<dt id="dt:cpuid_list"><a href="#dt:cpuid_list">
+<i>cpuid_list</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[o*]</code>
+<br>List of objects implementing the x86_cpuid interface. These objects are called in the order of registration after the magic instruction handler but before internal CPUID implementation</dd>
+<dt id="dt:pending_start_up"><a href="#dt:pending_start_up">
+<i>pending_start_up</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>If 1, a startup IPI is pending.</dd>
+<dt id="dt:pending_start_up_address"><a href="#dt:pending_start_up_address">
+<i>pending_start_up_address</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>The address to start on if there is a pending startup IPI.</dd>
+<dt id="dt:msr_aperf"><a href="#dt:msr_aperf">
+<i>msr_aperf</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Value of the APERF MSR.</dd>
+<dt id="dt:msr_mperf"><a href="#dt:msr_mperf">
+<i>msr_mperf</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Value of the MPERF MSR.</dd>
+<dt id="dt:tsc_invariant_freq"><a href="#dt:tsc_invariant_freq">
+<i>tsc_invariant_freq</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Rate at which TSC (if TSC invariant feature supported) and IA32_MPERF MSR are incremented in cycles/second.</dd>
+<dt id="dt:break_on_triple_fault"><a href="#dt:break_on_triple_fault">
+<i>break_on_triple_fault</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If TRUE, the model will stop execution if there is a triple fault. Set to FALSE to not stop on triple fault.</dd>
+<dt id="dt:cache_flush_handler"><a href="#dt:cache_flush_handler">
+<i>cache_flush_handler</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o|n</code>
+<br>Object implementing the x86_cache_flush interface.</dd>
+<dt id="dt:ucode_signature"><a href="#dt:ucode_signature">
+<i>ucode_signature</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i|n</code>
+<br>Can be either: None - no microcode update has happened since #RESET or an integer - microcode signature after the update.</dd>
+<dt id="dt:enable_effective_memory_type_calculation"><a href="#dt:enable_effective_memory_type_calculation">
+<i>enable_effective_memory_type_calculation</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>If TRUE, the effective memory type field of memory transactions will always be calculated for all non-inquiry accesses. If FALSE, the effective memory type field may be left as X86_None.</dd>
+<dt id="dt:cstar"><a href="#dt:cstar">
+<i>cstar</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_aperf"><a href="#dt:ia32_aperf">
+<i>ia32_aperf</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Actual Performance Frequency Clock Count</dd>
+<dt id="dt:ia32_bios_sign_id"><a href="#dt:ia32_bios_sign_id">
+<i>ia32_bios_sign_id</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>BIOS Update Signature ID</dd>
+<dt id="dt:ia32_bios_updt_trig"><a href="#dt:ia32_bios_updt_trig">
+<i>ia32_bios_updt_trig</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>BIOS Update Trigger Register</dd>
+<dt id="dt:ia32_clock_modulation"><a href="#dt:ia32_clock_modulation">
+<i>ia32_clock_modulation</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Clock Modulation</dd>
+<dt id="dt:ia32_cr_pat"><a href="#dt:ia32_cr_pat">
+<i>ia32_cr_pat</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>IA32_CR_PAT</dd>
+<dt id="dt:ia32_debugctl"><a href="#dt:ia32_debugctl">
+<i>ia32_debugctl</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Debug Control</dd>
+<dt id="dt:ia32_ds_area"><a href="#dt:ia32_ds_area">
+<i>ia32_ds_area</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>DS Save Area</dd>
+<dt id="dt:ia32_efer"><a href="#dt:ia32_efer">
+<i>ia32_efer</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Extended Feature Enables</dd>
+<dt id="dt:ia32_ext_xapic_cur_count"><a href="#dt:ia32_ext_xapic_cur_count">
+<i>ia32_ext_xapic_cur_count</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Current Count register</dd>
+<dt id="dt:ia32_ext_xapic_div_conf"><a href="#dt:ia32_ext_xapic_div_conf">
+<i>ia32_ext_xapic_div_conf</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Divide Configuration register</dd>
+<dt id="dt:ia32_ext_xapic_eoi"><a href="#dt:ia32_ext_xapic_eoi">
+<i>ia32_ext_xapic_eoi</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC EOI register</dd>
+<dt id="dt:ia32_ext_xapic_esr"><a href="#dt:ia32_ext_xapic_esr">
+<i>ia32_ext_xapic_esr</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Error Status register</dd>
+<dt id="dt:ia32_ext_xapic_icr"><a href="#dt:ia32_ext_xapic_icr">
+<i>ia32_ext_xapic_icr</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Interrupt Command register</dd>
+<dt id="dt:ia32_ext_xapic_init_count"><a href="#dt:ia32_ext_xapic_init_count">
+<i>ia32_ext_xapic_init_count</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Initial Count register</dd>
+<dt id="dt:ia32_ext_xapic_irr0"><a href="#dt:ia32_ext_xapic_irr0">
+<i>ia32_ext_xapic_irr0</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Interrupt Request register bits [31:0]</dd>
+<dt id="dt:ia32_ext_xapic_irr1"><a href="#dt:ia32_ext_xapic_irr1">
+<i>ia32_ext_xapic_irr1</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Interrupt Request register bits [63:32]</dd>
+<dt id="dt:ia32_ext_xapic_irr2"><a href="#dt:ia32_ext_xapic_irr2">
+<i>ia32_ext_xapic_irr2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Interrupt Request register bits [95:64]</dd>
+<dt id="dt:ia32_ext_xapic_irr3"><a href="#dt:ia32_ext_xapic_irr3">
+<i>ia32_ext_xapic_irr3</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Interrupt Request register bits [127:96]</dd>
+<dt id="dt:ia32_ext_xapic_irr4"><a href="#dt:ia32_ext_xapic_irr4">
+<i>ia32_ext_xapic_irr4</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Interrupt Request register bits [159:128]</dd>
+<dt id="dt:ia32_ext_xapic_irr5"><a href="#dt:ia32_ext_xapic_irr5">
+<i>ia32_ext_xapic_irr5</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Interrupt Request register bits [191:160]</dd>
+<dt id="dt:ia32_ext_xapic_irr6"><a href="#dt:ia32_ext_xapic_irr6">
+<i>ia32_ext_xapic_irr6</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Interrupt Request register bits [223:192]</dd>
+<dt id="dt:ia32_ext_xapic_irr7"><a href="#dt:ia32_ext_xapic_irr7">
+<i>ia32_ext_xapic_irr7</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Interrupt Request register bits [255:224]</dd>
+<dt id="dt:ia32_ext_xapic_isr0"><a href="#dt:ia32_ext_xapic_isr0">
+<i>ia32_ext_xapic_isr0</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC In-Service register bits [31:0]</dd>
+<dt id="dt:ia32_ext_xapic_isr1"><a href="#dt:ia32_ext_xapic_isr1">
+<i>ia32_ext_xapic_isr1</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC In-Service register bits [63:32]</dd>
+<dt id="dt:ia32_ext_xapic_isr2"><a href="#dt:ia32_ext_xapic_isr2">
+<i>ia32_ext_xapic_isr2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC In-Service register bits [95:64]</dd>
+<dt id="dt:ia32_ext_xapic_isr3"><a href="#dt:ia32_ext_xapic_isr3">
+<i>ia32_ext_xapic_isr3</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC In-Service register bits [127:96]</dd>
+<dt id="dt:ia32_ext_xapic_isr4"><a href="#dt:ia32_ext_xapic_isr4">
+<i>ia32_ext_xapic_isr4</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC In-Service register bits [159:128]</dd>
+<dt id="dt:ia32_ext_xapic_isr5"><a href="#dt:ia32_ext_xapic_isr5">
+<i>ia32_ext_xapic_isr5</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC In-Service register bits [191:160]</dd>
+<dt id="dt:ia32_ext_xapic_isr6"><a href="#dt:ia32_ext_xapic_isr6">
+<i>ia32_ext_xapic_isr6</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC In-Service register bits [223:192]</dd>
+<dt id="dt:ia32_ext_xapic_isr7"><a href="#dt:ia32_ext_xapic_isr7">
+<i>ia32_ext_xapic_isr7</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC In-Service register bits [255:224]</dd>
+<dt id="dt:ia32_ext_xapic_ldr"><a href="#dt:ia32_ext_xapic_ldr">
+<i>ia32_ext_xapic_ldr</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Logical Destination register</dd>
+<dt id="dt:ia32_ext_xapic_lvt_cmci"><a href="#dt:ia32_ext_xapic_lvt_cmci">
+<i>ia32_ext_xapic_lvt_cmci</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC LVT Corrected Machine Check Interrupt register</dd>
+<dt id="dt:ia32_ext_xapic_lvt_error"><a href="#dt:ia32_ext_xapic_lvt_error">
+<i>ia32_ext_xapic_lvt_error</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC LVT Error register</dd>
+<dt id="dt:ia32_ext_xapic_lvt_lint0"><a href="#dt:ia32_ext_xapic_lvt_lint0">
+<i>ia32_ext_xapic_lvt_lint0</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC LVT LINT0 register</dd>
+<dt id="dt:ia32_ext_xapic_lvt_lint1"><a href="#dt:ia32_ext_xapic_lvt_lint1">
+<i>ia32_ext_xapic_lvt_lint1</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC LVT LINT1 register</dd>
+<dt id="dt:ia32_ext_xapic_lvt_pmi"><a href="#dt:ia32_ext_xapic_lvt_pmi">
+<i>ia32_ext_xapic_lvt_pmi</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC LVT Performance Monitor register</dd>
+<dt id="dt:ia32_ext_xapic_lvt_thermal"><a href="#dt:ia32_ext_xapic_lvt_thermal">
+<i>ia32_ext_xapic_lvt_thermal</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC LVT Thermal Sensor Interrupt register</dd>
+<dt id="dt:ia32_ext_xapic_lvt_timer"><a href="#dt:ia32_ext_xapic_lvt_timer">
+<i>ia32_ext_xapic_lvt_timer</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC LVT Timer Interrupt register</dd>
+<dt id="dt:ia32_ext_xapic_ppr"><a href="#dt:ia32_ext_xapic_ppr">
+<i>ia32_ext_xapic_ppr</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Processor Priority register</dd>
+<dt id="dt:ia32_ext_xapic_self_ipi"><a href="#dt:ia32_ext_xapic_self_ipi">
+<i>ia32_ext_xapic_self_ipi</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Self IPI register</dd>
+<dt id="dt:ia32_ext_xapic_sivr"><a href="#dt:ia32_ext_xapic_sivr">
+<i>ia32_ext_xapic_sivr</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Spurious Interrupt Vector register</dd>
+<dt id="dt:ia32_ext_xapic_tmr0"><a href="#dt:ia32_ext_xapic_tmr0">
+<i>ia32_ext_xapic_tmr0</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Trigger Mode register bits [31:0]</dd>
+<dt id="dt:ia32_ext_xapic_tmr1"><a href="#dt:ia32_ext_xapic_tmr1">
+<i>ia32_ext_xapic_tmr1</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Trigger Mode register bits [63:32]</dd>
+<dt id="dt:ia32_ext_xapic_tmr2"><a href="#dt:ia32_ext_xapic_tmr2">
+<i>ia32_ext_xapic_tmr2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Trigger Mode register bits [95:64]</dd>
+<dt id="dt:ia32_ext_xapic_tmr3"><a href="#dt:ia32_ext_xapic_tmr3">
+<i>ia32_ext_xapic_tmr3</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Trigger Mode register bits [127:96]</dd>
+<dt id="dt:ia32_ext_xapic_tmr4"><a href="#dt:ia32_ext_xapic_tmr4">
+<i>ia32_ext_xapic_tmr4</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Trigger Mode register bits [159:128]</dd>
+<dt id="dt:ia32_ext_xapic_tmr5"><a href="#dt:ia32_ext_xapic_tmr5">
+<i>ia32_ext_xapic_tmr5</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Trigger Mode register bits [191:160]</dd>
+<dt id="dt:ia32_ext_xapic_tmr6"><a href="#dt:ia32_ext_xapic_tmr6">
+<i>ia32_ext_xapic_tmr6</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Trigger Mode register bits [223:192]</dd>
+<dt id="dt:ia32_ext_xapic_tmr7"><a href="#dt:ia32_ext_xapic_tmr7">
+<i>ia32_ext_xapic_tmr7</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Trigger Mode register bits [255:224]</dd>
+<dt id="dt:ia32_ext_xapic_tpr"><a href="#dt:ia32_ext_xapic_tpr">
+<i>ia32_ext_xapic_tpr</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Task Priority register</dd>
+<dt id="dt:ia32_ext_xapic_version"><a href="#dt:ia32_ext_xapic_version">
+<i>ia32_ext_xapic_version</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC Version register</dd>
+<dt id="dt:ia32_ext_xapicid"><a href="#dt:ia32_ext_xapicid">
+<i>ia32_ext_xapicid</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>x2APIC ID register</dd>
+<dt id="dt:ia32_feature_control"><a href="#dt:ia32_feature_control">
+<i>ia32_feature_control</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Control Features in Intel64 processor</dd>
+<dt id="dt:ia32_fixed_ctr0"><a href="#dt:ia32_fixed_ctr0">
+<i>ia32_fixed_ctr0</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Fixed-Function Performance Counter Register 0</dd>
+<dt id="dt:ia32_fixed_ctr1"><a href="#dt:ia32_fixed_ctr1">
+<i>ia32_fixed_ctr1</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Fixed-Function Performance Counter Register 1</dd>
+<dt id="dt:ia32_fixed_ctr2"><a href="#dt:ia32_fixed_ctr2">
+<i>ia32_fixed_ctr2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Fixed-Function Performance Counter Register 2</dd>
+<dt id="dt:ia32_fixed_ctr_ctrl"><a href="#dt:ia32_fixed_ctr_ctrl">
+<i>ia32_fixed_ctr_ctrl</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Fixed-Function-Counter Control Register</dd>
+<dt id="dt:ia32_fmask"><a href="#dt:ia32_fmask">
+<i>ia32_fmask</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>System Call Flag Mask</dd>
+<dt id="dt:ia32_fs_base"><a href="#dt:ia32_fs_base">
+<i>ia32_fs_base</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Map of BASE Address of FS</dd>
+<dt id="dt:ia32_gs_base"><a href="#dt:ia32_gs_base">
+<i>ia32_gs_base</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Map of BASE Address of GS</dd>
+<dt id="dt:ia32_kernel_gs_base"><a href="#dt:ia32_kernel_gs_base">
+<i>ia32_kernel_gs_base</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Swap Target of BASE Address of GS</dd>
+<dt id="dt:ia32_lstar"><a href="#dt:ia32_lstar">
+<i>ia32_lstar</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>IA-32e Mode System Call Target Address</dd>
+<dt id="dt:ia32_mc0_addr"><a href="#dt:ia32_mc0_addr">
+<i>ia32_mc0_addr</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MC0_ADDR</dd>
+<dt id="dt:ia32_mc0_ctl"><a href="#dt:ia32_mc0_ctl">
+<i>ia32_mc0_ctl</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MC0_CTL</dd>
+<dt id="dt:ia32_mc0_ctl2"><a href="#dt:ia32_mc0_ctl2">
+<i>ia32_mc0_ctl2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_mc0_status"><a href="#dt:ia32_mc0_status">
+<i>ia32_mc0_status</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MC0_STATUS</dd>
+<dt id="dt:ia32_mc1_addr"><a href="#dt:ia32_mc1_addr">
+<i>ia32_mc1_addr</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MC1_ADDR</dd>
+<dt id="dt:ia32_mc1_ctl"><a href="#dt:ia32_mc1_ctl">
+<i>ia32_mc1_ctl</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MC1_CTL</dd>
+<dt id="dt:ia32_mc1_ctl2"><a href="#dt:ia32_mc1_ctl2">
+<i>ia32_mc1_ctl2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_mc1_status"><a href="#dt:ia32_mc1_status">
+<i>ia32_mc1_status</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MC1_STATUS</dd>
+<dt id="dt:ia32_mc2_addr"><a href="#dt:ia32_mc2_addr">
+<i>ia32_mc2_addr</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MC2_ADDR</dd>
+<dt id="dt:ia32_mc2_ctl"><a href="#dt:ia32_mc2_ctl">
+<i>ia32_mc2_ctl</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MC2_CTL</dd>
+<dt id="dt:ia32_mc2_ctl2"><a href="#dt:ia32_mc2_ctl2">
+<i>ia32_mc2_ctl2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_mc2_status"><a href="#dt:ia32_mc2_status">
+<i>ia32_mc2_status</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MC2_STATUS</dd>
+<dt id="dt:ia32_mc3_ctl2"><a href="#dt:ia32_mc3_ctl2">
+<i>ia32_mc3_ctl2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_mc4_ctl2"><a href="#dt:ia32_mc4_ctl2">
+<i>ia32_mc4_ctl2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_mc5_ctl2"><a href="#dt:ia32_mc5_ctl2">
+<i>ia32_mc5_ctl2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_mc6_ctl2"><a href="#dt:ia32_mc6_ctl2">
+<i>ia32_mc6_ctl2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_mc7_ctl2"><a href="#dt:ia32_mc7_ctl2">
+<i>ia32_mc7_ctl2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_mc7_status"><a href="#dt:ia32_mc7_status">
+<i>ia32_mc7_status</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_mc8_ctl2"><a href="#dt:ia32_mc8_ctl2">
+<i>ia32_mc8_ctl2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_mc8_status"><a href="#dt:ia32_mc8_status">
+<i>ia32_mc8_status</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_mcg_cap"><a href="#dt:ia32_mcg_cap">
+<i>ia32_mcg_cap</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Global Machine Check Capability</dd>
+<dt id="dt:ia32_mcg_status"><a href="#dt:ia32_mcg_status">
+<i>ia32_mcg_status</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Global Machine Check Status</dd>
+<dt id="dt:ia32_misc_enable"><a href="#dt:ia32_misc_enable">
+<i>ia32_misc_enable</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Enable Misc. Processor Features</dd>
+<dt id="dt:ia32_monitor_filter_size"><a href="#dt:ia32_monitor_filter_size">
+<i>ia32_monitor_filter_size</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Monitor/Mwait Address Range Determination</dd>
+<dt id="dt:ia32_mperf"><a href="#dt:ia32_mperf">
+<i>ia32_mperf</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Maximum Performance Frequency Clock Count</dd>
+<dt id="dt:ia32_mtrr_def_type"><a href="#dt:ia32_mtrr_def_type">
+<i>ia32_mtrr_def_type</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Default Memory Types</dd>
+<dt id="dt:ia32_mtrr_fix_16k_80000"><a href="#dt:ia32_mtrr_fix_16k_80000">
+<i>ia32_mtrr_fix_16k_80000</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRfix16K_80000</dd>
+<dt id="dt:ia32_mtrr_fix_16k_a0000"><a href="#dt:ia32_mtrr_fix_16k_a0000">
+<i>ia32_mtrr_fix_16k_a0000</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRfix16K_A0000</dd>
+<dt id="dt:ia32_mtrr_fix_4k_c0000"><a href="#dt:ia32_mtrr_fix_4k_c0000">
+<i>ia32_mtrr_fix_4k_c0000</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRfix4K_C0000</dd>
+<dt id="dt:ia32_mtrr_fix_4k_c8000"><a href="#dt:ia32_mtrr_fix_4k_c8000">
+<i>ia32_mtrr_fix_4k_c8000</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRfix4K_C8000</dd>
+<dt id="dt:ia32_mtrr_fix_4k_d0000"><a href="#dt:ia32_mtrr_fix_4k_d0000">
+<i>ia32_mtrr_fix_4k_d0000</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRfix4K_D0000</dd>
+<dt id="dt:ia32_mtrr_fix_4k_d8000"><a href="#dt:ia32_mtrr_fix_4k_d8000">
+<i>ia32_mtrr_fix_4k_d8000</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRfix4K_D8000</dd>
+<dt id="dt:ia32_mtrr_fix_4k_e0000"><a href="#dt:ia32_mtrr_fix_4k_e0000">
+<i>ia32_mtrr_fix_4k_e0000</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRfix4K_E0000</dd>
+<dt id="dt:ia32_mtrr_fix_4k_e8000"><a href="#dt:ia32_mtrr_fix_4k_e8000">
+<i>ia32_mtrr_fix_4k_e8000</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRfix4K_E8000</dd>
+<dt id="dt:ia32_mtrr_fix_4k_f0000"><a href="#dt:ia32_mtrr_fix_4k_f0000">
+<i>ia32_mtrr_fix_4k_f0000</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRfix4K_F0000</dd>
+<dt id="dt:ia32_mtrr_fix_4k_f8000"><a href="#dt:ia32_mtrr_fix_4k_f8000">
+<i>ia32_mtrr_fix_4k_f8000</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRfix4K_F8000</dd>
+<dt id="dt:ia32_mtrr_fix_64k_00000"><a href="#dt:ia32_mtrr_fix_64k_00000">
+<i>ia32_mtrr_fix_64k_00000</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRfix64K_00000</dd>
+<dt id="dt:ia32_mtrr_physbase0"><a href="#dt:ia32_mtrr_physbase0">
+<i>ia32_mtrr_physbase0</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRphysBase0</dd>
+<dt id="dt:ia32_mtrr_physbase1"><a href="#dt:ia32_mtrr_physbase1">
+<i>ia32_mtrr_physbase1</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRphysBase1</dd>
+<dt id="dt:ia32_mtrr_physbase2"><a href="#dt:ia32_mtrr_physbase2">
+<i>ia32_mtrr_physbase2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRphysBase2</dd>
+<dt id="dt:ia32_mtrr_physbase3"><a href="#dt:ia32_mtrr_physbase3">
+<i>ia32_mtrr_physbase3</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRphysBase3</dd>
+<dt id="dt:ia32_mtrr_physbase4"><a href="#dt:ia32_mtrr_physbase4">
+<i>ia32_mtrr_physbase4</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRphysBase4</dd>
+<dt id="dt:ia32_mtrr_physbase5"><a href="#dt:ia32_mtrr_physbase5">
+<i>ia32_mtrr_physbase5</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRphysBase5</dd>
+<dt id="dt:ia32_mtrr_physbase6"><a href="#dt:ia32_mtrr_physbase6">
+<i>ia32_mtrr_physbase6</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRphysBase6</dd>
+<dt id="dt:ia32_mtrr_physbase7"><a href="#dt:ia32_mtrr_physbase7">
+<i>ia32_mtrr_physbase7</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRphysBase7</dd>
+<dt id="dt:ia32_mtrr_physmask0"><a href="#dt:ia32_mtrr_physmask0">
+<i>ia32_mtrr_physmask0</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRphysMask0</dd>
+<dt id="dt:ia32_mtrr_physmask1"><a href="#dt:ia32_mtrr_physmask1">
+<i>ia32_mtrr_physmask1</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRphysMask1</dd>
+<dt id="dt:ia32_mtrr_physmask2"><a href="#dt:ia32_mtrr_physmask2">
+<i>ia32_mtrr_physmask2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRphysMask2</dd>
+<dt id="dt:ia32_mtrr_physmask3"><a href="#dt:ia32_mtrr_physmask3">
+<i>ia32_mtrr_physmask3</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRphysMask3</dd>
+<dt id="dt:ia32_mtrr_physmask4"><a href="#dt:ia32_mtrr_physmask4">
+<i>ia32_mtrr_physmask4</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRphysMask4</dd>
+<dt id="dt:ia32_mtrr_physmask5"><a href="#dt:ia32_mtrr_physmask5">
+<i>ia32_mtrr_physmask5</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRphysMask5</dd>
+<dt id="dt:ia32_mtrr_physmask6"><a href="#dt:ia32_mtrr_physmask6">
+<i>ia32_mtrr_physmask6</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRphysMask6</dd>
+<dt id="dt:ia32_mtrr_physmask7"><a href="#dt:ia32_mtrr_physmask7">
+<i>ia32_mtrr_physmask7</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRRphysMask7</dd>
+<dt id="dt:ia32_mtrrcap"><a href="#dt:ia32_mtrrcap">
+<i>ia32_mtrrcap</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MTRR Capability</dd>
+<dt id="dt:ia32_p5_mc_addr"><a href="#dt:ia32_p5_mc_addr">
+<i>ia32_p5_mc_addr</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_p5_mc_type"><a href="#dt:ia32_p5_mc_type">
+<i>ia32_p5_mc_type</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_pebs_enable"><a href="#dt:ia32_pebs_enable">
+<i>ia32_pebs_enable</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>PEBS Control</dd>
+<dt id="dt:ia32_perf_capabilities"><a href="#dt:ia32_perf_capabilities">
+<i>ia32_perf_capabilities</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_perf_ctl"><a href="#dt:ia32_perf_ctl">
+<i>ia32_perf_ctl</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_perf_global_ctrl"><a href="#dt:ia32_perf_global_ctrl">
+<i>ia32_perf_global_ctrl</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Global Performance Counter Control</dd>
+<dt id="dt:ia32_perf_global_status"><a href="#dt:ia32_perf_global_status">
+<i>ia32_perf_global_status</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Global Performance Counter Status</dd>
+<dt id="dt:ia32_perf_status"><a href="#dt:ia32_perf_status">
+<i>ia32_perf_status</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_perfevtsel0"><a href="#dt:ia32_perfevtsel0">
+<i>ia32_perfevtsel0</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Performance Event Select Register 0</dd>
+<dt id="dt:ia32_perfevtsel1"><a href="#dt:ia32_perfevtsel1">
+<i>ia32_perfevtsel1</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Performance Event Select Register 1</dd>
+<dt id="dt:ia32_perfevtsel2"><a href="#dt:ia32_perfevtsel2">
+<i>ia32_perfevtsel2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_perfevtsel3"><a href="#dt:ia32_perfevtsel3">
+<i>ia32_perfevtsel3</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_platform_id"><a href="#dt:ia32_platform_id">
+<i>ia32_platform_id</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Platform ID</dd>
+<dt id="dt:ia32_pmc0"><a href="#dt:ia32_pmc0">
+<i>ia32_pmc0</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Performance counter register</dd>
+<dt id="dt:ia32_pmc1"><a href="#dt:ia32_pmc1">
+<i>ia32_pmc1</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Performance counter register</dd>
+<dt id="dt:ia32_pmc2"><a href="#dt:ia32_pmc2">
+<i>ia32_pmc2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Performance counter register</dd>
+<dt id="dt:ia32_pmc3"><a href="#dt:ia32_pmc3">
+<i>ia32_pmc3</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Performance counter register</dd>
+<dt id="dt:ia32_reserved_194"><a href="#dt:ia32_reserved_194">
+<i>ia32_reserved_194</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Reserved MSR at 0x194</dd>
+<dt id="dt:ia32_smm_mca_cap"><a href="#dt:ia32_smm_mca_cap">
+<i>ia32_smm_mca_cap</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>EFI_MSR_SMM_MCA_CAP</dd>
+<dt id="dt:ia32_smrr_physbase"><a href="#dt:ia32_smrr_physbase">
+<i>ia32_smrr_physbase</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_smrr_physmask"><a href="#dt:ia32_smrr_physmask">
+<i>ia32_smrr_physmask</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:ia32_star"><a href="#dt:ia32_star">
+<i>ia32_star</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>System Call Target Address</dd>
+<dt id="dt:ia32_sysenter_cs"><a href="#dt:ia32_sysenter_cs">
+<i>ia32_sysenter_cs</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>SYSENTER_CS_MSR</dd>
+<dt id="dt:ia32_sysenter_eip"><a href="#dt:ia32_sysenter_eip">
+<i>ia32_sysenter_eip</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>SYSENTER_EIP_MSR</dd>
+<dt id="dt:ia32_sysenter_esp"><a href="#dt:ia32_sysenter_esp">
+<i>ia32_sysenter_esp</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>SYSENTER_ESP_MSR</dd>
+<dt id="dt:ia32_therm_interrupt"><a href="#dt:ia32_therm_interrupt">
+<i>ia32_therm_interrupt</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Thermal Interrupt Control</dd>
+<dt id="dt:ia32_therm_status"><a href="#dt:ia32_therm_status">
+<i>ia32_therm_status</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Thermal Monitor Status</dd>
+<dt id="dt:ia32_time_stamp_counter"><a href="#dt:ia32_time_stamp_counter">
+<i>ia32_time_stamp_counter</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Time-Stamp Counter</dd>
+<dt id="dt:ia32_tsc_aux"><a href="#dt:ia32_tsc_aux">
+<i>ia32_tsc_aux</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>AUXILIARY TSC Signature</dd>
+<dt id="dt:ia32_unknown_130"><a href="#dt:ia32_unknown_130">
+<i>ia32_unknown_130</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x130</dd>
+<dt id="dt:ia32_unknown_131"><a href="#dt:ia32_unknown_131">
+<i>ia32_unknown_131</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x131</dd>
+<dt id="dt:ia32_unknown_178"><a href="#dt:ia32_unknown_178">
+<i>ia32_unknown_178</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x178</dd>
+<dt id="dt:ia32_unknown_19d"><a href="#dt:ia32_unknown_19d">
+<i>ia32_unknown_19d</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x19d</dd>
+<dt id="dt:ia32_unknown_1a4"><a href="#dt:ia32_unknown_1a4">
+<i>ia32_unknown_1a4</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x1a4</dd>
+<dt id="dt:ia32_unknown_1a7"><a href="#dt:ia32_unknown_1a7">
+<i>ia32_unknown_1a7</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x1a7</dd>
+<dt id="dt:ia32_unknown_1aa"><a href="#dt:ia32_unknown_1aa">
+<i>ia32_unknown_1aa</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x1aa</dd>
+<dt id="dt:ia32_unknown_1ac"><a href="#dt:ia32_unknown_1ac">
+<i>ia32_unknown_1ac</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x1ac</dd>
+<dt id="dt:ia32_unknown_1c6"><a href="#dt:ia32_unknown_1c6">
+<i>ia32_unknown_1c6</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x1c6</dd>
+<dt id="dt:ia32_unknown_1db"><a href="#dt:ia32_unknown_1db">
+<i>ia32_unknown_1db</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x1db</dd>
+<dt id="dt:ia32_unknown_1dc"><a href="#dt:ia32_unknown_1dc">
+<i>ia32_unknown_1dc</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x1dc</dd>
+<dt id="dt:ia32_unknown_1f0"><a href="#dt:ia32_unknown_1f0">
+<i>ia32_unknown_1f0</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x1f0</dd>
+<dt id="dt:ia32_unknown_1f1"><a href="#dt:ia32_unknown_1f1">
+<i>ia32_unknown_1f1</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x1f1</dd>
+<dt id="dt:ia32_unknown_1fc"><a href="#dt:ia32_unknown_1fc">
+<i>ia32_unknown_1fc</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x1fc</dd>
+<dt id="dt:ia32_unknown_2a"><a href="#dt:ia32_unknown_2a">
+<i>ia32_unknown_2a</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x2a</dd>
+<dt id="dt:ia32_unknown_2d"><a href="#dt:ia32_unknown_2d">
+<i>ia32_unknown_2d</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x2d</dd>
+<dt id="dt:ia32_unknown_2e"><a href="#dt:ia32_unknown_2e">
+<i>ia32_unknown_2e</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x2e</dd>
+<dt id="dt:ia32_unknown_2e0"><a href="#dt:ia32_unknown_2e0">
+<i>ia32_unknown_2e0</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x2e0</dd>
+<dt id="dt:ia32_unknown_300"><a href="#dt:ia32_unknown_300">
+<i>ia32_unknown_300</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x300</dd>
+<dt id="dt:ia32_unknown_33"><a href="#dt:ia32_unknown_33">
+<i>ia32_unknown_33</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x33</dd>
+<dt id="dt:ia32_unknown_35"><a href="#dt:ia32_unknown_35">
+<i>ia32_unknown_35</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x35</dd>
+<dt id="dt:ia32_unknown_398"><a href="#dt:ia32_unknown_398">
+<i>ia32_unknown_398</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x398</dd>
+<dt id="dt:ia32_unknown_399"><a href="#dt:ia32_unknown_399">
+<i>ia32_unknown_399</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x399</dd>
+<dt id="dt:ia32_unknown_39a"><a href="#dt:ia32_unknown_39a">
+<i>ia32_unknown_39a</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x39a</dd>
+<dt id="dt:ia32_unknown_3d0"><a href="#dt:ia32_unknown_3d0">
+<i>ia32_unknown_3d0</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x3d0</dd>
+<dt id="dt:ia32_unknown_3d1"><a href="#dt:ia32_unknown_3d1">
+<i>ia32_unknown_3d1</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x3d1</dd>
+<dt id="dt:ia32_unknown_3d8"><a href="#dt:ia32_unknown_3d8">
+<i>ia32_unknown_3d8</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x3d8</dd>
+<dt id="dt:ia32_unknown_3d9"><a href="#dt:ia32_unknown_3d9">
+<i>ia32_unknown_3d9</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x3d9</dd>
+<dt id="dt:ia32_unknown_3fe"><a href="#dt:ia32_unknown_3fe">
+<i>ia32_unknown_3fe</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x3fe</dd>
+<dt id="dt:ia32_unknown_4b"><a href="#dt:ia32_unknown_4b">
+<i>ia32_unknown_4b</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x4b</dd>
+<dt id="dt:ia32_unknown_9b"><a href="#dt:ia32_unknown_9b">
+<i>ia32_unknown_9b</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0x9b</dd>
+<dt id="dt:ia32_unknown_e2"><a href="#dt:ia32_unknown_e2">
+<i>ia32_unknown_e2</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0xe2</dd>
+<dt id="dt:ia32_unknown_e4"><a href="#dt:ia32_unknown_e4">
+<i>ia32_unknown_e4</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Unknown MSR at 0xe4</dd>
+<dt id="dt:ia32_vmx_basic"><a href="#dt:ia32_vmx_basic">
+<i>ia32_vmx_basic</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Reporting Register of Basic VMX Capabilities</dd>
+<dt id="dt:ia32_vmx_cr0_fixed0"><a href="#dt:ia32_vmx_cr0_fixed0">
+<i>ia32_vmx_cr0_fixed0</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Capability Reporting Register of CR0 Bits Fixed to 0</dd>
+<dt id="dt:ia32_vmx_cr0_fixed1"><a href="#dt:ia32_vmx_cr0_fixed1">
+<i>ia32_vmx_cr0_fixed1</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Capability Reporting Register of CR0 Bits Fixed to 1</dd>
+<dt id="dt:ia32_vmx_cr4_fixed0"><a href="#dt:ia32_vmx_cr4_fixed0">
+<i>ia32_vmx_cr4_fixed0</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Capability Reporting Register of CR4 Bits Fixed to 0</dd>
+<dt id="dt:ia32_vmx_cr4_fixed1"><a href="#dt:ia32_vmx_cr4_fixed1">
+<i>ia32_vmx_cr4_fixed1</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Capability Reporting Register of CR4 Bits Fixed to 1</dd>
+<dt id="dt:ia32_vmx_entry_ctls"><a href="#dt:ia32_vmx_entry_ctls">
+<i>ia32_vmx_entry_ctls</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Capability Reporting Register of VM-entry Controls</dd>
+<dt id="dt:ia32_vmx_ept_vpid_cap"><a href="#dt:ia32_vmx_ept_vpid_cap">
+<i>ia32_vmx_ept_vpid_cap</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Capability Reporting Register of EPT and VPID</dd>
+<dt id="dt:ia32_vmx_exit_ctls"><a href="#dt:ia32_vmx_exit_ctls">
+<i>ia32_vmx_exit_ctls</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Capability Reporting Register of VM-exit Controls</dd>
+<dt id="dt:ia32_vmx_misc"><a href="#dt:ia32_vmx_misc">
+<i>ia32_vmx_misc</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Reporting Register of Miscellaneous VMX Capabilities</dd>
+<dt id="dt:ia32_vmx_pinbased_ctls"><a href="#dt:ia32_vmx_pinbased_ctls">
+<i>ia32_vmx_pinbased_ctls</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Capability Reporting Register of Pin-based VM-execution Controls</dd>
+<dt id="dt:ia32_vmx_procbased_ctls"><a href="#dt:ia32_vmx_procbased_ctls">
+<i>ia32_vmx_procbased_ctls</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Capability Reporting Register of Primary Processor-based VM-execution Controls</dd>
+<dt id="dt:ia32_vmx_procbased_ctls2"><a href="#dt:ia32_vmx_procbased_ctls2">
+<i>ia32_vmx_procbased_ctls2</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Capability Reporting Register of Secondary Processor-based VM-execution Controls</dd>
+<dt id="dt:ia32_vmx_true_entry_ctls"><a href="#dt:ia32_vmx_true_entry_ctls">
+<i>ia32_vmx_true_entry_ctls</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Capability Reporting Register of VM-entry Controls</dd>
+<dt id="dt:ia32_vmx_true_exit_ctls"><a href="#dt:ia32_vmx_true_exit_ctls">
+<i>ia32_vmx_true_exit_ctls</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Capability Reporting Register of VM-exit Controls</dd>
+<dt id="dt:ia32_vmx_true_pinbased_ctls"><a href="#dt:ia32_vmx_true_pinbased_ctls">
+<i>ia32_vmx_true_pinbased_ctls</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Capability Reporting Register of Pin-based VM-execution Controls</dd>
+<dt id="dt:ia32_vmx_true_procbased_ctls"><a href="#dt:ia32_vmx_true_procbased_ctls">
+<i>ia32_vmx_true_procbased_ctls</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Capability Reporting Register of Primary Processor-based VM-execution Controls</dd>
+<dt id="dt:ia32_vmx_vmcs_enum"><a href="#dt:ia32_vmx_vmcs_enum">
+<i>ia32_vmx_vmcs_enum</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Capability Reporting Register of VMCS Field Enumeration</dd>
+<dt id="dt:mc0_misc"><a href="#dt:mc0_misc">
+<i>mc0_misc</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:mc1_misc"><a href="#dt:mc1_misc">
+<i>mc1_misc</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_core_c3_residency"><a href="#dt:msr_core_c3_residency">
+<i>msr_core_c3_residency</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_core_c6_residency"><a href="#dt:msr_core_c6_residency">
+<i>msr_core_c6_residency</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_gq_snoop_mesf"><a href="#dt:msr_gq_snoop_mesf">
+<i>msr_gq_snoop_mesf</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_lastbranch_0_from_ip"><a href="#dt:msr_lastbranch_0_from_ip">
+<i>msr_lastbranch_0_from_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 0 From IP</dd>
+<dt id="dt:msr_lastbranch_0_to_ip"><a href="#dt:msr_lastbranch_0_to_ip">
+<i>msr_lastbranch_0_to_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 0 To IP</dd>
+<dt id="dt:msr_lastbranch_10_from_ip"><a href="#dt:msr_lastbranch_10_from_ip">
+<i>msr_lastbranch_10_from_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 10 From IP</dd>
+<dt id="dt:msr_lastbranch_10_to_ip"><a href="#dt:msr_lastbranch_10_to_ip">
+<i>msr_lastbranch_10_to_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 10 To IP</dd>
+<dt id="dt:msr_lastbranch_11_from_ip"><a href="#dt:msr_lastbranch_11_from_ip">
+<i>msr_lastbranch_11_from_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 11 From IP</dd>
+<dt id="dt:msr_lastbranch_11_to_ip"><a href="#dt:msr_lastbranch_11_to_ip">
+<i>msr_lastbranch_11_to_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 11 To IP</dd>
+<dt id="dt:msr_lastbranch_12_from_ip"><a href="#dt:msr_lastbranch_12_from_ip">
+<i>msr_lastbranch_12_from_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 12 From IP</dd>
+<dt id="dt:msr_lastbranch_12_to_ip"><a href="#dt:msr_lastbranch_12_to_ip">
+<i>msr_lastbranch_12_to_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 12 To IP</dd>
+<dt id="dt:msr_lastbranch_13_from_ip"><a href="#dt:msr_lastbranch_13_from_ip">
+<i>msr_lastbranch_13_from_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 13 From IP</dd>
+<dt id="dt:msr_lastbranch_13_to_ip"><a href="#dt:msr_lastbranch_13_to_ip">
+<i>msr_lastbranch_13_to_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 13 To IP</dd>
+<dt id="dt:msr_lastbranch_14_from_ip"><a href="#dt:msr_lastbranch_14_from_ip">
+<i>msr_lastbranch_14_from_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 14 From IP</dd>
+<dt id="dt:msr_lastbranch_14_to_ip"><a href="#dt:msr_lastbranch_14_to_ip">
+<i>msr_lastbranch_14_to_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 14 To IP</dd>
+<dt id="dt:msr_lastbranch_15_from_ip"><a href="#dt:msr_lastbranch_15_from_ip">
+<i>msr_lastbranch_15_from_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 15 From IP</dd>
+<dt id="dt:msr_lastbranch_15_to_ip"><a href="#dt:msr_lastbranch_15_to_ip">
+<i>msr_lastbranch_15_to_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 15 To IP</dd>
+<dt id="dt:msr_lastbranch_1_from_ip"><a href="#dt:msr_lastbranch_1_from_ip">
+<i>msr_lastbranch_1_from_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 1 From IP</dd>
+<dt id="dt:msr_lastbranch_1_to_ip"><a href="#dt:msr_lastbranch_1_to_ip">
+<i>msr_lastbranch_1_to_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 1 To IP</dd>
+<dt id="dt:msr_lastbranch_2_from_ip"><a href="#dt:msr_lastbranch_2_from_ip">
+<i>msr_lastbranch_2_from_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 2 From IP</dd>
+<dt id="dt:msr_lastbranch_2_to_ip"><a href="#dt:msr_lastbranch_2_to_ip">
+<i>msr_lastbranch_2_to_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 2 To IP</dd>
+<dt id="dt:msr_lastbranch_3_from_ip"><a href="#dt:msr_lastbranch_3_from_ip">
+<i>msr_lastbranch_3_from_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 3 From IP</dd>
+<dt id="dt:msr_lastbranch_3_to_ip"><a href="#dt:msr_lastbranch_3_to_ip">
+<i>msr_lastbranch_3_to_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 3 To IP</dd>
+<dt id="dt:msr_lastbranch_4_from_ip"><a href="#dt:msr_lastbranch_4_from_ip">
+<i>msr_lastbranch_4_from_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 4 From IP</dd>
+<dt id="dt:msr_lastbranch_4_to_ip"><a href="#dt:msr_lastbranch_4_to_ip">
+<i>msr_lastbranch_4_to_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 4 To IP</dd>
+<dt id="dt:msr_lastbranch_5_from_ip"><a href="#dt:msr_lastbranch_5_from_ip">
+<i>msr_lastbranch_5_from_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 5 From IP</dd>
+<dt id="dt:msr_lastbranch_5_to_ip"><a href="#dt:msr_lastbranch_5_to_ip">
+<i>msr_lastbranch_5_to_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 5 To IP</dd>
+<dt id="dt:msr_lastbranch_6_from_ip"><a href="#dt:msr_lastbranch_6_from_ip">
+<i>msr_lastbranch_6_from_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 6 From IP</dd>
+<dt id="dt:msr_lastbranch_6_to_ip"><a href="#dt:msr_lastbranch_6_to_ip">
+<i>msr_lastbranch_6_to_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 6 To IP</dd>
+<dt id="dt:msr_lastbranch_7_from_ip"><a href="#dt:msr_lastbranch_7_from_ip">
+<i>msr_lastbranch_7_from_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 7 From IP</dd>
+<dt id="dt:msr_lastbranch_7_to_ip"><a href="#dt:msr_lastbranch_7_to_ip">
+<i>msr_lastbranch_7_to_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 7 To IP</dd>
+<dt id="dt:msr_lastbranch_8_from_ip"><a href="#dt:msr_lastbranch_8_from_ip">
+<i>msr_lastbranch_8_from_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 8 From IP</dd>
+<dt id="dt:msr_lastbranch_8_to_ip"><a href="#dt:msr_lastbranch_8_to_ip">
+<i>msr_lastbranch_8_to_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 8 To IP</dd>
+<dt id="dt:msr_lastbranch_9_from_ip"><a href="#dt:msr_lastbranch_9_from_ip">
+<i>msr_lastbranch_9_from_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 9 From IP</dd>
+<dt id="dt:msr_lastbranch_9_to_ip"><a href="#dt:msr_lastbranch_9_to_ip">
+<i>msr_lastbranch_9_to_ip</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record 9 To IP</dd>
+<dt id="dt:msr_lastbranch_tos"><a href="#dt:msr_lastbranch_tos">
+<i>msr_lastbranch_tos</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record Stack TOS</dd>
+<dt id="dt:msr_lbr_select"><a href="#dt:msr_lbr_select">
+<i>msr_lbr_select</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Branch Record Filtering Select Register</dd>
+<dt id="dt:msr_ler_from_lip"><a href="#dt:msr_ler_from_lip">
+<i>msr_ler_from_lip</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Exception Record From Linear IP</dd>
+<dt id="dt:msr_ler_to_lip"><a href="#dt:msr_ler_to_lip">
+<i>msr_ler_to_lip</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Last Exception Record To Linear IP</dd>
+<dt id="dt:msr_mc3_addr"><a href="#dt:msr_mc3_addr">
+<i>msr_mc3_addr</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MC3_ADDR</dd>
+<dt id="dt:msr_mc3_ctl"><a href="#dt:msr_mc3_ctl">
+<i>msr_mc3_ctl</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MC3_CTL</dd>
+<dt id="dt:msr_mc3_status"><a href="#dt:msr_mc3_status">
+<i>msr_mc3_status</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MC3_STATUS</dd>
+<dt id="dt:msr_mc4_ctl"><a href="#dt:msr_mc4_ctl">
+<i>msr_mc4_ctl</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MC4_CTL</dd>
+<dt id="dt:msr_mc4_status"><a href="#dt:msr_mc4_status">
+<i>msr_mc4_status</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>MC4_STATUS</dd>
+<dt id="dt:msr_mc5_addr"><a href="#dt:msr_mc5_addr">
+<i>msr_mc5_addr</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_mc5_ctl"><a href="#dt:msr_mc5_ctl">
+<i>msr_mc5_ctl</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_mc5_misc"><a href="#dt:msr_mc5_misc">
+<i>msr_mc5_misc</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_mc5_status"><a href="#dt:msr_mc5_status">
+<i>msr_mc5_status</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_mc6_addr"><a href="#dt:msr_mc6_addr">
+<i>msr_mc6_addr</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_mc6_ctl"><a href="#dt:msr_mc6_ctl">
+<i>msr_mc6_ctl</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_mc6_misc"><a href="#dt:msr_mc6_misc">
+<i>msr_mc6_misc</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_mc6_status"><a href="#dt:msr_mc6_status">
+<i>msr_mc6_status</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_mc7_ctl"><a href="#dt:msr_mc7_ctl">
+<i>msr_mc7_ctl</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_mc8_addr"><a href="#dt:msr_mc8_addr">
+<i>msr_mc8_addr</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_mc8_ctl"><a href="#dt:msr_mc8_ctl">
+<i>msr_mc8_ctl</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_mc8_misc"><a href="#dt:msr_mc8_misc">
+<i>msr_mc8_misc</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_offcore_rspo"><a href="#dt:msr_offcore_rspo">
+<i>msr_offcore_rspo</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br>Offcore Response Event Select Register</dd>
+<dt id="dt:msr_pebs_ld_latm"><a href="#dt:msr_pebs_ld_latm">
+<i>msr_pebs_ld_latm</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_pkg_c3_residency"><a href="#dt:msr_pkg_c3_residency">
+<i>msr_pkg_c3_residency</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_pkg_c6_residency"><a href="#dt:msr_pkg_c6_residency">
+<i>msr_pkg_c6_residency</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_pkg_c7_residency"><a href="#dt:msr_pkg_c7_residency">
+<i>msr_pkg_c7_residency</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_platform_info"><a href="#dt:msr_platform_info">
+<i>msr_platform_info</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_temperature_target"><a href="#dt:msr_temperature_target">
+<i>msr_temperature_target</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_turbo_ratio_limit"><a href="#dt:msr_turbo_ratio_limit">
+<i>msr_turbo_ratio_limit</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_addr_opcode_match"><a href="#dt:msr_uncore_addr_opcode_match">
+<i>msr_uncore_addr_opcode_match</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_fixed_ctr0"><a href="#dt:msr_uncore_fixed_ctr0">
+<i>msr_uncore_fixed_ctr0</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_fixed_ctr_ctrl"><a href="#dt:msr_uncore_fixed_ctr_ctrl">
+<i>msr_uncore_fixed_ctr_ctrl</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_perf_global_ctrl"><a href="#dt:msr_uncore_perf_global_ctrl">
+<i>msr_uncore_perf_global_ctrl</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_perf_global_ovf_ctrl"><a href="#dt:msr_uncore_perf_global_ovf_ctrl">
+<i>msr_uncore_perf_global_ovf_ctrl</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_perf_global_status"><a href="#dt:msr_uncore_perf_global_status">
+<i>msr_uncore_perf_global_status</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_perfevtsel0"><a href="#dt:msr_uncore_perfevtsel0">
+<i>msr_uncore_perfevtsel0</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_perfevtsel1"><a href="#dt:msr_uncore_perfevtsel1">
+<i>msr_uncore_perfevtsel1</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_perfevtsel2"><a href="#dt:msr_uncore_perfevtsel2">
+<i>msr_uncore_perfevtsel2</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_perfevtsel3"><a href="#dt:msr_uncore_perfevtsel3">
+<i>msr_uncore_perfevtsel3</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_perfevtsel4"><a href="#dt:msr_uncore_perfevtsel4">
+<i>msr_uncore_perfevtsel4</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_perfevtsel5"><a href="#dt:msr_uncore_perfevtsel5">
+<i>msr_uncore_perfevtsel5</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_perfevtsel6"><a href="#dt:msr_uncore_perfevtsel6">
+<i>msr_uncore_perfevtsel6</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_perfevtsel7"><a href="#dt:msr_uncore_perfevtsel7">
+<i>msr_uncore_perfevtsel7</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_pmc0"><a href="#dt:msr_uncore_pmc0">
+<i>msr_uncore_pmc0</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_pmc1"><a href="#dt:msr_uncore_pmc1">
+<i>msr_uncore_pmc1</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_pmc2"><a href="#dt:msr_uncore_pmc2">
+<i>msr_uncore_pmc2</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_pmc3"><a href="#dt:msr_uncore_pmc3">
+<i>msr_uncore_pmc3</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_pmc4"><a href="#dt:msr_uncore_pmc4">
+<i>msr_uncore_pmc4</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_pmc5"><a href="#dt:msr_uncore_pmc5">
+<i>msr_uncore_pmc5</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_pmc6"><a href="#dt:msr_uncore_pmc6">
+<i>msr_uncore_pmc6</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:msr_uncore_pmc7"><a href="#dt:msr_uncore_pmc7">
+<i>msr_uncore_pmc7</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>i</code>
+<br></dd>
+<dt id="dt:current_virtual_context"><a href="#dt:current_virtual_context">
+<i>current_virtual_context</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o|n</code>
+<br>Current context relating to addresses before segmentation.</dd>
+<dt id="dt:vm_pspace_sharable"><a href="#dt:vm_pspace_sharable">
+<i>vm_pspace_sharable</i>
+</a></dt>
+<dd>
+<b>Optional</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>Set if the physical address space may be shared with the other CPU cores.</dd>
+<dt id="dt:init_vm_monitor"><a href="#dt:init_vm_monitor">
+<i>init_vm_monitor</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>Setting this attribute to true enables the use of virtual machine monitor acceleration. The attribute will flag it as an illegal value if the virtual machine monitor kernel module could not be found, or if there was an error opening a connection to it (the attribute reads back as false in those cases). Acceleration will not be used unless the use_vm_monitor attribute is also set to true.</dd>
+<dt id="dt:vm_monitor_statistics"><a href="#dt:vm_monitor_statistics">
+<i>vm_monitor_statistics</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[[i*][i*][i*]]</code>
+<br>Internal, used for performance evaluation.</dd>
+<dt id="dt:vm_assert_object"><a href="#dt:vm_assert_object">
+<i>vm_assert_object</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>o|n</code>
+<br>VMP-mode state-assertion object.</dd>
+<dt id="dt:vm_disable_reason"><a href="#dt:vm_disable_reason">
+<i>vm_disable_reason</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>s|n</code>
+<br>Reason for using turbo instead of VM acceleration.</dd>
+<dt id="dt:vm_trace_file"><a href="#dt:vm_trace_file">
+<i>vm_trace_file</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>s|n</code>
+<br>File for storing VM-monitor traces; Used for debugging VMP.</dd>
+<dt id="dt:vm_dump_trace"><a href="#dt:vm_dump_trace">
+<i>vm_dump_trace</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>write-only</b> access; type: 
+<code>b</code>
+<br>Dump VM-monitor trace information (only collected if vm_debug_trace is set).</dd>
+<dt id="dt:vm_dump_vmcs"><a href="#dt:vm_dump_vmcs">
+<i>vm_dump_vmcs</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>write-only</b> access; type: 
+<code>s</code>
+<br>Dump host VMCS.</dd>
+<dt id="dt:vm_sched_affinity"><a href="#dt:vm_sched_affinity">
+<i>vm_sched_affinity</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[b+]</code>
+<br>Wire process to a subset of available hardware threads.</dd>
+<dt id="dt:vm_core2_bug"><a href="#dt:vm_core2_bug">
+<i>vm_core2_bug</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>b</code>
+<br>Set if the host cpu might be affected by a hardware bug.</dd>
+<dt id="dt:vm_host_has_vmx"><a href="#dt:vm_host_has_vmx">
+<i>vm_host_has_vmx</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>b</code>
+<br>If TRUE, host cpus support the virtual machine extensions (VMX).</dd>
+<dt id="dt:vm_cpu_migration_dbg"><a href="#dt:vm_cpu_migration_dbg">
+<i>vm_cpu_migration_dbg</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>Internal. Used to test state migration between host cpus.</dd>
+<dt id="dt:vm_info"><a href="#dt:vm_info">
+<i>vm_info</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>D|n</code>
+<br>Internal. Information about VMXMON.</dd>
+<dt id="dt:vm_use_pspace_sharing"><a href="#dt:vm_use_pspace_sharing">
+<i>vm_use_pspace_sharing</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>Set if the physical address space sharing should be used when possible.</dd>
+<dt id="dt:vm_using_pspace_sharing"><a href="#dt:vm_using_pspace_sharing">
+<i>vm_using_pspace_sharing</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>b</code>
+<br>Returns TRUE if physical address space sharing is in use.</dd>
+<dt id="dt:vm_backoff_enabled"><a href="#dt:vm_backoff_enabled">
+<i>vm_backoff_enabled</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>b</code>
+<br>VMP backoff mechanism enable.</dd>
+<dt id="dt:aprof_views"><a href="#dt:aprof_views">
+<i>aprof_views</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read/write</b> access; type: 
+<code>[[o,i]*]</code>
+<br>((<i>address profiler</i>, <i>view</i>)*) Address profiler views selected for this processor. Affects only the display of profiling information, and has nothing to do with collecting it.
+<p>
+This attribute should contain a list of lists: one list for each address profiler view you want to select (in the order they are to appear), each containing first the address profiler object, then the index of the desired view.</p></dd>
+</dl>
+<h2 id="class-attributes">
+<a href="#class-attributes">Class Attributes</a>
+</h2>
+<dl>
+<dt id="dt:architecture"><a href="#dt:architecture">
+<i>architecture</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>s</code>
+<br>Implemented architecture (x86-64)</dd>
+<dt id="dt:physical_bits"><a href="#dt:physical_bits">
+<i>physical_bits</i>
+</a></dt>
+<dd>
+<b>Pseudo</b> attribute; 
+<b>read-only</b> access; type: 
+<code>i</code>
+<br>Number of physical address bits.</dd>
+</dl>
+<h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.x86-intel64.html">x86-intel64</a>
+</section>
+<h2 id="x86-nehalem.uncore"><a href="#x86-nehalem.uncore">x86-nehalem.uncore</a></h2>

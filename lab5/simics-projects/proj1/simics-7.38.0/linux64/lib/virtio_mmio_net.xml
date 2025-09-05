@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<device name="virtio_mmio_net" bitorder="le">
+  <bank name="features">
+  </bank>
+  <bank name="mmio">
+  </bank>
+</device>

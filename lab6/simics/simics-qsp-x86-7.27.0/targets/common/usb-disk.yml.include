@@ -1,0 +1,8 @@
+if (params.get create) {
+        load-module usb-comp
+        local $name = (params.get name)
+        local $image = (params.get image)
+        local $usb_disk = (new-usb-disk-comp file = $image name = $name)
+        local $slot = (params.get slot)
+        $usb_disk.connect-to $slot
+}

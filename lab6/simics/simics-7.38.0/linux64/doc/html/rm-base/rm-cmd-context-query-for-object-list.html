@@ -1,0 +1,26 @@
+<a name="context-query-for-object-list"></a>
+<h1 id="context-query-for-object-list"><a href="#context-query-for-object-list">context-query-for-object-list</a></h1>
+<section class="doc-item not-numbered not-in-toc">
+<h2 id="synopsis">
+<a href="#synopsis">Synopsis</a>
+</h2>
+<b>context-query-for-object-list</b> <i>objects</i> <br>
+<h2 id="description">
+<a href="#description">Description</a>
+</h2>
+ Returns a context query that matches a list of <i>objects</i>.
+<p>
+This returned context query can then be used with other commands that take a context query as argument to match only the specified Simics object.
+</p><p>
+The printed output is formatted for use with CLI commands.
+</p><p>
+An error will be raised if the list contains any object that doesn't have a backing debug context or isn't a debug context object. 
+</p><h2 id="provided-by">
+<a href="#provided-by">Provided By</a>
+</h2>
+<a href="mod.tcf-agent.html">tcf-agent</a>
+<h2 id="see-also">
+<a href="#see-also">See Also</a>
+</h2>
+<a href="rm-cmd-context-query-for-object.html">context-query-for-object</a>
+</section>

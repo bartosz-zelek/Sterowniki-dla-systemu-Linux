@@ -1,0 +1,51 @@
+<h1 class="jdocu"><a name="check-pcie-address">2.1.2 Check Network Device PCIe Address</a></h1>
+<p>
+  
+</p><p>
+  If there are multiple network devices in the system, Windows requires that
+  you specify the card to use for debug. This is done using the PCI
+  <b>Bus:Device:Function</b> (BDF) address of the network card supported by
+  the Windows kernel debugger. To find out the BDF of the network card,
+  check the properties in the Windows Device Manager. The address is listed
+  as <b>'Location'</b> in the <b>'General'</b> tab.
+</p><p>
+  </p><div class="figure" id="pcie-address-in-windows">
+
+    <div style="text-align: center">
+      <img alt="" src="pcie-address-in-windows.png">
+      <div class="caption">Figure 3. Checking PCIe address of network device.</div>
+    </div>
+  </div>
+
+<p>
+  You can also use the <b>Get-NetAdapterHardwareInfo</b> Powershell command
+  to get BDF:
+</p><p>
+  </p><pre class="jdocu_small">&gt; <b>Get-NetAdapterHardwareInfo | fl</b>
+
+Name                        : Ethernet 2
+InterfaceDescription        : Intel(R) I210 Gigabit Network Connection
+DeviceType                  : PCI Express endpoint
+SegmentNumber               : 0
+BusNumber                   : 2
+DeviceNumber                : 0
+FunctionNumber              : 0
+SlotNumber                  : 12
+NumaNode                    : 0
+PciCurrentSpeedAndMode      :
+PciExpressCurrentLinkSpeed  : 2.5 GT/s
+PciExpressCurrentLinkWidth  : 4
+PciExpressMaxLinkSpeed      : 2.5 GT/s
+PciExpressMaxLinkWidth      : 4
+PciExpressVersion           : 1.1
+LineBasedInterruptSupported : True
+MsiInterruptSupported       : True
+MsiXInterruptSupported      : False
+  </pre><p>
+</p><p>
+  </p><div class="note">
+<b>Note:</b>
+It is a good idea to always specify the card to use for debug even if
+    target setup has a single network card. This will insure against any target
+    configuration changes that could introduce additional network cards.
+  </div>

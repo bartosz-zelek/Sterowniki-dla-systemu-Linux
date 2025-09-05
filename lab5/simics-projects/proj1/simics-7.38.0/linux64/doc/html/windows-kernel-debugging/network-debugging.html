@@ -1,0 +1,38 @@
+<h1 class="jdocu"><a name="network-debugging">2 Windows Kernel Debugging Over a Network</a></h1>
+<p>
+  
+</p><p>
+  </p><div class="note">
+<b>Note:</b>
+This chapter uses <i>QSP-x86</i> model as an example target
+    platform model. Some of the instructions will need to be adjusted to the
+    particular target model where it differs from <i>QSP-x86</i>
+    model.
+<p>
+    In order to be able to adapt <i>QSP-x86</i> examples to the
+    particular target model familiarity with target model and general Simics
+    environment is required.
+  </p></div>Windows kernel debugging configuration in Simics could be created in
+  such a way, that Windows debugger client connects to the target kernel
+  debugger via a real network. More specifically, Windows kernel running
+  on Simics target systems communicates with Windows kernel debugger
+  running on real host over a real network connection (figure
+  <a class="reference" href="#windbg-network-setup">1</a>). For more detailed information
+  about setting the newtwork connection up please refer to "Windows
+  Kernel Debugging Over a Network" (section
+  <a class="reference" href="network-debugging.html">2</a>).
+<p>
+  </p><div class="figure" id="windbg-network-setup">
+
+    <div style="text-align: center">
+      <img alt="" src="windbg-network-setup.png">
+      <div class="caption">Figure 1. Windows kernel debugger connection over a network.</div>
+    </div>
+  </div>
+
+  <p>
+  
+  
+  
+  
+</p>

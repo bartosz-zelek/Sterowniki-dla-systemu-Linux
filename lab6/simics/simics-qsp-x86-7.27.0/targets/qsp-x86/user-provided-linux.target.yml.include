@@ -1,0 +1,123 @@
+# © 2023 Intel Corporation
+#
+# This software and the related documents are Intel copyrighted materials, and
+# your use of them is governed by the express license under which they were
+# provided to you ("License"). Unless the License provides otherwise, you may
+# not use, modify, copy, publish, distribute, disclose or transmit this software
+# or the related documents without Intel's prior written permission.
+#
+# This software and the related documents are provided as is, with no express or
+# implied warranties, other than those that are expressly stated in the License.
+
+run-script "%script%/hardware.yml" namespace = machine:hardware
+
+local $system = (params.get machine:hardware:output:system)
+instantiate-components $system
+
+## Name system
+$system->system_info = (params.get machine:system_info)
+
+## Set a time quantum that provides reasonable performance
+set-time-quantum cell = ((($system->cpu_list)[0])->cell) seconds = 0.0001
+
+## Set up Ethernet
+run-script "%simics%/targets/common/ethernet-setup.yml" namespace = network:switch
+if (params.get network:switch:create_network) {
+    local $ethernet_switch = (params.get network:switch:ethernet_switch:name)
+    connect ($ethernet_switch.get-free-connector) (params.get machine:hardware:output:eth_slot)
+    instantiate-components (params.get network:switch:ethernet_switch:name)
+}
+
+run-script "%simics%/targets/common/sn-setup.yml" namespace = network:service_node
+
+run-script "%simics%/targets/common/user_provided_linux_helper.py"
+
+$mypid = (pid)
+
+if (params.get machine:software:linux:initrd) {
+
+@simenv.grub_cfg_file = generate_grub_cfg(params['machine:software:linux:host_tmp_dir'],
+                                          params['machine:software:linux:kernel'],
+                                          params['machine:software:linux:initrd'],
+                                          params['machine:software:linux:cmdline'],
+                                          simenv.mypid)
+
+} else {
+
+@simenv.grub_cfg_file = generate_grub_cfg(params['machine:software:linux:host_tmp_dir'],
+                                          params['machine:software:linux:kernel'],
+                                          None,
+                                          params['machine:software:linux:cmdline'],
+                                          simenv.mypid)
+
+}
+
+$startup_nsh_nodir = (python "os.path.basename(params['machine:software:linux:startup_nsh'])")
+
+@import stat
+
+if (params.get machine:software:linux:virtio_rootfs) {
+  local $virtio_rootfs = (lookup-file (params.get "machine:software:linux:virtio_rootfs"))
+  load-module virtio-comp
+
+  local $is_dir = (python "os.path.isdir(simenv.virtio_rootfs)")
+  local $is_socket = (python "stat.S_ISSOCK(os.stat(simenv.virtio_rootfs).st_mode)")
+
+  if $is_dir or $is_socket {
+    local $virtiofs = (create-virtio-pcie-fs-comp $system.mb.virtiofs
+                          share = $virtio_rootfs
+                          tag_name = (params.get machine:software:linux:virtiofs_tag))
+    connect $system.mb.nb.pcie_slot[0] $virtiofs.upstream_target
+  } else { 
+    # assume disk image file
+    $rootfs_disk = (create-virtio-pcie-blk-comp $system.mb.virtioblk file = $virtio_rootfs)
+    connect $system.mb.nb.pcie_slot[0] $rootfs_disk.pcie
+  }
+  instantiate-components
+}
+
+@def at_exit_handler(data, trigger):
+  try:
+    os.remove(data)
+    print("Removed GRUB cfg file %s."%(data))
+  except:
+    print("Could not remove tmp GRUB cfg file %s."%(data))
+
+@SIM_hap_add_callback('Core_At_Exit', at_exit_handler, simenv.grub_cfg_file)
+
+# The below branch will (when enabled) enter the BIOS menu by pressing ESC
+# after 10 seconds, then go to the third entry on the top level (by pressin DOWN twice).
+# The assumption is that this is the boot device selection (which is true for the QSP BIOS)
+# Then there is one press of UP, to select the last element in the list, which is assumed
+# to be the UEFI shell (which again is true for the QSP BIOS). Then the shell is started.
+script-branch "UEFI Shell Enter Branch" {
+    local $sercon = $system.serconsole.con
+    local $kernel = (lookup-file (params.get machine:software:linux:kernel))
+    local $startup_nsh = (params.get machine:software:linux:startup_nsh)
+    local $initrd = NIL
+    local $delay = (params.get machine:software:linux:script_delay)
+    if (params.get machine:software:linux:initrd) {
+        $initrd = (lookup-file (params.get machine:software:linux:initrd))
+    }
+
+    $system.mb.simics_uefi->selected_boot_option = "Internal Shell"
+
+    #stop countdown
+    bp.console_string.wait-for $sercon "Press ESC in"
+    $sercon.input -e Esc
+     
+    bp.console_string.wait-then-write $sercon "Shell>" "FS0:\n"
+   
+    local $manager = (start-agent-manager)
+
+    bp.console_string.wait-then-write $sercon "FS0:\\>" ("set -v GRUB_CFG_ON_HOST \" " + $grub_cfg_file + "\"\n")
+    bp.console_string.wait-then-write $sercon "FS0:\\>" ("set -v KERNEL_ON_HOST \" " + $kernel + "\"\n")
+    if $initrd != NIL {
+        bp.console_string.wait-then-write $sercon "FS0:\\>" ("set -v INITRD_ON_HOST \" " + $initrd + "\"\n")
+    }
+    bp.console_string.wait-then-write $sercon "FS0:\\>" ("SimicsAgent.efi --download " + (lookup-file $startup_nsh) + "\n")
+    bp.console_string.wait-then-write $sercon "FS0:\\>" ("copy " + $startup_nsh_nodir + " startup.nsh\n")
+    bp.console_string.wait-then-write $sercon "FS0:\\>" ("" + $startup_nsh_nodir + "\n")
+
+}
+
