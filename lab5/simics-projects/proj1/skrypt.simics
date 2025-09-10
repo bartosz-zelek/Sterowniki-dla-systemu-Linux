@@ -1,4 +1,8 @@
-load-target "risc-v-simple/linux"
+
 @SIM_create_object("first_device","dev1",[])
+memory-map
 board.phys_mem.add-map dev1:regs 0x10050000 0x10
-run
+board.phys_mem.write 0x10050000 4
+board.phys_mem.write 0x10050004 4
+board.phys_mem.write 0x10050008 43
+board.phys_mem.read 0x1005000C
